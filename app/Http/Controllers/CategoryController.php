@@ -29,11 +29,11 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
         ]);
 
-        Category::create($request->all());
+        Category::create($validated);
 
         return redirect(url("dashboard/categories"));
     }
@@ -44,8 +44,8 @@ class CategoryController extends Controller
     public function show($id)
     {
 
-        $category= Category::findOrFail($id);
-        return view('Dashboard.Categories.show' , compact("category"));
+        $category = Category::findOrFail($id);
+        return view('Dashboard.Categories.show', compact("category"));
     }
 
     /**
@@ -64,14 +64,14 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
         ]);
 
         $category = Category::findOrFail($id);
-        $category->update($request->all());
+        $category->update($validated);
         $categories = Category::all();
-        return view("Dashboard.Categories.index" ,compact("categories"));
+        return view("Dashboard.Categories.index", compact("categories"));
     }
 
     /**
