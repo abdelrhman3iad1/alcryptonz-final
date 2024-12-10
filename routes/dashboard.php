@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\Auth\UserAuthController;
+use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,4 +24,6 @@ Route::prefix("/dashboard")->group(function(){
     
 
     Route::resource("promotions",PromotionController::class);
+    Route::resource("categories",CategoryController::class);
+
 });
