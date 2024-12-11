@@ -50,6 +50,9 @@ class PromotionController extends Controller
             ]
         
         );
+        if (!str_starts_with($validated['website_url'], 'http://') && !str_starts_with($validated['website_url'], 'https://')) {
+            $validated['website_url'] = 'https://' . $validated['website_url'];
+        }
         Promotion::create($validated);
         return back()->with("success","تم إضافة العرض الترويجي بنجاح .");
     
@@ -98,6 +101,9 @@ class PromotionController extends Controller
             
         
         );
+        if (!str_starts_with($validated['website_url'], 'http://') && !str_starts_with($validated['website_url'], 'https://')) {
+            $validated['website_url'] = 'https://' . $validated['website_url'];
+        }
         $Promotion = Promotion::findOrFail($id);
         $Promotion->update($validated);
         return back()->with("success","تم تعديل العرض الترويجي بنجاح .");
