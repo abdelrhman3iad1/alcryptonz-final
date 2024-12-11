@@ -1,5 +1,5 @@
 <?php
-use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\Auth\UserAuthController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,5 +22,5 @@ Route::prefix("/dashboard")->group(function(){
     });
     
 
-    Route::resource("promotions",PromotionController::class);
+    Route::resource("departments",DepartmentController::class);
 });
