@@ -18,7 +18,7 @@
 <!-- Need: Apexcharts -->
 <script src="{{asset('Dashboard/assets/extensions/apexcharts/apexcharts.min.js')}}"></script>
 <script src="{{asset('Dashboard/assets/static/js/pages/dashboard.js')}}"></script>
-
+@yield('scripts')
 </body>
 
 </html>
