@@ -1,60 +1,58 @@
 @extends('Dashboard.layouts.layouts')
 
 @section('title')
-    Promotions - ALCRYPTONZ
+    أضف شريك
 @endsection
 @section('content')
 <div class="page-heading">
-    <h3>العروض الترويجية</h3>
+    <h3>الشركاء</h3>
 </div> 
 
+@include('messages.errors')
+@include('messages.success')
 <section class="section">
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">أضف عرض ترويجي</h4>
+            <h4 class="card-title">أضف شريك</h4>
         </div>
-
+        <form action="{{route('partners.store')}}" method="post">
+            @csrf
         <div class="card-body">
             <div class="row">
                 
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="basicInput">الاسم</label>
-                        <input type="text" class="form-control" id="basicInput" placeholder="">
+                        <label for="name">الاسم</label>
+                        <input type="text" class="form-control" name="name" id="name" placeholder="">
                     </div>
 
                     <div class="form-group">
-                        <label for="helpInputTop">رابط الموقع</label>
+                        <label for="website_url">رابط الموقع</label>
                         <small class="text-muted"><i>example.com</i></small>
-                        <input type="email" class="form-control" id="helpInputTop">
+                        <input type="text" class="form-control" name="website_url" id="website_url">
                     </div>
 
                     
                 </div>
                 <div class="col-md-6">
                     <div class="form-group">
-                        <label for="basicInput">الوصف</label>
-                        <input type="text" class="form-control" id="basicInput" placeholder="">
+                        <label for="description">الوصف</label>
+                        <input type="text" class="form-control" name="description" id="description" placeholder="">
                     </div>
                     <div class="form-group">
-                        <label for="helperText">صورة للعرض</label>
-                        <input type="file" accept="image" id="helperText" class="form-control" placeholder="">
+                        <label for="image">صورة للشريك</label>
+                        <input type="file" accept="image" id="image" name="image" class="form-control" placeholder="">
                         
                     </div>
 
                     
                 </div>
             </div>
-        {{-- <button type="submit">Submit</button> --}}
         <div class="d-flex mt-2 justify-content-center">
             <button class="btn btn-outline-primary">أضافة</button>
         </div>
+    </form>
         </div>
     </div>
 </section>
 @endsection
-
-
-
-
-
