@@ -32,7 +32,7 @@ class PartnerController extends Controller
     {
        
         $validated = $request->validate([
-            "name" => "required|string|unique:promotions,name",
+            "name" => "required|string|unique:partners,name",
             "description" => "nullable|string|bail",
             "website_url" => "nullable|bail",
             "image" => "nullable|image|mimes:png,jpg,jpeg,webp|max:5120|bail"
