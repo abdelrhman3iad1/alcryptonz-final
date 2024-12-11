@@ -14,7 +14,7 @@
     <script src="{{ asset('Dashboard/assets/static/js/pages/simple-datatables.js') }}"></script>
 @endsection
 <div class="page-heading">
-    <h3>التصنيفات</h3>
+    <h3>المفالات</h3>
 </div>
 
 @include('messages.errors')
@@ -23,7 +23,7 @@
     <div class="card">
         <div class="card-header">
             <h5 class="card-title">
-                كل التصنيفات
+                كل المقالات
             </h5>
         </div>
 
@@ -31,31 +31,31 @@
             <table class="table table-striped" id="table1">
                 <thead>
                     <tr>
-                        <th>رقم التصنيف</th>
-                        <th>الأسم</th>
+                        <th>رقم المقال</th>
+                        <th>العنوان</th>
                         <th>تم الاضافة في</th>
                         <th rowspan="2"></th>
 
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($categories as $category)
+                    @forelse ($posts as $post)
                         <tr>
-                            <td>{{$category->id}}</td>
-                            <td>{{$category->name}}</td>
-                            <td>{{$category->created_at}}</td>
-                            {{-- <td>
-                                <a href="{{route('categories.show',$category->id)}}" class="btn btn-sm btn-outline-success" rel="noopener noreferrer">
+                            <td>{{$post->id}}</td>
+                            <td>{{$post->title}}</td>
+                            <td>{{$post->created_at}}</td>
+                            <td>
+                                <a href="{{route('posts.show',$post->id)}}" class="btn btn-sm btn-outline-success" rel="noopener noreferrer">
                                     عرض التفاصيل
                                 </a>
-                            </td> --}}
+                            </td>
                             <td>
-                                <a href="{{route('categories.edit',$category->id)}}" class="btn btn-sm btn-outline-primary" rel="noopener noreferrer">
+                                <a href="{{route('posts.edit',$post->id)}}" class="btn btn-sm btn-outline-primary" rel="noopener noreferrer">
                                     التعديل
                                 </a>
                             </td>
                             <td>
-                                <form action="{{route('categories.destroy',$category->id)}}" method="post">
+                                <form action="{{route('posts.destroy',$post->id)}}" method="post">
                                     @csrf
                                     @method('delete')
                                     <button type="submit" class="btn btn-sm btn-outline-danger">حذف</button>
@@ -64,7 +64,7 @@
                         </tr>
                     @empty
                         <tr>
-                            <td colspan="6">لا يوجد تصنيفات</td>
+                            <td colspan="6">لا يوجد مقالات</td>
                         </tr>
                     @endforelse
                 </tbody>

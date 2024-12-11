@@ -30,6 +30,16 @@ return [
 
     'disks' => [
 
+        
+        
+        'media' => [
+        'driver' => 'local',
+        'root' => storage_path('app/posts'), // Path to store media files
+        'url' => env('APP_URL') . '/storage', // The URL to access the media files
+        'visibility' => 'public',
+    ],
+    
+
         'local' => [
             'driver' => 'local',
             'root' => storage_path('app'),

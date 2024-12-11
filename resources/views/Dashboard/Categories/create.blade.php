@@ -9,6 +9,8 @@
         <div class="page-heading">
             <h3>التصنيفات</h3>
         </div>
+        @include('messages.errors')
+        @include('messages.success')
         <section class="section">
             <div class="card">
                 <div class="card-header">
@@ -21,7 +23,8 @@
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="basicInput">الاسم</label>
-                                <input type="text" class="form-control" id="basicInput" name="name" placeholder="الاسم">
+                                <input type="text" class="form-control" id="basicInput" name="name"
+                                    placeholder="الاسم">
                             </div>
                         </div>
                     </div>

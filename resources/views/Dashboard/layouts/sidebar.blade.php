@@ -36,12 +36,12 @@
             <ul class="submenu ">
                 
                 <li class="submenu-item  ">
-                    <a href="component-accordion.html" class="submenu-link">كل المقالات</a>
+                    <a href="{{route("posts.index")}}" class="submenu-link">كل المقالات</a>
                     
                 </li>
                 
                 <li class="submenu-item  ">
-                    <a href="component-alert.html" class="submenu-link">إضافة مقال</a>
+                    <a href="{{route("posts.create")}}" class="submenu-link">إضافة مقال</a>
                     
                 </li>
                 

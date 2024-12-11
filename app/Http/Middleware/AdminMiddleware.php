@@ -13,7 +13,7 @@ class AdminMiddleware
         if (Auth::check() && Auth::user()->role == 1) {
             return $next($request);
         } else {
-            return redirect()->route('home')->with('error', 'You are not authorized to access this page.');
+            return redirect()->route('login')->with('error', 'You are not authorized to access this page.');
         }
     }
 }

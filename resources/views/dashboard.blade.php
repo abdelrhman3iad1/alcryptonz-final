@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <h2>Welcome, {{ auth()->user()->name }}</h2>
+    {{-- <h2>Welcome, {{ auth()->user()->name }}</h2> --}}
     
     <p>This is your dashboard. You are logged in!</p>
 

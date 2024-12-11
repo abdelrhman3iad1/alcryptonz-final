@@ -32,9 +32,9 @@ class UserAuthController extends Controller
             $this->authService->login($request);
             $user = Auth::user();
             if ($user['role'] == 1) {
-                return redirect()->route('welcome');
+                return view("dashboard");
             } else {
-                return redirect()->route('dashboard');
+                return redirect()->route('home');
             }
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
@@ -47,9 +47,9 @@ class UserAuthController extends Controller
             $this->authService->changePassword($request);
             $user = Auth::user();
             if ($user['role'] == 1) {
-                return redirect()->route('welcome');
+                return view("dashboard");
             } else {
-                return redirect()->route('dashboard');
+                return redirect()->route('home');
             }
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
