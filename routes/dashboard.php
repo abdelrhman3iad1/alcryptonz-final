@@ -1,6 +1,8 @@
 <?php
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\Auth\UserAuthController;
+use App\Http\Controllers\QaController;
+use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,11 +18,10 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::prefix("/dashboard")->group(function(){
+Route::prefix("/dashboard")->middleware(AdminMiddleware::class)->group(function(){
     Route::get("categories",function(){
         return view("Dashboard.Categories.index");
     });
     
 
-    Route::resource("promotions",PromotionController::class);
-});
+    Route::resource("questions",QaController::class);});
