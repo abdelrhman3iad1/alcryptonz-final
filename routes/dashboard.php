@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\Auth\UserAuthController;
+use App\Http\Controllers\TeamController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,4 +24,5 @@ Route::prefix("/dashboard")->group(function(){
     
 
     Route::resource("departments",DepartmentController::class);
+    Route::resource("teams",TeamController::class);
 });

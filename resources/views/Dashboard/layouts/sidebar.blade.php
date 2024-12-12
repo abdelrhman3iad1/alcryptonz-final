@@ -118,12 +118,12 @@
         <ul class="submenu ">
             
             <li class="submenu-item  ">
-                <a href="component-accordion.html" class="submenu-link">كل الفريق</a>
+                <a href="{{route('teams.index')}}" class="submenu-link">كل الفريق</a>
                 
             </li>
             
             <li class="submenu-item  ">
-                <a href="component-alert.html" class="submenu-link">اضافة عضو</a>
+                <a href="{{route('teams.create')}}" class="submenu-link">اضافة عضو</a>
                 
             </li>
             
