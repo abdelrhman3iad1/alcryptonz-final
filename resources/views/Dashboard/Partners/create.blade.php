@@ -1,7 +1,7 @@
 @extends('Dashboard.layouts.layouts')
 
 @section('title')
-    أضف عرض ترويجي
+    أضف شريك
 @endsection
 @section('content')
 <div class="page-heading">
@@ -15,7 +15,7 @@
         <div class="card-header">
             <h4 class="card-title">أضف شريك</h4>
         </div>
-        <form action="{{route('promotions.store')}}" method="post">
+        <form action="{{route('partners.store')}}" method="post">
             @csrf
         <div class="card-body">
             <div class="row">
@@ -40,7 +40,7 @@
                         <input type="text" class="form-control" name="description" id="description" placeholder="">
                     </div>
                     <div class="form-group">
-                        <label for="image">صورة للعرض</label>
+                        <label for="image">صورة للشريك</label>
                         <input type="file" accept="image" id="image" name="image" class="form-control" placeholder="">
                         
                     </div>

@@ -47,12 +47,12 @@
             <ul class="submenu ">
                 
                 <li class="submenu-item  ">
-                    <a href="component-accordion.html" class="submenu-link">كل الشركاء</a>
+                    <a href="{{route('partners.index')}}" class="submenu-link">كل الشركاء</a>
                     
                 </li>
                 
                 <li class="submenu-item  ">
-                    <a href="component-alert.html" class="submenu-link">اضافة شريك</a>
+                    <a href="{{route('partners.create')}}" class="submenu-link">اضافة شريك</a>
                     
                 </li>
                 
