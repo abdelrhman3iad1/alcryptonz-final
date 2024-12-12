@@ -118,12 +118,32 @@
         <ul class="submenu ">
             
             <li class="submenu-item  ">
-                <a href="component-accordion.html" class="submenu-link">كل الفريق</a>
+                <a href="{{route('teams.index')}}" class="submenu-link">كل الفريق</a>
                 
             </li>
             
             <li class="submenu-item  ">
-                <a href="component-alert.html" class="submenu-link">اضافة عضو</a>
+                <a href="{{route('teams.create')}}" class="submenu-link">اضافة عضو</a>
+                
+            </li>
+            
+        </ul>
+        <li
+        class="sidebar-item  has-sub">
+        <a href="#" class='sidebar-link'>
+            <i class="iconly-boldProfile"></i>
+            <span>الاقسام</span>
+        </a>
+        
+        <ul class="submenu ">
+            
+            <li class="submenu-item  ">
+                <a href="{{route('departments.index')}}" class="submenu-link">كل الاقسام</a>
+                
+            </li>
+            
+            <li class="submenu-item  ">
+                <a href="{{route('departments.create')}}" class="submenu-link">اضافة قسم</a>
                 
             </li>
             
