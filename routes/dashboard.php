@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\PromotionController;
+use App\Http\Controllers\QaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,4 +18,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::prefix("/dashboard")->group(function(){    
     Route::resource("promotions",PromotionController::class);
+    Route::resource("questions",QaController::class);
 });
+
+    
+
+    

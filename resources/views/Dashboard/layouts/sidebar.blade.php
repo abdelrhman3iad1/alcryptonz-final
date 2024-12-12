@@ -71,12 +71,12 @@
             <ul class="submenu ">
                 
                 <li class="submenu-item  ">
-                    <a href="component-accordion.html" class="submenu-link">كل الاسئلة</a>
+                    <a href="{{route('questions.index')}}" class="submenu-link">كل الاسئلة</a>
                     
                 </li>
                 
                 <li class="submenu-item  ">
-                    <a href="component-alert.html" class="submenu-link">اضافة سؤال</a>
+                    <a href="{{route('questions.create')}}" class="submenu-link">اضافة سؤال</a>
                     
                 </li>
                 
