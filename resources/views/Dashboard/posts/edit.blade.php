@@ -24,27 +24,32 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
-                            <label for="title">العنوان</label>
-                            <input type="text" class="form-control" name="title" id="title" value="{{ old('title', $post->title) }}" placeholder="عنوان المقال">
+                            <label for="name">العنوان</label>
+                            <input type="text" class="form-control" name="title" id="title"
+                                placeholder="عنوان المقال">
                         </div>
+
+                        <div class="form-group">
+                            <label for="website_url">المحتوى</label>
+                            {{-- <small class="text-muted"><i>example.com</i></small> --}}
+                            <textarea type="text" class="form-control" name="content" id="content" style="width: 100%; height: 150px;">أدخل المحتوى</textarea>
+                        </div>
+                        
                         <div class="form-group mb-3">
                             <label for="category_id">اختر التصنيف</label>
                             <select name="category_id" id="category_id" class="form-control" required>
+                                {{-- <option value="" disabled selected>اختر التصنيف</option> --}}
                                 @foreach ($categories as $category)
                                     <option value="{{ $category->id }}"
-                                        {{ old('category_id', $post->category_id) == $category->id ? 'selected' : '' }}>
+                                        {{ old('category_id') == $category->id ? 'selected' : '' }}>
                                         {{ $category->name }}
                                     </option>
                                 @endforeach
                             </select>
                         </div>
-                    </div>
 
-                    <div class="col-md-6">
-                        <div class="form-group">
-                            <label for="content">المحتوى</label>
-                            <textarea class="form-control" name="content" id="content" placeholder="">{{ old('content', $post->content) }}</textarea>
-                        </div>
+                    </div>
+                 
                         <div class="form-group">
                             <label for="image">صورة للمقال</label>
                             <input type="file" accept="image/*" id="image" name="image" class="form-control">

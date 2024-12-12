@@ -30,7 +30,7 @@
                             <div class="form-group">
                                 <label for="website_url">المحتوى</label>
                                 {{-- <small class="text-muted"><i>example.com</i></small> --}}
-                                <input type="text" class="form-control" name="content" id="content">
+                                <textarea type="text" class="form-control" name="content" id="content" style="width: 100%; height: 150px;"></textarea>
                             </div>
                             
                             <div class="form-group mb-3">
