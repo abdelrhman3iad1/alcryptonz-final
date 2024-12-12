@@ -33,14 +33,14 @@ class PostController extends Controller
     {
         $validated = $request->validate(
             [
-                'title' => ['required', 'string', 'regex:/^[a-zA-Z0-9\s]+$/', 'bail'],
+                'title' => ['required', 'string','bail'],
                 'content' => ['required', 'string', 'bail'],
                 'image' => ['nullable', 'max:2048', 'dimensions:min_width=300,min_height=300', 'bail'],
                 'category_id' => ['required', 'exists:categories,id'],
             ],
             [
                 'title.required' => 'حقل العنوان مطلوب.',
-                'title.regex' => 'يمكن أن يحتوي العنوان فقط على أحرف وأرقام ومسافات.',
+                // 'title.regex' => 'يمكن أن يحتوي العنوان فقط على أحرف وأرقام ومسافات.',
                 'content.required' => 'المحتوى مطلوب.',
                 'image.max' => 'يجب ألا يتجاوز حجم الصورة 2 ميجابايت.',
                 'image.dimensions' => 'يجب أن تكون أبعاد الصورة على الأقل 300x300 بكسل.',
@@ -53,12 +53,9 @@ class PostController extends Controller
         $post =  Post::create($validated);
 
         if ($request->hasFile('image')) {
-            // $post->addMediaFromRequest('image')->toMediaCollection('images');
-            $post->addMedia($request['image'])->toMediaCollection('posts');
-
-            // $post->addMedia($request['image'])->toMediaCollection('images');
-
+            $post->addMedia($request->file('image'))->toMediaCollection();
         }
+        
                // Debugging: Check if media was added successfully
             //    dd($post->getMedia('posts'));
         
@@ -70,9 +67,7 @@ class PostController extends Controller
      */
     public function show(string $id)
     {
-        $post = Post::findOrFail($id); // Find the post
-        // $mediaUrl = $post->getFirstMediaUrl('Posts'); // Get the URL of
-     // Get the URL of the first image attached to the post
+        $post = Post::findOrFail($id); 
         return view('Dashboard.posts.show', compact('post'));
     }
     

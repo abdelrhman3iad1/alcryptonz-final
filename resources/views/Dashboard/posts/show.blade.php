@@ -42,14 +42,12 @@
             
         </div>
                  
-        @if ($post->getFirstMediaUrl('posts'))
-        <div class="card-image">
-            <td> <img src="{{$post->getFirstMediaUrl('posts');}}" alt="" srcset="" width="100px"></td>
-        </div>
-    @else
+        @if ($post->getFirstMediaUrl())
+        <img src="{{ $post->getFirstMediaUrl() }}" alt="Post Image" style="width: 25%; height: auto; display: block; margin: 0 auto;">
+        @else
         <p>لا توجد صورة مرفقة.</p>
     @endif
-    
+ 
     </div>
 </section>
 

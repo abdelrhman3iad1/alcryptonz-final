@@ -2,30 +2,29 @@
 
 return [
 
-
     /*
      * The disk on which to store added files and derived images by default. Choose
      * one or more of the disks you've configured in config/filesystems.php.
      */
-    // 'disk_name' => env('MEDIA_DISK', 'public'),
-    'disk_name'=>'media',   
+    'disk_name' => env('MEDIA_DISK', 'public'),
+
     /*
      * The maximum file size of an item in bytes.
      * Adding a larger file will result in an exception.
      */
-    'max_file_size' => 1024 * 1024 * 10, // 10MB
-
+    'max_file_size' => 1024 * 1024 * 10,
+    
     /*
      * This queue connection will be used to generate derived and responsive images.
      * Leave empty to use the default queue connection.
      */
-    'queue_connection_name' => env('QUEUE_CONNECTION', 'sync'),
+    'queue_connection_name' => '',
 
     /*
      * This queue will be used to generate derived and responsive images.
      * Leave empty to use the default queue.
      */
-    'queue_name' => env('MEDIA_QUEUE', ''),
+    'queue_name' => '',
 
     /*
      * By default all conversions will be performed on a queue.
@@ -33,22 +32,9 @@ return [
     'queue_conversions_by_default' => env('QUEUE_CONVERSIONS_BY_DEFAULT', true),
 
     /*
-     * Should database transactions be run after database commits?
-     */
-    'queue_conversions_after_database_commit' => env('QUEUE_CONVERSIONS_AFTER_DB_COMMIT', true),
-
-    /*
      * The fully qualified class name of the media model.
      */
     'media_model' => Spatie\MediaLibrary\MediaCollections\Models\Media::class,
-
-    /*
-     * When enabled, media collections will be serialised using the default
-     * laravel model serialization behaviour.
-     *
-     * Keep this option disabled if using Media Library Pro components (https://medialibrary.pro)
-     */
-    'use_default_collection_serialization' => false,
 
     /*
      * The fully qualified class name of the model used for temporary uploads.
@@ -58,7 +44,7 @@ return [
     'temporary_upload_model' => Spatie\MediaLibraryPro\Models\TemporaryUpload::class,
 
     /*
-     * When enabled, Media Library Pro will only process temporary uploads that were uploaded
+     * When enabled, Media Library Pro will only process temporary uploads there were uploaded
      * in the same session. You can opt to disable this for stateless usage of
      * the pro components.
      */
@@ -80,30 +66,10 @@ return [
     'path_generator' => Spatie\MediaLibrary\Support\PathGenerator\DefaultPathGenerator::class,
 
     /*
-     * The class that contains the strategy for determining how to remove files.
-     */
-    'file_remover_class' => Spatie\MediaLibrary\Support\FileRemover\DefaultFileRemover::class,
-
-    /*
-     * Here you can specify which path generator should be used for the given class.
-     */
-    'custom_path_generators' => [
-        // Model::class => PathGenerator::class
-        // or
-        // 'model_morph_alias' => PathGenerator::class
-    ],
-
-    /*
      * When urls to files get generated, this class will be called. Use the default
      * if your files are stored locally above the site root or on s3.
      */
     'url_generator' => Spatie\MediaLibrary\Support\UrlGenerator\DefaultUrlGenerator::class,
-
-    /*
-     * Moves media on updating to keep path consistent. Enable it only with a custom
-     * PathGenerator that uses, for example, the media UUID.
-     */
-    'moves_media_on_update' => false,
 
     /*
      * Whether to activate versioning when urls to files get generated.
@@ -119,7 +85,6 @@ return [
     'image_optimizers' => [
         Spatie\ImageOptimizer\Optimizers\Jpegoptim::class => [
             '-m85', // set maximum quality to 85%
-            '--force', // ensure that progressive generation is always done also if a little bigger
             '--strip-all', // this strips out all text information such as comments and EXIF data
             '--all-progressive', // this will make sure the resulting image is a progressive one
         ],
@@ -204,13 +169,6 @@ return [
      */
     'media_downloader' => Spatie\MediaLibrary\Downloaders\DefaultDownloader::class,
 
-    /*
-     * When using the addMediaFromUrl method the SSL is verified by default.
-     * This is option disables SSL verification when downloading remote media.
-     * Please note that this is a security risk and should only be false in a local environment.
-     */
-    'media_downloader_ssl' => env('MEDIA_DOWNLOADER_SSL', true),
-
     'remote' => [
         /*
          * Any extra headers that should be included when uploading media to
@@ -228,17 +186,16 @@ return [
     'responsive_images' => [
         /*
          * This class is responsible for calculating the target widths of the responsive
-         * images. By default we optimize for filesize and create variations that each are 30%
+         * images. By default we optimize for filesize and create variations that each are 20%
          * smaller than the previous one. More info in the documentation.
          *
-         * https://docs.spatie.be/laravel-medialibrary/v9/advanced-usage/generating-responsive-images
+         * https://spatie.be/docs/laravel-medialibrary/v11/responsive-images/getting-started-with-responsive-images
          */
         'width_calculator' => Spatie\MediaLibrary\ResponsiveImages\WidthCalculator\FileSizeOptimizedWidthCalculator::class,
 
         /*
          * By default rendering media to a responsive image will add some javascript and a tiny placeholder.
          * This ensures that the browser can already determine the correct layout.
-         * When disabled, no tiny placeholder is generated.
          */
         'use_tiny_placeholders' => true,
 
@@ -266,12 +223,12 @@ return [
      * More info: https://css-tricks.com/native-lazy-loading/
      */
     'default_loading_attribute_value' => null,
-
-    /*
+    
+     /*
      * You can specify a prefix for that is used for storing all media.
      * If you set this to `/my-subdir`, all your media will be stored in a `/my-subdir` directory.
      */
-    'prefix' => env('MEDIA_PREFIX', ''),
+     'prefix' => env('MEDIA_PREFIX', ''),
 
     /*
      * When forcing lazy loading, media will be loaded even if you don't eager load media and you have
