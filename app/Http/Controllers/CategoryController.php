@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Validation\Rule;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
@@ -30,12 +31,15 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => 'required|string|unique:categories,name',
+        ],[
+                        'name.required' => 'يجب إدخال الاسم.',
+                        'name.string' => 'يجب أن يكون الأسم نصًا.',
+                        'name.unique' => 'هذا الاسم مستخدم من قبل.',
         ]);
 
         Category::create($validated);
-
-        return redirect(url("dashboard/categories"));
+        return back()->with("success","تم إضافة التصنيف بنجاح .");
     }
 
     /**
@@ -65,13 +69,18 @@ class CategoryController extends Controller
     public function update(Request $request, $id)
     {
         $validated = $request->validate([
-            'name' => 'required|string|max:255',
+            "name" => [ "string","required", Rule::unique('categories', 'name')->ignore($id), ],
+        ],[
+            
+                'name.required' => 'يجب إدخال الاسم.',
+                'name.string' => 'يجب أن يكون الأسم نصًا.',
+                'name.unique' => 'هذا الاسم مستخدم من قبل.',
         ]);
 
         $category = Category::findOrFail($id);
         $category->update($validated);
-        $categories = Category::all();
-        return view("Dashboard.Categories.index", compact("categories"));
+        return back()->with("success","تم تعديل التصنيف بنجاح .");
+
     }
 
     /**
@@ -81,6 +90,6 @@ class CategoryController extends Controller
     {
         $category = Category::findOrFail($id);
         $category->delete();
-        return redirect(url("dashboard/categories"));
+        return redirect()->route("categories.index")->with("success","التصنيف تم حذفه بنجاح");
     }
 }

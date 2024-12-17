@@ -26,14 +26,18 @@
                 كل التصنيفات
             </h5>
         </div>
-
+        <div style="display: flex; gap: 10px; margin-top: 5px; margin-left: 50px;  justify-content: flex-end">
+            <a href="{{route('categories.create')}}" class="btn  btn-success" rel="noopener noreferrer">
+                إضافة نصنيف
+            </a>
+        </div>
         <div class="card-body">
             <table class="table table-striped" id="table1">
                 <thead>
                     <tr>
                         <th>رقم التصنيف</th>
                         <th>الأسم</th>
-                        <th>تم الاضافة في</th>
+                        <th>تاريخ اضافة الفئة</th>
                         <th rowspan="2"></th>
 
                     </tr>
