@@ -3,14 +3,28 @@
         <li class="sidebar-title">القائمة</li>
         
         <li
-            class="sidebar-item  ">
-            <a href="index.html" class='sidebar-link'>
-                <i class="bi bi-stack"></i>
-                <span>التصنيفات</span>
-            </a>
+        class="sidebar-item  has-sub">
+        <a href="#" class='sidebar-link'>
+            <i class="bi bi-pen-fill"></i>
+            <span>التصنيفات</span>
+        </a>
+        
+        <ul class="submenu ">
             
+            <li class="submenu-item  ">
+                <a href="{{route("categories.index")}}" class="submenu-link">كل التصنيفات</a>
+                
+            </li>
+            
+            <li class="submenu-item  ">
+                <a href="{{route("categories.create")}}" class="submenu-link">إضافة تصنيف</a>
+                
+            </li>
+            
+        </ul>
+        
 
-        </li>
+    </li>
         
         <li
             class="sidebar-item  has-sub">
@@ -22,12 +36,12 @@
             <ul class="submenu ">
                 
                 <li class="submenu-item  ">
-                    <a href="component-accordion.html" class="submenu-link">كل المقالات</a>
+                    <a href="{{route("posts.index")}}" class="submenu-link">كل المقالات</a>
                     
                 </li>
                 
                 <li class="submenu-item  ">
-                    <a href="component-alert.html" class="submenu-link">اضافة مقال</a>
+                    <a href="{{route("posts.create")}}" class="submenu-link">إضافة مقال</a>
                     
                 </li>
                 

@@ -4,6 +4,10 @@ use App\Http\Controllers\QaController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\DepartmentController;
 use App\Http\Controllers\TeamController;
+use App\Http\Controllers\Auth\UserAuthController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PostController;
+use App\Http\Middleware\AdminMiddleware;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +21,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
+// middleware(AdminMiddleware::class)->
 
 Route::prefix("/dashboard")->group(function(){    
     Route::resource("promotions",PromotionController::class);
@@ -25,6 +29,8 @@ Route::prefix("/dashboard")->group(function(){
     Route::resource("partners",PartnerController::class);
     Route::resource("departments",DepartmentController::class);
     Route::resource("teams",TeamController::class);
+    Route::resource("categories",CategoryController::class);
+    Route::resource("posts",PostController::class);
 });
 
     

@@ -5,7 +5,7 @@
 @endsection
 @section('content')
 <div class="page-heading">
-    <h3>الشركاء</h3>
+    <h3>العروض الترويجية</h3>
 </div> 
 
 @include('messages.errors')
@@ -13,7 +13,7 @@
 <section class="section">
     <div class="card">
         <div class="card-header">
-            <h4 class="card-title">أضف شريك</h4>
+            <h4 class="card-title">أضف عرض ترويجي</h4>
         </div>
         <form action="{{route('promotions.store')}}" method="post">
             @csrf
