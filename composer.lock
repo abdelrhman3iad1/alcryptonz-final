@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "425eac4ee867b4bbf920936cb10a4e1d",
+    "content-hash": "3f05e973f9e22e3dc68e730e7c4db91d",
     "packages": [
         {
             "name": "brick/math",
@@ -509,6 +509,51 @@
                 }
             ],
             "time": "2023-10-06T06:47:41+00:00"
+        },
+        {
+            "name": "fortawesome/font-awesome",
+            "version": "6.7.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/FortAwesome/Font-Awesome.git",
+                "reference": "3447c58c6b3ff327b35171d866ec70c25c72f4ef"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/FortAwesome/Font-Awesome/zipball/3447c58c6b3ff327b35171d866ec70c25c72f4ef",
+                "reference": "3447c58c6b3ff327b35171d866ec70c25c72f4ef",
+                "shasum": ""
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "CC-BY-4.0",
+                "OFL-1.1",
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "The Font Awesome Team",
+                    "homepage": "https://github.com/orgs/FortAwesome/people"
+                }
+            ],
+            "description": "The iconic font, CSS, and SVG framework",
+            "homepage": "https://fontawesome.com",
+            "keywords": [
+                "FontAwesome",
+                "awesome",
+                "bootstrap",
+                "font",
+                "icon",
+                "svg"
+            ],
+            "support": {
+                "docs": "http://fontawesome.com/docs",
+                "email": "hello@fontawesome.com",
+                "issues": "https://github.com/FortAwesome/Font-Awesome/issues",
+                "source": "https://github.com/FortAwesome/Font-Awesome"
+            },
+            "time": "2024-11-20T16:48:04+00:00"
         },
         {
             "name": "fruitcake/php-cors",
@@ -5476,6 +5521,56 @@
             "time": "2023-12-08T13:03:43+00:00"
         },
         {
+            "name": "twbs/bootstrap",
+            "version": "v5.3.3",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/twbs/bootstrap.git",
+                "reference": "6e1f75f420f68e1d52733b8e407fc7c3766c9dba"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/twbs/bootstrap/zipball/6e1f75f420f68e1d52733b8e407fc7c3766c9dba",
+                "reference": "6e1f75f420f68e1d52733b8e407fc7c3766c9dba",
+                "shasum": ""
+            },
+            "replace": {
+                "twitter/bootstrap": "self.version"
+            },
+            "type": "library",
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Mark Otto",
+                    "email": "markdotto@gmail.com"
+                },
+                {
+                    "name": "Jacob Thornton",
+                    "email": "jacobthornton@gmail.com"
+                }
+            ],
+            "description": "The most popular front-end framework for developing responsive, mobile first projects on the web.",
+            "homepage": "https://getbootstrap.com/",
+            "keywords": [
+                "JS",
+                "css",
+                "framework",
+                "front-end",
+                "mobile-first",
+                "responsive",
+                "sass",
+                "web"
+            ],
+            "support": {
+                "issues": "https://github.com/twbs/bootstrap/issues",
+                "source": "https://github.com/twbs/bootstrap/tree/v5.3.3"
+            },
+            "time": "2024-02-20T15:14:29+00:00"
+        },
+        {
             "name": "vlucas/phpdotenv",
             "version": "v5.6.1",
             "source": {
@@ -8207,12 +8302,12 @@
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": [],
+    "stability-flags": {},
     "prefer-stable": true,
     "prefer-lowest": false,
     "platform": {
         "php": "^8.1"
     },
-    "platform-dev": [],
+    "platform-dev": {},
     "plugin-api-version": "2.6.0"
 }

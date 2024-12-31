@@ -4,7 +4,7 @@
   session_start(); */?>
 
     
-        @include("Web.include.header");
+        @include("Web.include.header")
     
 
 
@@ -13,21 +13,24 @@
     <link rel="stylesheet" href="{{ asset('Web/css/style.css') }}">
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2473974671507788"
-     crossorigin="anonymous"></script>
-     
+    crossorigin="anonymous"></script>
+
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 </head>
 
 <body onload="myFunction();" id="top-page">
 
     <!-- start navbar -->
     {{-- @include("include/navbar"); --}}
-    @include("Web.include.navbar");
+    @include("Web.include.navbar")
     <?php  /*include_once "include/navbar.php";*/?>
     <!-- end navbar -->
     <!--start partners news -->
 <div class="parrent-sliders"style="background-color:#171924 !important">
     
-    <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/coinMarquee.js"></script><div id="coinmarketcap-widget-marquee" coins="1,1027,825,5444" currency="USD" theme="dark" transparent="true" show-symbol-logo="true"></div>
+    <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/coinMarquee.js"></script>
+    <div id="coinmarketcap-widget-marquee" coins="1,1027,825,5444" currency="USD" theme="dark" transparent="true" show-symbol-logo="true"></div>
 
 </div>
 </div>
@@ -38,12 +41,15 @@
 <main >
     <div class="container">
 
-        <div class="words">
-        <h1> ALCRYPTONZ</h1>
-  <h3>Hard Choices, Great Destiny</h2>
-  <h5>فريق عربي يهدف إلى الربط بين عالم العملات الرقمية والحياة اليومية</h3>
-  <a href="aboutus.php">Who We Are</a>
-        </div>
+    <div class="words">
+    <h1>ALCRYPTONZ</h1>
+    <h3>Hard Choices, Great Destiny</h3>
+    <h5>فريق عربي يهدف إلى الربط بين عالم العملات الرقمية والحياة اليومية</h5>
+    <a href="aboutus.php">Who We Are</a> 
+    <div class="d-flex flex-column align-items-center">
+    </div>
+</div>
+
 
 
     </div>
@@ -71,9 +77,14 @@
 <!--End Arrow to top Page -->
 <!--End main-->
 <!--start sevices -->
+<!-- Banner Ad Placeholder -->
+<div class="ad-banner py-4 w-75 mt-4 mx-auto d-flex justify-content-center align-items-center" style=" background-color: lightgray; border: 1px dashed gray;">
+<!-- Ad Content Goes Here -->
+<p class='mt-3 text-center'>Banner Ad Placeholder (Your Ad Content Here)</p>
+</div>
 <div class="services" id="se">
-
-    <div class="container">
+    <!-- Static grid for larger viewports -->
+    <div class="container d-none d-lg-block">
         <div class="services-parent">
             <div class="one-serv">
                 <div><i class="fas fa-users"></i></div>
@@ -82,22 +93,62 @@
             </div>
             <div class="one-serv">
                 <div><i class="fas fa-bullhorn"></i></div>
-                <h4>Marketing </h4>
-                <p> Global marketing services for Crypto Projects in the Arabian area.</p>
+                <h4>Marketing</h4>
+                <p>Global marketing services for Crypto Projects in the Arabian area.</p>
             </div>
             <div class="one-serv">
                 <div><i class="fas fa-envelope"></i></div>
                 <h4>Crypto News</h4>
-                <p>Up to Date News for Everything related to Cryptocurrencies.</p>
+                <p>Up-to-date news for everything related to Cryptocurrencies.</p>
             </div>
             <div class="one-serv">
                 <div><i class="fas fa-flag"></i></div>
                 <h4>Crypto Knowledge</h4>
-                <p>Simplified articles explaining the rules of cryptocurrency from the beginning for those interested in the cryptocurrency revolution and the evolution of the concept of currencies.</p>
+                <p>Simplified articles explaining the rules of cryptocurrency for beginners.</p>
             </div>
         </div>
     </div>
+
+    <!-- Carousel for mobile viewports -->
+<div class="container d-block d-lg-none">
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <div class="one-serv text-center">
+          <div class='py-2'><i class="fas fa-users"></i></div>
+          <h4>Community Management</h4>
+          <p>Experts in community management and currently working with several Crypto projects.</p>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="one-serv text-center">
+          <div class='py-2'><i class="fas fa-bullhorn"></i></div>
+          <h4>Marketing</h4>
+          <p>Global marketing services for Crypto Projects in the Arabian area.</p>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="one-serv text-center">
+          <div class='py-2'><i class="fas fa-envelope"></i></div>
+          <h4>Crypto News</h4>
+          <p>Up-to-date news for everything related to Cryptocurrencies.</p>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="one-serv text-center">
+          <div class='py-2'><i class="fas fa-flag"></i></div>
+          <h4>Crypto Knowledge</h4>
+          <p>Simplified articles explaining the rules of cryptocurrency for beginners.</p>
+        </div>
+      </div>
+    </div>
+    <!-- <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div> -->
+  </div>
 </div>
+
+</div>
+
 <!--End sevices -->
 <!--start partners-->
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"style="    background: linear-gradient( 125deg, #00FF57 0%, #010033 40%, #460043 70%, #F0FFC5 100%), linear-gradient( 55deg, #0014C9 0%, #410060 100%), linear-gradient( 300deg, #FFC700 0%, #001AFF 100%), radial-gradient(135% 215% at 115% 40%, #393939 0%, #393939 40%, #849561 calc(40% + 1px), #849561 60%, #EED690 calc(60% + 1px), #EED690 80%, #ECEFD8 calc(80% + 1px), #ECEFD8 100%), linear-gradient( 125deg, #282D4F 0%, #282D4F 40%, #23103A calc(40% + 1px), #23103A 70%, #A0204C calc(70% + 1px), #A0204C 88%, #FF6C00 calc(88% + 1px), #FF6C00 100%);
@@ -139,7 +190,7 @@ while($row=mysqli_fetch_assoc($execezzaz)){
 */?>
     <div class="carousel-item">
       <a href=" <?php /* echo $row["partnerLink"]; */?>
-" style="text-align:center"><div class="cover-ph"style="border-radius: 5px 50px 5px 50px  "> <img style="border-radius:20px " src='uploads/partnerImages/<?php /* echo $row["partnerImage"];*/ ?>'alt='image here' ></div></a>
+" style="text-align:center"><div class="cover-ph"style="border-radius: 5px 50px 5px 50px  "> <img style="border-radius:20px " src='uploads/partnerImages/<?php /* echo $row["partnerImage"];*/ ?>'alt='collabs partner at Alcryptonz' ></div></a>
     </div>
 <?php /* }  */ ?>
   </div>
@@ -150,7 +201,6 @@ while($row=mysqli_fetch_assoc($execezzaz)){
   </a>
   <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
   <i class="carousel-control-next-icon fas fa-chevron-right next"aria-hidden="true"style="color:white !important;font-size:21px !important"></i>
-
     <span class="sr-only">Next</span>
   </a>
 </div>
@@ -179,7 +229,7 @@ while($row=mysqli_fetch_assoc($execez)){
      <!--post-->
        
      <div class="post"style="direction:rtl;overflow:hidden">
-     <div class="div-img"><a href="post.php?idPost=<?php /* echo $row["postId"]; */?>"target='_blank' > <img src="uploads/postImages/<?php /* echo $row["postImage"]; */ ?>" alt="image here"></a></div>
+     <div class="div-img"><a href="post.php?idPost=<?php /* echo $row["postId"]; */?>"target='_blank' > <img src="uploads/postImages/<?php /* echo $row["postImage"]; */ ?>" alt="Alcryptonz collabs News"></a></div>
      <a href="post.php?idPost=<?php /* echo $row["postId"]; */ ?>"target='_blank' ><h4 style="color:black;word-wrap: break-word;" ><?php /* echo $row["postTitle"]; */ ?> </h4></a>
       <span> <?php /* echo $row["postAuthor"]; */?> &nbsp;<i class="fas fa-user"></i></span><br>
       <span><?php /* echo $row["PostDate"]; */?> &nbsp; <i class="far fa-calendar-alt"></i></span>
@@ -212,6 +262,14 @@ while($row=mysqli_fetch_assoc($execez)){
 <a class="show-butx" href="show-all-partners-posts.php">Show More</a>
 </div>
 <!--End show all partners posts  -->
+
+<!-- start Converter -->
+        
+<div class="converter bg-info p-5 mt-3 w-75 d-flex mx-auto">
+        <p class='text-center w-100'>Your Converter should be Here</p>
+    </div>
+<!-- end converter -->
+
 <!--start recent posts    -->
 <div class="page-wrapper"style="padding:10px;text-align:center;overflow:hidden !important">
 <div class="post-slider" style="margin-bottom:30px;">
@@ -236,7 +294,7 @@ while($row=mysqli_fetch_assoc($execez)){
      <!--post-->
        
      <div class="post"style="direction:rtl;overflow:hidden">
-     <div class="div-img"><a href="post.php?idPost=<?php /* echo $row["postId"]; */?>"target='_blank' > <img src="uploads/postImages/<?php /*echo $row["postImage"]; */?>" alt="image here"></a></div>
+     <div class="div-img"><a href="post.php?idPost=<?php /* echo $row["postId"]; */?>"target='_blank' > <img src="uploads/postImages/<?php /*echo $row["postImage"]; */?>" alt="Alcryptonz Post image"></a></div>
      <a href="post.php?idPost=<?php /*echo $row["postId"];*/ ?>"target='_blank' ><h4 style="color:black;word-wrap: break-word;"><?php /*echo $row["postTitle"];*/ ?> </h4></a>
       <span> <?php /*echo $row["postAuthor"]; */?> &nbsp;<i class="fas fa-user"></i></span><br>
       <span><?php /*echo $row["PostDate"]; */?> &nbsp; <i class="far fa-calendar-alt"></i></span>
@@ -270,7 +328,7 @@ while($row=mysqli_fetch_assoc($execez)){
 </div>
 
 <!--start team   -->
-<div class="team" id="te">
+<div class="team d-none d-lg-block" id="te">
     <div class="container">
     <h3 style="text-align:center;padding:10px;margin-top:20px;"><i class="fas fa-clock"></i> &nbsp;  Meet The Team</h3>
 <p style="text-align:center;padding:10px">فريق الكريبتونز</p>
@@ -283,7 +341,7 @@ while($row=mysqli_fetch_assoc($execezz)){ */
 ?>
             <div>
                 <h5><?php /* echo $row["memberName"]; */?> </h5>
-                <img src='uploads/teamImages/<?php /*echo $row["memberImage"]; */?>'alt='image here'>
+                <img src='uploads/teamImages/<?php /*echo $row["memberImage"]; */?>'alt='Alcryptonz Team Member'>
             </div>
             
       
@@ -292,10 +350,47 @@ while($row=mysqli_fetch_assoc($execezz)){ */
         </div>
     </div>
 </div>
+
+<div class="team-slider d-block d-lg-none"> <!-- Mobile-only slider -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <?php  /*
+            $quea="select * from team";
+            $execezz=mysqli_query($con,$quea);
+            while($row=mysqli_fetch_assoc($execezz))*/{ 
+            ?>
+            <div class="swiper-slide">
+                <div class="text-center">
+                    
+                    <img src="uploads/teamImages/<?php /*echo $row["memberImage"]; */ ?>" 
+                         class="rounded-circle img-fluid" 
+                         alt="Alcryptonz Team Member: <?php /*echo $row['memberName'];*/ ?>" 
+                         style="max-width: 150px;">
+                    <h5 class="mt-3"><?php /* echo $row["memberName"]; */ ?></h5>
+                </div>
+            </div>
+            <?php } ?>
+        </div>
+
+        <!-- Swiper controls -->
+        <!-- <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div> -->
+    </div>
+</div>
+
+    <!-- Banner Ad Placeholder -->
+    <div class="ad-banner py-4 mb-4 d-flex justify-content-center align-items-center w-75 d-flex mx-auto" style=" background-color: lightgray; border: 1px dashed gray;">
+        <!-- Ad Content Goes Here -->
+        <p class='mt-3 text-center'>Banner Ad Placeholder (Your Ad Content Here)</p>
+    </div>
+
+
+
+
 <!--End team   -->
 
 <!--start search bar-->
-<div class="search" id="ser">
+<!-- <div class="search" id="ser">
     <div class="container">
         <div class="parent-search">
             <div>
@@ -323,20 +418,20 @@ while($row=mysqli_fetch_assoc($execezz)){ */
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <!--End search bar-->
 
 <!--start map-->
-<div class="map">
+<!-- <div class="map">
 <iframe allowfullscreen='' height='450' loading='lazy' src='https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d14610049.559018178!2d21.856659345987513!3d26.61943941976208!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14368976c35c36e9%3A0x2c45a00925c4c444!2sEgypt!5e0!3m2!1sen!2skw!4v1627703361108!5m2!1sen!2skw' style='border:0;' width='100%'></iframe>
-</div>
+</div> -->
 <!--end map-->
    
     <!-- start footer -->
-    @include("Web.include.underfooter");
+    @include("Web.include.underfooter")
     <?php /* include_once "include/underfooter.php";*/ ?>
     <!-- end footer -->
-    @include("Web.include.footer");
+    @include("Web.include.footer")
 
     <?php /* include_once "include/footer.php";*/ ?>
     
@@ -349,4 +444,20 @@ while($row=mysqli_fetch_assoc($execezz)){ */
 
   gtag('config', 'G-YN940EKWRS');
 </script>
+
+<script>
+    var swiper = new Swiper(".mySwiper", {
+        loop: true,
+        autoplay: {
+            delay: 2000,
+            disableOnInteraction: false,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+</script>
+
+
  

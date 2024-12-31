@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Route;
 ///// User Authentican 
 
 Route::get('/', function () {
-    return view('dashboard');
+    return view('Web.index');
 })->name('dashboard');
 
 
