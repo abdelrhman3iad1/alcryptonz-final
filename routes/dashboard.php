@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\PromotionController;
 use App\Http\Controllers\Auth\UserAuthController;
+use App\Http\Controllers\CryptoConverterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,5 +23,9 @@ Route::prefix("/dashboard")->group(function(){
     });
     
 
+
+
     Route::resource("promotions",PromotionController::class);
 });
+Route::get('/converter', [CryptoConverterController::class, 'index'])->name('converter');
+Route::post('/convert', [CryptoConverterController::class, 'convert'])->name('convert');
