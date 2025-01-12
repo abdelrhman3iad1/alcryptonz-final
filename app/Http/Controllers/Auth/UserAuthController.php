@@ -32,15 +32,14 @@ class UserAuthController extends Controller
             $this->authService->login($request);
             $user = Auth::user();
             if ($user['role'] == 1) {
-                return view("dashboard");
+                return redirect()->route('welcome');
             } else {
-                return redirect()->route('home');
+                return redirect()->route('dashboard');
             }
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
-
     public function changePassword(Request $request)
     {
         try {
