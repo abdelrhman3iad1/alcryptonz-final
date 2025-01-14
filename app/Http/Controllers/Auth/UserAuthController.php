@@ -40,13 +40,12 @@ class UserAuthController extends Controller
             if ($user['role'] == 1) {
                 return redirect()->route("categories.index");
             } else {
-                return redirect()->route('home');
+                return redirect()->route('dashboard');
             }
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
     }
-
     public function changePassword(Request $request)
     {
         try {
