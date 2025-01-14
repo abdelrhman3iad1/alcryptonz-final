@@ -8,6 +8,7 @@ use App\Http\Controllers\Auth\UserAuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PostController;
 use App\Http\Middleware\AdminMiddleware;
+use App\Http\Controllers\CryptoConverterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -35,3 +36,7 @@ Route::prefix("/dashboard")->group(function(){
 
     
 
+
+
+Route::get('/converter', [CryptoConverterController::class, 'index'])->name('converter');
+Route::post('/convert', [CryptoConverterController::class, 'convert'])->name('convert');
