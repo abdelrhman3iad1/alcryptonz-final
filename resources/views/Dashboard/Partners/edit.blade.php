@@ -15,7 +15,7 @@
         <div class="card-header">
             <h4 class="card-title">{{$partner->name}}</h4>
         </div>
-        <form action="{{route('partners.update',$partner->id)}}" method="post">
+        <form action="{{route('partners.update',$partner->id)}}" enctype="multipart/form-data" method="post">
             @csrf
             @method('put')
         <div class="card-body">

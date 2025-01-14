@@ -13,8 +13,10 @@ return new class extends Migration
     {
         Schema::create('qas', function (Blueprint $table) {
             $table->id();
-            $table->string('question');
-            $table->text('answer');
+            $table->string('question_ar');
+            $table->string('question_en');
+            $table->text('answer_ar');
+            $table->text('answer_en');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();

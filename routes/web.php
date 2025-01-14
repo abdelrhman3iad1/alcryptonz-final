@@ -23,17 +23,19 @@ Route::get('/', function () {
 
 Route::get('register', function () {
     return view('auth.register');
-})->name('register');
-Route::post('register', [UserAuthController::class, 'register']);
+});
+Route::post('register', [UserAuthController::class, 'register'])->name('register');
 
-
+Route::get('home', function () {
+    return view('home');
+})->name('home');
 
 Route::get('login', function () {
     return view('auth.login');
-})
-->name('login');
+});
 
-Route::post('login', [UserAuthController::class, 'login']);
+
+Route::post('login', [UserAuthController::class, 'login'])->name('login');
 
 
 Route::middleware('auth')->group(function () {

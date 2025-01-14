@@ -15,7 +15,7 @@
         <div class="card-header">
             <h4 class="card-title">تعديل تفاصيل العضو</h4>
         </div>
-        <form action="{{route('teams.update',$team->id)}}" method="post">
+        <form action="{{route('teams.update',$team->id)}}" enctype="multipart/form-data" method="post">
             @csrf
             @method('put')
         <div class="card-body">

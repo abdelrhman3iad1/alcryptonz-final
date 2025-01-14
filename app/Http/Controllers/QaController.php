@@ -31,14 +31,20 @@ class QaController extends Controller
     {
         $validated = $request->validate(
             [
-                "question" => "required|string",
-                "answer" => "required|string",
+                "question_ar" => "required|string",
+                "question_en" => "required|string",
+                "answer_ar" => "required|string",
+                "answer_en" => "required|string",
             ],
             [
-                'question.required' => 'يجب إدخال السؤال.',
-                'question.string' => 'يجب أن يكون السؤال نصًا.',
-                'answer.required' => 'يجب إدخال الإجابة.',
-                'answer.string' => 'يجب أن تكون الإجابة نصًا.',
+                'question_ar.required' => 'يجب إدخال السؤال بالعربية.',
+                'question_en.required' => 'يجب إدخال السؤال بالانجليزية.',
+                'question_ar.string' => 'يجب أن يكون السؤال بالعربية نصًا.',
+                'question_en.string' => 'يجب أن يكون السؤال بالانجليزية نصًا.',
+                'answer_ar.required' => 'يجب إدخال الإجابة بالعربية.',
+                'answer_en.required' => 'يجب إدخال الإجابة بالانجليزية.',
+                'answer_ar.string' => 'يجب أن تكون الإجابة نصًا.',
+                'answer_en.string' => ' يجب أن تكون الإجابة بالانجليزية نصًا.',
             ]
         );
         $validated['user_id'] = auth()->id();
@@ -71,14 +77,20 @@ class QaController extends Controller
     {
         $validated = $request->validate(
             [
-                "question" => "required|string",
-                "answer" => "required|string",
+                "question_ar" => "required|string",
+                "question_en" => "required|string",
+                "answer_ar" => "required|string",
+                "answer_en" => "required|string",
             ],
             [
-                'question.required' => 'يجب إدخال السؤال.',
-                'question.string' => 'يجب أن يكون السؤال نصًا.',
-                'answer.required' => 'يجب إدخال الإجابة.',
-                'answer.string' => 'يجب أن تكون الإجابة نصًا.',
+                'question_ar.required' => 'يجب إدخال السؤال بالعربية.',
+                'question_en.required' => 'يجب إدخال السؤال بالانجليزية.',
+                'question_ar.string' => 'يجب أن يكون السؤال بالعربية نصًا.',
+                'question_en.string' => 'يجب أن يكون السؤال بالانجليزية نصًا.',
+                'answer_ar.required' => 'يجب إدخال الإجابة بالعربية.',
+                'answer_en.required' => 'يجب إدخال الإجابة بالانجليزية.',
+                'answer_ar.string' => 'يجب أن تكون الإجابة نصًا.',
+                'answer_en.string' => ' يجب أن تكون الإجابة بالانجليزية نصًا.',
             ]
         );
 

@@ -26,7 +26,11 @@
                 كل الأسئلة
             </h5>
         </div>
-
+        <div style="display: flex; gap: 10px; margin-top: 5px; margin-left: 50px;  justify-content: flex-end">
+            <a href="{{route('questions.create')}}" class="btn  btn-success" rel="noopener noreferrer">
+                إضافة سؤال
+            </a>
+        </div>
         <div class="card-body">
             <table class="table table-striped" id="table1">
                 <thead>
@@ -43,8 +47,8 @@
                     @forelse ($qs as $q)
                         <tr>
                             <td>{{$q->id}}</td>
-                            <td>{{$q->question}}</td>
-                            <td>{{$q->answer}}</td>
+                            <td>{{$q->question_ar}}</td>
+                            <td>{{$q->answer_ar}}</td>
                             <td>{{$q->created_at}}</td>
                             <td>
                                 <a href="{{route('questions.show',$q->id)}}" class="btn btn-sm btn-outline-success" rel="noopener noreferrer">

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 class PostController extends Controller
 {
@@ -33,33 +35,38 @@ class PostController extends Controller
     {
         $validated = $request->validate(
             [
-                'title' => ['required', 'string','bail'],
-                'content' => ['required', 'string', 'bail'],
-                'image' => ['nullable', 'max:2048', 'dimensions:min_width=300,min_height=300', 'bail'],
+                'title_ar' => ['required', 'string','bail'],
+                'title_en' => ['required', 'string','bail'],
+                'content_ar' => ['required', 'string', 'bail'],
+                'content_en' => ['required', 'string', 'bail'],
+                'image' => ['nullable', 'max:5000', 'bail'],
                 'category_id' => ['required', 'exists:categories,id'],
             ],
             [
-                'title.required' => 'حقل العنوان مطلوب.',
-                // 'title.regex' => 'يمكن أن يحتوي العنوان فقط على أحرف وأرقام ومسافات.',
-                'content.required' => 'المحتوى مطلوب.',
-                'image.max' => 'يجب ألا يتجاوز حجم الصورة 2 ميجابايت.',
-                'image.dimensions' => 'يجب أن تكون أبعاد الصورة على الأقل 300x300 بكسل.',
+                'title_ar.required' => 'يجب إدخال العنوان بالعربية.',
+                'title_en.required' => 'يجب إدخال العنوان بالانجليزية.',
+                'content_ar.required' => 'يجب إدخال المحتوى بالعربية.',
+                'content_en.required' => 'يجب إدخال المحتوى بالانجليزية.',
+                'image.max' => 'يجب ألا يتجاوز حجم الصورة 5 ميجابايت.',
                 'category_id.required' => 'حقل التصنيف مطلوب.',
                 'category_id.exists' => 'التصنيف المحدد غير موجود.',
 
             ]
         );
         $validated['user_id'] = auth()->id();
+
+        if($validated['image']) $validated['image'] = Storage::putFile("Posts",$validated['image']);
+
         $post =  Post::create($validated);
 
-        if ($request->hasFile('image')) {
-            $post->addMedia($request->file('image'))->toMediaCollection();
-        }
+        // if ($request->hasFile('image')) {
+        //     $post->addMedia($request->file('image'))->toMediaCollection();
+        // }
         
                // Debugging: Check if media was added successfully
             //    dd($post->getMedia('posts'));
         
-        return back()->with("success", "تم إضافة منشورك بنجاح");
+        return back()->with("success", "تم إضافة المقال بنجاح");
     }
 
     /**
@@ -91,19 +98,20 @@ class PostController extends Controller
     {
         $validated = $request->validate(
             [
-                'title' => ['required', 'string', 'regex:/^[a-zA-Z0-9\s]+$/', 'bail'],
-                'content' => ['required', 'string', 'bail'],
-                'image' => ['nullable', 'max:2048',  'bail'],
+                'title_ar' => ['required', 'string', 'bail'],
+                'title_en' => ['required', 'string', 'bail'],
+                'content_ar' => ['required', 'string', 'bail'],
+                'content_en' => ['required', 'string', 'bail'],
+                'image' => ['nullable', 'max:5000',  'bail'],
                 'category_id' => ['required', 'exists:categories,id'],
             ],
 
-            //'dimensions:min_width=300,min_height=300',
             [
-                'title.required' => 'حقل العنوان مطلوب.',
-                'title.regex' => 'يمكن أن يحتوي العنوان فقط على أحرف وأرقام ومسافات.',
-                'content.required' => 'المحتوى مطلوب.',
-                'image.max' => 'يجب ألا يتجاوز حجم الصورة 2 ميجابايت.',
-                // 'image.dimensions' => 'يجب أن تكون أبعاد الصورة على الأقل 300x300 بكسل.',
+                'title_ar.required' => 'يجب إدخال العنوان بالعربية.',
+                'title_en.required' => 'يجب إدخال العنوان بالانجليزية.',
+                'content_ar.required' => 'يجب إدخال المحتوى بالعربية.',
+                'content_en.required' => 'يجب إدخال المحتوى بالانجليزية.',
+                'image.max' => 'يجب ألا يتجاوز حجم الصورة 5 ميجابايت.',
                 'category_id.required' => 'حقل التصنيف مطلوب.',
                 'category_id.exists' => 'التصنيف المحدد غير موجود.',
 
@@ -111,14 +119,14 @@ class PostController extends Controller
         );
 
         $post = Post::findOrFail($id);
+
+        if($validated['image']){
+            Storage::delete($post->image);
+            $validated['image'] = Storage::putFile("Posts",$validated['image']);
+    }
         $post->update($validated);
 
-        if ($request->hasFile('image')) {
-            $post->clearMediaCollection('posts');
-            $post->addMedia($request->file('image'))->toMediaCollection("posts");
-        }
-
-        return back()->with("success", "تم تعديل منشورك بنجاح");
+        return back()->with("success", "تم تعديل المقال بنجاح");
     }
 
     /**
@@ -127,8 +135,11 @@ class PostController extends Controller
     public function destroy(string $id)
     {
         $post = Post::findOrFail($id);
-        $post->clearMediaCollection("post");
+        // $post->clearMediaCollection("post");
+        if($post->image){
+            Storage::delete($post->image);
+            }
         $post->delete();
-        return redirect(url("dashboard/posts"))->with("success", "تم حذف منشورك بنجاح");
+        return redirect()->route("posts.index")->with("success", "تم حذف المقال بنجاح");
     }
 }

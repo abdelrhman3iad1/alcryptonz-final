@@ -15,7 +15,7 @@
         </div>
     @endif
 
-    <form action="{{ url('admin/change-password') }}" method="POST">
+    <form action="{{ route('change-password-function') }}" method="POST">
         @csrf
         <div class="mb-3">
             <label for="old_password" class="form-label">Old Password</label>

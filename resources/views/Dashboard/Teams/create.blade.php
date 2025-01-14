@@ -15,7 +15,7 @@
         <div class="card-header">
             <h4 class="card-title">أضف عضو</h4>
         </div>
-        <form action="{{route('teams.store')}}" method="post">
+        <form action="{{route('teams.store')}}" enctype="multipart/form-data" method="post">
             @csrf
         <div class="card-body">
             <div class="row">

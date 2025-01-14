@@ -15,7 +15,7 @@
         <div class="card-header">
             <h4 class="card-title">{{$promotion->name}}</h4>
         </div>
-        <form action="{{route('promotions.update',$promotion->id)}}" method="post">
+        <form action="{{route('promotions.update',$promotion->id)}}" enctype="multipart/form-data" method="post">
             @csrf
             @method('put')
         <div class="card-body">

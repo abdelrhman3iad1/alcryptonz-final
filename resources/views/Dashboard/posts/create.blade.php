@@ -18,50 +18,62 @@
             <form action="{{ route('posts.store') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
-                    <div class="row">
-
+                    <div class="row" style="display: flex; flex-wrap: wrap; gap: 20px;">
+                        <!-- القسم الخاص باللغة العربية -->
+                        <div class="col-md-6" style="flex: 1; border: 1px solid hsla(0, 0%, 87%, 0.09); padding: 15px; border-radius: 8px; ">
+                            <h5 class="text-center mb-3">القسم العربي</h5>
+                            <div class="form-group">
+                                <label for="title_ar">العنوان بالعربية</label>
+                                <input type="text" class="form-control" name="title_ar" id="title_ar" placeholder="">
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="content_ar">المحتوى بالعربية</label>
+                                <textarea class="form-control" name="content_ar" id="content_ar" style="width: 100%; height: 150px;" placeholder=""></textarea>
+                            </div>
+                        </div>
+    
+                        <!-- القسم الخاص باللغة الإنجليزية -->
+                        <div class="col-md-6" style="flex: 1; border: 1px solid hsla(0, 0%, 87%, 0.09); padding: 15px; border-radius: 8px; ">
+                            <h5 class="text-center mb-3">English Section</h5>
+                            <div class="form-group">
+                                <label for="title_en">Post Title in English</label>
+                                <input type="text" class="form-control" name="title_en" id="title_en" placeholder="">
+                            </div>
+                            <div class="form-group mt-3">
+                                <label for="content_en">Post Content in English</label>
+                                <textarea class="form-control" name="content_en" id="content_en" style="width: 100%; height: 150px;" placeholder=""></textarea>
+                            </div>
+                        </div>
+                    </div>
+    
+                    <!-- القسم الخاص بالتصنيف والصورة -->
+                    <div class="row mt-4">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="name">العنوان</label>
-                                <input type="text" class="form-control" name="title" id="title"
-                                    placeholder="عنوان المقال">
-                            </div>
-
-                            <div class="form-group">
-                                <label for="website_url">المحتوى</label>
-                                {{-- <small class="text-muted"><i>example.com</i></small> --}}
-                                <textarea type="text" class="form-control" name="content" id="content" style="width: 100%; height: 150px;"></textarea>
-                            </div>
-                            
-                            <div class="form-group mb-3">
                                 <label for="category_id">اختر التصنيف</label>
-                                <select name="category_id" id="category_id" class="form-control" required>
-                                    {{-- <option value="" disabled selected>اختر التصنيف</option> --}}
+                                <select name="category_id" id="category_id" class="form-control" >
                                     @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}"
-                                            {{ old('category_id') == $category->id ? 'selected' : '' }}>
+                                        <option value="{{ $category->id }}" {{ old('category_id') == $category->id ? 'selected' : '' }}>
                                             {{ $category->name }}
                                         </option>
                                     @endforeach
                                 </select>
                             </div>
-
                         </div>
-                        <div class="form-group">
-                            <label for="image">صورة للمقال</label>
-                            <input type="file" accept="image" id="image" name="image" class="form-control"
-                                placeholder="">
-
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="image">صورة للمقال</label>
+                                <input type="file" accept="image/*" id="image" name="image" class="form-control" placeholder="">
+                            </div>
                         </div>
-
-
                     </div>
                 </div>
+    
                 <div class="d-flex mt-2 justify-content-center">
                     <button class="btn btn-outline-primary">إضافة</button>
                 </div>
             </form>
         </div>
-        </div>
     </section>
+    
 @endsection

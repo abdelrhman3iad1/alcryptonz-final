@@ -20,7 +20,13 @@ class UserAuthController extends Controller
     {
         try {
             $this->authService->register($request);
-            return redirect()->route('dashboard');
+            // return redirect()->route('dashboard');
+            $user = Auth::user();
+            if ($user['role'] == 1) {
+                return redirect()->route("categories.index");
+            } else {
+                return redirect()->route('home');
+            }
         } catch (\Exception $e) {
             return redirect()->back()->withErrors(['error' => $e->getMessage()]);
         }
@@ -32,7 +38,7 @@ class UserAuthController extends Controller
             $this->authService->login($request);
             $user = Auth::user();
             if ($user['role'] == 1) {
-                return view("dashboard");
+                return redirect()->route("categories.index");
             } else {
                 return redirect()->route('home');
             }
@@ -47,7 +53,7 @@ class UserAuthController extends Controller
             $this->authService->changePassword($request);
             $user = Auth::user();
             if ($user['role'] == 1) {
-                return view("dashboard");
+                return redirect()->route("categories.index");
             } else {
                 return redirect()->route('home');
             }

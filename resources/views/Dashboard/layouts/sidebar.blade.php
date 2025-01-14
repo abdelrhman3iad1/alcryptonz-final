@@ -177,21 +177,31 @@
 
         <li
             class="sidebar-item  ">
-            <a href="" class='sidebar-link'>
+            <a href="{{route('change-password')}}" class='sidebar-link'>
                 <i class="bi bi-person-badge-fill"></i>
                 <span>تغيير كلمة المرور</span>
             </a>
             
 
         </li>
-        <li
-            class="sidebar-item  ">
-            <a href="" class='sidebar-link'>
-                <i class="bi bi-person-badge-fill"></i>
-                <span>تسجيل الخروج</span>
-            </a>
+        <li class="sidebar-item  "> 
             
-
+            <form action="{{route('logout')}}" method="post">
+                @csrf
+                {{-- <button type="submit">تسجيل الخروج</button> --}}
+                
+                <div class="d-flex mt-2 justify-content-center">
+                    
+                    
+                        <button type="submit" class="btn btn-outline-danger">تسجيل الخروج</button>
+                </div>
+            </form>
+            {{-- <a href="" class='sidebar-link'>
+                
+                <span>تسجيل الخروج</span>
+            </a> --}}
+            
+{{-- //{{route('logout')}} --}}
         </li>
         
 </div>

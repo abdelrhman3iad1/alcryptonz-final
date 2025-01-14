@@ -6,6 +6,8 @@ use Illuminate\Validation\Rule;
 use App\Models\Team;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 class TeamController extends Controller
 {
@@ -51,7 +53,10 @@ class TeamController extends Controller
             ]
         
         );
+        if($validated['image']) $validated['image'] = Storage::putFile("Team",$validated['image']);
+
         Team::create($validated);
+
         return back()->with("success","تم إضافة العضو بنجاح .");
     
     }
@@ -97,6 +102,10 @@ class TeamController extends Controller
 ]
         );
         $team = Team::findOrFail($id);
+        if($validated['image']){
+            Storage::delete($team->image);
+            $validated['image'] = Storage::putFile("Team",$validated['image']);
+    }
         $team->update($validated);
         return back()->with("success","تم تعديل تفاصيل العضو بنجاح .");
     }
@@ -107,6 +116,9 @@ class TeamController extends Controller
     public function destroy(string $id)
     {
         $team = Team::findOrFail($id);
+        if($team->image){
+            Storage::delete($team->image);
+            }
         $team->delete();
         return redirect()->route("teams.index")->with("success","العضو تم حذفه بنجاح");
     }

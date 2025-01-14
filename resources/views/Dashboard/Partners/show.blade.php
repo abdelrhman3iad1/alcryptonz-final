@@ -39,11 +39,15 @@
                 {{$partner->description ?? ""}}
             </p>
             
-            @if ($partner->image)
-            <div class="card-image">
-                <img src="https://via.placeholder.com/300" alt="صورة توضيحية" />
+            <div class="card-image mt-4" style="text-align: center;">
+                @if ($partner->image)
+                <div class="col-md-7">
+                  <img src="{{asset("storage/$partner->image")}}" width="750px" alt="" srcset="">
+                </div>
+                @else
+                    <p>لا توجد صورة مرفقة.</p>
+                @endif
             </div>
-            @endif
             @if ($partner->website_url)
                 
             <a href="{{$partner->website_url}}" target="_blank" class="btn btn-outline-primary" target="_blank">

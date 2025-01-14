@@ -15,7 +15,7 @@
         <div class="card-header">
             <h4 class="card-title">أضف عرض ترويجي</h4>
         </div>
-        <form action="{{route('promotions.store')}}" method="post">
+        <form action="{{route('promotions.store')}}" method="post" enctype="multipart/form-data">
             @csrf
         <div class="card-body">
             <div class="row">

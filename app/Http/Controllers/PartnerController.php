@@ -5,6 +5,8 @@ use Illuminate\Validation\Rule;
 use App\Models\Partner;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 class PartnerController extends Controller
 {
@@ -53,6 +55,8 @@ class PartnerController extends Controller
         if (!str_starts_with($validated['website_url'], 'http://') && !str_starts_with($validated['website_url'], 'https://')) {
             $validated['website_url'] = 'https://' . $validated['website_url'];
         }
+        if($validated['image']) $validated['image'] = Storage::putFile("Partners",$validated['image']);
+
         Partner::create($validated);
         return back()->with("success","تم إضافة الشريك بنجاح .");
     
@@ -105,6 +109,11 @@ class PartnerController extends Controller
             $validated['website_url'] = 'https://' . $validated['website_url'];
         }
         $partner = Partner::findOrFail($id);
+
+        if($validated['image']){
+            Storage::delete($partner->image);
+            $validated['image'] = Storage::putFile("Partners",$validated['image']);
+    }
         $partner->update($validated);
         return back()->with("success","تم تعديل تفاصيل الشريك بنجاح .");
     }
@@ -115,6 +124,9 @@ class PartnerController extends Controller
     public function destroy(string $id)
     {
         $partner = Partner::findOrFail($id);
+        if($partner->image){
+            Storage::delete($partner->image);
+            }
         $partner->delete();
         return redirect()->route("partners.index")->with("success","الشريك تم حذفه بنجاح");
     }

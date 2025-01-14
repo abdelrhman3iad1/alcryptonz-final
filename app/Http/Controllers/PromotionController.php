@@ -5,6 +5,8 @@ use Illuminate\Validation\Rule;
 use App\Models\Promotion;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+
 
 class PromotionController extends Controller
 {
@@ -53,6 +55,8 @@ class PromotionController extends Controller
         if (!str_starts_with($validated['website_url'], 'http://') && !str_starts_with($validated['website_url'], 'https://')) {
             $validated['website_url'] = 'https://' . $validated['website_url'];
         }
+        if($validated['image']) $validated['image'] = Storage::putFile("Promotions",$validated['image']);
+
         Promotion::create($validated);
         return back()->with("success","تم إضافة العرض الترويجي بنجاح .");
     
@@ -105,6 +109,10 @@ class PromotionController extends Controller
             $validated['website_url'] = 'https://' . $validated['website_url'];
         }
         $Promotion = Promotion::findOrFail($id);
+        if($validated['image']){
+            Storage::delete($Promotion->image);
+            $validated['image'] = Storage::putFile("Promotions",$validated['image']);
+    }
         $Promotion->update($validated);
         return back()->with("success","تم تعديل العرض الترويجي بنجاح .");
     }
@@ -115,6 +123,9 @@ class PromotionController extends Controller
     public function destroy(string $id)
     {
         $promotion = Promotion::findOrFail($id);
+        if($promotion->image){
+            Storage::delete($promotion->image);
+            }
         $promotion->delete();
         return redirect()->route("promotions.index")->with("success","العرض الترويجي تم حذفه بنجاح");
     }

@@ -14,7 +14,7 @@
     <script src="{{ asset('Dashboard/assets/static/js/pages/simple-datatables.js') }}"></script>
 @endsection
 <div class="page-heading">
-    <h3>المفالات</h3>
+    <h3>المقالات</h3>
 </div>
 
 @include('messages.errors')
@@ -26,7 +26,11 @@
                 كل المقالات
             </h5>
         </div>
-
+        <div style="display: flex; gap: 10px; margin-top: 5px; margin-left: 50px;  justify-content: flex-end">
+            <a href="{{route('posts.create')}}" class="btn  btn-success" rel="noopener noreferrer">
+                إضافة مقال
+            </a>
+        </div>
         <div class="card-body">
             <table class="table table-striped" id="table1">
                 <thead>
@@ -42,7 +46,7 @@
                     @forelse ($posts as $post)
                         <tr>
                             <td>{{$post->id}}</td>
-                            <td>{{$post->title}}</td>
+                            <td>{{$post->title_ar}}</td>
                             <td>{{$post->created_at}}</td>
                             <td>
                                 <a href="{{route('posts.show',$post->id)}}" class="btn btn-sm btn-outline-success" rel="noopener noreferrer">

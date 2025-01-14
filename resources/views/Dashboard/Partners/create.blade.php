@@ -15,7 +15,7 @@
         <div class="card-header">
             <h4 class="card-title">أضف شريك</h4>
         </div>
-        <form action="{{route('partners.store')}}" method="post">
+        <form action="{{route('partners.store')}}"  enctype="multipart/form-data" method="post">
             @csrf
         <div class="card-body">
             <div class="row">
