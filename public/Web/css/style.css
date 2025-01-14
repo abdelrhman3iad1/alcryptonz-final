@@ -49,6 +49,18 @@ body {
     background-color: black !important;
 }
 
+.navbar-search {
+    /* border: solid 3px #A99600; */
+    border-radius: 5px;
+    outline: none;
+}
+
+.ser-btn{
+    background-color: lightcyan;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
 
 /*start drop down menu*/
 
@@ -237,13 +249,37 @@ main {
     box-shadow: 1px 1px 4px var(--fo-color) !important;
 }
 
+.swiper-slide .one-serv i {
+    background-color: var(--fo-color);
+    padding: 15px 14px;
+    font-size: 33px;
+    color: var(--first-color);
+    border-radius: 6px;
+    margin: 15px 0;
+    box-shadow: 1px 1px 4px var(--fo-color) !important;
+}
+
+
+
 .services-parent .one-serv h4 {
     color: var(--th-color);
     font-weight: bold;
     margin: 15px 0 12px;
 }
 
+
+.swiper-slide .one-serv h4 {
+    color: var(--th-color);
+    font-weight: bold;
+    margin: 15px 0 12px;
+}
+
 .services-parent .one-serv p {
+    color: #443F45;
+    line-height: 2;
+}
+
+.swiper-slide .one-serv p {
     color: #443F45;
     line-height: 2;
 }
@@ -423,8 +459,30 @@ main {
     font-size: 20px;
 }
 
+.links a{
+    color: white !important;
+}
+
+.links a:hover {
+    color: skyblue !important;
+}
+
+.links a i {
+    margin: 0 10px;
+    font-size: 20px;
+}
+
 .parent-search div:last-of-type {
     width: 40%;
+}
+
+.navbar-search::placeholder{
+    text-align: center;
+}
+
+.btn-color{
+    background-color: #747474;
+    color: white;
 }
 
 
