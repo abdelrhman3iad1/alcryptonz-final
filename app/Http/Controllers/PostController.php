@@ -7,12 +7,13 @@ use App\Models\Dislike;
 use App\Models\Like;
 use App\Models\Post;
 use App\Models\User;
+use App\Traits\ImageUpload;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
-
 class PostController extends Controller
 {
+    use ImageUpload;
     /**
      * Display a listing of the resource.
      */
@@ -36,13 +37,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        // Validate the request data
         $validated = $request->validate(
             [
-                'title_ar' => ['required', 'string','bail'],
-                'title_en' => ['required', 'string','bail'],
+                'title_ar' => ['required', 'string', 'bail'],
+                'title_en' => ['required', 'string', 'bail'],
                 'content_ar' => ['required', 'string', 'bail'],
                 'content_en' => ['required', 'string', 'bail'],
-                'image' => ['nullable', 'max:5000', 'bail'],
+                'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5000'], 
                 'category_id' => ['required', 'exists:categories,id'],
             ],
             [
@@ -50,28 +52,24 @@ class PostController extends Controller
                 'title_en.required' => 'يجب إدخال العنوان بالانجليزية.',
                 'content_ar.required' => 'يجب إدخال المحتوى بالعربية.',
                 'content_en.required' => 'يجب إدخال المحتوى بالانجليزية.',
+                'image.image' => 'يجب أن يكون الملف المرفق صورة.',
+                'image.mimes' => 'يجب أن تكون الصورة من نوع: jpeg, png, jpg, gif.',
                 'image.max' => 'يجب ألا يتجاوز حجم الصورة 5 ميجابايت.',
                 'category_id.required' => 'حقل التصنيف مطلوب.',
                 'category_id.exists' => 'التصنيف المحدد غير موجود.',
-
             ]
         );
+    
         $validated['user_id'] = auth()->id();
-
-        if($validated['image']) $validated['image'] = Storage::putFile("Posts",$validated['image']);
-
-        $post =  Post::create($validated);
-
-        // if ($request->hasFile('image')) {
-        //     $post->addMedia($request->file('image'))->toMediaCollection();
-        // }
-        
-               // Debugging: Check if media was added successfully
-            //    dd($post->getMedia('posts'));
-        
-        return back()->with("success", "تم إضافة المقال بنجاح");
+    
+        if ($request->hasFile('image')) {
+            $validated['image'] = "storage/" . $this->uploadImage($validated['image'], 'Posts/image');
+        }
+    
+        Post::create($validated);
+    
+        return back()->with('success', 'تم إضافة المقال بنجاح');
     }
-
     /**
      * Display the specified resource.
      */
@@ -123,10 +121,17 @@ class PostController extends Controller
 
         $post = Post::findOrFail($id);
 
-        if($validated['image']){
-            Storage::delete($post->image);
-            $validated['image'] = Storage::putFile("Posts",$validated['image']);
-    }
+        if ($request->hasFile('image')) {
+            if ($post->image) {
+                $post->image = str_replace('storage', '', $post->image);
+                $this->deleteImage($post->image);
+            }
+    
+            $validated['image'] = $this->uploadImage($request->file('image'), 'Posts/image');
+        } else {
+            unset($validated['image']);
+        }
+
         $post->update($validated);
 
         return back()->with("success", "تم تعديل المقال بنجاح");
@@ -138,12 +143,14 @@ class PostController extends Controller
     public function destroy(string $id)
     {
         $post = Post::findOrFail($id);
-        // $post->clearMediaCollection("post");
-        if($post->image){
-            Storage::delete($post->image);
-            }
+    
+        if ($post->image) {
+            $post->image = str_replace('storage', '', $post->image);
+            $this->deleteImage($post->image);
+        }
+    
         $post->delete();
-        return redirect()->route("posts.index")->with("success", "تم حذف المقال بنجاح");
+        return redirect()->route('posts.index')->with('success', 'تم حذف المقال بنجاح');
     }
 
     
@@ -208,10 +215,9 @@ class PostController extends Controller
             return back()->with('success', 'You removed your dislike.');
         }
     }
-    public function search()
+    public function search(Request $request)
     {
-        $query = $_GET['query'];
-    
+        $query = $request->input('query');    
         $posts = Post::where('title_ar', 'LIKE', '%' . $query . '%')
                      ->orWhere('title_en', 'LIKE', '%' . $query . '%')
                      ->orWhere('content_ar', 'LIKE', '%' . $query . '%')

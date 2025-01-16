@@ -6,6 +6,7 @@
         <button class="navbar-toggler" data-toggle="collapse" data-target="#menu" style="border:0; background-color:black;padding:10px 0 0">
             <i class="fas fa-bars navbar-toggler-icon" style="color:white !important;font-size:27px !important;"></i>
         </button>
+        
         <div class="collapse navbar-collapse" id="menu" style="z-index: 566311111111111 !important;">
             <div class="search-bar">
                 <div class="container d-flex justify-content-center">

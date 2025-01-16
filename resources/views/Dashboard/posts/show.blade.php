@@ -50,12 +50,11 @@
             </div>
         </div>
 
-        <!-- الصورة -->
         <div class="card-image mt-4" style="text-align: center;">
             @if ($post->image)
-            <div class="col-md-7">
-              <img src="{{asset("storage/$post->image")}}" width="750px" alt="" srcset="">
-            </div>
+                <div class="col-md-7">
+                    <img src="{{ asset($post->image) }}" alt="{{ $post->title_en }}" style="max-width: 100%; height: auto;">
+                </div>
             @else
                 <p>لا توجد صورة مرفقة.</p>
             @endif

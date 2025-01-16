@@ -38,7 +38,7 @@
                         @else
                             @foreach ($posts as $post)
                                 <!-- Post -->
-                                <a style="direction:rtl;overflow:hidden" href="{{ route('post.show', ['id' => $post->id]) }}" target="_blank">
+                                <a style="direction:rtl;overflow:hidden" href="" target="_blank">
                                     <div class="small-post">
                                         <div class="img-div">
                                             <img src="{{ asset('storage/Posts/' . $post->image) }}" alt="صورة المنشور">

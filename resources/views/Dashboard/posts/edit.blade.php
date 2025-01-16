@@ -73,13 +73,13 @@
                         <label for="image">صورة للمقال</label>
                         <input type="file" accept="image/*" id="image" name="image" class="form-control" >
                         
-                        @if ($post->getFirstMediaUrl('posts'))
-                            <div class="mt-3">
-                                <img src="{{ $post->getFirstMediaUrl('posts') }}" alt="صورة المقال" style="max-width: 200px; max-height: 200px; border-radius: 8px;">
-                            </div>
-                        @else
-                            <p class="mt-3">لا توجد صورة مرفقة.</p>
-                        @endif
+                        @if ($post->image)
+                <div class="col-md-7">
+                    <img src="{{ asset($post->image) }}" alt="{{ $post->title_en }}" style="max-width: 100%; height: auto;">
+                </div>
+            @else
+                <p>لا توجد صورة مرفقة.</p>
+            @endif
                     </div>
                 </div>
             </div>
