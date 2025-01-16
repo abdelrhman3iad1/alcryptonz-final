@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Services\Auth;
 
 use App\Http\Resources\UserResource;
@@ -20,6 +19,7 @@ class UserAuthService
 
         $validated['password'] = Hash::make($validated['password']);
         $user = User::create($validated);
+
         if ($request->is('api/*')) {
             $user = new UserResource($user);
             $token = $user->createToken('Personal Access Token')->plainTextToken;
@@ -28,7 +28,7 @@ class UserAuthService
                 'token' => $token
             ];
         } else {
-            Auth::login($user);
+            Auth::login($user); // Log in the user for web-based authentication
             return [
                 'user' => new UserResource($user),
             ];

@@ -9,8 +9,8 @@
         <div class="collapse navbar-collapse" id="menu" style="z-index: 566311111111111 !important;">
             <div class="search-bar">
                 <div class="container d-flex justify-content-center">
-                    <form action="search-result.php" method="POST">
-                        <input type="search" name="search-post" class="navbar-search py-1 px-3" placeholder="Search This Blog">
+                    <form action="{{ route('search') }}" method="GET">
+                        <input type="search" name="query" class="navbar-search py-1 px-3" placeholder="Search This Blog">
                         <button class="ser-btn px-2 py-1" type="submit" name="searched">Search</button>
                     </form>
                 </div>

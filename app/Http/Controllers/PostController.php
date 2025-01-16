@@ -208,7 +208,17 @@ class PostController extends Controller
             return back()->with('success', 'You removed your dislike.');
         }
     }
-
+    public function search()
+    {
+        $query = $_GET['query'];
+    
+        $posts = Post::where('title_ar', 'LIKE', '%' . $query . '%')
+                     ->orWhere('title_en', 'LIKE', '%' . $query . '%')
+                     ->orWhere('content_ar', 'LIKE', '%' . $query . '%')
+                     ->orWhere('content_en', 'LIKE', '%' . $query . '%')
+                     ->get();
+        return view('Web.search-result', compact('posts'));
+    }
 }
 
 
