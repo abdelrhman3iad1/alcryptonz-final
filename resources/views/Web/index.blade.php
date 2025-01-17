@@ -227,30 +227,24 @@ while($row=mysqli_fetch_assoc($execez)){
     $v++; */?>
 
      <!--post-->
-       
+     @foreach ($posts as $post)
      <div class="post"style="direction:rtl;overflow:hidden">
-     <div class="div-img"><a href="post.php?idPost=<?php /* echo $row["postId"]; */?>"target='_blank' > <img src="uploads/postImages/<?php /* echo $row["postImage"]; */ ?>" alt="Alcryptonz collabs News"></a></div>
-     <a href="post.php?idPost=<?php /* echo $row["postId"]; */ ?>"target='_blank' ><h4 style="color:black;word-wrap: break-word;" ><?php /* echo $row["postTitle"]; */ ?> </h4></a>
-      <span> <?php /* echo $row["postAuthor"]; */?> &nbsp;<i class="fas fa-user"></i></span><br>
-      <span><?php /* echo $row["PostDate"]; */?> &nbsp; <i class="far fa-calendar-alt"></i></span>
-      <span> <?php /* echo $row["postCategory"]; */?>   &nbsp; <i class="fas fa-tags"></i> </span>
-      <p style="color:black;"> 
-           <?php /*
-                                if(strlen($row["postContent"])>150){
-                            echo strip_tags(substr(str_replace("&nbsp;"," ",$row["postContent"]),0,350)."....");
-                                }else{
-                                   echo strip_tags(str_replace("&nbsp;"," ",$row["postContent"]));
-                                    
-                                }
-                                 */?> 
-                                 </p>
-  </div>
-  <?php /*
-                                        if($v==30){
-                                            break;
-                                                                    }
-                } */?>
+     <div class="div-img"><a href="post.php?idPost=<?php /* echo $row["postId"]; */?>"target='_blank' > 
+        @if ($post->image)
+        <img src="{{ asset($post->image) }}" alt="{{ $post->title_ar }}">
+        @else
+        <img src="{{ asset('images/placeholder.jpg') }}" alt="No Image Available">
+         @endif
+    </a></div>
+     <a href="post.php?idPost={{$post->id}}"target='_blank' ><h4 style="color:black;word-wrap: break-word;" >{{$post->title_ar}} </h4></a>
+      <span> {{ $post->user->name }} &nbsp;<i class="fas fa-user"></i></span><br>
+      <span>{{ $post->created_at->format('Y-m-d') }} &nbsp; <i class="far fa-calendar-alt"></i></span>
+      <span> {{ $post->category->name }}   &nbsp; <i class="fas fa-tags"></i> </span>
+      <p style="color:black;"> </p>   
+     @endforeach
 
+  </div>
+ 
 
     </div>
       <p style="text-align:center;color:green"><i class="fas fa-hand-point-left"></i> مرر يمينا او يسارا <i class="fas fa-hand-point-right"></i><br> لمشاهدة منشورات اخري </p>
@@ -292,24 +286,24 @@ while($row=mysqli_fetch_assoc($execez)){
 
 
      <!--post-->
-       
+     @foreach ($posts as $post)
      <div class="post"style="direction:rtl;overflow:hidden">
-     <div class="div-img"><a href="post.php?idPost=<?php /* echo $row["postId"]; */?>"target='_blank' > <img src="uploads/postImages/<?php /*echo $row["postImage"]; */?>" alt="Alcryptonz Post image"></a></div>
-     <a href="post.php?idPost=<?php /*echo $row["postId"];*/ ?>"target='_blank' ><h4 style="color:black;word-wrap: break-word;"><?php /*echo $row["postTitle"];*/ ?> </h4></a>
-      <span> <?php /*echo $row["postAuthor"]; */?> &nbsp;<i class="fas fa-user"></i></span><br>
-      <span><?php /*echo $row["PostDate"]; */?> &nbsp; <i class="far fa-calendar-alt"></i></span>
-      <span> <?php /*echo $row["postCategory"]; */?>   &nbsp; <i class="fas fa-tags"></i> </span>
+     <div class="div-img"><a href="post.php?idPost={{$post->id}}"target='_blank' > 
+        @if ($post->image)
+        <img src="{{ asset($post->image) }}" alt="{{ $post->title_ar }}">
+        @else
+        <img src="{{ asset('images/placeholder.jpg') }}" alt="No Image Available">
+         @endif
+    </a></div>
+     <a href="post.php?idPost=<{{$post->id}}"target='_blank' ><h4 style="color:black;word-wrap: break-word;">{{$post->title_ar}} </h4></a>
+      <span> {{ $post->user->name }} &nbsp;<i class="fas fa-user"></i></span><br>
+      <span>{{ $post->created_at->format('Y-m-d') }} &nbsp; <i class="far fa-calendar-alt"></i></span>
+      <span>  {{ $post->category->name }}    &nbsp; <i class="fas fa-tags"></i> </span>
       <p style="color:black;"> 
-           <?php /*
-                                if(strlen($row["postContent"])>150){
-                                    echo strip_tags(substr(str_replace("&nbsp;"," ",$row["postContent"]),0,350)."....");
-                                }else{
-                                    echo strip_tags(str_replace("&nbsp;"," ",$row["postContent"]));
-                                    
-                                }
-                                */ ?> 
+         
                                  </p>
   </div>
+  @endforeach
   <?php /*
                                         if($v==30){
                                             break;
