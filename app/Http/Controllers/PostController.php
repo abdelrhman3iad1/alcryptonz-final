@@ -222,6 +222,9 @@ class PostController extends Controller
                      ->orWhere('title_en', 'LIKE', '%' . $query . '%')
                      ->orWhere('content_ar', 'LIKE', '%' . $query . '%')
                      ->orWhere('content_en', 'LIKE', '%' . $query . '%')
+                     ->orWhereHas('category', function ($q) use ($query) {
+                        $q->where('name', 'LIKE', '%' . $query . '%');
+                    })
                      ->get();
         return view('Web.search-result', compact('posts'));
     }
