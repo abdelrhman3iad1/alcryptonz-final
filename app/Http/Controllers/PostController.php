@@ -44,7 +44,7 @@ class PostController extends Controller
                 'title_en' => ['required', 'string', 'bail'],
                 'content_ar' => ['required', 'string', 'bail'],
                 'content_en' => ['required', 'string', 'bail'],
-                'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:5000'], 
+                'image' => ['nullable', 'image', 'max:5000'], 
                 'category_id' => ['required', 'exists:categories,id'],
             ],
             [
