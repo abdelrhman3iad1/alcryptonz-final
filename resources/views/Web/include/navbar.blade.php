@@ -18,34 +18,51 @@
             </div>
             <ul class="navbar-nav ml-auto" style="z-index: 566311111111111;">
                 <li class="nav-item">
-                    <a href="index.php" class="nav-link spec2">HOME</a>
+                    <a href="index.php" class="nav-link spec2">{{__('translation.HOME')}}</a>
                 </li>
                 <li class="nav-item">
-                    <a href="aboutus.php" class="nav-link spec2">ABOUT US</a>
+                    <a href="aboutus.php" class="nav-link spec2">{{__('translation.ABOUT_US')}}</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#ar" class="nav-link spec2">ARTICLES</a>
+                    <a href="#ar" class="nav-link spec2">{{__('translation.ARTICLES')}}</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#te" class="nav-link spec2">TEAM</a>
+                    <a href="#te" class="nav-link spec2">{{__('translation.TEAM')}}</a>
                 </li>
                 <li class="nav-item">
-                    <a href="alcrypto-news.php" class="nav-link spec2">ALCRYPTO NEWS</a>
+                    <a href="alcrypto-news.php" class="nav-link spec2">{{__('translation.ALCRYPTO_NEWS')}}</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#fo" class="nav-link spec2">CONTACT US</a>
+                    <a href="#fo" class="nav-link spec2">{{__('translation.CONTACT_US')}}</a>
                 </li>
+                {{-- <li class="nav-item">
+                    <a href="#fo" class="nav-link spec2">{{config('app.locale')}}</a>
+                </li>
+                <li class="nav-item">
+                    <a href="#fo" class="nav-link spec2">{{__("translation.language")}}</a>
+                </li> --}}
+                @if (config('app.locale')=='ar')
+                <li class="nav-item">
+                    <a href="{{url('/en')}}" class="nav-link spec2">ENGLISH</a>
+                </li>
+                @elseif(config('app.locale')=='en')
+                <li class="nav-item">
+                    <a href="{{url('/ar')}}" class="nav-link spec2">ARABIC</a>
+                </li>
+                @endif
+                
+                
             </ul>
             <!-- Language Toggle -->
-            <div class="dropdown ml-3">
+            {{-- <div class="dropdown ml-3">
                 <button class="btn btn-outline-light btn-sm dropdown-toggle" type="button" id="languageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Language
+                    English <!-- Default language set to English -->
                 </button>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="languageDropdown">
                     <a class="dropdown-item" href="#">English</a>
                     <a class="dropdown-item" href="#">عربي</a>
                 </div>
-            </div>
+            </div> --}}
         </div>
     </div>
 </nav>

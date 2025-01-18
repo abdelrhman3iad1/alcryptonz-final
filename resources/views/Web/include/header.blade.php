@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{__('translation.language')}}" dir="{{__('translation.dir')}}">
 
 <head>
     <meta charset="UTF-8">
