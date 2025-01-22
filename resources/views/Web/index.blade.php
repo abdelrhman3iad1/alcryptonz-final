@@ -78,10 +78,23 @@
 <!--End main-->
 <!--start sevices -->
 <!-- Banner Ad Placeholder -->
-<div class="ad-banner py-4 w-75 mt-4 mx-auto d-flex justify-content-center align-items-center" style=" background-color: lightgray; border: 1px dashed gray;">
-<!-- Ad Content Goes Here -->
-<p class='mt-3 text-center'>Banner Ad Placeholder (Your Ad Content Here)</p>
+<div class="ad-banner bg-light py-2 mt-4 d-flex justify-content-center align-items-center col-md-10 col-11 mx-auto" 
+     style="border: 1px dashed gray;">
+    <div class="row w-100">
+        <!-- Content Section -->
+        <!-- Image Section -->
+        <div class="col-md-5">
+            <img src="images/chanel-1.jpg" alt="chanel-brand" class="w-100">
+        </div>
+        <div class="col-md-7 d-flex flex-column justify-content-center align-items-center mt-3 mt-md-0">
+            <h3>Banner Title</h3>
+            <p class="mt-3 text-center">Banner Ad Placeholder (Your Ad Content Here)</p>
+            <a href="" class="btn btn-primary mt-2">Link1</a>
+        </div>
+    </div>
 </div>
+
+
 <div class="services" id="se">
     <!-- Static grid for larger viewports -->
     <div class="container d-none d-lg-block">
@@ -379,10 +392,21 @@ while($row=mysqli_fetch_assoc($execezz)){ */
 </div>
 
     <!-- Banner Ad Placeholder -->
-    <div class="ad-banner py-4 mb-4 d-flex justify-content-center align-items-center w-75 d-flex mx-auto" style=" background-color: lightgray; border: 1px dashed gray;">
-        <!-- Ad Content Goes Here -->
-        <p class='mt-3 text-center'>Banner Ad Placeholder (Your Ad Content Here)</p>
+    <div class="ad-banner bg-light py-2 mt-4 mb-4 d-flex justify-content-center align-items-center col-md-10 col-11 mx-auto" 
+     style="border: 1px dashed gray;">
+    <div class="row w-100">
+        <!-- Content Section -->
+        <!-- Image Section -->
+        <div class="col-md-5">
+            <img src="images/chanel-1.jpg" alt="chanel-brand" class="w-100">
+        </div>
+        <div class="col-md-7 d-flex flex-column justify-content-center align-items-center mt-3 mt-md-0">
+            <h3>Banner Title</h3>
+            <p class="mt-3 text-center">Banner Ad Placeholder (Your Ad Content Here)</p>
+            <a href="" class="btn btn-primary mt-2">Link1</a>
+        </div>
     </div>
+</div>
 
 
 
