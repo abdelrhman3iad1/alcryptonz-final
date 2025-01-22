@@ -163,7 +163,23 @@ $actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP
                             </p><?php  $_SESSION["pd"]=$row["PostDate"]; ?>
                             <?php $_SESSION["pc"]=$row["postCategory"]; ?>
                             <div class="post-content" >
-                                
+                            
+                            <div class="ad-banner bg-light py-2 mt-4 d-flex justify-content-center align-items-center col-md-10 col-11 mx-auto" 
+                               style="border: 1px dashed gray;">
+                                <div class="row w-100">
+                                    <!-- Image Section -->
+                                    <div class="col-md-5">
+                                        <img src="images/chanel-1.jpg" alt="chanel-brand" class="w-100">
+                                    </div>
+                                    <!-- Content Section -->
+                                <div class="col-md-7 d-flex flex-column justify-content-center align-items-center mt-3 mt-md-0">
+                                    <h3>Banner Title</h3>
+                                    <p class="mt-3 text-center">Banner Ad Placeholder (Your Ad Content Here)</p>
+                                    <a href="" class="btn btn-primary mt-2">Link1</a>
+                                </div>
+                            </div>
+                        </div>
+
                                 <?php
                                 $rthg=str_replace("&nbsp;"," ",$row["postContent"]); 
                                     echo $rthg;
@@ -186,7 +202,21 @@ $actual_link = (isset($_SERVER['HTTPS']) ? "https" : "http") . "://$_SERVER[HTTP
                             <!--منشورات لها علاقة-->
 
 
-           
+                <div class="ad-banner bg-light py-2 mt-4 d-flex justify-content-center align-items-center col-md-10 col-11 mx-auto" 
+                    style="border: 1px dashed gray;">
+                <div class="row w-100">
+                    <!-- Image Section -->
+                    <div class="col-md-5">
+                        <img src="images/chanel-1.jpg" alt="chanel-brand" class="w-100">
+                    </div>
+                    <!-- Content Section -->
+                <div class="col-md-7 d-flex flex-column justify-content-center align-items-center mt-3 mt-md-0">
+                    <h3>Banner Title</h3>
+                    <p class="mt-3 text-center">Banner Ad Placeholder (Your Ad Content Here)</p>
+                    <a href="" class="btn btn-primary mt-2">Link1</a>
+                </div>
+                    </div>
+                </div>
 
                             <div class="related-posts">
                         <h4> مقالات قد تعجبك</h4>
