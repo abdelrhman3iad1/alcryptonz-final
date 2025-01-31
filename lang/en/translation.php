@@ -37,8 +37,13 @@ return
     "Search This Blog"=>"Search This Blog",
     "Currency Converter"=>"Currency Converter",
     "Enter the Value"=>"Enter the Value",
-    "The Value"=>"The Value",
+    "The Value"=>"Value",
     "From :"=>"From :",
-    "To :"=>"To :"
+    "To :"=>"To :",
+    "Who We Are"=>"Who We Are",
+    "Convert"=>"Convert",
+    "Loading..."=>"Loading...",
+    "Result"=>"Result",
+    "Error"=>"Error"
     
 ];

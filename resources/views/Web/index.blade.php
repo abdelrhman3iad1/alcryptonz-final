@@ -74,7 +74,7 @@
     <h1>ALCRYPTONZ</h1>
     <h3>Hard Choices, Great Destiny</h3>
     <h5>فريق عربي يهدف إلى الربط بين عالم العملات الرقمية والحياة اليومية</h5>
-    <a href="aboutus.php">Who We Are</a> 
+    <a href="aboutus.php">{{__("translation.Who We Are")}}</a> 
     <div class="d-flex flex-column align-items-center">
     </div>
 </div>
@@ -304,29 +304,66 @@ while($row=mysqli_fetch_assoc($execez)){
 <a class="show-butx" href="show-all-partners-posts.php">{{__("translation.Show More")}}</a>
 </div>
 <!--End show all partners posts  -->
-
+{{-- 
 <div class="converter-container">
     <h2>{{__("translation.Currency Converter")}}</h2>
-    <form id="currencyConverter">
+    <form action="{{ route('convert') }}" method="POST">
+        @csrf
         <div class="form-group">
-            <label for="amount">{{__("translation.The Value")}}:</label>
-            <input type="text" class="form-control" id="amount" placeholder="{{__('translation.Enter the Value')}}" >
+            <label for="amount">{{__("translation.The Value")}} :</label>
+            <input type="text" class="form-control"  name="amount" value="{{ old('amount', $amount ?? '') }}" id="amount" placeholder="{{__('translation.Enter the Value')}}" >
         </div>
         <div class="form-group">
             <label for="fromCurrency">{{__("translation.From :")}}</label>
-            <select class="form-control" id="fromCurrency" >
-                <option value="USD">الدولار الأمريكي (USD)</option>
+            <select name="from" class="form-control" id="fromCurrency" >
+                @foreach ($currencyOptions as $symbol => $name)
+                <option value="{{ $symbol }}" {{ (isset($from) && $from === $symbol) ? 'selected' : '' }}>
+                    {{ $name }}
+                </option>
+            @endforeach
             </select>
         </div>
         <div class="form-group">
             <label for="toCurrency">{{__("translation.To :")}}</label>
-            <select class="form-control" id="toCurrency" >
-                <option value="USD">الدولار الأمريكي (USD)</option>
+            <select name="to" class="form-control" id="toCurrency" >
+                @foreach ($currencyOptions as $symbol => $name)
+                <option value="{{ $symbol }}" {{ (isset($to) && $to === $symbol) ? 'selected' : '' }}>
+                    {{ $name }}
+                </option>
+            @endforeach
             </select>
         </div>
-        <button type="submit" class="btn btn-primary w-100">تحويل</button>
+        <button type="submit" class="btn btn-primary w-100">{{__("translation.Convert")}}</button>
     </form>
     <div class="result" id="result"></div>
+</div> --}}
+<div class="converter-container">
+    <h2>{{ __("translation.Currency Converter") }}</h2>
+    <form id="converter-form">
+        @csrf
+        <div class="form-group">
+            <label for="amount">{{ __("translation.The Value") }} :</label>
+            <input type="text" class="form-control" name="amount" id="amount" placeholder="{{ __('translation.Enter the Value') }}">
+        </div>
+        <div class="form-group">
+            <label for="fromCurrency">{{ __("translation.From :") }}</label>
+            <select name="from" class="form-control" id="fromCurrency">
+                @foreach ($currencyOptions as $symbol => $name)
+                    <option value="{{ $symbol }}">{{ $name }}</option>
+                @endforeach
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="toCurrency">{{ __("translation.To :") }}</label>
+            <select name="to" class="form-control" id="toCurrency">
+                @foreach ($currencyOptions as $symbol => $name)
+                    <option value="{{ $symbol }}">{{ $name }}</option>
+                @endforeach
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">{{ __("translation.Convert") }}</button>
+    </form>
+    <div class="result mt-3" id="result"></div>
 </div>
 
 <!--start recent posts    -->
@@ -528,7 +565,61 @@ while($row=mysqli_fetch_assoc($execezz)){ */
         },
     });
 </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function () {
+    $('#converter-form').on('submit', function (e) {
+        e.preventDefault(); // منع إعادة تحميل الصفحة
 
+        var formData = {
+            _token: "{{ csrf_token() }}",
+            amount: $('#amount').val(),
+            from: $('#fromCurrency').val(),
+            to: $('#toCurrency').val()
+        };
+
+        $.ajax({
+            url: "{{ route('convert') }}",
+            type: "POST",
+            data: formData,
+            beforeSend: function () {
+                $('#result').html('<p class="text-info">{{ __("translation.Loading...") }}</p>');
+            },
+            success: function (response) {
+                if (response.result && response.result.data && response.result.data.quote) {
+                    var fromCurrency = response.result.data.symbol;
+                    var toCurrency = $("#toCurrency").val(); // جلب العملة المختارة من المستخدم
+
+                    // استخراج السعر بناءً على العملة المختارة
+                    var convertedAmount = response.result.data.quote[toCurrency]?.price || "N/A";
+
+                    if (convertedAmount !== "N/A") {
+                        $('#result').html('<p class="text-success" dir="ltr" > ' + 
+                            response.result.data.amount + ' ' + fromCurrency + ' = ' + convertedAmount.toFixed(2) + ' ' + toCurrency + 
+                        '</p>');
+                    } else {
+                        $('#result').html('<p class="text-danger">{{ __("translation.Error") }}</p>');
+                    }
+                } else {
+                    $('#result').html('<p class="text-danger">{{ __("translation.Error") }}</p>');
+                }
+            },
+            error: function (xhr) {
+                var errors = xhr.responseJSON.errors;
+                var errorMessage = '<p class="text-danger">{{ __("translation.Error") }}</p>';
+                if (errors) {
+                    errorMessage += '<ul class="text-danger">';
+                    $.each(errors, function (key, value) {
+                        errorMessage += '<li>' + value[0] + '</li>';
+                    });
+                    errorMessage += '</ul>';
+                }
+                $('#result').html(errorMessage);
+            }
+        });
+    });
+});
+</script>
 {{-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script> --}}
 

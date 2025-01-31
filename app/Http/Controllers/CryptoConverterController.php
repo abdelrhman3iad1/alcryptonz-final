@@ -94,12 +94,15 @@ class CryptoConverterController extends Controller
         
         asort($currencyOptions);
 
-        return view('converter', [
-            'result' => $result,
-            'amount' => $amount,
-            'from' => $fromSymbol,
-            'to' => $toSymbol,
-            'currencyOptions' => $currencyOptions,
+        // return view('converter', [
+        //     'result' => $result,
+        //     'amount' => $amount,
+        //     'from' => $fromSymbol,
+        //     'to' => $toSymbol,
+        //     'currencyOptions' => $currencyOptions,
+        // ]);
+        return response()->json([
+            'result' => $result
         ]);
     }
 }
