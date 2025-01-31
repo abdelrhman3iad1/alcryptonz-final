@@ -20,7 +20,6 @@ class HomeController extends Controller
         $posts = Post::all();
         $promotions = Promotion::all();
         $partners = Partner::all();
-        // $posts = Post::all();
         $teams = Team::all();
 
         $cryptocurrencies = $this->coinMarketCapService->getCryptocurrencies();
@@ -58,6 +57,6 @@ class HomeController extends Controller
         
         asort($currencyOptions);
     
-        return view('Web.index', compact('posts','currencyOptions'));    
+        return view('Web.index', compact('posts','currencyOptions' , 'promotions' ,'teams', 'partners'));    
     }
 }

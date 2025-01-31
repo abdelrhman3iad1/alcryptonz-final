@@ -255,46 +255,31 @@ while($row=mysqli_fetch_assoc($execezzaz)){
  
     <div class="post-wrapper">
       
-        <?php /*
-                                       $rtyuq="اخبار الكريبتو";
-                                       $rtyu="أخبار الكريبتو";
-                                       $rtyux="اخبار الكربتو";
-                                       $rtyuxx="أخبار الكربتو";
-    $que="select * from post  where knowMe =1 and postCategory != '$rtyuq' 
-    and postCategory != '$rtyu' and postCategory != '$rtyux' 
-    and postCategory != '$rtyuxx' order by PostId desc";
-    $execez=mysqli_query($con,$que);
-    $v=0;
-while($row=mysqli_fetch_assoc($execez)){ 
-    $v++; */?>
 
-     <!--post-->
-       
-     <div class="post"style="direction:rtl;overflow:hidden">
-     <div class="div-img"><a href="post.php?idPost=<?php /* echo $row["postId"]; */?>"target='_blank' > <img src="uploads/postImages/<?php /* echo $row["postImage"]; */ ?>" alt="Alcryptonz collabs News"></a></div>
-     <a href="post.php?idPost=<?php /* echo $row["postId"]; */ ?>"target='_blank' ><h4 style="color:black;word-wrap: break-word;" ><?php /* echo $row["postTitle"]; */ ?> </h4></a>
-      <span> <?php /* echo $row["postAuthor"]; */?> &nbsp;<i class="fas fa-user"></i></span><br>
-      <span><?php /* echo $row["PostDate"]; */?> &nbsp; <i class="far fa-calendar-alt"></i></span>
-      <span> <?php /* echo $row["postCategory"]; */?>   &nbsp; <i class="fas fa-tags"></i> </span>
-      <p style="color:black;"> 
-           <?php /*
-                                if(strlen($row["postContent"])>150){
-                            echo strip_tags(substr(str_replace("&nbsp;"," ",$row["postContent"]),0,350)."....");
-                                }else{
-                                   echo strip_tags(str_replace("&nbsp;"," ",$row["postContent"]));
-                                    
-                                }
-                                 */?> 
-                                 </p>
-  </div>
-  <?php /*
-                                        if($v==30){
-                                            break;
-                                                                    }
-                } */?>
+                   <!--post-->
+                   @foreach ($posts as $post)
+                   <div class="post"style="direction:rtl;overflow:hidden">
+                       <div class="div-img"><a href="post.php?idPost={{ $post->id }}"target='_blank'>
+                               @if ($post->image)
+                                   <img src="{{ asset($post->image) }}" alt="{{ $post->title_ar }}">
+                               @else
+                                   <img src="{{ asset('images/placeholder.jpg') }}" alt="No Image Available">
+                               @endif
+                           </a></div>
+                       <a href="post.php?idPost={{ $post->id }}"target='_blank'>
+                           <h4 style="color:black;word-wrap: break-word;">{{ $post->title_ar }} </h4>
+                       </a>
+                       <span> {{ $post->user->name }} &nbsp;<i class="fas fa-user"></i></span><br>
+                       <span>{{ $post->created_at->format('Y-m-d') }} &nbsp; <i
+                               class="far fa-calendar-alt"></i></span>
+                       <span> {{ $post->category->name }} &nbsp; <i class="fas fa-tags"></i> </span>
+                       <p style="color:black;"> </p>
+
+           </div>
+           @endforeach
 
 
-    </div>
+             </div>
       <p style="text-align:center;color:green"><i class="fas fa-hand-point-left"></i> مرر يمينا او يسارا <i class="fas fa-hand-point-right"></i><br> لمشاهدة منشورات اخري </p>
 </div>
 </div>
@@ -304,39 +289,8 @@ while($row=mysqli_fetch_assoc($execez)){
 <a class="show-butx" href="show-all-partners-posts.php">{{__("translation.Show More")}}</a>
 </div>
 <!--End show all partners posts  -->
-{{-- 
-<div class="converter-container">
-    <h2>{{__("translation.Currency Converter")}}</h2>
-    <form action="{{ route('convert') }}" method="POST">
-        @csrf
-        <div class="form-group">
-            <label for="amount">{{__("translation.The Value")}} :</label>
-            <input type="text" class="form-control"  name="amount" value="{{ old('amount', $amount ?? '') }}" id="amount" placeholder="{{__('translation.Enter the Value')}}" >
-        </div>
-        <div class="form-group">
-            <label for="fromCurrency">{{__("translation.From :")}}</label>
-            <select name="from" class="form-control" id="fromCurrency" >
-                @foreach ($currencyOptions as $symbol => $name)
-                <option value="{{ $symbol }}" {{ (isset($from) && $from === $symbol) ? 'selected' : '' }}>
-                    {{ $name }}
-                </option>
-            @endforeach
-            </select>
-        </div>
-        <div class="form-group">
-            <label for="toCurrency">{{__("translation.To :")}}</label>
-            <select name="to" class="form-control" id="toCurrency" >
-                @foreach ($currencyOptions as $symbol => $name)
-                <option value="{{ $symbol }}" {{ (isset($to) && $to === $symbol) ? 'selected' : '' }}>
-                    {{ $name }}
-                </option>
-            @endforeach
-            </select>
-        </div>
-        <button type="submit" class="btn btn-primary w-100">{{__("translation.Convert")}}</button>
-    </form>
-    <div class="result" id="result"></div>
-</div> --}}
+
+
 <div class="converter-container">
     <h2>{{ __("translation.Currency Converter") }}</h2>
     <form id="converter-form">
@@ -475,6 +429,7 @@ while($row=mysqli_fetch_assoc($execezz)){ */
 </div>
 
     <!-- Banner Ad Placeholder -->
+
     <div class="ad-banner bg-light py-2 mt-4 mb-4 d-flex justify-content-center align-items-center col-md-10 col-11 mx-auto" 
      style="border: 1px dashed gray;">
     <div class="row w-100">

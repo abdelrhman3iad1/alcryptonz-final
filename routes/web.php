@@ -55,11 +55,6 @@ Route::middleware('auth')->group(function () {
 
     Route::post('change-password', [UserAuthController::class, 'changePassword'])->name('change-password-function');
 });
-
-
-
-
-
 });
 
 

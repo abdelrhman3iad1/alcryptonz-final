@@ -33,7 +33,6 @@ Route::prefix("/dashboard")->group(function(){
     Route::resource("teams",TeamController::class);
     Route::resource("categories",CategoryController::class);
     Route::resource("posts",PostController::class);
-
     Route::post('/posts/{post}/like', [PostController::class, 'like'])->name('posts.like');
     Route::post('/posts/{post}/dislike', [PostController::class, 'dislike'])->name('posts.dislike');
 });
