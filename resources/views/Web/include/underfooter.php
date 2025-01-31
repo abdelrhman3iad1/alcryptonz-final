@@ -57,7 +57,7 @@
     <div class="container">
         <div class="hold">
             <div class="contact-infor">
-            <h5>Contact Info</h5>
+            <h5>{{__("translation.Contact Info")}}</h5>
             <p>Contact us for more Details</p>
             <ul>
                 <li><a href="https://twitter.com/Alcryptonz?s=09" target="_blank"><i class="fab fa-twitter-square"></i>&nbsp; @Alcryptonz</a></li>
@@ -74,7 +74,7 @@
                 <input type="text"placeholder="Email*"required name="email">
                 <input type="hidden"  name="csrfsx"value="<?php echo $csrfsx; ?>">
                 <textarea rows="5" cols="10" placeholder="Message*"required name="body"style="color:white !important;"></textarea>
-  <button name="sendEmail">Send</button>
+  <button name="sendEmail">{{__("translation.Send")}}</button>
                </form>
             </div>
         </div>

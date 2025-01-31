@@ -101,23 +101,23 @@
         <div class="services-parent">
             <div class="one-serv">
                 <div><i class="fas fa-users"></i></div>
-                <h4>Community Management</h4>
-                <p>Experts in community management and currently working with several Crypto projects.</p>
+                <h4>{{__("translation.Community_Management")}}</h4>
+                <p>{{__("translation.Experts in community management and currently working with several Crypto projects")}}.</p>
             </div>
             <div class="one-serv">
                 <div><i class="fas fa-bullhorn"></i></div>
-                <h4>Marketing</h4>
-                <p>Global marketing services for Crypto Projects in the Arabian area.</p>
+                <h4>{{__("translation.Marketing")}}</h4>
+                <p>{{__("translation.Global marketing services for Crypto Projects in the Arabian area.")}}</p>
             </div>
             <div class="one-serv">
                 <div><i class="fas fa-envelope"></i></div>
-                <h4>Crypto News</h4>
-                <p>Up-to-date news for everything related to Cryptocurrencies.</p>
+                <h4>{{__("translation.Crypto News")}}</h4>
+                <p>{{__("translation.Up-to-date news for everything related to Cryptocurrencies.")}}</p>
             </div>
             <div class="one-serv">
                 <div><i class="fas fa-flag"></i></div>
-                <h4>Crypto Knowledge</h4>
-                <p>Simplified articles explaining the rules of cryptocurrency for beginners.</p>
+                <h4>{{__("translation.Crypto Knowledge")}}</h4>
+                <p>{{__("translation.Simplified articles explaining the rules of cryptocurrency for beginners.")}}</p>
             </div>
         </div>
     </div>
@@ -129,29 +129,29 @@
       <div class="swiper-slide">
         <div class="one-serv text-center">
           <div class='py-2'><i class="fas fa-users"></i></div>
-          <h4>Community Management</h4>
-          <p>Experts in community management and currently working with several Crypto projects.</p>
+          <h4>{{__("translation.Community Management")}}</h4>
+          <p>{{__("translation.Experts in community management and currently working with several Crypto projects.")}}</p>
         </div>
       </div>
       <div class="swiper-slide">
         <div class="one-serv text-center">
           <div class='py-2'><i class="fas fa-bullhorn"></i></div>
-          <h4>Marketing</h4>
-          <p>Global marketing services for Crypto Projects in the Arabian area.</p>
+          <h4>{{__("translation.Marketing")}}</h4>
+          <p>{{__("translation.Global marketing services for Crypto Projects in the Arabian area.")}}</p>
         </div>
       </div>
       <div class="swiper-slide">
         <div class="one-serv text-center">
           <div class='py-2'><i class="fas fa-envelope"></i></div>
-          <h4>Crypto News</h4>
-          <p>Up-to-date news for everything related to Cryptocurrencies.</p>
+          <h4>{{__("translation.Crypto News")}}</h4>
+          <p>{{__("translation.Up-to-date news for everything related to Cryptocurrencies.")}}</p>
         </div>
       </div>
       <div class="swiper-slide">
         <div class="one-serv text-center">
           <div class='py-2'><i class="fas fa-flag"></i></div>
-          <h4>Crypto Knowledge</h4>
-          <p>Simplified articles explaining the rules of cryptocurrency for beginners.</p>
+          <h4>{{__("translation.Crypto Knowledge")}}</h4>
+          <p>{{__("translation.Simplified articles explaining the rules of cryptocurrency for beginners.")}}</p>
         </div>
       </div>
     </div>
@@ -183,7 +183,7 @@
     </svg>
 </div>
 <!--SVG-->
-<h2 class ="inside-slider"style="padding-top:30px;font-weight:bold"><i class="far fa-handshake"></i> &nbsp;  Collabs </h2>
+<h2 class ="inside-slider"style="padding-top:30px;font-weight:bold"><i class="far fa-handshake"></i> &nbsp;  {{__("translation.Collabs")}} </h2>
   <ol class="carousel-indicators">
   <?php /*
 $queaa="select * from partner";
@@ -210,11 +210,11 @@ while($row=mysqli_fetch_assoc($execezzaz)){
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
 
     <i class="carousel-control-prev-icon fas fa-chevron-left prev"aria-hidden="true"style="color:white !important;font-size:21px !important"></i>
-    <span class="sr-only">Previous</span>
+    <span class="sr-only">{{__("translation.Previous")}}</span>
   </a>
   <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
   <i class="carousel-control-next-icon fas fa-chevron-right next"aria-hidden="true"style="color:white !important;font-size:21px !important"></i>
-    <span class="sr-only">Next</span>
+    <span class="sr-only">{{__("translation.Next")}}</span>
   </a>
 </div>
 <!--End partners-->
@@ -222,7 +222,7 @@ while($row=mysqli_fetch_assoc($execezzaz)){
 <!--start partners news -->
 <div class="page-wrapper"style="padding:10px;text-align:center;overflow:hidden !important">
 <div class="post-slider" style="margin-bottom:30px;">
-<h3 class="slider-title"><i class="far fa-newspaper"></i> &nbsp;Collabs News </h3>
+<h3 class="slider-title"><i class="far fa-newspaper"></i> &nbsp;{{__("translation.Collabs News")}} </h3>
  
     <div class="post-wrapper">
       
@@ -272,22 +272,22 @@ while($row=mysqli_fetch_assoc($execez)){
 <!--End partners news -->
 <!--start show all partners posts  -->
 <div style="text-align:center;padding:20px 0"id="ar">
-<a class="show-butx" href="show-all-partners-posts.php">Show More</a>
+<a class="show-butx" href="show-all-partners-posts.php">{{__("translation.Show More")}}</a>
 </div>
 <!--End show all partners posts  -->
 
 <!-- start Converter -->
         
 <div class="converter bg-info p-5 mt-3 w-75 d-flex mx-auto">
-        <p class='text-center w-100'>Your Converter should be Here</p>
+        <p class='text-center w-100'>{{__("translation.Your Converter should be Here")}}</p>
     </div>
 <!-- end converter -->
 
 <!--start recent posts    -->
 <div class="page-wrapper"style="padding:10px;text-align:center;overflow:hidden !important">
 <div class="post-slider" style="margin-bottom:30px;">
-<h3 class="slider-title"><i class="fas fa-clock"></i> &nbsp;Recent Blog Posts</h3>
-<p  style="text-align:center;color:gray;padding:10px">Stay up to date with New posts related to Cryptocurrency.</p>
+<h3 class="slider-title"><i class="fas fa-clock"></i> &nbsp;{{__("translation.Recent Blog Posts")}}</h3>
+<p  style="text-align:center;color:gray;padding:10px">{{__("translation.Stay up to date with New posts related to Cryptocurrency.")}}</p>
     <!--<i class="fas fa-chevron-left prev"></i>
     <i class="fas fa-chevron-right next"></i>-->
     <div class="post-wrapper">
@@ -331,20 +331,20 @@ while($row=mysqli_fetch_assoc($execez)){
                 */?>
 
     </div>
-     <p style="text-align:center;color:green"><i class="fas fa-hand-point-left"></i> مرر يمينا او يسارا <i class="fas fa-hand-point-right"></i><br> لمشاهدة منشورات اخري </p>
+     <p style="text-align:center;color:green"><i class="fas fa-hand-point-left"></i> {{__("translation.Swipe Left or Right")}}<i class="fas fa-hand-point-right"></i><br> {{__("translation.For more posts")}}</p>
 </div>
 </div>
 <!--End recent posts -->
 <div style="text-align:center;padding:10px 0 20px">
 
-<a class="show-butx" href="show-all-posts.php">Show More</a>
+<a class="show-butx" href="show-all-posts.php">{{__("translation.Show More")}}</a>
 </div>
 
 <!--start team   -->
 <div class="team d-none d-lg-block" id="te">
     <div class="container">
-    <h3 style="text-align:center;padding:10px;margin-top:20px;"><i class="fas fa-clock"></i> &nbsp;  Meet The Team</h3>
-<p style="text-align:center;padding:10px">فريق الكريبتونز</p>
+    <h3 style="text-align:center;padding:10px;margin-top:20px;"><i class="fas fa-clock"></i> &nbsp;  {{__("translation.Meet The Team")}}</h3>
+<p style="text-align:center;padding:10px">{{__("translation.Cryptonz Team")}}</p>
         <div class="inside-team">
             <!--one-->
             <?php /*

@@ -11,8 +11,8 @@
             <div class="search-bar">
                 <div class="container d-flex justify-content-center">
                     <form action="{{ route('search') }}" method="GET">
-                        <input type="search" name="query" class="navbar-search py-1 px-3" placeholder="Search This Blog">
-                        <button class="ser-btn px-2 py-1" type="submit" name="searched">Search</button>
+                        <input type="search" name="query" class="navbar-search py-1 px-3" placeholder="{{__("translation.Search This Blog")}}">
+                        <button class="ser-btn px-2 py-1" type="submit" name="searched">{{__("translation.Search")}}</button>
                     </form>
                 </div>
             </div>
