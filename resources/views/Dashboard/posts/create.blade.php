@@ -28,7 +28,7 @@
                             </div>
                             <div class="form-group mt-3">
                                 <label for="content_ar">المحتوى بالعربية</label>
-                                <textarea class="form-control" name="content_ar" id="content_ar" style="width: 100%; height: 150px;" placeholder=""></textarea>
+                                <textarea class="form-control" dir="auto" name="content_ar" id="content_ar" style="width: 100%; height: 150px;" placeholder=""></textarea>
                             </div>
                         </div>
     
