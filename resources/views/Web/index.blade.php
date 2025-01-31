@@ -17,6 +17,35 @@
 
      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
      <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+     {{-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"> --}}
+     <style>
+     .converter-container {
+        max-width: 500px;
+        margin: 50px auto;
+        padding: 20px;
+        background: #ffffff;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.437);
+    }
+    .converter-container h2 {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+    .form-group {
+        margin-bottom: 15px;
+    }
+    .form-group label {
+        font-weight: bold;
+    }
+    .result {
+        margin-top: 20px;
+        font-size: 1.2em;
+        text-align: center;
+        color: #007bff;
+    }
+</style>
+
 </head>
 
 <body onload="myFunction();" id="top-page">
@@ -276,12 +305,29 @@ while($row=mysqli_fetch_assoc($execez)){
 </div>
 <!--End show all partners posts  -->
 
-<!-- start Converter -->
-        
-<div class="converter bg-info p-5 mt-3 w-75 d-flex mx-auto">
-        <p class='text-center w-100'>{{__("translation.Your Converter should be Here")}}</p>
-    </div>
-<!-- end converter -->
+<div class="converter-container">
+    <h2>{{__("translation.Currency Converter")}}</h2>
+    <form id="currencyConverter">
+        <div class="form-group">
+            <label for="amount">{{__("translation.The Value")}}:</label>
+            <input type="text" class="form-control" id="amount" placeholder="{{__('translation.Enter the Value')}}" >
+        </div>
+        <div class="form-group">
+            <label for="fromCurrency">{{__("translation.From :")}}</label>
+            <select class="form-control" id="fromCurrency" >
+                <option value="USD">الدولار الأمريكي (USD)</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="toCurrency">{{__("translation.To :")}}</label>
+            <select class="form-control" id="toCurrency" >
+                <option value="USD">الدولار الأمريكي (USD)</option>
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">تحويل</button>
+    </form>
+    <div class="result" id="result"></div>
+</div>
 
 <!--start recent posts    -->
 <div class="page-wrapper"style="padding:10px;text-align:center;overflow:hidden !important">
@@ -483,5 +529,7 @@ while($row=mysqli_fetch_assoc($execezz)){ */
     });
 </script>
 
+{{-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script> --}}
 
  

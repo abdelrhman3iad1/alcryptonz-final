@@ -32,5 +32,10 @@ return
     "For more posts" => "لمزيد من المنشورات",
     "Send"=>"إرسال",
     "Search"=>"بحث",
-    "Search This Blog"=>"بحث عن منشور"
+    "Search This Blog"=>"بحث عن منشور",
+    "Currency Converter"=>"محول العملات",
+    "Enter the Value"=>"أدخل المبلغ",
+    "The Value"=>"المبلغ",
+    "From :"=>"من :",
+    "To :"=>"إالي :"
 ];

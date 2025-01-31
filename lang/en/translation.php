@@ -34,5 +34,11 @@ return
     "Send"=>"Send",
     "Contact Info"=>"Contact Info",
     "Search"=>"Search",
-    "Search This Blog"=>"Search This Blog"
+    "Search This Blog"=>"Search This Blog",
+    "Currency Converter"=>"Currency Converter",
+    "Enter the Value"=>"Enter the Value",
+    "The Value"=>"The Value",
+    "From :"=>"From :",
+    "To :"=>"To :"
+    
 ];
