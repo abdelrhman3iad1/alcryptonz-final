@@ -6,10 +6,13 @@ use App\Models\Promotion;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Traits\ImageUpload;
 
 
 class PromotionController extends Controller
 {
+    use ImageUpload;
+
     /**
      * Display a listing of the resource.
      */
@@ -55,8 +58,10 @@ class PromotionController extends Controller
         if (!str_starts_with($validated['website_url'], 'http://') && !str_starts_with($validated['website_url'], 'https://')) {
             $validated['website_url'] = 'https://' . $validated['website_url'];
         }
-        if($validated['image']) $validated['image'] = Storage::putFile("Promotions",$validated['image']);
-
+        // if($validated['image']) $validated['image'] = Storage::putFile("Promotions",$validated['image']);
+        if ($request->hasFile('image')) {
+            $validated['image'] = "storage/" . $this->uploadImage($validated['image'], 'Promotions/image');
+        }
         Promotion::create($validated);
         return back()->with("success","تم إضافة العرض الترويجي بنجاح .");
     
@@ -109,10 +114,17 @@ class PromotionController extends Controller
             $validated['website_url'] = 'https://' . $validated['website_url'];
         }
         $Promotion = Promotion::findOrFail($id);
-        if($validated['image']){
-            Storage::delete($Promotion->image);
-            $validated['image'] = Storage::putFile("Promotions",$validated['image']);
-    }
+
+           if ($request->hasFile('image')) {
+            if ($Promotion->image) {
+                $Promotion->image = str_replace('storage', '', $Promotion->image);
+                $this->deleteImage($Promotion->image);
+            }
+    
+            $validated['image'] = $this->uploadImage($request->file('image'), 'Promotions/image');
+        } else {
+            unset($validated['image']);
+        }
         $Promotion->update($validated);
         return back()->with("success","تم تعديل العرض الترويجي بنجاح .");
     }
@@ -123,9 +135,10 @@ class PromotionController extends Controller
     public function destroy(string $id)
     {
         $promotion = Promotion::findOrFail($id);
-        if($promotion->image){
-            Storage::delete($promotion->image);
-            }
+        if ($promotion->image) {
+            $promotion->image = str_replace('storage', '', $promotion->image);
+            $this->deleteImage($promotion->image);
+        }
         $promotion->delete();
         return redirect()->route("promotions.index")->with("success","العرض الترويجي تم حذفه بنجاح");
     }

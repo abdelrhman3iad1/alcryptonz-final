@@ -112,6 +112,18 @@
     <div class="row w-100">
         <!-- Content Section -->
         <!-- Image Section -->
+        @if(isset($promotions[0]))
+
+        <div class="col-md-5">
+            <img src="{{ asset($promotions[0]->image) }}" alt="{{ $promotions[0]->name }}" class="w-100">
+        </div>
+        <div class="col-md-7 d-flex flex-column justify-content-center align-items-center mt-3 mt-md-0">
+            <h3>{{ $promotions[0]->name }}</h3>
+            <p class="mt-3 text-center"> {{ $promotions[0]->description }}</p>
+            <a href="{{ $promotions[0]->website_url }}" class="btn btn-primary mt-2">Visit Here</a>
+        </div>
+        @else
+
         <div class="col-md-5">
             <img src="images/chanel-1.jpg" alt="chanel-brand" class="w-100">
         </div>
@@ -120,6 +132,8 @@
             <p class="mt-3 text-center">Banner Ad Placeholder (Your Ad Content Here)</p>
             <a href="" class="btn btn-primary mt-2">Link1</a>
         </div>
+        @endif
+        
     </div>
 </div>
 
@@ -267,7 +281,12 @@ while($row=mysqli_fetch_assoc($execezzaz)){
                                @endif
                            </a></div>
                        <a href="post.php?idPost={{ $post->id }}"target='_blank'>
-                           <h4 style="color:black;word-wrap: break-word;">{{ $post->title_ar }} </h4>
+                        @if (config('app.locale') == 'ar')
+                        <h4 style="color:black;word-wrap: break-word;">{{ $post->title_ar }} </h4>
+                        
+                        @else
+                           <h4 style="color:black;word-wrap: break-word;">{{ $post->title_en }} </h4>
+                        @endif
                        </a>
                        <span> {{ $post->user->name }} &nbsp;<i class="fas fa-user"></i></span><br>
                        <span>{{ $post->created_at->format('Y-m-d') }} &nbsp; <i
@@ -435,7 +454,18 @@ while($row=mysqli_fetch_assoc($execezz)){ */
     <div class="row w-100">
         <!-- Content Section -->
         <!-- Image Section -->
+        @if(isset($promotions[1]))
         <div class="col-md-5">
+            <img src="{{ asset($promotions[1]->image) }}" alt="{{ $promotions[1]->name }}" class="w-100">
+        </div>
+        <div class="col-md-7 d-flex flex-column justify-content-center align-items-center mt-3 mt-md-0">
+            <h3>{{ $promotions[1]->name }}</h3>
+            <p class="mt-3 text-center"> {{ $promotions[1]->description }}</p>
+            <a href="{{ $promotions[1]->website_url }}" class="btn btn-primary mt-2">Visit Here</a>
+        </div>
+
+        @else
+            <div class="col-md-5">
             <img src="images/chanel-1.jpg" alt="chanel-brand" class="w-100">
         </div>
         <div class="col-md-7 d-flex flex-column justify-content-center align-items-center mt-3 mt-md-0">
@@ -444,6 +474,7 @@ while($row=mysqli_fetch_assoc($execezz)){ */
             <a href="" class="btn btn-primary mt-2">Link1</a>
         </div>
     </div>
+    @endif
 </div>
 
 
