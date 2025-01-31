@@ -107,12 +107,13 @@
 <!--End main-->
 <!--start sevices -->
 <!-- Banner Ad Placeholder -->
+@if(isset($promotions[0]))
+
 <div class="ad-banner bg-light py-2 mt-4 d-flex justify-content-center align-items-center col-md-10 col-11 mx-auto" 
      style="border: 1px dashed gray;">
     <div class="row w-100">
         <!-- Content Section -->
         <!-- Image Section -->
-        @if(isset($promotions[0]))
 
         <div class="col-md-5">
             <img src="{{ asset($promotions[0]->image) }}" alt="{{ $promotions[0]->name }}" class="w-100">
@@ -122,20 +123,12 @@
             <p class="mt-3 text-center"> {{ $promotions[0]->description }}</p>
             <a href="{{ $promotions[0]->website_url }}" class="btn btn-primary mt-2">Visit Here</a>
         </div>
-        @else
 
-        <div class="col-md-5">
-            <img src="images/chanel-1.jpg" alt="chanel-brand" class="w-100">
-        </div>
-        <div class="col-md-7 d-flex flex-column justify-content-center align-items-center mt-3 mt-md-0">
-            <h3>Banner Title</h3>
-            <p class="mt-3 text-center">Banner Ad Placeholder (Your Ad Content Here)</p>
-            <a href="" class="btn btn-primary mt-2">Link1</a>
-        </div>
-        @endif
-        
+   
     </div>
 </div>
+        @endif
+
 
 
 <div class="services" id="se">
@@ -207,6 +200,7 @@
 
 <!--End sevices -->
 <!--start partners-->
+
 <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"style="    background: linear-gradient( 125deg, #00FF57 0%, #010033 40%, #460043 70%, #F0FFC5 100%), linear-gradient( 55deg, #0014C9 0%, #410060 100%), linear-gradient( 300deg, #FFC700 0%, #001AFF 100%), radial-gradient(135% 215% at 115% 40%, #393939 0%, #393939 40%, #849561 calc(40% + 1px), #849561 60%, #EED690 calc(60% + 1px), #EED690 80%, #ECEFD8 calc(80% + 1px), #ECEFD8 100%), linear-gradient( 125deg, #282D4F 0%, #282D4F 40%, #23103A calc(40% + 1px), #23103A 70%, #A0204C calc(70% + 1px), #A0204C 88%, #FF6C00 calc(88% + 1px), #FF6C00 100%);
     background-image: linear-gradient( 125deg, rgb(0, 255, 87) 0%, rgb(1, 0, 51) 40%, rgb(70, 0, 67) 70%, rgb(240, 255, 197) 100%), linear-gradient( 55deg, rgb(0, 20, 201) 0%, rgb(65, 0, 96) 100%), linear-gradient( 300deg, rgb(255, 199, 0) 0%, rgb(0, 26, 255) 100%), radial-gradient(135% 215% at 115% 40%, rgb(57, 57, 57) 0%, rgb(57, 57, 57) 40%, rgb(132, 149, 97) calc(40% + 1px), rgb(132, 149, 97) 60%, rgb(238, 214, 144) calc(60% + 1px), rgb(238, 214, 144) 80%, rgb(236, 239, 216) calc(80% + 1px), rgb(236, 239, 216) 100%), linear-gradient( 125deg, rgb(40, 45, 79) 0%, rgb(40, 45, 79) 40%, rgb(35, 16, 58) calc(40% + 1px), rgb(35, 16, 58) 70%, rgb(160, 32, 76) calc(70% + 1px), rgb(160, 32, 76) 88%, rgb(255, 108, 0) calc(88% + 1px), rgb(255, 108, 0) 100%);
     background-position-x: initial, initial, initial, initial, initial;
@@ -226,30 +220,22 @@
     </svg>
 </div>
 <!--SVG-->
+
 <h2 class ="inside-slider"style="padding-top:30px;font-weight:bold"><i class="far fa-handshake"></i> &nbsp;  {{__("translation.Collabs")}} </h2>
-  <ol class="carousel-indicators">
-  <?php /*
-$queaa="select * from partner";
-$execezza=mysqli_query($con,$queaa);
-$ty=-1;
-while($row=mysqli_fetch_assoc($execezza)){ 
-    $ty++; 
-*/?>
-    <li data-target="#carouselExampleIndicators" data-slide-to="<?php /* echo $ty; */?>" class="sd"></li>
-<?php /* }*/ ?>
-  </ol>
+<ol class="carousel-indicators">
+    @foreach ($partners as $index => $partner)
+        <li data-target="#carouselExampleIndicators" data-slide-to="{{ $index }}" class="{{ $index == 0 ? 'active' : '' }}"></li>
+    @endforeach
+</ol>
   <div class="carousel-inner"style="border-radius:10px">
-  <?php /*
-$queaaa="select * from partner";
-$execezzaz=mysqli_query($con,$queaaa);
-while($row=mysqli_fetch_assoc($execezzaz)){ 
-*/?>
-    <div class="carousel-item">
-      <a href=" <?php /* echo $row["partnerLink"]; */?>
-" style="text-align:center"><div class="cover-ph"style="border-radius: 5px 50px 5px 50px  "> <img style="border-radius:20px " src='uploads/partnerImages/<?php /* echo $row["partnerImage"];*/ ?>'alt='collabs partner at Alcryptonz' ></div></a>
+    @foreach ($partners as $index => $partner)
+    <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+        <a href=" {{ $partner->website_url }}"style="text-align:center">
+    <div class="cover-ph"style="border-radius: 5px 50px 5px 50px  ">
+ <img style="border-radius:20px " src='{{ asset($partner->image) }}'alt='collabs partner at Alcryptonz' ></div></a>
     </div>
-<?php /* }  */ ?>
-  </div>
+  </div>    @endforeach
+ 
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
 
     <i class="carousel-control-prev-icon fas fa-chevron-left prev"aria-hidden="true"style="color:white !important;font-size:21px !important"></i>
@@ -402,16 +388,11 @@ while($row=mysqli_fetch_assoc($execez)){
     <h3 style="text-align:center;padding:10px;margin-top:20px;"><i class="fas fa-clock"></i> &nbsp;  {{__("translation.Meet The Team")}}</h3>
 <p style="text-align:center;padding:10px">{{__("translation.Cryptonz Team")}}</p>
         <div class="inside-team">
-            <!--one-->
-            <?php /*
-$quea="select * from team";
-$execezz=mysqli_query($con,$quea);
-while($row=mysqli_fetch_assoc($execezz)){ */
-?>
-            <div>
-                <h5><?php /* echo $row["memberName"]; */?> </h5>
-                <img src='uploads/teamImages/<?php /*echo $row["memberImage"]; */?>'alt='Alcryptonz Team Member'>
-            </div>
+      <div>
+        @foreach ($teams as $member)
+        <h5>{{ $member->name }}</h5>
+        <img src="{{ asset( $member->image) }}" alt="Alcryptonz Team Member">
+         @endforeach
             
       
     
@@ -423,38 +404,36 @@ while($row=mysqli_fetch_assoc($execezz)){ */
 <div class="team-slider d-block d-lg-none"> <!-- Mobile-only slider -->
     <div class="swiper-container">
         <div class="swiper-wrapper">
-            <?php  /*
-            $quea="select * from team";
-            $execezz=mysqli_query($con,$quea);
-            while($row=mysqli_fetch_assoc($execezz))*/{ 
-            ?>
+       
             <div class="swiper-slide">
                 <div class="text-center">
-                    
-                    <img src="uploads/teamImages/<?php /*echo $row["memberImage"]; */ ?>" 
+                    @foreach ($teams as $member)
+
+                    <img src="{{ asset( $member->image) }}" 
                          class="rounded-circle img-fluid" 
-                         alt="Alcryptonz Team Member: <?php /*echo $row['memberName'];*/ ?>" 
+                         alt="Alcryptonz Team Member:{{ $member->name }}" 
                          style="max-width: 150px;">
-                    <h5 class="mt-3"><?php /* echo $row["memberName"]; */ ?></h5>
+                    <h5 class="mt-3"><{{ $member->name }}</h5>
                 </div>
+                @endforeach
+
             </div>
-            <?php } ?>
+           
         </div>
 
-        <!-- Swiper controls -->
-        <!-- <div class="swiper-button-next"></div>
-        <div class="swiper-button-prev"></div> -->
+       
     </div>
 </div>
 
     <!-- Banner Ad Placeholder -->
+    @if(isset($promotions[1]))
 
     <div class="ad-banner bg-light py-2 mt-4 mb-4 d-flex justify-content-center align-items-center col-md-10 col-11 mx-auto" 
      style="border: 1px dashed gray;">
+
     <div class="row w-100">
         <!-- Content Section -->
         <!-- Image Section -->
-        @if(isset($promotions[1]))
         <div class="col-md-5">
             <img src="{{ asset($promotions[1]->image) }}" alt="{{ $promotions[1]->name }}" class="w-100">
         </div>
@@ -463,19 +442,12 @@ while($row=mysqli_fetch_assoc($execezz)){ */
             <p class="mt-3 text-center"> {{ $promotions[1]->description }}</p>
             <a href="{{ $promotions[1]->website_url }}" class="btn btn-primary mt-2">Visit Here</a>
         </div>
-
-        @else
-            <div class="col-md-5">
-            <img src="images/chanel-1.jpg" alt="chanel-brand" class="w-100">
-        </div>
-        <div class="col-md-7 d-flex flex-column justify-content-center align-items-center mt-3 mt-md-0">
-            <h3>Banner Title</h3>
-            <p class="mt-3 text-center">Banner Ad Placeholder (Your Ad Content Here)</p>
-            <a href="" class="btn btn-primary mt-2">Link1</a>
-        </div>
     </div>
-    @endif
+        
 </div>
+
+    
+    @endif
 
 
 

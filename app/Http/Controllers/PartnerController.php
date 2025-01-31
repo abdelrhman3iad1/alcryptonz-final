@@ -6,10 +6,13 @@ use App\Models\Partner;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Traits\ImageUpload;
 
 
 class PartnerController extends Controller
 {
+    use ImageUpload;
+
     /**
      * Display a listing of the resource.
      */
@@ -55,8 +58,9 @@ class PartnerController extends Controller
         if (!str_starts_with($validated['website_url'], 'http://') && !str_starts_with($validated['website_url'], 'https://')) {
             $validated['website_url'] = 'https://' . $validated['website_url'];
         }
-        if($validated['image']) $validated['image'] = Storage::putFile("Partners",$validated['image']);
-
+        if ($request->hasFile('image')) {
+            $validated['image'] = "storage/" . $this->uploadImage($validated['image'], 'Partners/image');
+        }
         Partner::create($validated);
         return back()->with("success","تم إضافة الشريك بنجاح .");
     
@@ -110,10 +114,16 @@ class PartnerController extends Controller
         }
         $partner = Partner::findOrFail($id);
 
-        if($validated['image']){
-            Storage::delete($partner->image);
-            $validated['image'] = Storage::putFile("Partners",$validated['image']);
-    }
+        if ($request->hasFile('image')) {
+            if ($partner->image) {
+                $partner->image = str_replace('storage', '', $partner->image);
+                $this->deleteImage($partner->image);
+            }
+    
+            $validated['image'] = $this->uploadImage($request->file('image'), 'Partner/image');
+        } else {
+            unset($validated['image']);
+        }
         $partner->update($validated);
         return back()->with("success","تم تعديل تفاصيل الشريك بنجاح .");
     }
@@ -124,9 +134,10 @@ class PartnerController extends Controller
     public function destroy(string $id)
     {
         $partner = Partner::findOrFail($id);
-        if($partner->image){
-            Storage::delete($partner->image);
-            }
+        if ($partner->image) {
+            $partner->image = str_replace('storage', '', $partner->image);
+            $this->deleteImage($partner->image);
+        }
         $partner->delete();
         return redirect()->route("partners.index")->with("success","الشريك تم حذفه بنجاح");
     }

@@ -7,10 +7,12 @@ use App\Models\Team;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use App\Traits\ImageUpload;
 
 
 class TeamController extends Controller
 {
+    use ImageUpload;
     /**
      * Display a listing of the resource.
      */
@@ -53,8 +55,10 @@ class TeamController extends Controller
             ]
         
         );
-        if($validated['image']) $validated['image'] = Storage::putFile("Team",$validated['image']);
-
+        // if($validated['image']) $validated['image'] = Storage::putFile("Team",$validated['image']);
+        if ($request->hasFile('image')) {
+            $validated['image'] = "storage/" . $this->uploadImage($validated['image'], 'Teams/image');
+        }
         Team::create($validated);
 
         return back()->with("success","تم إضافة العضو بنجاح .");
@@ -102,10 +106,16 @@ class TeamController extends Controller
 ]
         );
         $team = Team::findOrFail($id);
-        if($validated['image']){
-            Storage::delete($team->image);
-            $validated['image'] = Storage::putFile("Team",$validated['image']);
-    }
+        if ($request->hasFile('image')) {
+            if ($team->image) {
+                $team->image = str_replace('storage', '', $team->image);
+                $this->deleteImage($team->image);
+            }
+    
+            $validated['image'] = $this->uploadImage($request->file('image'), 'Teams/image');
+        } else {
+            unset($validated['image']);
+        }
         $team->update($validated);
         return back()->with("success","تم تعديل تفاصيل العضو بنجاح .");
     }
@@ -116,9 +126,10 @@ class TeamController extends Controller
     public function destroy(string $id)
     {
         $team = Team::findOrFail($id);
-        if($team->image){
-            Storage::delete($team->image);
-            }
+         if ($team->image) {
+            $team->image = str_replace('storage', '', $team->image);
+            $this->deleteImage($team->image);
+        }
         $team->delete();
         return redirect()->route("teams.index")->with("success","العضو تم حذفه بنجاح");
     }
