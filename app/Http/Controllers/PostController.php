@@ -60,7 +60,7 @@ class PostController extends Controller
             ]
         );
     
-        $validated['user_id'] = auth()->id();
+        // $validated['user_id'] = auth()->id();
     
         if ($request->hasFile('image')) {
             $validated['image'] = "storage/" . $this->uploadImage($validated['image'], 'Posts/image');

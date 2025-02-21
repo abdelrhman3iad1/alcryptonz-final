@@ -229,14 +229,16 @@
         <li data-target="#carouselExampleIndicators" data-slide-to="{{ $index }}" class="{{ $index == 0 ? 'active' : '' }}"></li>
     @endforeach
 </ol>
+@foreach ($partners as $index => $partner)
+
   <div class="carousel-inner"style="border-radius:10px">
-    @foreach ($partners as $index => $partner)
     <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
         <a href=" {{ $partner->website_url }}"style="text-align:center">
     <div class="cover-ph"style="border-radius: 5px 50px 5px 50px  ">
  <img style="border-radius:20px " src='{{ asset($partner->image) }}'alt='collabs partner at Alcryptonz' ></div></a>
     </div>
-  </div>    @endforeach
+    @endforeach
+  </div>    
  
   <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
 
@@ -251,45 +253,39 @@
 <!--End partners-->
 
 <!--start partners news -->
-<div class="page-wrapper"style="padding:10px;text-align:center;overflow:hidden !important">
-<div class="post-slider" style="margin-bottom:30px;">
-<h3 class="slider-title"><i class="far fa-newspaper"></i> &nbsp;{{__("translation.Collabs News")}} </h3>
- 
-    <div class="post-wrapper">
-      
 
-                   <!--post-->
-                   @foreach ($posts as $post)
-                   <div class="post"style="direction:rtl;overflow:hidden">
-                       <div class="div-img"><a href="post.php?idPost={{ $post->id }}"target='_blank'>
-                               @if ($post->image)
-                                   <img src="{{ asset($post->image) }}" alt="{{ $post->title_ar }}">
-                               @else
-                                   <img src="{{ asset('images/placeholder.jpg') }}" alt="No Image Available">
-                               @endif
-                           </a></div>
-                       <a href="post.php?idPost={{ $post->id }}"target='_blank'>
-                        @if (config('app.locale') == 'ar')
-                        <h4 style="color:black;word-wrap: break-word;">{{ $post->title_ar }} </h4>
-                        
+    <div class="page-wrapper"style="padding:10px;text-align:center;overflow:hidden !important">
+    <div class="post-slider" style="margin-bottom:30px;">
+        <h3 class="slider-title"><i class="far fa-newspaper"></i> &nbsp;Collabs News </h3>
+        <div class="post-wrapper">
+
+            @foreach ($posts as $post)
+            <div class="post"style="direction:rtl;overflow:hidden">
+                <div class="div-img"><a href="post.php?idPost={{ $post->id }}"target='_blank'>
+                        @if ($post->image)
+                            <img src="{{ asset($post->image) }}" alt="{{ $post->title_ar }}">
                         @else
-                           <h4 style="color:black;word-wrap: break-word;">{{ $post->title_en }} </h4>
+                            <img src="{{ asset('images/placeholder.jpg') }}" alt="No Image Available">
                         @endif
-                       </a>
-                       <span> {{ $post->user->name }} &nbsp;<i class="fas fa-user"></i></span><br>
-                       <span>{{ $post->created_at->format('Y-m-d') }} &nbsp; <i
-                               class="far fa-calendar-alt"></i></span>
-                       <span> {{ $post->category->name }} &nbsp; <i class="fas fa-tags"></i> </span>
-                       <p style="color:black;"> </p>
-
-           </div>
-           @endforeach
+                    </a></div>
+                <a href="post.php?idPost={{ $post->id }}"target='_blank'>
+                    <h4 style="color:black;word-wrap: break-word;">{{ $post->title_ar }} </h4>
+                </a>
+                <span> Eslam Saber &nbsp;<i class="fas fa-user"></i></span><br>
+                <span>{{ $post->created_at->format('Y-m-d') }} &nbsp; <i
+                        class="far fa-calendar-alt"></i></span>
+                <span> {{ $post->category->name }} &nbsp; <i class="fas fa-tags"></i> </span>
+                <p style="color:black;"> </p>
+    </div>
+    @endforeach
 
 
              </div>
+
       <p style="text-align:center;color:green"><i class="fas fa-hand-point-left"></i> مرر يمينا او يسارا <i class="fas fa-hand-point-right"></i><br> لمشاهدة منشورات اخري </p>
 </div>
-</div>
+</div>         
+
 <!--End partners news -->
 <!--start show all partners posts  -->
 <div style="text-align:center;padding:20px 0"id="ar">
@@ -336,43 +332,26 @@
     <i class="fas fa-chevron-right next"></i>-->
     <div class="post-wrapper">
       
-        <?php /*
- 
- 
-$que="select * from post where knowMe <1  order by postId desc";
-$execez=mysqli_query($con,$que);
-$v=0;
-while($row=mysqli_fetch_assoc($execez)){ 
-    $v++;
-*/
-?>
+        @foreach ($posts as $post)
+        <div class="post"style="direction:rtl;overflow:hidden">
+            <div class="div-img"><a href="post.php?idPost={{ $post->id }}"target='_blank'>
+                    @if ($post->image)
+                        <img src="{{ asset($post->image) }}" alt="{{ $post->title_ar }}">
+                    @else
+                        <img src="{{ asset('images/placeholder.jpg') }}" alt="No Image Available">
+                    @endif
+                </a></div>
+            <a href="post.php?idPost={{ $post->id }}"target='_blank'>
+                <h4 style="color:black;word-wrap: break-word;">{{ $post->title_ar }} </h4>
+            </a>
+            <span> Abdelrhman &nbsp;<i class="fas fa-user"></i></span><br>
+            <span>{{ $post->created_at->format('Y-m-d') }} &nbsp; <i
+                    class="far fa-calendar-alt"></i></span>
+            <span> {{ $post->category->name }} &nbsp; <i class="fas fa-tags"></i> </span>
+            <p style="color:black;"> </p>
+</div>
+@endforeach
 
-
-     <!--post-->
-       
-     <div class="post"style="direction:rtl;overflow:hidden">
-     <div class="div-img"><a href="post.php?idPost=<?php /* echo $row["postId"]; */?>"target='_blank' > <img src="uploads/postImages/<?php /*echo $row["postImage"]; */?>" alt="Alcryptonz Post image"></a></div>
-     <a href="post.php?idPost=<?php /*echo $row["postId"];*/ ?>"target='_blank' ><h4 style="color:black;word-wrap: break-word;"><?php /*echo $row["postTitle"];*/ ?> </h4></a>
-      <span> <?php /*echo $row["postAuthor"]; */?> &nbsp;<i class="fas fa-user"></i></span><br>
-      <span><?php /*echo $row["PostDate"]; */?> &nbsp; <i class="far fa-calendar-alt"></i></span>
-      <span> <?php /*echo $row["postCategory"]; */?>   &nbsp; <i class="fas fa-tags"></i> </span>
-      <p style="color:black;"> 
-           <?php /*
-                                if(strlen($row["postContent"])>150){
-                                    echo strip_tags(substr(str_replace("&nbsp;"," ",$row["postContent"]),0,350)."....");
-                                }else{
-                                    echo strip_tags(str_replace("&nbsp;"," ",$row["postContent"]));
-                                    
-                                }
-                                */ ?> 
-                                 </p>
-  </div>
-  <?php /*
-                                        if($v==30){
-                                            break;
-                                                                    }
-                } 
-                */?>
 
     </div>
      <p style="text-align:center;color:green"><i class="fas fa-hand-point-left"></i> {{__("translation.Swipe Left or Right")}}<i class="fas fa-hand-point-right"></i><br> {{__("translation.For more posts")}}</p>
@@ -389,27 +368,31 @@ while($row=mysqli_fetch_assoc($execez)){
     <div class="container">
     <h3 style="text-align:center;padding:10px;margin-top:20px;"><i class="fas fa-clock"></i> &nbsp;  {{__("translation.Meet The Team")}}</h3>
 <p style="text-align:center;padding:10px">{{__("translation.Cryptonz Team")}}</p>
+        
         <div class="inside-team">
-      <div>
         @foreach ($teams as $member)
-        <h5>{{ $member->name }}</h5>
+
+           <div>
+        <h5>{{$member->name}} | {{$member->department->name}}</h5>
         <img src="{{ asset( $member->image) }}" alt="Alcryptonz Team Member">
-         @endforeach
-            
       
-    
+      
     </div>
+    @endforeach
+
         </div>
+
     </div>
+    
 </div>
 
 <div class="team-slider d-block d-lg-none"> <!-- Mobile-only slider -->
     <div class="swiper-container">
         <div class="swiper-wrapper">
+            @foreach ($teams as $member)
        
             <div class="swiper-slide">
                 <div class="text-center">
-                    @foreach ($teams as $member)
 
                     <img src="{{ asset( $member->image) }}" 
                          class="rounded-circle img-fluid" 
@@ -417,9 +400,9 @@ while($row=mysqli_fetch_assoc($execez)){
                          style="max-width: 150px;">
                     <h5 class="mt-3"><{{ $member->name }}</h5>
                 </div>
-                @endforeach
 
             </div>
+            @endforeach
            
         </div>
 

@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('title_en');
             $table->text('content_ar');
             $table->text('content_en');
-            $table->unsignedBigInteger('user_id');
+            // $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('category_id');
             $table->string('image')->nullable();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->timestamps();
         });

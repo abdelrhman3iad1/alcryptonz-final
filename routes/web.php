@@ -25,6 +25,8 @@ Route::middleware('locale')->group(function(){
     
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
+});
+
 
 Route::get('register', function () {
     return view('auth.register');
@@ -33,12 +35,15 @@ Route::get('register', function () {
 Route::post('register', [UserAuthController::class, 'register'])->name('register');
 Route::get('/search', [PostController::class, 'search'])->name('search');
 
+
+
 Route::get('login', function () {
     return view('auth.login');
 });
 
 
 Route::post('login', [UserAuthController::class, 'login'])->name('login');
+
 
 
 Route::middleware('auth')->group(function () {
@@ -55,7 +60,4 @@ Route::middleware('auth')->group(function () {
 
     Route::post('change-password', [UserAuthController::class, 'changePassword'])->name('change-password-function');
 });
-});
-
-
 require __DIR__. "/dashboard.php";
