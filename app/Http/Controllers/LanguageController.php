@@ -11,7 +11,7 @@ class LanguageController extends Controller
 
 
         if(!in_array($language, ['en','ar'])){
-            return abort(300);
+            return back();
         }
 
         session()->put('locale',$language);

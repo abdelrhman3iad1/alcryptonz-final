@@ -19,13 +19,20 @@ use Illuminate\Support\Facades\Route;
 */
 
 
-Route::get('/{language}',[LanguageController::class,"Language"]);
+Route::get("/{lang}",function($lang){
+    if($lang == "ar"){
+        session()->put("lang","ar");
+    }else{
+        session()->put("lang","en");
+    }
+    return redirect()->back();
+});
 
-Route::middleware('locale')->group(function(){
+// Route::middleware('locale')->group(function(){
     
 Route::get('/', [HomeController::class, 'index'])->name('home');
 
-});
+// });
 
 
 Route::get('register', function () {
