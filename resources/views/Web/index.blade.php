@@ -271,7 +271,7 @@
                 <a href="post.php?idPost={{ $post->id }}"target='_blank'>
                     <h4 style="color:black;word-wrap: break-word;">{{ $post->title_ar }} </h4>
                 </a>
-                <span> Eslam Saber &nbsp;<i class="fas fa-user"></i></span><br>
+                <span>{{$post->user->name  }}&nbsp;<i class="fas fa-user"></i></span><br>
                 <span>{{ $post->created_at->format('Y-m-d') }} &nbsp; <i
                         class="far fa-calendar-alt"></i></span>
                 <span> {{ $post->category->name }} &nbsp; <i class="fas fa-tags"></i> </span>
@@ -344,7 +344,7 @@
             <a href="post.php?idPost={{ $post->id }}"target='_blank'>
                 <h4 style="color:black;word-wrap: break-word;">{{ $post->title_ar }} </h4>
             </a>
-            <span> Abdelrhman &nbsp;<i class="fas fa-user"></i></span><br>
+            <span> {{$post->user->name}} &nbsp;<i class="fas fa-user"></i></span><br>
             <span>{{ $post->created_at->format('Y-m-d') }} &nbsp; <i
                     class="far fa-calendar-alt"></i></span>
             <span> {{ $post->category->name }} &nbsp; <i class="fas fa-tags"></i> </span>

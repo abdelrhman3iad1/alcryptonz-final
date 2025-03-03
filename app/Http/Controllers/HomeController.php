@@ -1,6 +1,7 @@
 <?php
 namespace   App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Partner;
 use App\Models\Post;
 use App\Models\Promotion;
@@ -59,4 +60,10 @@ class HomeController extends Controller
     
         return view('Web.index', compact('posts','currencyOptions' , 'promotions' ,'teams', 'partners'));    
     }
+    public function categoryPart()
+{
+    $categories = Category::orderBy('id', 'desc')->get();
+
+    return view("Web.include.catPart", compact('categories'));
+}
 }

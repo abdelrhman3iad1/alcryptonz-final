@@ -19,7 +19,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::all();
+        $posts = Post::with('user')->get();
         return view("Dashboard.posts.index", compact("posts"));
     }
 
@@ -65,7 +65,7 @@ class PostController extends Controller
         if ($request->hasFile('image')) {
             $validated['image'] = "storage/" . $this->uploadImage($validated['image'], 'Posts/image');
         }
-    
+        $validated['user_id']=auth()->user()->id;
         Post::create($validated);
     
         return back()->with('success', 'تم إضافة المقال بنجاح');

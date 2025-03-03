@@ -41,7 +41,7 @@
                                 <a style="direction:rtl;overflow:hidden" href="" target="_blank">
                                     <div class="small-post">
                                         <div class="img-div">
-                                            <img src="{{ asset('storage/Posts/' . $post->image) }}" alt="صورة المنشور">
+                                            <img src="{{ asset( $post->image) }}" alt="صورة المنشور">
                                         </div>
                                         <h3 style="color:black;word-wrap: break-word;">{{ $post->title_ar }}</h3>
                                         <span>{{ $post->user->name }} &nbsp;<i class="fas fa-user"></i></span><br>

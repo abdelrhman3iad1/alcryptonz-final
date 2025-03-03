@@ -18,6 +18,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/search', [PostController::class, 'search'])->name('search');
 
 Route::get("register" , [UserAuthController::class , "create"]);
 Route::post("register" , [UserAuthController::class , "register"])->name("register");
@@ -38,11 +39,11 @@ Route::get("/{lang}",function($lang){
 // Route::middleware('locale')->group(function(){
     
 Route::get('/', [HomeController::class, 'index'])->name('home');
+// web.php
 
 // });
 
 
-Route::get('/search', [PostController::class, 'search'])->name('search');
 Route::middleware('auth')->group(function () {
     Route::get('dashboard', function () {
         return view('dashboard');
@@ -56,5 +57,6 @@ Route::middleware('auth')->group(function () {
     })->name('change-password');
 
     Route::post('change-password', [UserAuthController::class, 'changePassword'])->name('change-password-function');
+
 });
 require __DIR__. "/dashboard.php";

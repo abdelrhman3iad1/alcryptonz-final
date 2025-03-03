@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Route;
 
 // middleware(AdminMiddleware::class)->
 
-Route::prefix("/dashboard")->group(function(){    
+Route::prefix("/dashboard")->middleware("admin")->group(function(){    
     Route::resource("promotions",PromotionController::class);
     Route::resource("questions",QaController::class);
     Route::resource("partners",PartnerController::class);
