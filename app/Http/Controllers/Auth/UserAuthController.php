@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Validator;
 class UserAuthController extends Controller
 {
 
+    public function create()
+    {
+        return view("auth.register");
+    }
+
     public function register(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -33,13 +38,16 @@ class UserAuthController extends Controller
         Auth::login($user);
 
         if ($user->role == 1) {
-            return redirect()->route('categories.index')->with('success', 'Registration successful!');
+            return redirect()->url('dashboard/posts')->with('success', 'You registered successfully!');
         } else {
-            return redirect()->route('home')->with('success', 'Registration successful!');
+            return redirect()->route('home')->with('success', 'You registered successful!');
         }
     }
 
-
+    public function getLogin()
+    {
+        return view("auth.login");
+    }
 
     public function login(Request $request)
     {
@@ -52,7 +60,7 @@ class UserAuthController extends Controller
             return redirect()->back()->withErrors($validator)->withInput();
         }
 
-       
+
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
 
@@ -66,20 +74,20 @@ class UserAuthController extends Controller
         }
     }
 
-   
+
     public function logout(Request $request)
     {
         Auth::logout();
         return redirect()->route('login')->with('success', 'Logged out successfully!');
     }
 
-  
+
     public function showChangePasswordForm()
     {
         return view('auth.change-password');
     }
 
-  
+
     public function changePassword(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -96,7 +104,7 @@ class UserAuthController extends Controller
         if (!Hash::check($request->old_password, $user->password)) {
             return redirect()->back()->withErrors(['error' => 'The old password is incorrect.'])->withInput();
         }
-        
+
         User::where('id', $user->id)->update([
             'password' => Hash::make($request->password),
         ]);

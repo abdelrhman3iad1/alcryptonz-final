@@ -19,6 +19,13 @@ use Illuminate\Support\Facades\Route;
 */
 
 
+Route::get("register" , [UserAuthController::class , "create"]);
+Route::post("register" , [UserAuthController::class , "register"])->name("register");
+
+
+Route::get("login" , [UserAuthController::class , "getLogin"]);
+Route::post("login" , [UserAuthController::class , "login"])->name("login");
+
 Route::get("/{lang}",function($lang){
     if($lang == "ar"){
         session()->put("lang","ar");
@@ -35,24 +42,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 // });
 
 
-Route::get('register', function () {
-    return view('auth.register');
-});
-
-Route::post('register', [UserAuthController::class, 'register'])->name('register');
 Route::get('/search', [PostController::class, 'search'])->name('search');
-
-
-
-Route::get('login', function () {
-    return view('auth.login');
-});
-
-
-Route::post('login', [UserAuthController::class, 'login'])->name('login');
-
-
-
 Route::middleware('auth')->group(function () {
     Route::get('dashboard', function () {
         return view('dashboard');
