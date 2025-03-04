@@ -40,9 +40,9 @@
             <button type="submit">Login</button>
 
             <!-- Register Link -->
-            <div class="already">
+            {{-- <div class="already already-mt-2">
                 <p>Don't have an account? <a href="{{ route('register') }}">Register</a></p>
-            </div>
+            </div> --}}
         </form>
     </div>
 </body>

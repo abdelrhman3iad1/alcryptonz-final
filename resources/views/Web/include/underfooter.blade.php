@@ -1,4 +1,4 @@
-<footer id="fo" > 
+<footer id="fo"   > 
       <!-- email contact form-->
       <?php
   use PHPMailer\PHPMailer\PHPMailer;
@@ -58,7 +58,7 @@
         <div class="hold">
             <div class="contact-infor">
             <h5>{{__("translation.Contact Info")}}</h5>
-            <p>Contact us for more Details</p>
+            <p>{{__('translation.Contact')}}</p>
             <ul>
                 <li><a href="https://twitter.com/Alcryptonz?s=09" target="_blank"><i class="fab fa-twitter-square"></i>&nbsp; @Alcryptonz</a></li>
                 <li><a href="https://t.me/AlCryptonz" target="_blank"><i class="fab fa-telegram"></i>&nbsp; @AlCryptonz</a></li>
@@ -68,12 +68,12 @@
             </ul>
             </div>
             <div class="form-part">
-               <h5>Contact form</h5>
+               <h5>{{__("translation.Contact form")}}</h5>
                <form action="<?php $_SERVER["PHP_SELF"];?>"method="POST">
-                <input type="text"placeholder="Name*"name="name"required>
-                <input type="text"placeholder="Email*"required name="email">
+                <input type="text"placeholder="{{__('translation.Name')}}"name="name"required>
+                <input type="text"placeholder="{{__('translation.Email')}}"required name="email">
                 <input type="hidden"  name="csrfsx"value="<?php echo $csrfsx; ?>">
-                <textarea rows="5" cols="10" placeholder="Message*"required name="body"style="color:white !important;"></textarea>
+                <textarea rows="5" cols="10" placeholder="{{__('translation.Message')}}"required name="body"style="color:white !important;"></textarea>
   <button name="sendEmail">{{__("translation.Send")}}</button>
                </form>
             </div>
@@ -83,6 +83,5 @@
     </footer>
     <section class="under">
     <p>
-    &copy; <?php echo date("Y");?> جميع الحقوق محفوظة لفريق الكريبتونز
-</p>
+     {{__('translation.reserved')}}</p> &copy; <?php echo date("Y");?>
     </section>

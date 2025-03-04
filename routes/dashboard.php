@@ -24,8 +24,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 // middleware(AdminMiddleware::class)->
-
-Route::prefix("/dashboard")->middleware("admin")->group(function(){    
+//middleware("admin")->
+Route::prefix("/dashboard")->group(function(){    
     Route::resource("promotions",PromotionController::class);
     Route::resource("questions",QaController::class);
     Route::resource("partners",PartnerController::class);
@@ -43,5 +43,3 @@ Route::prefix("/dashboard")->middleware("admin")->group(function(){
 
 Route::get('/converter', [CryptoConverterController::class, 'index'])->name('converter');
 Route::post('/convert', [CryptoConverterController::class, 'convert'])->name('convert');
-
-
