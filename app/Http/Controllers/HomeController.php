@@ -60,10 +60,5 @@ class HomeController extends Controller
     
         return view('Web.index', compact('posts','currencyOptions' , 'promotions' ,'teams', 'partners'));    
     }
-    public function categoryPart()
-{
-    $categories = Category::orderBy('id', 'desc')->get();
 
-    return view("Web.include.catPart", compact('categories'));
-}
 }

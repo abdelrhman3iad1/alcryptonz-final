@@ -1,22 +1,15 @@
 
-<?php
-  include "include/connection.php";
-  date_default_timezone_set("Africa/Cairo");
-  session_start();
-  include "include/header.php";
-   ?>
 
-
+@include('Web.include.header')
  <title>ALCRYPTONZ
 </title>
     <!-- Custom Styling -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{ asset('Web/css/style.css') }}">
 </head>
 
 <body id="top-page">
     <!-- start navbar -->
-    <?php include "include/anotherNavBar.php"; ?>
-    <!-- end navbar -->
+    @include('Web.include.navbar')
     <!--start Arrow to top Page -->
 <a href="#top-page" style="position:fixed;right:15px;bottom:15px;font-size:32px; color:black;z-index:68544;background-color:white;padding:0 5px;border-radius:5px;" ><i class="fas fa-chevron-circle-up" style="border:1px solid white;"></i></a>
 <!--End Arrow to top Page -->
@@ -24,7 +17,7 @@
         <div class="parent-header-about">
         <div class="container">
         <div class="header-about">
-            <img src="images/new-big-logo.jpeg">
+            <img src="{{asset("images/new-big-logo.jpeg")}}" alt="Alcryptonz-logo" >
 
 <h1> من نحن</h1>
 <div style="direction:rtl">مرحبًا بكم في AlCryptonz ، فريق مكوّن من دول عربية مختلفة ، لديه خبرة واسعة وقديمة في مجال  العملات الرقمية ، نحن المصدر الأول بالنسبة لك لجميع الأشياء المتعلقة بالعملات الرقمية. نحن ملتزمون بإعطائك أفضل المعلومات المتعلقة بالعملة المشفرة ، مع التركيز على تعلم كل شيء عن المجال ، وأخبار العملة الرقمية ، وكيف تربح من خلال تداولاتك.
@@ -44,7 +37,7 @@
         <div class="container">
         <div class="ourvision">
 <div>
-<img src="images/main.jpg" alt="image here">
+<img src="{{asset("images/main.jpg")}}" alt="image here">
 </div>
 <div>
 <h1>رؤيتنا </h1>
@@ -60,10 +53,10 @@
     </div>
     <!-- end content -->
         <!-- start footer -->
-        <?php include_once "include/underfooter.php"; ?>
+        @include('Web.include.underfooter')
     <!-- end footer -->
-    <?php include_once "include/footer.php"; ?>
-    
+    @include('Web.include.footer')
+
     <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-YN940EKWRS"></script>
 <script>

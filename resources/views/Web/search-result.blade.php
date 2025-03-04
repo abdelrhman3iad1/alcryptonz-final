@@ -21,8 +21,8 @@
     <!-- End Navbar -->
 
     <!-- Start Arrow to Top Page -->
-    <a href="#top-page" style="position:fixed;right:15px;bottom:15px;font-size:32px; color:black;z-index:68544;background-color:white;padding:0 5px;border-radius:5px;">
-        <i class="fas fa-chevron-circle-up" style="border:1px solid white;"></i>
+    <a href="#top-page" class="scroll-to-top">
+        <i class="fas fa-chevron-circle-up"></i>
     </a>
     <!-- End Arrow to Top Page -->
 
@@ -30,6 +30,7 @@
     <div class="content">
         <div class="container">
             <div class="row">
+                <!-- Main Content -->
                 <div class="col-md-8">
                     <h2 class="header-title">نتائج البحث</h2>
                     <div class="parent-news">
@@ -38,18 +39,20 @@
                         @else
                             @foreach ($posts as $post)
                                 <!-- Post -->
-                                <a style="direction:rtl;overflow:hidden" href="" target="_blank">
+                                <a href="{{ route('posts.show', $post->id) }}" class="post-link">
                                     <div class="small-post">
                                         <div class="img-div">
-                                            <img src="{{ asset( $post->image) }}" alt="صورة المنشور">
+                                            <img src="{{ asset($post->image) }}" alt="صورة المنشور">
                                         </div>
-                                        <h3 style="color:black;word-wrap: break-word;">{{ $post->title_ar }}</h3>
-                                        <span>{{ $post->user->name }} &nbsp;<i class="fas fa-user"></i></span><br>
-                                        <span>{{ $post->created_at->format('Y-m-d') }}&nbsp; <i class="far fa-calendar-alt"></i></span>&nbsp;&nbsp;
-                                        <span>{{ $post->category->name }} &nbsp; <i class="fas fa-tags"></i></span>
-                                        <p style="color:black;">
+                                        <h3>{{ $post->title_ar }}</h3>
+                                        <div class="post-meta">
+                                            <span>{{ $post->user->name ?? 'مستخدم مجهول' }} <i class="fas fa-user"></i></span>
+                                            <span>{{ $post->created_at->format('Y-m-d') }} <i class="far fa-calendar-alt"></i></span>
+                                            <span>{{ $post->category->name ?? 'بدون تصنيف' }} <i class="fas fa-tags"></i></span>
+                                        </div>
+                                        <p>
                                             @if (strlen($post->content_ar) > 150)
-                                                {{ strip_tags(substr($post->content_ar, 0, 350)) }}....
+                                                {{ Str::limit(strip_tags($post->content_ar), 350) }}...
                                             @else
                                                 {{ strip_tags($post->content_ar) }}
                                             @endif
@@ -60,6 +63,8 @@
                         @endif
                     </div>
                 </div>
+
+                <!-- Sidebar -->
                 <div class="col-md-4">
                     <!-- Start Social -->
                     @include("Web.include.social")
@@ -78,7 +83,23 @@
                     <!-- End Latest Alcrypto Posts -->
 
                     <!-- Start Categories -->
-                    @include("Web.include.catPart")
+                    <div class="categories">
+                        <h4>كلمات دلالية</h4>
+                        <ul>
+                            @forelse($categories as $category)
+                                <a href="">
+                                    <li>
+                                        <span>{{ $category->name }}</span>
+                                        <span><i class="fas fa-chevron-right"></i></span>
+                                    </li>
+                                </a>
+                            @empty
+                                <li>
+                                    <b><center>لا يوجد تصنيفات</center></b>
+                                </li>
+                            @endforelse
+                        </ul>
+                    </div>
                     <!-- End Categories -->
 
                     <!-- Start Contributors -->

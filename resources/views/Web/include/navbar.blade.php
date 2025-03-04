@@ -21,7 +21,7 @@
                     <a href="index.php" class="nav-link spec2">{{__('translation.HOME')}}</a>
                 </li>
                 <li class="nav-item">
-                    <a href="aboutus.php" class="nav-link spec2">{{__('translation.ABOUT_US')}}</a>
+                    <a href="{{route('aboutUs')}}" class="nav-link spec2">{{__('translation.ABOUT_US')}}</a>
                 </li>
                 <li class="nav-item">
                     <a href="#ar" class="nav-link spec2">{{__('translation.ARTICLES')}}</a>

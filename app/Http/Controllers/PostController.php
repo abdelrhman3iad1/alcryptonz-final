@@ -226,7 +226,9 @@ class PostController extends Controller
                         $q->where('name', 'LIKE', '%' . $query . '%');
                     })
                      ->get();
-        return view('Web.search-result', compact('posts'));
+        $categories = Category::orderBy('id', 'desc')->get();
+
+        return view('Web.search-result', compact('posts','categories'));
     }
 }
 

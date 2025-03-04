@@ -23,6 +23,9 @@ Route::get('/search', [PostController::class, 'search'])->name('search');
 Route::get("register" , [UserAuthController::class , "create"]);
 Route::post("register" , [UserAuthController::class , "register"])->name("register");
 
+Route::get("/about-us" , function(){
+    return view('Web.aboutus');
+})->name("aboutUs");
 
 Route::get("login" , [UserAuthController::class , "getLogin"]);
 Route::post("login" , [UserAuthController::class , "login"])->name("login");
