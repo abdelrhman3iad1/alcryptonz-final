@@ -13,6 +13,14 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-
+        Category::create([
+            'name' => "CARTESI"
+        ]);
+        Category::create([
+            'name' => " المقالات التعليمية"
+        ]);
+        Category::create([
+            'name' => " اخبار الكريبتو"
+        ]);
     }
 }
