@@ -17,6 +17,7 @@ return
     "Up-to-date news for everything related to Cryptocurrencies."=>"Up-to-date news for everything related to Cryptocurrencies.",
     "Crypto Knowledge"=>"Crypto Knowledge",
     "Simplified articles explaining the rules of cryptocurrency for beginners."=>"Simplified articles explaining the rules of cryptocurrency for beginners.",
+    "Contact Info"=>"Contact Info",
     
     
     "Collabs"=>"Collabs",
@@ -32,7 +33,7 @@ return
     "Swipe Left or Right"=>"Swipe Left or Right",
     "For more posts"=>"For more posts",
     "Send"=>"Send",
-    "Contact Info"=>"Contact Info",
+    // "Contact Info"=>"Contact Info",
     "Search"=>"Search",
     "Search This Blog"=>"Search This Blog",
     "Currency Converter"=>"Currency Converter",
@@ -44,6 +45,18 @@ return
     "Convert"=>"Convert",
     "Loading..."=>"Loading...",
     "Result"=>"Result",
-    "Error"=>"Error"
-    
+    "Error"=>"Error",
+    "who"=>"Who we are",
+    "About1"=>"Welcome to AlCryptonz, a team made up of different Arab countries, with extensive and ancient experience in the field of digital currencies, we are your first source for all things related to digital currencies. We are committed to giving you the best information related to cryptocurrency, focusing on learning everything about the field, digital currency news, and how to profit from your trades",
+    "About2"=>"AlCryptonz was founded in 2017 and has come a long way since its inception in the Arab world. When AlCryptonz first started, we pushed our passion for how to make difficult choices to achieve a great destiny for us to start our own business. We strive to achieve our goal of connecting the field of cryptocurrencies to everyday life.",
+    "Our Vision"=>"Our Vision",
+    "vision1"=>"To be a leader in cryptocurrency and a beacon of knowledge to guide those who do not know Blockchain technology and encryption in general.",
+    "vision2"=>"Be aware of the new revolution in the Internet and provide profit opportunities and understand the ways of investing through the field of digital currencies.",
+    "vision3"=>"We hope you enjoy everything with us as much as we can offer you. If you have any questions or comments, please feel free to contact us.",
+    "Contact"=>"Contact us for more Details",
+    "Contact form"=>"Contact form",
+    "Name"=>"Name",
+    "Email"=>"Email",
+    "Message"=>"Message",
+    "reserved"=>"All rights reserved to Cryptonz team"
 ];

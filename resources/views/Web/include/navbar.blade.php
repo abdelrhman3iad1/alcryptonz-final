@@ -1,6 +1,6 @@
 <nav class="navbar nav-me bg-dark navbar-light navbar-expand-sm one-nav">
     <div class="container-fluid">
-        <a href="index.php" class="navbar-brand" style="font-weight:bold;font-size:19px;color:white">
+        <a href="{{route('home')}}" class="navbar-brand" style="font-weight:bold;font-size:19px;color:white">
             <img src="images/Alcryptonz_White_transparent.png" alt="Alcryptonz-logo" style="width:250px;height:44px;">
         </a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#menu" style="border:0; background-color:black;padding:10px 0 0">
@@ -18,7 +18,7 @@
             </div>
             <ul class="navbar-nav ml-auto" style="z-index: 566311111111111;">
                 <li class="nav-item">
-                    <a href="index.php" class="nav-link spec2">{{__('translation.HOME')}}</a>
+                    <a href="{{route('home')}}" class="nav-link spec2">{{__('translation.HOME')}}</a>
                 </li>
                 <li class="nav-item">
                     <a href="{{route('aboutUs')}}" class="nav-link spec2">{{__('translation.ABOUT_US')}}</a>
