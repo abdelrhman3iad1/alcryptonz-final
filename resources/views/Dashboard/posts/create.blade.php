@@ -67,6 +67,21 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row mt-4">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="partner_id">اختر الشريك</label>
+                                <select name="partner_id" id="partner_id" class="form-control" >
+                                    <option value="">لا يوجد شريك</option>
+                                    @foreach ($partners as $partner)
+                                        <option value="{{ $partner->id }}" {{ old('partner_id') == $partner->id ? 'selected' : '' }}>
+                                            {{ $partner->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                 </div>
     
                 <div class="d-flex mt-2 justify-content-center">

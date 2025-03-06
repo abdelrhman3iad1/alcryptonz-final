@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Models\Dislike;
 use App\Models\Like;
+use App\Models\Partner;
 use App\Models\Post;
 use App\Models\User;
 use App\Traits\ImageUpload;
@@ -29,7 +30,8 @@ class PostController extends Controller
     public function create()
     {
         $categories = Category::all();
-        return view("Dashboard.posts.create", compact("categories"));
+        $partners = Partner::all();
+        return view("Dashboard.posts.create", compact("categories","partners"));
     }
 
     /**
@@ -46,6 +48,7 @@ class PostController extends Controller
                 'content_en' => ['required', 'string', 'bail'],
                 'image' => ['nullable', 'image', 'max:5000'], 
                 'category_id' => ['required', 'exists:categories,id'],
+                'partner_id' => ['nullable', 'exists:partners,id','bail'],
             ],
             [
                 'title_ar.required' => 'يجب إدخال العنوان بالعربية.',
@@ -57,6 +60,7 @@ class PostController extends Controller
                 'image.max' => 'يجب ألا يتجاوز حجم الصورة 5 ميجابايت.',
                 'category_id.required' => 'حقل التصنيف مطلوب.',
                 'category_id.exists' => 'التصنيف المحدد غير موجود.',
+                'partner_id.exists' => 'الشريك المحدد غير موجود.',
             ]
         );
     
@@ -88,8 +92,8 @@ class PostController extends Controller
     {
         $post = Post::findOrFail($id);
         $categories = Category::all();
-
-        return view("Dashboard.posts.edit", compact("post", "categories"));
+        $partners = Partner::all();
+        return view("Dashboard.posts.edit", compact("post","partners","categories"));
     }
 
     /**
@@ -105,6 +109,7 @@ class PostController extends Controller
                 'content_en' => ['required', 'string', 'bail'],
                 'image' => ['nullable', 'max:5000',  'bail'],
                 'category_id' => ['required', 'exists:categories,id'],
+                'partner_id' => ['nullable', 'exists:partners,id','bail'],
             ],
 
             [
@@ -115,7 +120,7 @@ class PostController extends Controller
                 'image.max' => 'يجب ألا يتجاوز حجم الصورة 5 ميجابايت.',
                 'category_id.required' => 'حقل التصنيف مطلوب.',
                 'category_id.exists' => 'التصنيف المحدد غير موجود.',
-
+                'partner_id.exists' => 'الشريك المحدد غير موجود.',
             ]
         );
 
@@ -231,5 +236,3 @@ class PostController extends Controller
         return view('Web.search-result', compact('posts','categories'));
     }
 }
-
-
