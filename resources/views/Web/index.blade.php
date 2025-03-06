@@ -213,56 +213,48 @@
 
 <!--End sevices -->
 <!--start partners-->
-
-<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"style="    background: linear-gradient( 125deg, #00FF57 0%, #010033 40%, #460043 70%, #F0FFC5 100%), linear-gradient( 55deg, #0014C9 0%, #410060 100%), linear-gradient( 300deg, #FFC700 0%, #001AFF 100%), radial-gradient(135% 215% at 115% 40%, #393939 0%, #393939 40%, #849561 calc(40% + 1px), #849561 60%, #EED690 calc(60% + 1px), #EED690 80%, #ECEFD8 calc(80% + 1px), #ECEFD8 100%), linear-gradient( 125deg, #282D4F 0%, #282D4F 40%, #23103A calc(40% + 1px), #23103A 70%, #A0204C calc(70% + 1px), #A0204C 88%, #FF6C00 calc(88% + 1px), #FF6C00 100%);
-    background-image: linear-gradient( 125deg, rgb(0, 255, 87) 0%, rgb(1, 0, 51) 40%, rgb(70, 0, 67) 70%, rgb(240, 255, 197) 100%), linear-gradient( 55deg, rgb(0, 20, 201) 0%, rgb(65, 0, 96) 100%), linear-gradient( 300deg, rgb(255, 199, 0) 0%, rgb(0, 26, 255) 100%), radial-gradient(135% 215% at 115% 40%, rgb(57, 57, 57) 0%, rgb(57, 57, 57) 40%, rgb(132, 149, 97) calc(40% + 1px), rgb(132, 149, 97) 60%, rgb(238, 214, 144) calc(60% + 1px), rgb(238, 214, 144) 80%, rgb(236, 239, 216) calc(80% + 1px), rgb(236, 239, 216) 100%), linear-gradient( 125deg, rgb(40, 45, 79) 0%, rgb(40, 45, 79) 40%, rgb(35, 16, 58) calc(40% + 1px), rgb(35, 16, 58) 70%, rgb(160, 32, 76) calc(70% + 1px), rgb(160, 32, 76) 88%, rgb(255, 108, 0) calc(88% + 1px), rgb(255, 108, 0) 100%);
-    background-position-x: initial, initial, initial, initial, initial;
-    background-position-y: initial, initial, initial, initial, initial;
-    background-size: initial, initial, initial, initial, initial;
-    /*background-repeat-x: initial, initial, initial, initial, initial;
-    background-repeat-y: initial, initial, initial, initial, initial;*/
-    background-attachment: initial, initial, initial, initial, initial;
-    background-origin: initial, initial, initial, initial, initial;
-    background-clip: initial, initial, initial, initial, initial;
-    background-color: initial;
-    background-blend-mode: overlay, screen, overlay, overlay, normal;padding:20px 20px 50px 20px;position:relative;">
-<!--SVG-->
-<div class="custom-shape-divider-top-1629555121">
-    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
-    </svg>
-</div>
-<!--SVG-->
-
-<h2 class ="inside-slider"style="padding-top:30px;font-weight:bold"><i class="far fa-handshake"></i> &nbsp;  {{__("translation.Collabs")}} </h2>
-<ol class="carousel-indicators">
-    @foreach ($partners as $index => $partner)
-        <li data-target="#carouselExampleIndicators" data-slide-to="{{ $index }}" class="{{ $index == 0 ? 'active' : '' }}"></li>
-    @endforeach
-</ol>
-@foreach ($partners as $index => $partner)
-
-  <div class="carousel-inner"style="border-radius:10px">
-    <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-        <a href=" {{ $partner->website_url }}"style="text-align:center">
-    <div class="cover-ph"style="border-radius: 5px 50px 5px 50px  ">
- <img style="border-radius:20px " src='{{ asset($partner->image) }}'alt='collabs partner at Alcryptonz' ></div></a>
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="background: linear-gradient( 125deg, #00FF57 0%, #010033 40%, #460043 70%, #F0FFC5 100%), linear-gradient( 55deg, #0014C9 0%, #410060 100%), linear-gradient( 300deg, #FFC700 0%, #001AFF 100%), radial-gradient(135% 215% at 115% 40%, #393939 0%, #393939 40%, #849561 calc(40% + 1px), #849561 60%, #EED690 calc(60% + 1px), #EED690 80%, #ECEFD8 calc(80% + 1px), #ECEFD8 100%), linear-gradient( 125deg, #282D4F 0%, #282D4F 40%, #23103A calc(40% + 1px), #23103A 70%, #A0204C calc(70% + 1px), #A0204C 88%, #FF6C00 calc(88% + 1px), #FF6C00 100%);
+    background-blend-mode: overlay, screen, overlay, overlay, normal;
+    padding: 20px 20px 50px 20px;
+    position: relative;">
+    <!--SVG-->
+    <div class="custom-shape-divider-top-1629555121">
+        <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+        </svg>
     </div>
-    @endforeach
-  </div>    
- 
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+    <!--SVG-->
 
-    <i class="carousel-control-prev-icon fas fa-chevron-left prev"aria-hidden="true"style="color:white !important;font-size:21px !important"></i>
-    <span class="sr-only">{{__("translation.Previous")}}</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-  <i class="carousel-control-next-icon fas fa-chevron-right next"aria-hidden="true"style="color:white !important;font-size:21px !important"></i>
-    <span class="sr-only">{{__("translation.Next")}}</span>
-  </a>
+    <h2 class="inside-slider" style="padding-top:30px;font-weight:bold"><i class="far fa-handshake"></i> &nbsp; {{__("translation.Collabs")}} </h2>
+    
+    <ol class="carousel-indicators">
+        @foreach ($partners as $index => $partner)
+            <li data-target="#carouselExampleIndicators" data-slide-to="{{ $index }}" class="{{ $index == 0 ? 'active' : '' }}"></li>
+        @endforeach
+    </ol>
+    
+    <div class="carousel-inner" style="border-radius:10px">
+        @foreach ($partners as $index => $partner)
+            <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                <a href="{{ $partner->website_url }}" style="text-align:center">
+                    <div class="cover-ph" style="border-radius: 5px 50px 5px 50px">
+                        <img style="border-radius:20px" src='{{ asset($partner->image) }}' alt='collabs partner at Alcryptonz'>
+                    </div>
+                </a>
+            </div>
+        @endforeach
+    </div>
+    
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <i class="carousel-control-prev-icon fas fa-chevron-left prev" aria-hidden="true" style="color:white !important;font-size:21px !important"></i>
+        <span class="sr-only">{{__("translation.Previous")}}</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <i class="carousel-control-next-icon fas fa-chevron-right next" aria-hidden="true" style="color:white !important;font-size:21px !important"></i>
+        <span class="sr-only">{{__("translation.Next")}}</span>
+    </a>
 </div>
 <!--End partners-->
-
 <!--start partners news -->
 <div class="page-wrapper" style="padding:10px; text-align:center; overflow:hidden !important;">
     <div class="post-slider mb-4">
