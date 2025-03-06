@@ -1,3 +1,41 @@
+<style>
+    /* RTL support styles */
+[dir="rtl"] .navbar-nav.ml-auto {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+}
+
+[dir="rtl"] .navbar-nav.mr-auto {
+    margin-right: 0 !important;
+    margin-left: auto !important;
+}
+
+[dir="rtl"] .navbar-brand {
+    margin-right: 0;
+    margin-left: 1rem;
+}
+
+[dir="rtl"] .navbar-toggler {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+/* Make search form adjust for RTL */
+[dir="rtl"] .search-bar input {
+    text-align: right;
+}
+
+/* Fix padding for RTL */
+[dir="rtl"] .px-2 {
+    padding-right: 0.5rem !important;
+    padding-left: 0.5rem !important;
+}
+
+[dir="rtl"] .px-3 {
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+}
+</style>
 <nav class="navbar nav-me bg-dark navbar-light navbar-expand-sm one-nav">
     <div class="container-fluid">
         <a href="{{route('home')}}" class="navbar-brand" style="font-weight:bold;font-size:19px;color:white">
@@ -67,16 +105,6 @@
                 </li>
                 @endauth
             </ul>
-            <!-- Language Toggle -->
-            {{-- <div class="dropdown ml-3">
-                <button class="btn btn-outline-light btn-sm dropdown-toggle" type="button" id="languageDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    English <!-- Default language set to English -->
-                </button>
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="languageDropdown">
-                    <a class="dropdown-item" href="#">English</a>
-                    <a class="dropdown-item" href="#">عربي</a>
-                </div>
-            </div> --}}
         </div>
     </div>
 </nav>
