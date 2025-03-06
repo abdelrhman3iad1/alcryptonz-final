@@ -11,6 +11,9 @@
  <title>ALCRYPTONZ</title>
     <!-- Custom Styling -->
     <link rel="stylesheet" href="{{ asset('Web/css/style.css') }}">
+    <!-- Swiper CSS -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2473974671507788"
     crossorigin="anonymous"></script>
@@ -45,6 +48,7 @@
         text-align: center;
         color: #007bff;
     }
+
 </style>
 
 </head>
@@ -111,22 +115,29 @@
 <!-- Banner Ad Placeholder -->
 @if(isset($promotions[0]))
 
-<div class="ad-banner bg-light py-2 mt-4 d-flex justify-content-center align-items-center col-md-10 col-11 mx-auto" 
-     style="border: 1px dashed gray;">
-    <div class="row w-100">
-        <!-- Content Section -->
+<div class="ad-banner bg-light py-2 mt-4 d-flex justify-content-center align-items-center col-md-10 col-11 mx-auto shadow-sm" 
+     style="border: 1px dashed gray; border-radius: 15px; overflow: hidden;">
+    <div class="row w-100 align-items-center">
         <!-- Image Section -->
-
-        <div class="col-md-5">
-            <img src="{{ asset($promotions[0]->image) }}" alt="{{ $promotions[0]->name }}" class="w-100">
+        <div class="col-md-5 d-flex justify-content-md-start justify-content-center">
+            <img src="{{ asset($promotions[0]->image) }}" 
+                 alt="{{ $promotions[0]->name }}" 
+                 class=" rounded-lg" 
+                 style="max-width: 60%; height: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
         </div>
+
+        <!-- Content Section -->
         <div class="col-md-7 d-flex flex-column justify-content-center align-items-center mt-3 mt-md-0">
-            <h3>{{ $promotions[0]->name }}</h3>
-            <p class="mt-3 text-center"> {{ $promotions[0]->description }}</p>
-            <a href="{{ $promotions[0]->website_url }}" class="btn btn-primary mt-2">Visit Here</a>
+            <h3 class="font-weight-bold text-primary">{{ $promotions[0]->name }}</h3>
+            <p class="mt-3 text-center text-muted" style="font-size: 1.1rem; line-height: 1.6;">
+                {{ $promotions[0]->description }}
+            </p>
+            <a href="{{ $promotions[0]->website_url }}" 
+               class="btn btn-primary mt-2 px-4 py-2" 
+               style="font-size: 1rem; border-radius: 25px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                Visit Here
+            </a>
         </div>
-
-   
     </div>
 </div>
         @endif
@@ -253,36 +264,44 @@
 <!--End partners-->
 
 <!--start partners news -->
-
-    <div class="page-wrapper"style="padding:10px;text-align:center;overflow:hidden !important">
-    <div class="post-slider" style="margin-bottom:30px;">
-        <h3 class="slider-title"><i class="far fa-newspaper"></i> &nbsp;Collabs News </h3>
-        <div class="post-wrapper">
-
-            @foreach ($posts as $post)
-            <div class="post"style="direction:rtl;overflow:hidden">
-                <div class="div-img"><a href="post.php?idPost={{ $post->id }}"target='_blank'>
-                        @if ($post->image)
-                            <img src="{{ asset($post->image) }}" alt="{{ $post->title_ar }}">
-                        @else
-                            <img src="{{ asset('images/placeholder.jpg') }}" alt="No Image Available">
-                        @endif
-                    </a></div>
-                <a href="post.php?idPost={{ $post->id }}"target='_blank'>
-                    <h4 style="color:black;word-wrap: break-word;">{{ $post->title_ar }} </h4>
-                </a>
-                <span>{{$post->user->name  }}&nbsp;<i class="fas fa-user"></i></span><br>
-                <span>{{ $post->created_at->format('Y-m-d') }} &nbsp; <i
-                        class="far fa-calendar-alt"></i></span>
-                <span> {{ $post->category->name }} &nbsp; <i class="fas fa-tags"></i> </span>
-                <p style="color:black;"> </p>
-    </div>
-    @endforeach
-
-
+<div class="page-wrapper" style="padding:10px; text-align:center; overflow:hidden !important;">
+    <div class="post-slider mb-4">
+        <h3 class="slider-title"><i class="far fa-newspaper"></i> &nbsp;Collabs News</h3>
+        
+        <!-- نفس تصميم السلايدر الأول -->
+        <div class="swiper-container mx-auto p-2 shadow-lg overflow-hidden">
+            <div class="swiper-wrapper">
+                @foreach ($posts as $post)
+                    <div class="swiper-slide border border-2 rounded-4">
+                        <div class="post p-3 shadow-sm rounded-3" style="direction:rtl; overflow:hidden;">
+                            <div class="div-img text-center mb-2">
+                                <a href="post.php?idPost={{ $post->id }}" target="_blank">
+                                    @if ($post->image)
+                                        <img src="{{ asset($post->image) }}" alt="{{ $post->title_ar }}" class="img-fluid rounded-3" style="width: 100%;">
+                                    @else
+                                        <img src="{{ asset('images/placeholder.jpg') }}" alt="No Image Available" class="img-fluid rounded-3" style="width: 100%;">
+                                    @endif
+                                </a>
+                            </div>
+                            <a href="post.php?idPost={{ $post->id }}" target="_blank" class="text-decoration-none">
+                                <h4 class="text-dark text-truncate">{{ $post->title_ar }}</h4>
+                            </a>
+                            <span class="text-muted d-block small"> 
+                                <i class="fas fa-user"></i> {{ $post->user->name }}
+                            </span>
+                            <span class="text-muted d-block small">
+                                <i class="far fa-calendar-alt"></i> {{ $post->created_at->format('Y-m-d') }}
+                            </span>
+                            <span class="text-muted d-block small">
+                                <i class="fas fa-tags"></i> {{ $post->category->name }}
+                            </span>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
              </div>
 
-      <p style="text-align:center;color:green"><i class="fas fa-hand-point-left"></i> مرر يمينا او يسارا <i class="fas fa-hand-point-right"></i><br> لمشاهدة منشورات اخري </p>
+      <p class='mt-4' style="text-align:center;color:green"><i class="fas fa-hand-point-left"></i> مرر يمينا او يسارا <i class="fas fa-hand-point-right"></i><br> لمشاهدة منشورات اخري </p>
 </div>
 </div>         
 
@@ -324,38 +343,72 @@
 </div>
 
 <!--start recent posts    -->
-<div class="page-wrapper"style="padding:10px;text-align:center;overflow:hidden !important">
-<div class="post-slider" style="margin-bottom:30px;">
-<h3 class="slider-title"><i class="fas fa-clock"></i> &nbsp;{{__("translation.Recent Blog Posts")}}</h3>
-<p  style="text-align:center;color:gray;padding:10px">{{__("translation.Stay up to date with New posts related to Cryptocurrency.")}}</p>
-    <!--<i class="fas fa-chevron-left prev"></i>
-    <i class="fas fa-chevron-right next"></i>-->
-    <div class="post-wrapper">
-      
+
+<!-- Swiper CSS -->
+<link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<div class="page-wrapper" style="padding:10px;text-align:center;overflow:hidden !important">
+  <div class="post-slider" style="margin-bottom:30px;">
+    <h3 class="slider-title"><i class="fas fa-clock"></i> &nbsp;{{__("translation.Recent Blog Posts")}}</h3>
+    <p style="text-align:center;color:gray;padding:10px">{{__("translation.Stay up to date with New posts related to Cryptocurrency.")}}</p>
+
+    <!-- Swiper Container -->
+    <div class="swiper-container mx-auto p-2 shadow-lg overflow-hidden">
+    <div class="swiper-wrapper">
         @foreach ($posts as $post)
-        <div class="post"style="direction:rtl;overflow:hidden">
-            <div class="div-img"><a href="post.php?idPost={{ $post->id }}"target='_blank'>
-                    @if ($post->image)
-                        <img src="{{ asset($post->image) }}" alt="{{ $post->title_ar }}">
-                    @else
-                        <img src="{{ asset('images/placeholder.jpg') }}" alt="No Image Available">
-                    @endif
-                </a></div>
-            <a href="post.php?idPost={{ $post->id }}"target='_blank'>
-                <h4 style="color:black;word-wrap: break-word;">{{ $post->title_ar }} </h4>
-            </a>
-            <span> {{$post->user->name}} &nbsp;<i class="fas fa-user"></i></span><br>
-            <span>{{ $post->created_at->format('Y-m-d') }} &nbsp; <i
-                    class="far fa-calendar-alt"></i></span>
-            <span> {{ $post->category->name }} &nbsp; <i class="fas fa-tags"></i> </span>
-            <p style="color:black;"> </p>
-</div>
-@endforeach
-
-
+            <div class="swiper-slide border border-2 rounded-4">
+                <div class="post p-3 rounded-3 shadow-sm" style="direction:rtl; overflow:hidden;">
+                    <div class="div-img text-center mb-2">
+                        <a href="{{ url('post.php?idPost=' . $post->id) }}" target="_blank">
+                            @if ($post->image)
+                                <img src="{{ asset($post->image) }}" alt="{{ $post->title_ar }}" class="img-fluid rounded-3" style="width: 100%;">
+                            @else
+                                <img src="{{ asset('images/placeholder.jpg') }}" alt="No Image Available" class="img-fluid rounded-3" style="width: 100%; height: 180px;">
+                            @endif
+                        </a>
+                    </div>
+                    <a href="{{ url('post.php?idPost=' . $post->id) }}" target="_blank" class="text-decoration-none">
+                        <h4 class="text-dark text-truncate">{{ $post->title_ar }}</h4>
+                    </a>
+                    <span class="text-muted d-block small"> 
+                        <i class="fas fa-user"></i> {{ $post->user->name }}
+                    </span>
+                    <span class="text-muted d-block small">
+                        <i class="far fa-calendar-alt"></i> {{ $post->created_at->format('Y-m-d') }}
+                    </span>
+                    <span class="text-muted d-block small">
+                        <i class="fas fa-tags"></i> {{ $post->category->name }}
+                    </span>
+                </div>
+            </div>
+        @endforeach
     </div>
-     <p style="text-align:center;color:green"><i class="fas fa-hand-point-left"></i> {{__("translation.Swipe Left or Right")}}<i class="fas fa-hand-point-right"></i><br> {{__("translation.For more posts")}}</p>
+
+    <!-- Pagination -->
+    <!-- <div class="swiper-pagination"></div> -->
+
+    <!-- Navigation Buttons -->
+    <!-- <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div> -->
 </div>
+
+
+    <!-- Add Pagination -->
+    <!-- <div class="swiper-pagination"></div> -->
+
+    <!-- Add Navigation Buttons -->
+    <!-- <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div> -->
+</div>
+
+
+    <p style="text-align:center;color:green">
+      <i class="fas fa-hand-point-left"></i> {{__("translation.Swipe Left or Right")}}<i class="fas fa-hand-point-right"></i><br> {{__("translation.For more posts")}}
+    </p>
+  </div>
 </div>
 <!--End recent posts -->
 <div style="text-align:center;padding:10px 0 20px">
@@ -366,14 +419,15 @@
 <!--start team   -->
 <div class="team d-none d-lg-block" id="te">
     <div class="container">
-    <h3 style="text-align:center;padding:10px;margin-top:20px;"><i class="fas fa-clock"></i> &nbsp;  {{__("translation.Meet The Team")}}</h3>
-<p style="text-align:center;padding:10px">{{__("translation.Cryptonz Team")}}</p>
+        <h3 style="text-align:center;padding:10px;margin-top:20px;"><i class="fas fa-clock"></i> &nbsp;  {{__("translation.Meet The Team")}}</h3>
+        <p style="text-align:center;padding:10px">{{__("translation.Cryptonz Team")}}</p>
         
         <div class="inside-team">
         @foreach ($teams as $member)
 
            <div>
-        <h5>{{$member->name}} | {{$member->department->name}}</h5>
+        <h5>{{$member->name}}</h5>
+        <!-- <h5>{{$member->department->name}}</h5> -->
         <img src="{{ asset( $member->image) }}" alt="Alcryptonz Team Member">
       
       
@@ -386,49 +440,60 @@
     
 </div>
 
-<div class="team-slider d-block d-lg-none"> <!-- Mobile-only slider -->
-    <div class="swiper-container">
-        <div class="swiper-wrapper">
-            @foreach ($teams as $member)
-       
-            <div class="swiper-slide">
-                <div class="text-center">
+<div class="container d-block d-lg-none"> <!-- Carousel for mobile viewports -->
+  <div class="swiper mySwiper">
+        <h3 style="text-align:center;padding:10px;margin-top:20px;"><i class="fas fa-clock"></i> &nbsp;  {{__("translation.Meet The Team")}}</h3>
+        <p style="text-align:center;padding:10px">{{__("translation.Cryptonz Team")}}</p>
 
-                    <img src="{{ asset( $member->image) }}" 
-                         class="rounded-circle img-fluid" 
-                         alt="Alcryptonz Team Member:{{ $member->name }}" 
-                         style="max-width: 150px;">
-                    <h5 class="mt-3"><{{ $member->name }}</h5>
-                </div>
-
-            </div>
-            @endforeach
-           
+    <div class="swiper-wrapper">
+      @foreach ($teams as $member)
+      <div class="swiper-slide">
+        <div class="one-serv text-center">
+        <h4>{{ $member->name }}</h4>
+        <!-- <p>{{ $member->role }}</p> -->
+          <div class='py-2'>
+            <img src="{{ asset($member->image ?? 'path/to/placeholder.jpg') }}" 
+                 class="img-fluid" 
+                 alt="Team Member: {{ $member->name }}" 
+                 style="max-width: 90%;">
+          </div>
         </div>
-
-       
+      </div>
+      @endforeach
     </div>
+    <!-- Optional: Add navigation buttons if needed -->
+    <!-- <div class="swiper-button-next"></div>
+    <div class="swiper-button-prev"></div> -->
+  </div>
 </div>
 
     <!-- Banner Ad Placeholder -->
     @if(isset($promotions[1]))
 
-    <div class="ad-banner bg-light py-2 mt-4 mb-4 d-flex justify-content-center align-items-center col-md-10 col-11 mx-auto" 
-     style="border: 1px dashed gray;">
-
-    <div class="row w-100">
-        <!-- Content Section -->
+    <div class="ad-banner bg-light py-2 mt-4 mb-4 d-flex justify-content-center align-items-center col-md-10 col-11 mx-auto shadow-sm" 
+     style="border: 1px dashed gray; border-radius: 15px; overflow: hidden;">
+    <div class="row w-100 align-items-center">
         <!-- Image Section -->
-        <div class="col-md-5">
-            <img src="{{ asset($promotions[1]->image) }}" alt="{{ $promotions[1]->name }}" class="w-100">
+        <div class="col-md-5 d-flex justify-content-md-start justify-content-center">
+            <img src="{{ asset($promotions[1]->image) }}" 
+                 alt="{{ $promotions[1]->name }}" 
+                 class=" rounded-lg" 
+                 style="max-width: 60%; height: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
         </div>
+
+        <!-- Content Section -->
         <div class="col-md-7 d-flex flex-column justify-content-center align-items-center mt-3 mt-md-0">
-            <h3>{{ $promotions[1]->name }}</h3>
-            <p class="mt-3 text-center"> {{ $promotions[1]->description }}</p>
-            <a href="{{ $promotions[1]->website_url }}" class="btn btn-primary mt-2">Visit Here</a>
+            <h3 class="font-weight-bold text-primary">{{ $promotions[1]->name }}</h3>
+            <p class="mt-3 text-center text-muted" style="font-size: 1.1rem; line-height: 1.6;">
+                {{ $promotions[1]->description }}
+            </p>
+            <a href="{{ $promotions[1]->website_url }}" 
+               class="btn btn-primary mt-2 px-4 py-2" 
+               style="font-size: 1rem; border-radius: 25px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                Visit Here
+            </a>
         </div>
     </div>
-        
 </div>
 
     
@@ -565,5 +630,32 @@ $(document).ready(function () {
 </script>
 {{-- <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script> --}}
+
+<script>
+var swiper = new Swiper('.swiper-container', {
+    loop: true,
+    autoplay: {
+        delay: 3000, // تغيير المنشور كل 3 ثوانٍ
+        disableOnInteraction: false
+    },
+    slidesPerView: 1,
+    spaceBetween: 20,
+    breakpoints: {
+        768: { slidesPerView: 3 }, // 3 منشورات على الشاشات الكبيرة
+        480: { slidesPerView: 1 }  // 1 منشور على الموبايل
+    },
+    navigation: {
+        nextEl: '.swiper-button-next',
+        prevEl: '.swiper-button-prev'
+    },
+    pagination: {
+        el: '.swiper-pagination',
+        clickable: true
+    }
+});
+</script>
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
  

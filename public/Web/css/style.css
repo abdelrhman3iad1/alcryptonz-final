@@ -1588,3 +1588,22 @@ footer {
     text-align:left !important;
     direction:ltr !important;
 }
+
+.swiper-container {
+    width: 85% !important; /* عرض السلايدر 75% */
+    margin: auto; /* توسيطه */
+    position: relative; /* حل مشكلة تجاوز المحتوى */
+    overflow: hidden;
+    border-radius: 10px;
+  }
+  
+  .swiper-wrapper {
+    width: 100%; /* التأكد من أن العناصر لا تتجاوز حدود الخلفية */
+  }
+  
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
