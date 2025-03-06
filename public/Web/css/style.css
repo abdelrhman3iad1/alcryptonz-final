@@ -571,7 +571,7 @@ main {
 .content .post .post-details .post-info {
     color: var(--fo-color);
      text-align:center !important;
-      
+
 }
 
 .content .post .post-details .post-info span {
@@ -1587,5 +1587,4 @@ footer {
 .newEdit h1,.newEdit h2,.newEdit h3,.newEdit ul,.newEdit li,.newEdit p{
     text-align:left !important;
     direction:ltr !important;
-}
 }

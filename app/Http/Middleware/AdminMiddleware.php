@@ -12,8 +12,13 @@ class AdminMiddleware
     {
         if (Auth::check() && Auth::user()->role == 1) {
             return $next($request);
-        } else {
+        }
+        elseif(Auth::check()){
+            return redirect()->back();
+        }else{
+            // edit the route to dashboard login page
             return redirect()->route('login')->with('error', 'You are not authorized to access this page.');
         }
+
     }
 }

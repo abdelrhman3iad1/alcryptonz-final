@@ -21,7 +21,7 @@ return
     "Login"=>"LOGIN",
     "Logout"=>"LOGOUT",
     'Login successful!'=>'Login successful!',
-
+    "Invalid credentials!"=>"Invalid credentials!",
     "Collabs"=>"Collabs",
     "Previous"=>"Previous",
     "Next"=>"Next",

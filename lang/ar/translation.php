@@ -20,6 +20,7 @@ return
     "Simplified articles explaining the rules of cryptocurrency for beginners." => "مقالات مبسطة تشرح قواعد العملات الرقمية للمبتدئين.",
     "Login"=>"تسجيل الدخول",
     "Logout"=>"تسجيل الخروج",
+    "Invalid credentials!" => "البيانات التي أدخلتها غير صحيحة!",
     "Collabs" => "تعاونات",
     'Login successful!'=>'تم تسجيل الدخول بنجاح!',
     "Previous" => "السابق",
