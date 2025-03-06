@@ -11,5 +11,8 @@ class Partner extends Model
     protected $fillable = [
         "name","description","image","website_url"
     ];
-
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
 }

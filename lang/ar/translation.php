@@ -25,7 +25,7 @@ return
     'Login successful!'=>'تم تسجيل الدخول بنجاح!',
     "Previous" => "السابق",
     "Next" => "التالي",
-    "Collabs News" => "أخبار التعاونات",
+    "Collabs News" => "أخبار الشركاء",
     "Show More" => "عرض المزيد",
     "Your Converter should be Here" => "يجب أن يكون المحول الخاص بك هنا",
     "Recent Blog Posts" => "أحدث المقالات",
