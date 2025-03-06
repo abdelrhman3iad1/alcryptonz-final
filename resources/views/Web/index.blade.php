@@ -233,33 +233,38 @@
     </svg>
 </div>
 <!--SVG-->
+    <h2 class="inside-slider" style="padding-top:30px;font-weight:bold">
+        <i class="far fa-handshake"></i> &nbsp; {{ __("translation.Collabs") }}
+    </h2>
 
-<h2 class ="inside-slider"style="padding-top:30px;font-weight:bold"><i class="far fa-handshake"></i> &nbsp;  {{__("translation.Collabs")}} </h2>
-<ol class="carousel-indicators">
-    @foreach ($partners as $index => $partner)
-        <li data-target="#carouselExampleIndicators" data-slide-to="{{ $index }}" class="{{ $index == 0 ? 'active' : '' }}"></li>
-    @endforeach
-</ol>
-@foreach ($partners as $index => $partner)
+    <ol class="carousel-indicators">
+        @foreach ($partners as $index => $partner)
+            <li data-target="#carouselExampleIndicators" data-slide-to="{{ $index }}" class="{{ $index == 0 ? 'active' : '' }}"></li>
+        @endforeach
+    </ol>
 
-  <div class="carousel-inner"style="border-radius:10px">
-    <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
-        <a href=" {{ $partner->website_url }}"style="text-align:center">
-    <div class="cover-ph"style="border-radius: 5px 50px 5px 50px  ">
- <img style="border-radius:20px " src='{{ asset($partner->image) }}'alt='collabs partner at Alcryptonz' ></div></a>
+    <div class="carousel-inner" style="border-radius:10px;">
+        @foreach ($partners as $index => $partner)
+            <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
+                <a href="{{ $partner->website_url }}" style="text-align:center">
+                    <div class="cover-ph" style="border-radius: 5px 50px 5px 50px;">
+                        <img style="border-radius:20px" src="{{ asset($partner->image) }}" alt="collabs partner at Alcryptonz">
+                    </div>
+                </a>
+            </div>
+        @endforeach
     </div>
-    @endforeach
-  </div>    
- 
-  <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
 
-    <i class="carousel-control-prev-icon fas fa-chevron-left prev"aria-hidden="true"style="color:white !important;font-size:21px !important"></i>
-    <span class="sr-only">{{__("translation.Previous")}}</span>
-  </a>
-  <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-  <i class="carousel-control-next-icon fas fa-chevron-right next"aria-hidden="true"style="color:white !important;font-size:21px !important"></i>
-    <span class="sr-only">{{__("translation.Next")}}</span>
-  </a>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+        <i class="carousel-control-prev-icon fas fa-chevron-left prev" aria-hidden="true" style="color:white !important;font-size:21px !important"></i>
+        <span class="sr-only">{{ __("translation.Previous") }}</span>
+    </a>
+
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+        <i class="carousel-control-next-icon fas fa-chevron-right next" aria-hidden="true" style="color:white !important;font-size:21px !important"></i>
+        <span class="sr-only">{{ __("translation.Next") }}</span>
+    </a>
+
 </div>
 <!--End partners-->
 
@@ -273,7 +278,7 @@
             <div class="swiper-wrapper">
                 @foreach ($posts as $post)
                     <div class="swiper-slide border border-2 rounded-4">
-                        <div class="post p-3 shadow-sm rounded-3" style="direction:rtl; overflow:hidden;">
+                        <div class="post shadow-sm rounded-3" style="direction:rtl; overflow:hidden;">
                             <div class="div-img text-center mb-2">
                                 <a href="post.php?idPost={{ $post->id }}" target="_blank">
                                     @if ($post->image)
@@ -283,18 +288,20 @@
                                     @endif
                                 </a>
                             </div>
+                            <div class = 'py-3'>
                             <a href="post.php?idPost={{ $post->id }}" target="_blank" class="text-decoration-none">
                                 <h4 class="text-dark text-truncate">{{ $post->title_ar }}</h4>
                             </a>
                             <span class="text-muted d-block small"> 
                                 <i class="fas fa-user"></i> {{ $post->user->name }}
                             </span>
-                            <span class="text-muted d-block small">
+                            <span class="text-muted mt-2 small">
                                 <i class="far fa-calendar-alt"></i> {{ $post->created_at->format('Y-m-d') }}
                             </span>
-                            <span class="text-muted d-block small">
+                            <span class="text-muted mt-2 ms-3 small">
                                 <i class="fas fa-tags"></i> {{ $post->category->name }}
                             </span>
+                            </div>
                         </div>
                     </div>
                 @endforeach
@@ -360,7 +367,7 @@
     <div class="swiper-wrapper">
         @foreach ($posts as $post)
             <div class="swiper-slide border border-2 rounded-4">
-                <div class="post p-3 rounded-3 shadow-sm" style="direction:rtl; overflow:hidden;">
+                <div class="post rounded-3 shadow-sm" style="direction:rtl; overflow:hidden;">
                     <div class="div-img text-center mb-2">
                         <a href="{{ url('post.php?idPost=' . $post->id) }}" target="_blank">
                             @if ($post->image)
@@ -370,18 +377,20 @@
                             @endif
                         </a>
                     </div>
+                    <div class = 'py-3'>
                     <a href="{{ url('post.php?idPost=' . $post->id) }}" target="_blank" class="text-decoration-none">
                         <h4 class="text-dark text-truncate">{{ $post->title_ar }}</h4>
                     </a>
                     <span class="text-muted d-block small"> 
                         <i class="fas fa-user"></i> {{ $post->user->name }}
                     </span>
-                    <span class="text-muted d-block small">
+                    <span class="text-muted mt-2 small">
                         <i class="far fa-calendar-alt"></i> {{ $post->created_at->format('Y-m-d') }}
                     </span>
-                    <span class="text-muted d-block small">
+                    <span class="text-muted mt-2 small">
                         <i class="fas fa-tags"></i> {{ $post->category->name }}
                     </span>
+                    </div>
                 </div>
             </div>
         @endforeach
