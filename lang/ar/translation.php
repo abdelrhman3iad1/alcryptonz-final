@@ -18,8 +18,10 @@ return
     "Up-to-date news for everything related to Cryptocurrencies." => "أحدث الأخبار عن كل ما يتعلق بالعملات الرقمية.",
     "Crypto Knowledge" => "المعرفة بالعملات الرقمية",
     "Simplified articles explaining the rules of cryptocurrency for beginners." => "مقالات مبسطة تشرح قواعد العملات الرقمية للمبتدئين.",
-
+    "Login"=>"تسجيل الدخول",
+    "Logout"=>"تسجيل الخروج",
     "Collabs" => "تعاونات",
+    'Login successful!'=>'تم تسجيل الدخول بنجاح!',
     "Previous" => "السابق",
     "Next" => "التالي",
     "Collabs News" => "أخبار التعاونات",

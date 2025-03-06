@@ -19,28 +19,21 @@ class UserAuthController extends Controller
 
     public function register(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users',
+            'email' => 'required|string|email|max:255|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
         ]);
 
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
-
-        $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
-        ]);
+        $validated['password'] = Hash::make($validated['password']);
+        $user = User::create($validated);
 
         Auth::login($user);
 
         if ($user->role == 1) {
-            return redirect()->url('dashboard/posts')->with('success', 'You registered successfully!');
+            return redirect()->route('categories.index')->with('success', __('translation.You registered successfully!'));
         } else {
-            return redirect()->route('home')->with('success', 'You registered successful!');
+            return redirect()->route('home')->with('success', __('translation.You registered successful!'));
         }
     }
 
@@ -51,26 +44,22 @@ class UserAuthController extends Controller
 
     public function login(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        $validated = $request->validate([
             'email' => 'required|string|email|max:255',
             'password' => 'required|string|min:8',
         ]);
-
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput();
-        }
 
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
 
             if ($user->role == 1) {
-                return redirect()->route('categories.index')->with('success', 'Login successful!');
+                return redirect()->route('categories.index')->with('success', __('translation.Login successful!'));
             } else {
-                return redirect()->route('home')->with('success', 'Login successful!');
+                return redirect()->route('home')->with('success', __('translation.Login successful!'));
             }
         } else {
-            return redirect()->back()->withErrors(['error' => 'Invalid credentials.'])->withInput();
+            return redirect()->back()->with('fails', __('translation.Invalid credentials!'));
         }
     }
 
@@ -78,7 +67,7 @@ class UserAuthController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
-        return redirect()->route('login')->with('success', 'Logged out successfully!');
+        return redirect()->route('home')->with('success', __('translation.Logged out successfully!'));
     }
 
 

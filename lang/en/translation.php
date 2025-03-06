@@ -1,5 +1,5 @@
 <?php
-return 
+return
 [
     "language"=>"en",
     "dir"=>"ltr",
@@ -18,8 +18,10 @@ return
     "Crypto Knowledge"=>"Crypto Knowledge",
     "Simplified articles explaining the rules of cryptocurrency for beginners."=>"Simplified articles explaining the rules of cryptocurrency for beginners.",
     "Contact Info"=>"Contact Info",
-    
-    
+    "Login"=>"LOGIN",
+    "Logout"=>"LOGOUT",
+    'Login successful!'=>'Login successful!',
+
     "Collabs"=>"Collabs",
     "Previous"=>"Previous",
     "Next"=>"Next",

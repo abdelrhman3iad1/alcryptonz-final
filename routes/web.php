@@ -27,7 +27,7 @@ Route::get("/about-us" , function(){
     return view('Web.aboutus');
 })->name("aboutUs");
 
-Route::get("login" , [UserAuthController::class , "getLogin"]);
+Route::get("login" , [UserAuthController::class , "getLogin"])->name("get.login");
 Route::post("login" , [UserAuthController::class , "login"])->name("login");
 
 Route::get("/{lang}",function($lang){
@@ -40,7 +40,7 @@ Route::get("/{lang}",function($lang){
 });
 
 // Route::middleware('locale')->group(function(){
-    
+
 Route::get('/', [HomeController::class, 'index'])->name('home');
 // web.php
 
@@ -53,7 +53,7 @@ Route::middleware('auth')->group(function () {
     });
 
     Route::post('logout', [UserAuthController::class, 'logout'])->name('logout');
-  
+
 
     Route::get('change-password', function () {
         return view('auth.change-password');

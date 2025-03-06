@@ -6,7 +6,7 @@
         <button class="navbar-toggler" data-toggle="collapse" data-target="#menu" style="border:0; background-color:black;padding:10px 0 0">
             <i class="fas fa-bars navbar-toggler-icon" style="color:white !important;font-size:27px !important;"></i>
         </button>
-        
+
         <div class="collapse navbar-collapse" id="menu" style="z-index: 566311111111111 !important;">
             <div class="search-bar">
                 <div class="container d-flex justify-content-center">
@@ -35,6 +35,7 @@
                 <li class="nav-item">
                     <a href="#fo" class="nav-link spec2">{{__('translation.CONTACT_US')}}</a>
                 </li>
+
                 {{-- <li class="nav-item">
                     <a href="#fo" class="nav-link spec2">{{config('app.locale')}}</a>
                 </li>
@@ -50,8 +51,21 @@
                     <a href="{{url('/ar')}}" class="nav-link spec2">ARABIC</a>
                 </li>
                 @endif
-                
-                
+
+                @guest
+                <li class="nav-item">
+                    <a href="{{route('get.login')}}" class="nav-link spec2">{{__('translation.Login')}}</a>
+                </li>
+                @endguest
+                @auth
+                <li class="nav-item">
+                    <form action="{{route('logout')}}" method="post">
+                        @csrf
+                        <button type="submit" class="nav-link spec1" style="border-radius:10px;">{{__('translation.Logout')}}</button>
+                    </form>
+                    {{-- <a href="" class="nav-link spec2">{{__('translation.Logout')}}</a> --}}
+                </li>
+                @endauth
             </ul>
             <!-- Language Toggle -->
             {{-- <div class="dropdown ml-3">
