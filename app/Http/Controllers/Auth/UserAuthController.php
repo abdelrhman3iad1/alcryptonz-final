@@ -45,8 +45,16 @@ class UserAuthController extends Controller
     public function login(Request $request)
     {
         $validated = $request->validate([
-            'email' => 'required|string|email|max:255',
+            'email' => 'required|email|max:255',
             'password' => 'required|string|min:8',
+        ],[
+            'email.required' => __('translation.email_req'),
+            'email.email' => __('translation.email_em'),
+            'email.max' =>__('translation.email_max'),
+        
+            'password.required' =>__('translation.pass_req'),
+            'password.string' => __('translation.pass_string'),
+            'password.min' => __('translation.pass_min'),
         ]);
 
 

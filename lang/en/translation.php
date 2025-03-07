@@ -63,5 +63,15 @@ return
     "Name"=>"Name",
     "Email"=>"Email",
     "Message"=>"Message",
-    "reserved"=>"All rights reserved to Cryptonz team"
+    "reserved"=>"All rights reserved to Cryptonz team",
+    "email_req"=>"Email is required.",
+    "email_em"=>"Please enter a valid email address.",
+    "email_max"=>"Email must not exceed 255 characters.",
+    "pass_req"=>"Password is required.",
+    "pass_string"=>"Password must be a valid string.",
+    "pass_min"=>"Password must be at least 8 characters.",
+    "Logged out successfully!"=>"Logged out successfully!",
+    "Login Page"=>"Login Page",
+    "Login_user"=>"Login",
+
 ];

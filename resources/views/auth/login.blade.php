@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Page</title>
+    <title>{{__('translation.Login Page')}}</title>
     <link rel="stylesheet" href="{{ asset('style.css') }}">
     <link rel="stylesheet" href="{{ asset('Dashboard/assets/compiled/css/app.rtl.css') }}">
     <link rel="stylesheet" href="{{ asset('Dashboard/assets/compiled/css/app-dark.rtl.css') }}">
@@ -22,7 +22,7 @@
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
-            <h2>{{__('translation.Login')}}</h2>
+            <h2>{{__('translation.Login_user')}}</h2>
 
             <!-- Email Field -->
             <div class="input-box">
@@ -39,7 +39,7 @@
 
 
             <!-- Submit Button -->
-            <button type="submit">{{__('translation.Login')}}</button>
+            <button type="submit">{{__('translation.Login_user')}}</button>
 
             <!-- Register Link -->
             {{-- <div class="already already-mt-2">
