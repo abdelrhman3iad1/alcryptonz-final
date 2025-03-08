@@ -42,9 +42,9 @@
             <button type="submit">{{__('translation.Login_user')}}</button>
 
             <!-- Register Link -->
-            {{-- <div class="already already-mt-2">
+            <div class="already already-mt-2">
                 <p>Don't have an account? <a href="{{ route('register') }}">Register</a></p>
-            </div> --}}
+            </div> 
         </form>
     </div>
 </div>

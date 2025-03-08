@@ -44,7 +44,7 @@
                                         <div class="img-div">
                                             <img src="{{ asset($post->image) }}" alt="صورة المنشور">
                                         </div>
-                                        <h3>{{ $post->title_ar }}</h3>
+                                        <h3 style="color:black;word-wrap: break-word;">{{ $post->title_ar }}</h3>
                                         <div class="post-meta">
                                             <span>{{ $post->user->name ?? 'مستخدم مجهول' }} <i class="fas fa-user"></i></span>
                                             <span>{{ $post->created_at->format('Y-m-d') }} <i class="far fa-calendar-alt"></i></span>

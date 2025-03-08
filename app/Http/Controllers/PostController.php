@@ -158,68 +158,50 @@ class PostController extends Controller
         return redirect()->route('posts.index')->with('success', 'تم حذف المقال بنجاح');
     }
 
-    
     public function like(Post $post)
-    {
-        $user = auth()->user();
-    
-        if (!User::whereHas('likes', function ($query) use ($post) {
-            $query->where('post_id', $post->id);
-        })->where('id', $user->id)->exists()) {
-            Like::create([
-                'user_id' => $user->id,
-                'post_id' => $post->id,
-            ]);
-    
-            if (User::whereHas('dislikes', function ($query) use ($post) {
-                $query->where('post_id', $post->id);
-            })->where('id', $user->id)->exists()) {
-                Dislike::where('user_id', $user->id)
-                      ->where('post_id', $post->id)
-                      ->delete();
-            }
-    
-            return back()->with('success', 'You liked the post.');
-        } else {
-            Like::where('user_id', $user->id)
-                ->where('post_id', $post->id)
-                ->delete();
-    
-            return back()->with('success', 'You removed your like.');
-        }
+{
+    $user = auth()->user();
+
+    if (!Like::where('user_id', $user->id)->where('post_id', $post->id)->exists()) {
+        Like::create([
+            'user_id' => $user->id,
+            'post_id' => $post->id,
+        ]);
+
+        // إزالة الـ Dislike إذا كان موجودًا
+        Dislike::where('user_id', $user->id)->where('post_id', $post->id)->delete();
+    } else {
+        Like::where('user_id', $user->id)->where('post_id', $post->id)->delete();
     }
-    /**
-     * Dislike a post.
-     */
-    public function dislike(Post $post)
-    {
-        $user = auth()->user();
-    
-        if (!User::whereHas('dislikes', function ($query) use ($post) {
-            $query->where('post_id', $post->id);
-        })->where('id', $user->id)->exists()) {
-            Dislike::create([
-                'user_id' => $user->id,
-                'post_id' => $post->id,
-            ]);
-    
-            if (User::whereHas('likes', function ($query) use ($post) {
-                $query->where('post_id', $post->id);
-            })->where('id', $user->id)->exists()) {
-                Like::where('user_id', $user->id)
-                    ->where('post_id', $post->id)
-                    ->delete();
-            }
-    
-            return back()->with('success', 'You disliked the post.');
-        } else {
-            Dislike::where('user_id', $user->id)
-                  ->where('post_id', $post->id)
-                  ->delete();
-    
-            return back()->with('success', 'You removed your dislike.');
-        }
+
+    return response()->json([
+        'likes' => $post->likes()->count(),
+        'dislikes' => $post->dislikes()->count(),
+    ]);
+}
+
+public function dislike(Post $post)
+{
+    $user = auth()->user();
+
+    if (!Dislike::where('user_id', $user->id)->where('post_id', $post->id)->exists()) {
+        Dislike::create([
+            'user_id' => $user->id,
+            'post_id' => $post->id,
+        ]);
+
+        // إزالة الـ Like إذا كان موجودًا
+        Like::where('user_id', $user->id)->where('post_id', $post->id)->delete();
+    } else {
+        Dislike::where('user_id', $user->id)->where('post_id', $post->id)->delete();
     }
+
+    return response()->json([
+        'likes' => $post->likes()->count(),
+        'dislikes' => $post->dislikes()->count(),
+    ]);
+}
+
     public function search(Request $request)
     {
         $query = $request->input('query');    

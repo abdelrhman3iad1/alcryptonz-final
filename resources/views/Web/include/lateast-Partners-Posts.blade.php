@@ -1,28 +1,29 @@
 <div class="last-posts">
-    <h4> احدث مقالات الشركاء</h4>
+    <h4>أحدث مقالات الشركاء</h4>
     <ul>
-        <?php
-            // Assuming $posts is already defined and contains the posts
-            // Filter posts to only include those with category_id = 1
-            $filteredPosts = $posts->where('category_id', 1);
-        ?>
+        @php
+            // تصفية المقالات الخاصة بالشريك الذي معرفه 1 وأخذ أحدث 5 مقالات
+            $filteredPosts = $posts->where('partner_id', 1)->take(5);
+        @endphp
 
         @if ($filteredPosts->isEmpty())
-            <b><center>لا يوجد منشورات متعلقة بهذا الذي تبحث عنه</center></b>
+            <b><center>لا يوجد منشورات</center></b>
         @else
             @foreach ($filteredPosts as $post)
-                <!-- Post -->
                 <li style="overflow:hidden">
-                    <a style="direction:rtl;overflow:hidden" href="" target="_blank">
-                        <div class="small-post">
-                            <div class="img-div">
-                                <span></span>
-                                <img src="{{ asset($post->image) }}" style="width:300px; height: 200px;" alt="صورة المنشور">
-                                <span style='direction:rtl !important;'></span>
-                            </div>
-                            <h3 style="color:black;word-wrap: break-word;">{{ $post->title_ar }}</h3>
-                            <span>{{ $post->created_at->format('Y-m-d') }}&nbsp; <i class="far fa-calendar-alt"></i></span>&nbsp;&nbsp;
-                        </div>
+                    <a>
+                        <span>
+                            <img src="{{ asset($post->image) }}" alt="{{ $post->title_ar }}" style="width:75px; height: 60px;">
+                        </span>
+                        <span style="direction:rtl !important; display: block; white-space: normal;">
+                            {{ Str::limit($post->title_ar, 115) }}<br>
+                            <span class="span-date">
+                                <i class="far fa-calendar-alt" style="margin-left:5px !important"></i>
+                                {{ $post->created_at->format('Y-m-d') }}
+                            </span>
+                        </span>
+                        
+                        </span>
                     </a>
                 </li>
             @endforeach

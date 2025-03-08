@@ -36,6 +36,8 @@
         color: #007bff;
     }
 </style>
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 </head>
 
 <body onload="myFunction();" id="top-page">
@@ -251,6 +253,15 @@
                                     {{strip_tags(str_replace("&nbsp;", " ", $post->content_ar))}}
                                     @endif
                                 </p>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <button class="btn btn-outline-primary like-btn" data-post-id="{{ $post->id }}">
+                                        <i class="fas fa-thumbs-up"></i> Like (<span class="like-count">{{ $post->likes->count() }}</span>)
+                                    </button>
+                                    <button class="btn btn-outline-danger dislike-btn" data-post-id="{{ $post->id }}">
+                                        <i class="fas fa-thumbs-down"></i> Dislike (<span class="dislike-count">{{ $post->dislikes->count() }}</span>)
+                                    </button>
+                                </div>
+                                
                             </div>
                         </div>
                     @endforeach
@@ -298,6 +309,15 @@
                                     {{strip_tags(str_replace("&nbsp;", " ", $post->content_en))}}
                                     @endif
                                 </p>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <button class="btn btn-outline-primary like-btn" data-post-id="{{ $post->id }}">
+                                        <i class="fas fa-thumbs-up"></i> Like (<span class="like-count">{{ $post->likes->count() }}</span>)
+                                    </button>
+                                    <button class="btn btn-outline-danger dislike-btn" data-post-id="{{ $post->id }}">
+                                        <i class="fas fa-thumbs-down"></i> Dislike (<span class="dislike-count">{{ $post->dislikes->count() }}</span>)
+                                    </button>
+                                </div>
+                                
                             </div>
                         </div>
                     @endforeach
@@ -479,6 +499,15 @@
                                     {{strip_tags(str_replace("&nbsp;", " ", $post->content_ar))}}
                                     @endif
                                 </p>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <button class="btn btn-outline-primary like-btn" data-post-id="{{ $post->id }}">
+                                        <i class="fas fa-thumbs-up"></i> Like (<span class="like-count">{{ $post->likes->count() }}</span>)
+                                    </button>
+                                    <button class="btn btn-outline-danger dislike-btn" data-post-id="{{ $post->id }}">
+                                        <i class="fas fa-thumbs-down"></i> Dislike (<span class="dislike-count">{{ $post->dislikes->count() }}</span>)
+                                    </button>
+                                </div>
+                                
                             </div>
                         </div>
                     @endforeach
@@ -524,6 +553,15 @@
                                     {{strip_tags(str_replace("&nbsp;", " ", $post->content_en))}}
                                     @endif
                                 </p>
+                                <div class="d-flex justify-content-between align-items-center mt-3">
+                                    <button class="btn btn-outline-primary like-btn" data-post-id="{{ $post->id }}">
+                                        <i class="fas fa-thumbs-up"></i> Like (<span class="like-count">{{ $post->likes->count() }}</span>)
+                                    </button>
+                                    <button class="btn btn-outline-danger dislike-btn" data-post-id="{{ $post->id }}">
+                                        <i class="fas fa-thumbs-down"></i> Dislike (<span class="dislike-count">{{ $post->dislikes->count() }}</span>)
+                                    </button>
+                                </div>
+                                
                             </div>
                         </div>
                     @endforeach
@@ -716,4 +754,39 @@
             }
         });
     </script>
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+
+    document.querySelectorAll('.like-btn').forEach(button => {
+        button.addEventListener('click', function () {
+            const postId = this.getAttribute('data-post-id');
+            axios.post(`/posts/${postId}/like`, {}, { headers: { 'X-CSRF-TOKEN': csrfToken } })
+                .then(response => updatePostLikes(postId, response.data.likes, response.data.dislikes))
+                .catch(error => console.error('Error liking post:', error));
+        });
+    });
+
+    document.querySelectorAll('.dislike-btn').forEach(button => {
+        button.addEventListener('click', function () {
+            const postId = this.getAttribute('data-post-id');
+            axios.post(`/posts/${postId}/dislike`, {}, { headers: { 'X-CSRF-TOKEN': csrfToken } })
+                .then(response => updatePostLikes(postId, response.data.likes, response.data.dislikes))
+                .catch(error => console.error('Error disliking post:', error));
+        });
+    });
+
+    function updatePostLikes(postId, likes, dislikes) {
+        const postElement = document.querySelector(`.like-btn[data-post-id="${postId}"]`).closest('.swiper-slide');
+        if (postElement) {
+            postElement.querySelector('.like-count').textContent = likes;
+            postElement.querySelector('.dislike-count').textContent = dislikes;
+        }
+    }
+});
+</script>
+
+    
 </body>
