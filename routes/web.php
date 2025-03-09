@@ -45,7 +45,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 // web.php
 
 // });
-
+Route::get("/post/{id}" , [HomeController::class,"post"]);
 
 Route::middleware('auth')->group(function () {
     Route::get('dashboard', function () {
