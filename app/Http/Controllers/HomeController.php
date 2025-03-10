@@ -75,4 +75,12 @@ class HomeController extends Controller
         $posts =  Post::all();
         return view('Web.Post', compact('post', 'relatedPosts', 'categories', 'partners' , 'posts'));
     }
+    public function privacy()
+    {
+     
+        $categories = Category::all();
+        $partners = Partner::all();
+        $posts =  Post::all();
+        return view('Web.privcy', compact( 'categories', 'partners' , 'posts'));
+    }
 }

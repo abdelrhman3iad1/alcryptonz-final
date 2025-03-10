@@ -6,7 +6,7 @@ return
     "HOME"=>"HOME",
     "ABOUT_US"=>"ABOUT US",
     "ARTICLES"=>"ARTICLES",
-    "TEAM"=>"TEAM",
+    "Privacy Policy" => "Privacy Policy",
     "ALCRYPTO_NEWS"=>"ALCRYPTO NEWS",
     "CONTACT_US"=>"CONTACT US",
     "Community_Management"=>"Community Management",

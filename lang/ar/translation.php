@@ -6,7 +6,7 @@ return
     "HOME" => "الرئيسية",
     "ABOUT_US" => "من نحن",
     "ARTICLES" => "المقالات",
-    "TEAM" => "الفريق",
+    "Privacy Policy" => "سياسة الخصوصية",
     "ALCRYPTO_NEWS" => "أخبار العملات الرقمية",
     "CONTACT_US" => "اتصل بنا",
     "Contact Info"=>"معلومات التواصل",

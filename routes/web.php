@@ -26,6 +26,7 @@ Route::post("register" , [UserAuthController::class , "register"])->name("regist
 Route::get("/about-us" , function(){
     return view('Web.aboutus');
 })->name("aboutUs");
+Route::get("/privacy" , [HomeController::class ,'privacy'])->name("privacy");
 
 Route::get("login" , [UserAuthController::class , "getLogin"])->name("get.login");
 Route::post("login" , [UserAuthController::class , "login"])->name("login");

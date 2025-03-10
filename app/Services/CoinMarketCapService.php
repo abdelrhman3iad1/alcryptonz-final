@@ -15,7 +15,8 @@ class CoinMarketCapService
             'base_uri' => 'https://pro-api.coinmarketcap.com/v1/',
             'headers' => [
                 'Accept' => 'application/json',
-                'X-CMC_PRO_API_KEY' => env('COINMARKETCAP_API_KEY'),
+                'X-CMC_PRO_API_KEY' => '2b79a321-9557-4129-8f3c-dae1c5a2449c',
+                'User-Agent'  => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/110.0.0.0 Safari/537.36'
             ],
             'verify' => false, // Disable SSL verification
         ]);

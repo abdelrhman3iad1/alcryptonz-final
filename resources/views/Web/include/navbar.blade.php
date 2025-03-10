@@ -65,7 +65,7 @@
                     <a href="#ar" class="nav-link spec2">{{__('translation.ARTICLES')}}</a>
                 </li>
                 <li class="nav-item">
-                    <a href="#te" class="nav-link spec2">{{__('translation.TEAM')}}</a>
+                    <a href="{{route('privacy')}}" class="nav-link spec2">{{__('translation.Privacy Policy')}}</a>
                 </li>
                 <li class="nav-item">
                     <a href="alcrypto-news.php" class="nav-link spec2">{{__('translation.ALCRYPTO_NEWS')}}</a>

@@ -1,16 +1,10 @@
 
-<?php
-  include "include/connection.php";
-  date_default_timezone_set("Africa/Cairo");
-  session_start();
-  include "include/header.php";
-   ?>
 
-
+@include('Web.include.header')
  <title>ALCRYPTONZ
 </title>
     <!-- Custom Styling -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="{{asset('Web/css/style.css')}}">
     
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2473974671507788"
      crossorigin="anonymous"></script>
@@ -20,7 +14,8 @@
 
 <body id="top-page">
     <!-- start navbar -->
-    <?php include "include/anotherNavBar.php"; ?>
+
+    @include('Web.include.anotherNavBar')
     <!-- end navbar -->
     <!--start Arrow to top Page -->
 <a href="#top-page" style="position:fixed;right:15px;bottom:15px;font-size:32px; color:black;z-index:68544;background-color:white;padding:0 5px;border-radius:5px;" ><i class="fas fa-chevron-circle-up" style="border:1px solid white;"></i></a>
@@ -118,31 +113,61 @@
            
                         </div>
                     
-                <div class="col-md-4">
-                     <!-- start social  -->
-                     <?php include_once "include/social.php"; ?>
-                    <!-- end social  -->
-                                       <!-- start latest Partners posts -->
-                                       <?php include_once "include/lateast-Partners-Posts.php"; ?>
-                    <!-- end latest Partners posts -->
-                <!-- start latest posts -->
-                       <?php include_once "include/lateastPosts.php"; ?>
-                    <!-- end latest posts -->
-                                                                         <!-- start latest alcrypto posts -->
-                                                                         <?php include_once "include/newsAl.php"; ?>
-                    <!-- end latest alcrypto posts -->
-                     <!-- start  categoreis -->
-                <?php include_once "include/catPart.php"; ?>
-                 <!-- end categoreis -->
-                         <!-- start contr  -->
-                         <?php include_once "include/contr.php"; ?>
-                    <!-- end contr  -->
+                  <!-- Sidebar -->
+                  <div class="col-md-4">
+                    <!-- Start Social -->
+                    @include("Web.include.social")
+                    <!-- End Social -->
+
+                    <!-- Start Latest Partners Posts -->
+                    @include("Web.include.lateast-Partners-Posts")
+                    <!-- End Latest Partners Posts -->
+
+                    <!-- Start Latest Posts -->
+                    @include("Web.include.lateastPosts")
+                    <!-- End Latest Posts -->
+
+                    <!-- Start Latest Alcrypto Posts -->
+                    @include("Web.include.newsAl")
+                    <!-- End Latest Alcrypto Posts -->
+
+                    <!-- Start Categories -->
+                    <div class="categories">
+                        <h4>كلمات دلالية</h4>
+                        <ul>
+                            @forelse($categories as $category)
+                                <a href="">
+                                    <li>
+                                        @if ($category->name == 'مقالات شركاء')
+                                        @foreach($partners as $partner)
+                
+                                        <span> {{ $partner->name }} </span>
+                                        @endforeach
+                                    @else
+                                        <span> {{ $category->name }} </span>
+                                    @endif
+                                    <span><i class="fas fa-chevron-right"></i></span>
+                                    </li>
+                                </a>
+                            @empty
+                                <li>
+                                    <b><center>لا يوجد تصنيفات</center></b>
+                                </li>
+                            @endforelse
+                        </ul>
+                    </div>
+                    <!-- End Categories -->
+
+                    <!-- Start Contributors -->
+                    @include("Web.include.contr")
+                    <!-- End Contributors -->
                 </div>
             </div>
         </div>
     </div>
     <!-- end content -->
         <!-- start footer -->
-        <?php include_once "include/underfooter.php"; ?>
-    <!-- end footer -->
-    <?php include_once "include/footer.php"; ?>
+        @include("Web.include.underfooter")
+    <!-- End Footer -->
+
+    @include("Web.include.footer")
