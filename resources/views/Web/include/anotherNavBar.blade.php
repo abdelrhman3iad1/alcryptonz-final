@@ -11,23 +11,28 @@
      
         <ul class="navbar-nav ml-auto" style="z-index: 566311111111111;">
             <li class="nav-item">
+                <li class="nav-item">
+                    <a href="#te" class="nav-link spec2">FAQ</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{route('privacy')}}" class="nav-link spec2">Privacy Policy</a>
+
+                </li>
+                <li class="nav-item">
+
                 <a href="index.php" class="nav-link spec2">HOME</a>
             </li>
             <li class="nav-item">
-                <a href="aboutus.php" class="nav-link spec2">ABOUT US</a>
+                <a href="{{route('aboutUs')}}" class="nav-link spec2">ABOUT US</a>
             </li>
-            <li class="nav-item">
+            {{-- <li class="nav-item">
                 <a href="#ar" class="nav-link spec2">ARTICLES</a>
-            </li>
-            <li class="nav-item">
-                <a href="#te" class="nav-link spec2">FAQ</a>
-            </li>
+            </li> --}}
+       
             {{-- <li class="nav-item">
                 <a href="alcrypto-news.php" class="nav-link spec2">ALCRYPTO NEWS</a>
             </li> --}}
-            <li class="nav-item">
-                <a href="#fo" class="nav-link spec2">CONTACT US</a>
-            </li>
+      
         </ul>
         <!-- Language Toggle -->
   
