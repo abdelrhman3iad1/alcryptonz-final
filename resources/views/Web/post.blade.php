@@ -1,253 +1,129 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="description" class="posr-dis" content=" ALCRYPTONZ" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!--facebook-->
-    <meta property="og:url" class="post-urls" content="" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" class="tit-li" content="" />
-    <meta property="og:description" class="posr-dis2" content="" />
-    <meta property="og:image" content="uploads/postImages/" />
-    <!--twitter-->
-    <meta name="twitter:title" content="">
-    <meta name="twitter:description" content="">
-    <meta name="twitter:image" content="uploads/postImages/">
-    <meta name="twitter:card" content="summary_large_image">
-    <!--IMPROVE SEO-->
-    <meta name="keywords"
-        content="العملات الرقمية ، مدونة الكريبتونز ، مقالات عن العملات الرقمية، العملات ، الرقمية ، alcryptonz ، ">
-    <meta name="copyright" content="جميع الحقوق محفوظة لفريق الكريبتونز">
     <meta name="email" content="contactus@alcryptonz.com">
     <link rel="canonical" href="https://www.alcryptonz.com/">
-    <!-- ICON  -->
-    <link rel="shortcut icon" type="image/jpeg" href='images/new-big-logo.jpeg' />
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href='css/all.css' />
-    <!-- Google Fonts -->
+    <link rel="shortcut icon" type="image/jpeg" href='{{ asset("images/new-big-logo.jpeg") }}' />
+    <link rel="stylesheet" href='{{ asset("Web/css/all.css") }}' />
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Almarai&display=swap" rel="stylesheet">
-    <!-- bootstrap Styling -->
-    <link rel="stylesheet" href="css/bootstrap.min.css">
-
-
-    <!-- Custom Styling -->
-    <link rel="stylesheet" href="css/style.css">
-    <title><?php  ?></title>
-
+    <link rel="stylesheet" href="{{ asset('Web/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('Web/css/style.css') }}">
+    <title>{{ $post->title_ar ?? '' }}</title>
     <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2473974671507788"
         crossorigin="anonymous"></script>
-
 </head>
 
 <body id="top-page">
-    <!-- start navbar -->
+    @include("Web.include.anotherNavBar")
 
-    {{-- @include ('include/anotherNavBar.php') --}}
-
-    <!-- end navbar -->
-    <!--start Arrow to top Page -->
     <a href="#top-page"
         style="position:fixed;right:15px;bottom:15px;font-size:32px; color:black;z-index:68544;background-color:white;padding:0 5px;border-radius:5px;"><i
             class="fas fa-chevron-circle-up" style="border:1px solid white;"></i></a>
-    <!--End Arrow to top Page -->
-    <!-- start content -->
     <div class="content">
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-
-
-                    <div class="post"style="direction:rtl">
+                    <div class="post" style="direction:rtl">
                         <div class="post-image">
-
-                            <img class="postimg" src="{{ asset($post->image) }}" alt="image here">
-
+                            <img class="postimg" src="{{ asset($post->image) }}" alt="{{ $post->title_ar }}">
                         </div>
-                        <div class="post-title posttir"style='overflow:hidden !important'>
+                        <div class="post-title posttir" style='overflow:hidden !important'>
                             <h2 style='width:100%;  word-wrap: break-word;'> {{ $post->title_ar }}</h2>
                         </div>
-                        <div class="share-post"style='direction:ltr !important'>
-
+                        <div class="share-post" style='direction:ltr !important'>
                             <ul>
-
-                                <li><a href="#"class="facebook-btn" target="_blank"><i
-                                            class="fab fa-facebook-square"></i></a></li>
-                                <li><a href="#"class="whats-btn" target="_blank"><i
-                                            class="fab fa-whatsapp-square"></i></a></li>
-                                <li> <a href="#"class="twiter-btn" target="_blank"><i
-                                            class="fab fa-twitter-square"></i></a></li>
-
+                                <li><a href="#" class="facebook-btn" target="_blank"><i class="fab fa-facebook-square"></i></a></li>
+                                <li><a href="#" class="whats-btn" target="_blank"><i class="fab fa-whatsapp-square"></i></a></li>
+                                <li> <a href="#" class="twiter-btn" target="_blank"><i class="fab fa-twitter-square"></i></a></li>
                                 <li><a class="email"
-                                        href="mailto:?subject=<?php echo $postT; ?>&amp;body=<?php echo $text; ?>"
+                                        href="mailto:?subject={{ $post->title_ar }}&amp;body={{ strip_tags(substr($post->content_ar, 0, 150) . '....') }}"
                                         onclick="window.open(this.href, 'windowName', 'width=500, height=400, left=24, top=24, scrollbars, resizable'); return false;"
                                         rel="nofollow"><i class="fas fa-envelope-square"></i></a></li>
                             </ul>
                         </div>
-                        <div class="post-details"style="overflow:hidden !important;">
+                        <div class="post-details" style="overflow:hidden !important;">
                             <p class="post-info">
                                 <span> {{ $post->user->name }}&nbsp;<i class="fas fa-user"></i></span><br>
-                                <span>{{ $post->created_at->format('Y-M-D') }}&nbsp; <i
-                                        class="far fa-calendar-alt"></i></span>
-                                @if ($post->category->name == 'مقالات الشركاء')
+                                <span>{{ $post->created_at->format('Y-m-d') }}&nbsp; <i class="far fa-calendar-alt"></i></span>
+
+                                @if ($post->category->name == 'مقالات شركاء')
                                     <span> {{ $post->partner->name }} &nbsp; <i class="fas fa-tags"></i> </span>
                                 @else
                                     <span> {{ $post->category->name }} &nbsp; <i class="fas fa-tags"></i> </span>
                                 @endif
-                            </p><?php $_SESSION['pd'] = $row['PostDate']; ?>
-                            <?php $_SESSION['pc'] = $row['postCategory']; ?>
+                            </p>
                             <div class="post-content">
-
-                                <div class="ad-banner bg-light py-2 mt-4 d-flex justify-content-center align-items-center col-md-10 col-11 mx-auto"
-                                    style="border: 1px dashed gray;">
-                                    <div class="row w-100">
-                                        <!-- Image Section -->
-                                        <div class="col-md-5">
-                                            <img src="images/chanel-1.jpg" alt="chanel-brand" class="w-100">
-                                        </div>
-                                        <!-- Content Section -->
-                                        <div
-                                            class="col-md-7 d-flex flex-column justify-content-center align-items-center mt-3 mt-md-0">
-                                            <h3>Banner Title</h3>
-                                            <p class="mt-3 text-center">Banner Ad Placeholder (Your Ad Content Here)</p>
-                                            <a href="" class="btn btn-primary mt-2">Link1</a>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <?php
-                                $rthg = str_replace('&nbsp;', ' ', $row['postContent']);
-                                echo $rthg;
-                                $_SESSION['conzo'] = strip_tags(substr($rthg, 0, 150) . '....');
-                                ?>
-
-                            </div>
-
-                        </div>
-                    </div>
-                    <?php
-                    // }}
-                    // }else{
-                    //     echo "<div style='font-weight:bold;color:red;font-size:28px;text-align:center'>";
-                    //     echo " <i class='fas fa-exclamation-triangle'></i> ";
-                    //     echo"هناك مشكلة";
-                    //     echo "</div>";
-                    // }
-                    ?>
-                    <!--منشورات لها علاقة-->
-
-
-                    <div class="ad-banner bg-light py-2 mt-4 d-flex justify-content-center align-items-center col-md-10 col-11 mx-auto"
-                        style="border: 1px dashed gray;">
-                        <div class="row w-100">
-                            <!-- Image Section -->
-                            <div class="col-md-5">
-                                <img src="images/chanel-1.jpg" alt="chanel-brand" class="w-100">
-                            </div>
-                            <!-- Content Section -->
-                            <div
-                                class="col-md-7 d-flex flex-column justify-content-center align-items-center mt-3 mt-md-0">
-                                <h3>Banner Title</h3>
-                                <p class="mt-3 text-center">Banner Ad Placeholder (Your Ad Content Here)</p>
-                                <a href="" class="btn btn-primary mt-2">Link1</a>
+                                {!! $post->content_ar !!}
                             </div>
                         </div>
                     </div>
 
                     <div class="related-posts">
-                        <h4> مقالات قد تعجبك</h4>
+                        <h4>مقالات قد تعجبك</h4>
                         <ul>
-                            <?php
-                            
-                            //    if( isset($_GET["idPost"])&&
-                            //     !empty($_GET["idPost"])&& filter_var( $_GET["idPost"],FILTER_VALIDATE_INT) ){
-                            
-                            //        $z=filter_var( $_GET["idPost"],FILTER_SANITIZE_NUMBER_INT);
-                            //     $querys="select * from post where postId <> ' $z' order by postId desc";
-                            //     @$execc=mysqli_query($con,$querys);
-                            //     if(mysqli_num_rows($execc)==0){
-                            // echo "<b><center>لا يوجد منشورات متعلقة بهذا المنشور</center></b>";
-                            //     }else{
-                            //     $nom=0;
-                            //    while($row=mysqli_fetch_assoc($execc)){
-                            //        $nom++;
-                            ?>
-
-                            <li>
-                                <a style="direction:rtl;text-align:right"href="post.php?idPost=<?php echo $row['postId']; ?>&cp=<?php echo $row['postCategory']; ?>"
-                                    target="_blank">
-                                    <span><img src="uploads/postImages/<?php echo $row['postImage']; ?>"alt="image here"
-                                            style="width:75px; height: 60px;"></span>
-                                    <span style="max-height:80px;overflow:hidden"><?php
-                                    
-                                    // echo $row['postTitle'];
-                                    ?></span>
-                                </a>
-                            </li>
-                            <?php
-                            //         if($nom==5){
-                            //             break;
-                            //                                     }
-                            //     }
-                            // }}else{
-                            
-                            //         echo "<div style='font-weight:bold;color:red;font-size:28px;text-align:center'>";
-                            //         echo " <i class='fas fa-exclamation-triangle'></i> ";
-                            //         echo"هناك مشكلة";
-                            //         echo "</div>";
-                            
-                            // }
-                            ?>
+                            @if($relatedPosts->count() > 0)
+                                @foreach($relatedPosts as $relatedPost)
+                                    <li>
+                                        <a style="direction:rtl;text-align:right" href="{{ route('showPost', ['id' => $relatedPost->id, 'category' => $relatedPost->category->id]) }}" target="_blank">
+                                            <span>
+                                                <img src="{{ asset($relatedPost->image) }}" alt="{{ $relatedPost->title_ar }}" style="width:75px; height: 60px;">
+                                            </span>
+                                            <span style="max-height:80px;overflow:hidden">{{ $relatedPost->title_ar }}</span>
+                                        </a>
+                                    </li>
+                                @endforeach
+                            @else
+                                <b><center>لا يوجد منشورات متعلقة بهذا المنشور</center></b>
+                            @endif
                         </ul>
                     </div>
                 </div>
 
                 <div class="col-md-4">
-                    <!-- start social  -->
-                    <?php include_once 'include/social.php'; ?>
-                    <!-- end social  -->
-                    <!-- start latest Partners posts -->
-                    <?php include_once 'include/lateast-Partners-Posts.php'; ?>
-                    <!-- end latest Partners posts -->
-
-                    <!-- start latest posts -->
-                    <?php include_once 'include/lateastPosts.php'; ?>
-                    <!-- end latest posts -->
-                    <!-- start latest alcrypto posts -->
-                    <?php include_once 'include/newsAl.php'; ?>
-                    <!-- end latest alcrypto posts -->
-                    <!-- start  categoreis -->
-                    <?php include_once 'include/catPart.php'; ?>
-                    <!-- end categoreis -->
-                    <!-- start contr  -->
-                    <?php include_once 'include/contr.php'; ?>
-                    <!-- end contr  -->
+                    @include("Web.include.social")
+                    @include("Web.include.lateast-Partners-Posts")
+                    @include("Web.include.lateastPosts")
+                    @include("Web.include.newsAl")
+                    <div class="categories">
+                        <h4>كلمات دلالية</h4>
+                        <ul>
+                            @forelse($categories as $category)
+                                <a href="">
+                                    <li>
+                                        @if ($category->name == 'مقالات شركاء')
+                                            @foreach($partners as $partner)
+                                                <span> {{ $partner->name }} </span>
+                                            @endforeach
+                                        @else
+                                            <span> {{ $category->name }} </span>
+                                        @endif
+                                        <span><i class="fas fa-chevron-right"></i></span>
+                                    </li>
+                                </a>
+                            @empty
+                                <li>
+                                    <b><center>لا يوجد تصنيفات</center></b>
+                                </li>
+                            @endforelse
+                        </ul>
+                    </div>
+                    @include("Web.include.contr")
                 </div>
             </div>
         </div>
     </div>
-    <!-- end content -->
-    <!-- start footer -->
-    <?php include_once 'include/underfooter.php'; ?>
-    <!-- end footer -->
-    <!-- JQuery and JS for bootstrap -->
-    <script src="js/jquery-3.6.0.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <!--Coin Price Marquee Widget-->
+
+    @include('Web.include.underfooter')
+    <script src="{{ asset('js/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
     <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/coinMarquee.js"></script>
-    <!-- online editor Styling -->
-    <script src="ckeditor/ckeditor.js"></script>
-    <script src="ckfinder/ckfinder.js"></script>
-    <!-- slick js-->
+    <script src='ckeditor/ckeditor.js'></script>
+    <script src='ckfinder/ckfinder.js'></script>
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
-    <!-- custom js-->
-    <script src="js/main.js"></script>
-    <script src="js/forshare.js"></script>
+    <script src='js/main.js'></script>
+    <script src='js/forshare.js'></script>
 </body>
-
 </html>

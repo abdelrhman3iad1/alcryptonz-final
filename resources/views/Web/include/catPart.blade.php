@@ -2,12 +2,16 @@
     <h4>كلمات دلالية</h4>
     <ul style="direction:rtl">
         @forelse($categories as $category)
-            <a style="direction:rtl" href="{{ route('categories.related', ['nameCategory' => $category->name]) }}">
-                <li style="direction:rtl">
-                    <span>{{ $category->name }}</span>
+            <li style="direction:rtl">
+                <a style="direction:rtl" href="{{ route('categories.related', ['nameCategory' => $category->name]) }}">
+                    @if ($category->name == 'مقالات شركاء')
+                        <span> {{ $partner->name ?? $category->name }} </span>
+                    @else
+                        <span> {{ $category->name }} </span>
+                    @endif
                     <span><i class="fas fa-chevron-right"></i></span>
-                </li>
-            </a>
+                </a>
+            </li>
         @empty
             <li>
                 <b><center>لا يوجد تصنيفات</center></b>

@@ -37,6 +37,7 @@
     }
 </style>
 <meta name="csrf-token" content="{{ csrf_token() }}">
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
 </head>
 
@@ -264,7 +265,7 @@
                                 
                             </div>
                         </div>
-                    @endforeach
+                    @endforeach 
                     @endforeach
                 </div>
             </div>
@@ -326,102 +327,17 @@
             </div>
     @endif
 
-    <!-- Collabs News -->
-    {{-- @if (config('app.locale')=='ar')
-    <div class="page-wrapper" style="padding:10px; text-align:center; overflow:hidden !important;">
-        <div class="post-slider mb-4">
-            <h3 class="slider-title"><i class="far fa-newspaper"></i> &nbsp;{{__('translation.Collabs News')}}</h3>
-            
-            <div class="swiper-container mx-auto p-2 shadow-lg overflow-hidden">
-                <div class="swiper-wrapper">
-                    @foreach ($posts as $post)
-                        <div class="swiper-slide border border-2 rounded-4">
-                            <div class="post p-3 shadow-sm rounded-3" style="direction:rtl; overflow:hidden;">
-                                <div class="div-img text-center mb-2">
-                                    <a href="post.php?idPost={{ $post->id }}" target="_blank">
-                                        @if ($post->image)
-                                            <img src="{{ asset($post->image) }}" alt="{{ $post->title_ar }}" class="img-fluid rounded-3" style="width: 100%;">
-                                        @else
-                                            <img src="{{ asset('images/placeholder.jpg') }}" alt="No Image Available" class="img-fluid rounded-3" style="width: 100%;">
-                                        @endif
-                                    </a>
-                                </div>
-                                <a href="post.php?idPost={{ $post->id }}" target="_blank" class="text-decoration-none">
-                                    <h4 class="text-dark text-truncate">{{ $post->title_ar }}</h4>
-                                </a>
-                                <span class="text-muted d-block small"> 
-                                    <i class="fas fa-user"></i> {{ $post->user->name }}
-                                </span>
-                                <span class="text-muted d-block small">
-                                    <i class="far fa-calendar-alt"></i> {{ $post->created_at->format('Y-m-d') }}
-                                </span>
-                                <span class="text-muted d-block small">
-                                    <i class="fas fa-tags"></i> {{ $post->category->name }}
-                                </span>
-                                <p>
-                                    @if (strlen($post->content_ar > 150))
-                                        {{strip_tags(substr(str_replace("&nbsp;", " ", $post->content_ar), 0, 350) . "....")}}
-                                    @else
-                                    {{strip_tags(str_replace("&nbsp;", " ", $post->content_ar))}}
-                                    @endif
-                                </p>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-    @endif
 
-    @if (config('app.locale')=='en')
-    <div class="page-wrapper" style="padding:10px; text-align:center; overflow:hidden !important;">
-        <div class="post-slider mb-4">
-            <h3 class="slider-title"><i class="far fa-newspaper"></i> &nbsp;{{__('translation.Collabs News')}}</h3>
-            
-            <div class="swiper-container mx-auto p-2 shadow-lg overflow-hidden">
-                <div class="swiper-wrapper">
-                    @foreach ($posts as $post)
-                        <div class="swiper-slide border border-2 rounded-4">
-                            <div class="post p-3 shadow-sm rounded-3" style="direction:rtl; overflow:hidden;">
-                                <div class="div-img text-center mb-2">
-                                    <a href="post.php?idPost={{ $post->id }}" target="_blank">
-                                        @if ($post->image)
-                                            <img src="{{ asset($post->image) }}" alt="{{ $post->title_en }}" class="img-fluid rounded-3" style="width: 100%;">
-                                        @else
-                                            <img src="{{ asset('images/placeholder.jpg') }}" alt="No Image Available" class="img-fluid rounded-3" style="width: 100%;">
-                                        @endif
-                                    </a>
-                                </div>
-                                <a href="post.php?idPost={{ $post->id }}" target="_blank" class="text-decoration-none">
-                                    <h4 class="text-dark text-truncate">{{ $post->title_en }}</h4>
-                                </a>
-                                <span class="text-muted d-block small"> 
-                                    <i class="fas fa-user"></i> {{ $post->user->name }}
-                                </span>
-                                <span class="text-muted d-block small">
-                                    <i class="far fa-calendar-alt"></i> {{ $post->created_at->format('Y-m-d') }}
-                                </span>
-                                <span class="text-muted d-block small">
-                                    <i class="fas fa-tags"></i> {{ $post->category->name }}
-                                </span>
-                                <p>
-                                    @if (strlen($post->content_en > 150))
-                                        {{strip_tags(substr(str_replace("&nbsp;", " ", $post->content_en), 0, 350) . "....")}}
-                                    @else
-                                    {{strip_tags(str_replace("&nbsp;", " ", $post->content_en))}}
-                                    @endif
-                                </p>
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-    @endif --}}
+   
 
             <p class='mt-4' style="text-align:center;color:green">
                 <i class="fas fa-hand-point-left"></i>{{__('translation. مرر يمينا او يسارا')}} <i class="fas fa-hand-point-right"></i><br> 
                 {{__('translation.لمشاهدة منشورات اخري')}}
             </p>
         </div>
+    
+    
+    
     </div>
 
     <!-- Show More Posts Button -->
@@ -756,34 +672,83 @@
     </script>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>
+<script>    
 document.addEventListener('DOMContentLoaded', function () {
     const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-
+    
     document.querySelectorAll('.like-btn').forEach(button => {
-        button.addEventListener('click', function () {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
             const postId = this.getAttribute('data-post-id');
-            axios.post(`/posts/${postId}/like`, {}, { headers: { 'X-CSRF-TOKEN': csrfToken } })
-                .then(response => updatePostLikes(postId, response.data.likes, response.data.dislikes))
-                .catch(error => console.error('Error liking post:', error));
+            
+            axios.post(`/posts/${postId}/like`, {}, { 
+                headers: { 'X-CSRF-TOKEN': csrfToken } 
+            })
+            .then(response => {
+                // Update the like count for this specific button
+                this.querySelector('.like-count').textContent = response.data.likes;
+                
+                // Find and update the related dislike button
+                const dislikeBtn = this.closest('.d-flex').querySelector('.dislike-btn');
+                if (dislikeBtn) {
+                    dislikeBtn.querySelector('.dislike-count').textContent = response.data.dislikes;
+                }
+                
+                // Optional: Show a toast or message
+                if (response.data.message) {
+                    showMessage(response.data.message);
+                }
+            })
+            .catch(error => console.error('Error liking post:', error));
         });
     });
-
+    
     document.querySelectorAll('.dislike-btn').forEach(button => {
-        button.addEventListener('click', function () {
+        button.addEventListener('click', function (e) {
+            e.preventDefault();
             const postId = this.getAttribute('data-post-id');
-            axios.post(`/posts/${postId}/dislike`, {}, { headers: { 'X-CSRF-TOKEN': csrfToken } })
-                .then(response => updatePostLikes(postId, response.data.likes, response.data.dislikes))
-                .catch(error => console.error('Error disliking post:', error));
+            
+            axios.post(`/posts/${postId}/dislike`, {}, { 
+                headers: { 'X-CSRF-TOKEN': csrfToken } 
+            })
+            .then(response => {
+                // Update the dislike count for this specific button
+                this.querySelector('.dislike-count').textContent = response.data.dislikes;
+                
+                // Find and update the related like button
+                const likeBtn = this.closest('.d-flex').querySelector('.like-btn');
+                if (likeBtn) {
+                    likeBtn.querySelector('.like-count').textContent = response.data.likes;
+                }
+                
+                // Optional: Show a toast or message
+                if (response.data.message) {
+                    showMessage(response.data.message);
+                }
+            })
+            .catch(error => console.error('Error disliking post:', error));
         });
     });
-
-    function updatePostLikes(postId, likes, dislikes) {
-        const postElement = document.querySelector(`.like-btn[data-post-id="${postId}"]`).closest('.swiper-slide');
-        if (postElement) {
-            postElement.querySelector('.like-count').textContent = likes;
-            postElement.querySelector('.dislike-count').textContent = dislikes;
-        }
+    
+    // Optional function to show messages
+    function showMessage(message) {
+        // This can be implemented with a toast library or a simple DOM manipulation
+        console.log(message);
+        
+        // Example simple implementation:
+        const messageElement = document.createElement('div');
+        messageElement.className = 'alert alert-success';
+        messageElement.textContent = message;
+        messageElement.style.position = 'fixed';
+        messageElement.style.top = '20px';
+        messageElement.style.right = '20px';
+        messageElement.style.zIndex = '9999';
+        
+        document.body.appendChild(messageElement);
+        
+        setTimeout(() => {
+            messageElement.remove();
+        }, 3000);
     }
 });
 </script>

@@ -7,8 +7,8 @@
     $_SESSION["keysss"]=bin2hex(random_bytes(32));
   }
   $csrfsss=hash_hmac("sha256","this is some string : search-result.php",$_SESSION["keysss"]);
-  include "include/header.php";
    ?>
+ @include("include.header.php")
 
 
  <title>Q&A
@@ -23,7 +23,9 @@
 
 <body id="top-page">
     <!-- start navbar -->
-    <?php include "include/anotherNavBar.php"; ?>
+    @include("include.anotherNavBar.php")
+
+ 
     <!-- end navbar -->
     <!--start Arrow to top Page -->
 <a href="#top-page" style="position:fixed;right:15px;bottom:15px;font-size:32px; color:black;z-index:68544;background-color:white;padding:0 5px;border-radius:5px;" ><i class="fas fa-chevron-circle-up" style="border:1px solid white;"></i></a>

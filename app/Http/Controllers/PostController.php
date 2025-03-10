@@ -162,7 +162,8 @@ class PostController extends Controller
     public function like(Post $post)
     {
         $user = auth()->user();
-    
+        $message = '';
+        
         if (!User::whereHas('likes', function ($query) use ($post) {
             $query->where('post_id', $post->id);
         })->where('id', $user->id)->exists()) {
@@ -178,23 +179,34 @@ class PostController extends Controller
                       ->where('post_id', $post->id)
                       ->delete();
             }
-    
-            return back()->with('success', 'You liked the post.');
+            
+            $message = 'You liked the post.';
         } else {
             Like::where('user_id', $user->id)
                 ->where('post_id', $post->id)
                 ->delete();
-    
-            return back()->with('success', 'You removed your like.');
+            
+            $message = 'You removed your like.';
         }
+        
+        // For AJAX requests, return JSON
+        if (request()->ajax()) {
+            return response()->json([
+                'likes' => $post->likes()->count(),
+                'dislikes' => $post->dislikes()->count(),
+                'message' => $message
+            ]);
+        }
+        
+        // For regular requests, redirect back
+        return back()->with('success', $message);
     }
-    /**
-     * Dislike a post.
-     */
+    
     public function dislike(Post $post)
     {
         $user = auth()->user();
-    
+        $message = '';
+        
         if (!User::whereHas('dislikes', function ($query) use ($post) {
             $query->where('post_id', $post->id);
         })->where('id', $user->id)->exists()) {
@@ -210,16 +222,28 @@ class PostController extends Controller
                     ->where('post_id', $post->id)
                     ->delete();
             }
-    
-            return back()->with('success', 'You disliked the post.');
+            
+            $message = 'You disliked the post.';
         } else {
             Dislike::where('user_id', $user->id)
                   ->where('post_id', $post->id)
                   ->delete();
-    
-            return back()->with('success', 'You removed your dislike.');
+            
+            $message = 'You removed your dislike.';
         }
-    }
+        
+        // For AJAX requests, return JSON
+        if (request()->ajax()) {
+            return response()->json([
+                'likes' => $post->likes()->count(),
+                'dislikes' => $post->dislikes()->count(),
+                'message' => $message
+            ]);
+        }
+        
+        // For regular requests, redirect back
+        return back()->with('success', $message);
+    }   
     public function search(Request $request)
     {
         $query = $request->input('query');    
@@ -232,7 +256,9 @@ class PostController extends Controller
                     })
                      ->get();
         $categories = Category::orderBy('id', 'desc')->get();
+        $partners = Partner::all();
 
-        return view('Web.search-result', compact('posts','categories'));
+        return view('Web.search-result', compact('posts','categories','partners'));
     }
+    
 }

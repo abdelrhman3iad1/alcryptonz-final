@@ -89,8 +89,15 @@
                             @forelse($categories as $category)
                                 <a href="">
                                     <li>
-                                        <span>{{ $category->name }}</span>
-                                        <span><i class="fas fa-chevron-right"></i></span>
+                                        @if ($category->name == 'مقالات شركاء')
+                                        @foreach($partners as $partner)
+                
+                                        <span> {{ $partner->name }} </span>
+                                        @endforeach
+                                    @else
+                                        <span> {{ $category->name }} </span>
+                                    @endif
+                                    <span><i class="fas fa-chevron-right"></i></span>
                                     </li>
                                 </a>
                             @empty

@@ -2,7 +2,6 @@
     <h4>أحدث مقالات الشركاء</h4>
     <ul>
         @php
-            // تصفية المقالات الخاصة بالشريك الذي معرفه 1 وأخذ أحدث 5 مقالات
             $filteredPosts = $posts->where('partner_id', 1)->take(5);
         @endphp
 

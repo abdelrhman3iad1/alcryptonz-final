@@ -23,7 +23,7 @@ class Post extends Model
         }
         public function partner()
         {
-            return $this->belongsTo(User::class);
+            return $this->belongsTo(Partner::class);
         }
 
         public function likes()

@@ -1,7 +1,7 @@
 <nav class="navbar nav-me bg-dark navbar-light navbar-expand-sm two-nav">
     <div class="container-fluid">
         <a href="index.php" class="navbar-brand" style="font-weight:bold;font-size:19px;color:white">
-            <img src="images/Alcryptonz_White_transparent.png" alt="Alcryptonz-logo" style="width:250px;height:44px;">
+            <img src="{{asset('images/Alcryptonz_White_transparent.png')}}" alt="Alcryptonz-logo" style="width:250px;height:44px;">
         </a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#menu" style="border:0; background-color:black;padding:10px 0 0">
             <i class="fas fa-bars navbar-toggler-icon" style="color:white !important;font-size:27px !important;"></i>

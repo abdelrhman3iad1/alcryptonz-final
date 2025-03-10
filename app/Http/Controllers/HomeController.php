@@ -63,7 +63,16 @@ class HomeController extends Controller
     }
     public function post($id)
     {
-        $post = Post::findOrFail($id);
-        return view("Web.post", compact("post"));
+        $post = Post::with(['category', 'partner', 'user'])->findOrFail($id);
+    
+        $relatedPosts = Post::where('category_id', $post->category_id)
+                            ->where('id', '!=', $post->id) 
+                            ->limit(5) 
+                            ->get();
+    
+        $categories = Category::all();
+        $partners = Partner::all();
+        $posts =  Post::all();
+        return view('Web.Post', compact('post', 'relatedPosts', 'categories', 'partners' , 'posts'));
     }
 }
