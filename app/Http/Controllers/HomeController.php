@@ -125,4 +125,11 @@ class HomeController extends Controller
             ->with('searchResults', $searchResults)
             ->with(compact('qas', 'categories', 'partners'));
     }
+    public function AllPosts($id)
+    {
+        $categories = Category::all();
+        $partners = Partner::all();
+        $posts =  Post::all();
+        return view('Web.show-all-posts', compact( 'categories', 'partners', 'posts'));
+    }
 }
