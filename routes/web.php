@@ -17,12 +17,12 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::get( '/qa', [HomeController::class, 'QA'])->name('qa.index');
+Route::post('/qa/search', [HomeController::class, 'search'])->name('qa.search');
 Route::get('/search', [PostController::class, 'search'])->name('search');
 
 Route::get("register" , [UserAuthController::class , "create"]);
 Route::post("register" , [UserAuthController::class , "register"])->name("register");
-
 Route::get("/about-us" , function(){
     return view('Web.aboutus');
 })->name("aboutUs");
@@ -39,8 +39,6 @@ Route::get("/{lang}",function($lang){
     }
     return redirect()->back();
 });
-
-// Route::middleware('locale')->group(function(){
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 // web.php

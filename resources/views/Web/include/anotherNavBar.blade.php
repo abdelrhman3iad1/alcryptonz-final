@@ -12,7 +12,7 @@
         <ul class="navbar-nav ml-auto" style="z-index: 566311111111111;">
             <li class="nav-item">
                 <li class="nav-item">
-                    <a href="#te" class="nav-link spec2">FAQ</a>
+                    <a href="{{route('qa.index')}}" class="nav-link spec2">FAQ</a>
                 </li>
                 <li class="nav-item">
                     <a href="{{route('privacy')}}" class="nav-link spec2">Privacy Policy</a>
@@ -20,7 +20,7 @@
                 </li>
                 <li class="nav-item">
 
-                <a href="index.php" class="nav-link spec2">HOME</a>
+                <a href="{{route('home')}}" class="nav-link spec2">HOME</a>
             </li>
             <li class="nav-item">
                 <a href="{{route('aboutUs')}}" class="nav-link spec2">ABOUT US</a>
