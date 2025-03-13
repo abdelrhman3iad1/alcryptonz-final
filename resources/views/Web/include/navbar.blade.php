@@ -68,7 +68,7 @@
                     <a href="#te" class="nav-link spec2">{{__('translation.TEAM')}}</a>
                 </li>
                 <li class="nav-item">
-                    <a href="alcrypto-news.php" class="nav-link spec2">{{__('translation.ALCRYPTO_NEWS')}}</a>
+                    <a href="{{route('crypto-news')}}" class="nav-link spec2">{{__('translation.ALCRYPTO_NEWS')}}</a>
                 </li>
                 <li class="nav-item">
                     <a href="#fo" class="nav-link spec2">{{__('translation.CONTACT_US')}}</a>
