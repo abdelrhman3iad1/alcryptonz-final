@@ -21,6 +21,7 @@ Route::get( '/qa', [HomeController::class, 'QA'])->name('qa.index');
 Route::post('/qa/search', [HomeController::class, 'search'])->name('qa.search');
 Route::get('/search', [PostController::class, 'search'])->name('search');
 Route::get( '/AllPosts', [HomeController::class, 'AllPosts'])->name('AllPosts');
+Route::get( '/crypto-news', [HomeController::class, 'cryptoNews'])->name('crypto-news');
 Route::get( '/categoriesRelated', [HomeController::class, 'categoriesRelated'])->name('categories.related');
 Route::get("register" , [UserAuthController::class , "create"]);
 Route::post("register" , [UserAuthController::class , "register"])->name("register");

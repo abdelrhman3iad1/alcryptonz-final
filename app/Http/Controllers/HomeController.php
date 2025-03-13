@@ -140,6 +140,14 @@ class HomeController extends Controller
     }
 
     public function categoriesRelated(){
-        
+
+    }
+
+    public function cryptoNews(){
+        $categories = Category::all();
+        $partners = Partner::all();
+        $posts =  Post::where('category_id',3)->get();
+        return view('Web.alcrypto-news', compact( 'categories', 'partners', 'posts'));
+    
     }
 }
