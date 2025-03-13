@@ -1,6 +1,6 @@
 <nav class="navbar nav-me bg-dark navbar-light navbar-expand-sm two-nav">
     <div class="container-fluid">
-        <a href="index.php" class="navbar-brand" style="font-weight:bold;font-size:19px;color:white">
+        <a href="{{route('home')}}" class="navbar-brand" style="font-weight:bold;font-size:19px;color:white">
             <img src="{{asset('images/Alcryptonz_White_transparent.png')}}" alt="Alcryptonz-logo" style="width:250px;height:44px;">
         </a>
         <button class="navbar-toggler" data-toggle="collapse" data-target="#menu" style="border:0; background-color:black;padding:10px 0 0">
@@ -12,18 +12,18 @@
         <ul class="navbar-nav ml-auto" style="z-index: 566311111111111;">
             <li class="nav-item">
                 <li class="nav-item">
-                    <a href="{{route('qa.index')}}" class="nav-link spec2">FAQ</a>
+                    <a href="{{route('qa.index')}}" class="nav-link spec2">{{__('translation.FAQ')}}</a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{route('privacy')}}" class="nav-link spec2">Privacy Policy</a>
+                    <a href="{{route('privacy')}}" class="nav-link spec2">{{__('translation.Privacy Policy')}}</a>
 
                 </li>
                 <li class="nav-item">
 
-                <a href="{{route('home')}}" class="nav-link spec2">HOME</a>
+                <a href="{{route('home')}}" class="nav-link spec2">{{__('translation.HOME')}}</a>
             </li>
             <li class="nav-item">
-                <a href="{{route('aboutUs')}}" class="nav-link spec2">ABOUT US</a>
+                <a href="{{route('aboutUs')}}" class="nav-link spec2">{{__('translation.ABOUT_US')}}</a>
             </li>
             {{-- <li class="nav-item">
                 <a href="#ar" class="nav-link spec2">ARTICLES</a>

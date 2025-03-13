@@ -105,15 +105,21 @@ class HomeController extends Controller
      */
     public function search(Request $request)
     {
-        $validator = Validator::make($request->all(), [
+        // $validator = Validator::make($request->all(), [
+        //     'searched' => 'required|string|max:190',
+        // ]);
+
+        // if ($validator->fails()) {
+        //     return back()->with('error', 'الذي بحثت عنة كبير جدا');
+        // }
+
+        $validated = $request->validate([
             'searched' => 'required|string|max:190',
         ]);
 
-        if ($validator->fails()) {
-            return back()->with('error', 'الذي بحثت عنة كبير جدا');
-        }
+        
 
-        $searchQuery = $request->input('searched');
+        $searchQuery = $validated['searched'];
         $searchResults = Qa::where('question_ar', 'like', '%' . $searchQuery . '%')
             ->orderBy('id', 'desc')
             ->get();
@@ -125,11 +131,15 @@ class HomeController extends Controller
             ->with('searchResults', $searchResults)
             ->with(compact('qas', 'categories', 'partners'));
     }
-    public function AllPosts($id)
+    public function AllPosts()
     {
         $categories = Category::all();
         $partners = Partner::all();
         $posts =  Post::all();
         return view('Web.show-all-posts', compact( 'categories', 'partners', 'posts'));
+    }
+
+    public function categoriesRelated(){
+        
     }
 }

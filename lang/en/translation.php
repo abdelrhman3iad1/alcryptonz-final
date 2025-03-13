@@ -8,6 +8,7 @@ return
     "ARTICLES"=>"ARTICLES",
     "Privacy Policy" => "Privacy Policy",
     "TEAM" => "TEAM",
+    "FAQ"=>"FAQ",
     "ALCRYPTO_NEWS"=>"ALCRYPTO NEWS",
     "CONTACT_US"=>"CONTACT US",
     "Community_Management"=>"Community Management",

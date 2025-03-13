@@ -1,15 +1,20 @@
 <?php
+/*
 include 'include/connection.php';
 date_default_timezone_set('Africa/Cairo');
 session_start();
-include 'include/header.php';
+include 'include/header.php'; */
+
 ?>
+@include("Web.include.header")
 
 
 <title>ALCRYPTONZ
 </title>
 <!-- Custom Styling -->
-<link rel="stylesheet" href="css/style.css">
+{{-- <link rel="stylesheet" href="css/style.css"> --}}
+<link rel="stylesheet" href="{{ asset('Web/css/style.css') }}">
+
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2473974671507788"
     crossorigin="anonymous"></script>
@@ -23,7 +28,9 @@ include 'include/header.php';
             class="fas fa-chevron-circle-up" style="border:1px solid white;"></i></a>
     <!--End Arrow to top Page -->
     <!-- start navbar -->
-    <?php include 'include/anotherNavBar.php'; ?>
+    <?php /*include 'include/anotherNavBar.php';*/ ?>
+    @include('Web.include.anotherNavBar')
+
     <!-- end navbar -->
     <!-- start content -->
     <div class="content">
@@ -32,15 +39,17 @@ include 'include/header.php';
                 <div class="col-md-8">
                     <h2 class="header-title">Show All Posts </h2>
                     <div class="parent-news">
-                        <?php 
+                        <?php /*
             
                                         $que="select * from post where knowMe !=1  order by postId desc";
 @$execezw=mysqli_query($con,$que);
 $v=0;
 while($row=mysqli_fetch_assoc($execezw)){ 
     $v++;
-
+*/
 ?>
+@foreach ($posts as $post )
+
                         <!--POST-->
                         <a style="direction:rtl;overflow:hidden"href="post.php?idPost={{$post->id}}"
                             target='_blank'>
@@ -48,43 +57,54 @@ while($row=mysqli_fetch_assoc($execezw)){
                                 <div class="img-div"> <img src="{{asset($post->image)}}"
                                         alt="image here"></div>
                                 <h3 style="color:black;word-wrap: break-word;">{{$post->title_ar}} </h3>
-                                <span> <?php echo $row['postAuthor']; ?> &nbsp;<i class="fas fa-user"></i></span><br>
-                                <span><?php echo $row['PostDate']; ?>&nbsp; <i class="far fa-calendar-alt"></i></span>&nbsp;&nbsp;
-                                <span> <?php echo $row['postCategory']; ?> &nbsp; <i class="fas fa-tags"></i> </span>
-                                <p style="color:black;"> <?php
-                                if (strlen($row['postContent']) > 150) {
-                                    echo strip_tags(substr(str_replace('&nbsp;', ' ', $row['postContent']), 0, 350) . '....');
+                                <span> <? /*php echo $row['postAuthor']; */?>{{$post->user->name}} &nbsp;<i class="fas fa-user"></i></span><br>
+                                <span><?php /*echo $row['PostDate'];*/ ?>{{$post->created_at}} &nbsp; <i class="far fa-calendar-alt"></i></span>&nbsp;&nbsp;
+                                <span> <?php /*echo $row['postCategory'];*/ ?> {{$post->category->name}} &nbsp; <i class="fas fa-tags"></i> </span>
+                                <p style="color:black;"> @php
+                                if (strlen($post->content_en) > 150) {
+                                    echo strip_tags(substr(str_replace('&nbsp;', ' ', $post->content_en), 0, 350) . '....');
                                 } else {
-                                    echo strip_tags(str_replace('&nbsp;', ' ', $row['postContent']));
+                                    echo strip_tags(str_replace('&nbsp;', ' ', $post->content_en));
                                 }
-                                ?> </p>
+                                @endphp </p>
                             </div>
                         </a>
-                        <?php 
+                       
                      
-                } ?>
+@endforeach
+                
 
                     </div>
                 </div>
 
                 <div class="col-md-4">
                     <!-- start social  -->
-                    <?php include_once 'include/social.php'; ?>
+                    <?php /* include_once 'include/social.php'; */  ?>
+                    @include("Web.include.social")
                     <!-- end social  -->
                     <!-- start latest Partners posts -->
-                    <?php include_once 'include/lateast-Partners-Posts.php'; ?>
+                    <?php /* include_once 'include/lateast-Partners-Posts.php'; */  ?>
+                    @include("Web.include.lateast-Partners-Posts")
                     <!-- end latest Partners posts -->
                     <!-- start latest posts -->
-                    <?php include_once 'include/lateastPosts.php'; ?>
+                    @include("Web.include.lateastPosts")
+
+                    <?php /* include_once 'include/lateastPosts.php'; */ ?>
                     <!-- end latest posts -->
                     <!-- start latest alcrypto posts -->
-                    <?php include_once 'include/newsAl.php'; ?>
+                    @include("Web.include.newsAl")
+
+                    <?php /* include_once 'include/newsAl.php'; */  ?>
                     <!-- end latest alcrypto posts -->
                     <!-- start  categoreis -->
-                    <?php include_once 'include/catPart.php'; ?>
+                    @include("Web.include.catPart")
+
+                    <?php /* include_once 'include/catPart.php'; */  ?>
                     <!-- end categoreis -->
                     <!-- start contr  -->
-                    <?php include_once 'include/contr.php'; ?>
+                    @include("Web.include.contr")
+
+                    <?php /* include_once 'include/contr.php'; */ ?>
                     <!-- end contr  -->
                 </div>
             </div>
@@ -92,6 +112,9 @@ while($row=mysqli_fetch_assoc($execezw)){
     </div>
     <!-- end content -->
     <!-- start footer -->
-    <?php include_once 'include/underfooter.php'; ?>
+    <?php /*include_once 'include/underfooter.php'; ?>
     <!-- end footer -->
-    <?php include_once 'include/footer.php'; ?>
+    <?php include_once 'include/footer.php'; */?>
+
+@include("Web.include.underfooter")
+@include("Web.include.footer")

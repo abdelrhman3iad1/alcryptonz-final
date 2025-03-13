@@ -9,7 +9,9 @@
 
 <body id="top-page">
     <!-- start navbar -->
-    @include('Web.include.navbar')
+    {{-- @include('Web.include.navbar') --}}
+    @include('Web.include.anotherNavBar')
+
     <!--start Arrow to top Page -->
 <a href="#top-page" style="position:fixed;right:15px;bottom:15px;font-size:32px; color:black;z-index:68544;background-color:white;padding:0 5px;border-radius:5px;" ><i class="fas fa-chevron-circle-up" style="border:1px solid white;"></i></a>
 <!--End Arrow to top Page -->
