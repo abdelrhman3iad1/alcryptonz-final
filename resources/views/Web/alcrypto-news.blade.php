@@ -49,7 +49,7 @@
                             
                         
                                <!--POST-->
-                               <a style="direction:rtl;overflow:hidden" href="post.php?idPost={{$post->id}} ?>"target='_blank'> <div class="small-post">
+                               <a style="direction:rtl;overflow:hidden" href="{{ route('showPost', $post->id) }}"target='_blank'> <div class="small-post">
                       <div class="img-div"><img src="{{asset($post->image)}}" alt="image here"></div>
                         <h3 style="color:black;word-wrap: break-word;"><?php /* echo $row["postTitle"]; */?> {{$post->title_en}} </h3>
                         <span> <?php /* echo $row["postAuthor"]; */?> {{$post->user->name}} &nbsp;<i class="fas fa-user"></i></span><br>

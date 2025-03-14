@@ -139,8 +139,15 @@ class HomeController extends Controller
         return view('Web.show-all-posts', compact('categories', 'partners', 'posts'));
     }
 
-    public function categoriesRelated() {}
+    public function categoriesRelated($id)
+    {
 
+        $posts = Post::all();
+        $categoryPosts = Post::where('category_id', "=", $id)->get();
+        $categories = Category::all();
+        $partners = Partner::all();
+        return view("Web.categories-related", compact('categoryPosts', "posts", "categories", "partners"));
+    }
     public function cryptoNews()
     {
         $categories = Category::all();

@@ -82,34 +82,34 @@
                 </div>
 
                 <div class="col-md-4">
+                    <!-- start social  -->
+                    <?php /* include_once 'include/social.php'; */  ?>
                     @include("Web.include.social")
+                    <!-- end social  -->
+                    <!-- start latest Partners posts -->
+                    <?php /* include_once 'include/lateast-Partners-Posts.php'; */  ?>
                     @include("Web.include.lateast-Partners-Posts")
+                    <!-- end latest Partners posts -->
+                    <!-- start latest posts -->
                     @include("Web.include.lateastPosts")
+
+                    <?php /* include_once 'include/lateastPosts.php'; */ ?>
+                    <!-- end latest posts -->
+                    <!-- start latest alcrypto posts -->
                     @include("Web.include.newsAl")
-                    <div class="categories">
-                        <h4>كلمات دلالية</h4>
-                        <ul>
-                            @forelse($categories as $category)
-                                <a href="">
-                                    <li>
-                                        @if ($category->name == 'مقالات شركاء')
-                                            @foreach($partners as $partner)
-                                                <span> {{ $partner->name }} </span>
-                                            @endforeach
-                                        @else
-                                            <span> {{ $category->name }} </span>
-                                        @endif
-                                        <span><i class="fas fa-chevron-right"></i></span>
-                                    </li>
-                                </a>
-                            @empty
-                                <li>
-                                    <b><center>لا يوجد تصنيفات</center></b>
-                                </li>
-                            @endforelse
-                        </ul>
-                    </div>
+
+                    <?php /* include_once 'include/newsAl.php'; */  ?>
+                    <!-- end latest alcrypto posts -->
+                    <!-- start  categoreis -->
+                    @include("Web.include.catPart")
+
+                    <?php /* include_once 'include/catPart.php'; */  ?>
+                    <!-- end categoreis -->
+                    <!-- start contr  -->
                     @include("Web.include.contr")
+
+                    <?php /* include_once 'include/contr.php'; */ ?>
+                    <!-- end contr  -->
                 </div>
             </div>
         </div>

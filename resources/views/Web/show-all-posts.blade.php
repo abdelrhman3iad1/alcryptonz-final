@@ -51,7 +51,7 @@ while($row=mysqli_fetch_assoc($execezw)){
 @foreach ($posts as $post )
 
                         <!--POST-->
-                        <a style="direction:rtl;overflow:hidden"href="post.php?idPost={{$post->id}}"
+                        <a style="direction:rtl;overflow:hidden"href="{{ route('showPost', $post->id) }}"
                             target='_blank'>
                             <div class="small-post">
                                 <div class="img-div"> <img src="{{asset($post->image)}}"

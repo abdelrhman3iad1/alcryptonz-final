@@ -24,7 +24,7 @@ Route::get('/search', [PostController::class, 'search'])->name('search');
 Route::get('/AllPosts', [HomeController::class, 'AllPosts'])->name('AllPosts');
 Route::get('/AllPartnersPosts', [HomeController::class, 'AllPartnersPosts'])->name('AllPartnersPosts');
 Route::get('/crypto-news', [HomeController::class, 'cryptoNews'])->name('crypto-news');
-Route::get('/categoriesRelated', [HomeController::class, 'categoriesRelated'])->name('categories.related');
+Route::get('/categoriesRelated/{id}', [HomeController::class, 'categoriesRelated'])->name('categories.related');
 Route::get("register", [UserAuthController::class, "create"]);
 Route::post("register", [UserAuthController::class, "register"])->name("register");
 Route::get("/about-us", function () {

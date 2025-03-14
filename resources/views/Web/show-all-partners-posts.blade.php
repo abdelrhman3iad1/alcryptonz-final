@@ -26,12 +26,12 @@
                     <h2 class="header-title">Show All Collabs Posts </h2>
                     <div class="parent-news">
 
-
+                            @if(isset($partnerPosts))
                         <!--post-->
                         @foreach ($partnerPosts as $post)
                             <a style="direction:rtl;overflow:hidden"
-                                href="post.php?idPost={{ $post->id }}"target='_blank'>
-                                <div class="small-post">
+                            href="{{ route('showPost', $post->id) }}" target="_blank">
+                            <div class="small-post">
                                     <div class="img-div"> <img src="{{ asset($post->image) }}" alt="image here"></div>
                                     <h3 style="color:black;word-wrap: break-word;">{{ $post->title_ar }}</h3>
                                     <span> {{ $post->user->name }} &nbsp;<i class="fas fa-user"></i></span><br>
@@ -48,41 +48,42 @@
                                 </div>
                             </a>
                         @endforeach
-
+                        @else
+                        <b><center>لا يوجد منشورات   </center></b>
+                        @endif
+                            
                     </div>
                 </div>
-
+               
                 <div class="col-md-4">
-                    @include('Web.include.social')
-                    @include('Web.include.lateast-Partners-Posts')
-                    @include('Web.include.lateastPosts')
-                    @include('Web.include.newsAl')
-                    <div class="categories">
-                        <h4>كلمات دلالية</h4>
-                        <ul>
-                            @forelse($categories as $category)
-                                <a href="">
-                                    <li>
-                                        @if ($category->name == 'مقالات شركاء')
-                                            @foreach ($partners as $partner)
-                                                <span> {{ $partner->name }} </span>
-                                            @endforeach
-                                        @else
-                                            <span> {{ $category->name }} </span>
-                                        @endif
-                                        <span><i class="fas fa-chevron-right"></i></span>
-                                    </li>
-                                </a>
-                            @empty
-                                <li>
-                                    <b>
-                                        <center>لا يوجد تصنيفات</center>
-                                    </b>
-                                </li>
-                            @endforelse
-                        </ul>
-                    </div>
-                    @include('Web.include.contr')
+                    <!-- start social  -->
+                    <?php /* include_once 'include/social.php'; */  ?>
+                    @include("Web.include.social")
+                    <!-- end social  -->
+                    <!-- start latest Partners posts -->
+                    <?php /* include_once 'include/lateast-Partners-Posts.php'; */  ?>
+                    @include("Web.include.lateast-Partners-Posts")
+                    <!-- end latest Partners posts -->
+                    <!-- start latest posts -->
+                    @include("Web.include.lateastPosts")
+
+                    <?php /* include_once 'include/lateastPosts.php'; */ ?>
+                    <!-- end latest posts -->
+                    <!-- start latest alcrypto posts -->
+                    @include("Web.include.newsAl")
+
+                    <?php /* include_once 'include/newsAl.php'; */  ?>
+                    <!-- end latest alcrypto posts -->
+                    <!-- start  categoreis -->
+                    @include("Web.include.catPart")
+
+                    <?php /* include_once 'include/catPart.php'; */  ?>
+                    <!-- end categoreis -->
+                    <!-- start contr  -->
+                    @include("Web.include.contr")
+
+                    <?php /* include_once 'include/contr.php'; */ ?>
+                    <!-- end contr  -->
                 </div>
             </div>
         </div>

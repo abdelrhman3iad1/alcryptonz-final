@@ -39,7 +39,7 @@
                         @else
                             @foreach ($posts as $post)
                                 <!-- Post -->
-                                <a href="{{ route('posts.show', $post->id) }}" class="post-link">
+                                <a href="{{ route('showPost', $post->id) }}" class="post-link">
                                     <div class="small-post">
                                         <div class="img-div">
                                             <img src="{{ asset($post->image) }}" alt="صورة المنشور">
@@ -64,54 +64,35 @@
                     </div>
                 </div>
 
-                <!-- Sidebar -->
                 <div class="col-md-4">
-                    <!-- Start Social -->
+                    <!-- start social  -->
+                    <?php /* include_once 'include/social.php'; */  ?>
                     @include("Web.include.social")
-                    <!-- End Social -->
-
-                    <!-- Start Latest Partners Posts -->
+                    <!-- end social  -->
+                    <!-- start latest Partners posts -->
+                    <?php /* include_once 'include/lateast-Partners-Posts.php'; */  ?>
                     @include("Web.include.lateast-Partners-Posts")
-                    <!-- End Latest Partners Posts -->
-
-                    <!-- Start Latest Posts -->
+                    <!-- end latest Partners posts -->
+                    <!-- start latest posts -->
                     @include("Web.include.lateastPosts")
-                    <!-- End Latest Posts -->
 
-                    <!-- Start Latest Alcrypto Posts -->
+                    <?php /* include_once 'include/lateastPosts.php'; */ ?>
+                    <!-- end latest posts -->
+                    <!-- start latest alcrypto posts -->
                     @include("Web.include.newsAl")
-                    <!-- End Latest Alcrypto Posts -->
 
-                    <!-- Start Categories -->
-                    <div class="categories">
-                        <h4>كلمات دلالية</h4>
-                        <ul>
-                            @forelse($categories as $category)
-                                <a href="">
-                                    <li>
-                                        @if ($category->name == 'مقالات شركاء')
-                                        @foreach($partners as $partner)
-                
-                                        <span> {{ $partner->name }} </span>
-                                        @endforeach
-                                    @else
-                                        <span> {{ $category->name }} </span>
-                                    @endif
-                                    <span><i class="fas fa-chevron-right"></i></span>
-                                    </li>
-                                </a>
-                            @empty
-                                <li>
-                                    <b><center>لا يوجد تصنيفات</center></b>
-                                </li>
-                            @endforelse
-                        </ul>
-                    </div>
-                    <!-- End Categories -->
+                    <?php /* include_once 'include/newsAl.php'; */  ?>
+                    <!-- end latest alcrypto posts -->
+                    <!-- start  categoreis -->
+                    @include("Web.include.catPart")
 
-                    <!-- Start Contributors -->
+                    <?php /* include_once 'include/catPart.php'; */  ?>
+                    <!-- end categoreis -->
+                    <!-- start contr  -->
                     @include("Web.include.contr")
-                    <!-- End Contributors -->
+
+                    <?php /* include_once 'include/contr.php'; */ ?>
+                    <!-- end contr  -->
                 </div>
             </div>
         </div>
