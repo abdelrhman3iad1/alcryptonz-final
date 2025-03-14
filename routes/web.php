@@ -17,27 +17,29 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get( '/qa', [HomeController::class, 'QA'])->name('qa.index');
+
+Route::get('/qa', [HomeController::class, 'QA'])->name('qa.index');
 Route::post('/qa/search', [HomeController::class, 'search'])->name('qa.search');
 Route::get('/search', [PostController::class, 'search'])->name('search');
-Route::get( '/AllPosts', [HomeController::class, 'AllPosts'])->name('AllPosts');
-Route::get( '/crypto-news', [HomeController::class, 'cryptoNews'])->name('crypto-news');
-Route::get( '/categoriesRelated', [HomeController::class, 'categoriesRelated'])->name('categories.related');
-Route::get("register" , [UserAuthController::class , "create"]);
-Route::post("register" , [UserAuthController::class , "register"])->name("register");
-Route::get("/about-us" , function(){
+Route::get('/AllPosts', [HomeController::class, 'AllPosts'])->name('AllPosts');
+Route::get('/AllPartnersPosts', [HomeController::class, 'AllPartnersPosts'])->name('AllPartnersPosts');
+Route::get('/crypto-news', [HomeController::class, 'cryptoNews'])->name('crypto-news');
+Route::get('/categoriesRelated', [HomeController::class, 'categoriesRelated'])->name('categories.related');
+Route::get("register", [UserAuthController::class, "create"]);
+Route::post("register", [UserAuthController::class, "register"])->name("register");
+Route::get("/about-us", function () {
     return view('Web.aboutus');
 })->name("aboutUs");
-Route::get("/privacy" , [HomeController::class ,'privacy'])->name("privacy");
+Route::get("/privacy", [HomeController::class, 'privacy'])->name("privacy");
 
-Route::get("login" , [UserAuthController::class , "getLogin"])->name("get.login");
-Route::post("login" , [UserAuthController::class , "login"])->name("login");
+Route::get("login", [UserAuthController::class, "getLogin"])->name("get.login");
+Route::post("login", [UserAuthController::class, "login"])->name("login");
 
-Route::get("/{lang}",function($lang){
-    if($lang == "ar"){
-        session()->put("lang","ar");
-    }else{
-        session()->put("lang","en");
+Route::get("/{lang}", function ($lang) {
+    if ($lang == "ar") {
+        session()->put("lang", "ar");
+    } else {
+        session()->put("lang", "en");
     }
     return redirect()->back();
 });
@@ -46,7 +48,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 // web.php
 
 // });
-Route::get('/post/{id}' , [HomeController::class,"post"])->name('showPost');
+Route::get('/post/{id}', [HomeController::class, "post"])->name('showPost');
 
 Route::middleware('auth')->group(function () {
     Route::get('dashboard', function () {
@@ -61,6 +63,5 @@ Route::middleware('auth')->group(function () {
     })->name('change-password');
 
     Route::post('change-password', [UserAuthController::class, 'changePassword'])->name('change-password-function');
-
 });
-require __DIR__. "/dashboard.php";
+require __DIR__ . "/dashboard.php";

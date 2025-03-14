@@ -342,7 +342,7 @@
 
     <!-- Show More Posts Button -->
     <div style="text-align:center;padding:20px 0" id="ar">
-        <a class="show-butx" href="show-all-partners-posts.php">{{__("translation.Show More")}}</a>
+        <a class="show-butx" href="{{route("AllPartnersPosts")}}">{{__("translation.Show More")}}</a>
     </div>
 
     <!-- Currency Converter -->
