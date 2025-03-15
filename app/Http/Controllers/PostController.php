@@ -157,93 +157,65 @@ class PostController extends Controller
         $post->delete();
         return redirect()->route('posts.index')->with('success', 'تم حذف المقال بنجاح');
     }
-
+                    
     
     public function like(Post $post)
     {
         $user = auth()->user();
         $message = '';
-        
-        if (!User::whereHas('likes', function ($query) use ($post) {
-            $query->where('post_id', $post->id);
-        })->where('id', $user->id)->exists()) {
-            Like::create([
-                'user_id' => $user->id,
-                'post_id' => $post->id,
-            ]);
     
-            if (User::whereHas('dislikes', function ($query) use ($post) {
-                $query->where('post_id', $post->id);
-            })->where('id', $user->id)->exists()) {
-                Dislike::where('user_id', $user->id)
-                      ->where('post_id', $post->id)
-                      ->delete();
-            }
-            
-            $message = 'You liked the post.';
-        } else {
-            Like::where('user_id', $user->id)
-                ->where('post_id', $post->id)
-                ->delete();
-            
+        // Check if the user has already disliked the post
+        if ($user->dislikes()->where('post_id', $post->id)->exists()) {
+            // Remove the dislike
+            $user->dislikes()->where('post_id', $post->id)->delete();
+        }
+    
+        // Toggle the like
+        if ($user->likes()->where('post_id', $post->id)->exists()) {
+            // Remove the like
+            $user->likes()->where('post_id', $post->id)->delete();
             $message = 'You removed your like.';
+        } else {
+            // Add the like
+            $user->likes()->create(['post_id' => $post->id]);
+            $message = 'You liked the post.';
         }
-        
-        // For AJAX requests, return JSON
-        if (request()->ajax()) {
-            return response()->json([
-                'likes' => $post->likes()->count(),
-                'dislikes' => $post->dislikes()->count(),
-                'message' => $message
-            ]);
-        }
-        
-        // For regular requests, redirect back
-        return back()->with('success', $message);
+    
+        return response()->json([
+            'likes' => $post->likes()->count(),
+            'dislikes' => $post->dislikes()->count(),
+            'message' => $message
+        ]);
     }
     
     public function dislike(Post $post)
     {
         $user = auth()->user();
         $message = '';
-        
-        if (!User::whereHas('dislikes', function ($query) use ($post) {
-            $query->where('post_id', $post->id);
-        })->where('id', $user->id)->exists()) {
-            Dislike::create([
-                'user_id' => $user->id,
-                'post_id' => $post->id,
-            ]);
     
-            if (User::whereHas('likes', function ($query) use ($post) {
-                $query->where('post_id', $post->id);
-            })->where('id', $user->id)->exists()) {
-                Like::where('user_id', $user->id)
-                    ->where('post_id', $post->id)
-                    ->delete();
-            }
-            
-            $message = 'You disliked the post.';
-        } else {
-            Dislike::where('user_id', $user->id)
-                  ->where('post_id', $post->id)
-                  ->delete();
-            
+        // Check if the user has already liked the post
+        if ($user->likes()->where('post_id', $post->id)->exists()) {
+            // Remove the like
+            $user->likes()->where('post_id', $post->id)->delete();
+        }
+    
+        // Toggle the dislike
+        if ($user->dislikes()->where('post_id', $post->id)->exists()) {
+            // Remove the dislike
+            $user->dislikes()->where('post_id', $post->id)->delete();
             $message = 'You removed your dislike.';
+        } else {
+            // Add the dislike
+            $user->dislikes()->create(['post_id' => $post->id]);
+            $message = 'You disliked the post.';
         }
-        
-        // For AJAX requests, return JSON
-        if (request()->ajax()) {
-            return response()->json([
-                'likes' => $post->likes()->count(),
-                'dislikes' => $post->dislikes()->count(),
-                'message' => $message
-            ]);
-        }
-        
-        // For regular requests, redirect back
-        return back()->with('success', $message);
-    }   
+    
+        return response()->json([
+            'likes' => $post->likes()->count(),
+            'dislikes' => $post->dislikes()->count(),
+            'message' => $message
+        ]);
+    } 
     public function search(Request $request)
     {
         $query = $request->input('query');    

@@ -1,4 +1,4 @@
-@include("Web.include.header")
+@include('Web.include.header')
 
 <title>ALCRYPTONZ</title>
 <!-- CSS -->
@@ -7,9 +7,127 @@
 
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2473974671507788" crossorigin="anonymous"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2473974671507788"
+    crossorigin="anonymous"></script>
 
 <style>
+    
+    /* Base button styling */
+    .btn-style {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        /* Space between icon and text */
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    /* Like button styling */
+    .like-btn {
+        background-color: #4CAF50;
+        /* Green */
+        color: white;
+    }
+
+    .like-btn:hover {
+        background-color: #45a049;
+        /* Darker green */
+        transform: scale(1.05);
+        /* Slightly enlarge on hover */
+    }
+
+    /* Dislike button styling */
+    .dislike-btn {
+        background-color: #f44336;
+        /* Red */
+        color: white;
+    }
+
+    .dislike-btn:hover {
+        background-color: #d32f2f;
+        /* Darker red */
+        transform: scale(1.05);
+        /* Slightly enlarge on hover */
+    }
+
+    /* Icon styling */
+    .icon {
+        font-size: 18px;
+    }
+
+    /* Message styling */
+    .message {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #555;
+    }
+
+    /* Container for Like and Dislike buttons */
+    .likes-dislikes {
+        display: flex;
+        gap: 10px;
+        /* المسافة بين الـ buttons */
+        margin-top: 10px;
+    }
+
+    /* Base button styling */
+    .btn-style {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        /* المسافة بين الأيقونة والنص */
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    /* Like button styling */
+    .like-btn {
+        background-color: #4CAF50;
+        /* لون أخضر */
+        color: white;
+    }
+
+    .like-btn:hover {
+        background-color: #45a049;
+        /* لون أخضر غامق */
+        transform: scale(1.05);
+        /* تكبير بسيط عند الـ hover */
+    }
+
+    /* Dislike button styling */
+    .dislike-btn {
+        background-color: #f44336;
+        /* لون أحمر */
+        color: white;
+    }
+
+    .dislike-btn:hover {
+        background-color: #d32f2f;
+        /* لون أحمر غامق */
+        transform: scale(1.05);
+        /* تكبير بسيط عند الـ hover */
+    }
+
+    /* أيقونات Font Awesome */
+    .fas {
+        font-size: 16px;
+    }
+
+    /* الرسالة */
+    .message {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #555;
+    }
+
     .converter-container {
         max-width: 500px;
         margin: 50px auto;
@@ -18,17 +136,21 @@
         border-radius: 10px;
         box-shadow: 0 0 10px rgba(0, 0, 0, 0.437);
     }
+
     .converter-container h2 {
         text-align: center;
         margin-bottom: 20px;
         color: #333;
     }
+
     .form-group {
         margin-bottom: 15px;
     }
+
     .form-group label {
         font-weight: bold;
     }
+
     .result {
         margin-top: 20px;
         font-size: 1.2em;
@@ -38,17 +160,18 @@
 </style>
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body onload="myFunction();" id="top-page">
     @include('Web.starting')
-    @include("Web.include.navbar")
+    @include('Web.include.navbar')
 
     <!-- Crypto Market Ticker -->
     <div class="parrent-sliders" style="background-color:#171924 !important">
         <script type="text/javascript" src="https://files.coinmarketcap.com/static/widget/coinMarquee.js"></script>
-        <div id="coinmarketcap-widget-marquee" coins="1,1027,825,5444" currency="USD" theme="dark" transparent="true" show-symbol-logo="true"></div>
+        <div id="coinmarketcap-widget-marquee" coins="1,1027,825,5444" currency="USD" theme="dark" transparent="true"
+            show-symbol-logo="true"></div>
     </div>
 
     <!-- Hero Section -->
@@ -58,12 +181,14 @@
                 <h1>ALCRYPTONZ</h1>
                 <h3>Hard Choices, Great Destiny</h3>
                 <h5>فريق عربي يهدف إلى الربط بين عالم العملات الرقمية والحياة اليومية</h5>
-                <a href="aboutus.php">{{__("translation.Who We Are")}}</a>
+                <a href="aboutus.php">{{ __('translation.Who We Are') }}</a>
             </div>
         </div>
-        <svg class='editorial-border' preserveAspectRatio='none' viewBox='0 24 150 28' xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>
+        <svg class='editorial-border' preserveAspectRatio='none' viewBox='0 24 150 28'
+            xmlns='http://www.w3.org/2000/svg' xmlns:xlink='http://www.w3.org/1999/xlink'>
             <defs>
-                <path d='M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z' id='gentle-wave'></path>
+                <path d='M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z' id='gentle-wave'>
+                </path>
             </defs>
             <g class='parallax1'>
                 <use fill='#f461c1' x='50' xlink:href='#gentle-wave' y='3'></use>
@@ -81,34 +206,32 @@
     </main>
 
     <!-- Back to Top Button -->
-    <a href="#top-page" style="position:fixed;right:15px;bottom:15px;font-size:32px;color:black;z-index:68544;background-color:white;padding:0 5px;border-radius:5px;">
+    <a href="#top-page"
+        style="position:fixed;right:15px;bottom:15px;font-size:32px;color:black;z-index:68544;background-color:white;padding:0 5px;border-radius:5px;">
         <i class="fas fa-chevron-circle-up" style="border:1px solid white;"></i>
     </a>
 
     <!-- Promotional Banner -->
-    @if(isset($promotions[0]))
-    <div class="ad-banner bg-light py-2 mt-4 d-flex justify-content-center align-items-center col-md-10 col-11 mx-auto shadow-sm" 
-         style="border: 1px dashed gray; border-radius: 15px; overflow: hidden;">
-        <div class="row w-100 align-items-center">
-            <div class="col-md-5 d-flex justify-content-md-start justify-content-center">
-                <img src="{{ asset($promotions[0]->image) }}" 
-                     alt="{{ $promotions[0]->name }}" 
-                     class="rounded-lg" 
-                     style="max-width: 60%; height: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-            </div>
-            <div class="col-md-7 d-flex flex-column justify-content-center align-items-center mt-3 mt-md-0">
-                <h3 class="font-weight-bold text-primary">{{ $promotions[0]->name }}</h3>
-                <p class="mt-3 text-center text-muted" style="font-size: 1.1rem; line-height: 1.6;">
-                    {{ $promotions[0]->description }}
-                </p>
-                <a href="{{ $promotions[0]->website_url }}" 
-                   class="btn btn-primary mt-2 px-4 py-2" 
-                   style="font-size: 1rem; border-radius: 25px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-                    {{__('translation.Visit Here')}}
-                </a>
+    @if (isset($promotions[0]))
+        <div class="ad-banner bg-light py-2 mt-4 d-flex justify-content-center align-items-center col-md-10 col-11 mx-auto shadow-sm"
+            style="border: 1px dashed gray; border-radius: 15px; overflow: hidden;">
+            <div class="row w-100 align-items-center">
+                <div class="col-md-5 d-flex justify-content-md-start justify-content-center">
+                    <img src="{{ asset($promotions[0]->image) }}" alt="{{ $promotions[0]->name }}" class="rounded-lg"
+                        style="max-width: 60%; height: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                </div>
+                <div class="col-md-7 d-flex flex-column justify-content-center align-items-center mt-3 mt-md-0">
+                    <h3 class="font-weight-bold text-primary">{{ $promotions[0]->name }}</h3>
+                    <p class="mt-3 text-center text-muted" style="font-size: 1.1rem; line-height: 1.6;">
+                        {{ $promotions[0]->description }}
+                    </p>
+                    <a href="{{ $promotions[0]->website_url }}" class="btn btn-primary mt-2 px-4 py-2"
+                        style="font-size: 1rem; border-radius: 25px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                        {{ __('translation.Visit Here') }}
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
     @endif
 
     <!-- Services Section -->
@@ -118,23 +241,25 @@
             <div class="services-parent">
                 <div class="one-serv">
                     <div><i class="fas fa-users"></i></div>
-                    <h4>{{__("translation.Community_Management")}}</h4>
-                    <p>{{__("translation.Experts in community management and currently working with several Crypto projects")}}.</p>
+                    <h4>{{ __('translation.Community_Management') }}</h4>
+                    <p>{{ __('translation.Experts in community management and currently working with several Crypto projects') }}.
+                    </p>
                 </div>
                 <div class="one-serv">
                     <div><i class="fas fa-bullhorn"></i></div>
-                    <h4>{{__("translation.Marketing")}}</h4>
-                    <p>{{__("translation.Global marketing services for Crypto Projects in the Arabian area.")}}</p>
+                    <h4>{{ __('translation.Marketing') }}</h4>
+                    <p>{{ __('translation.Global marketing services for Crypto Projects in the Arabian area.') }}</p>
                 </div>
                 <div class="one-serv">
                     <div><i class="fas fa-envelope"></i></div>
-                    <h4>{{__("translation.Crypto News")}}</h4>
-                    <p>{{__("translation.Up-to-date news for everything related to Cryptocurrencies.")}}</p>
+                    <h4>{{ __('translation.Crypto News') }}</h4>
+                    <p>{{ __('translation.Up-to-date news for everything related to Cryptocurrencies.') }}</p>
                 </div>
                 <div class="one-serv">
                     <div><i class="fas fa-flag"></i></div>
-                    <h4>{{__("translation.Crypto Knowledge")}}</h4>
-                    <p>{{__("translation.Simplified articles explaining the rules of cryptocurrency for beginners.")}}</p>
+                    <h4>{{ __('translation.Crypto Knowledge') }}</h4>
+                    <p>{{ __('translation.Simplified articles explaining the rules of cryptocurrency for beginners.') }}
+                    </p>
                 </div>
             </div>
         </div>
@@ -146,29 +271,32 @@
                     <div class="swiper-slide">
                         <div class="one-serv text-center">
                             <div class='py-2'><i class="fas fa-users"></i></div>
-                            <h4>{{__("translation.Community Management")}}</h4>
-                            <p>{{__("translation.Experts in community management and currently working with several Crypto projects.")}}</p>
+                            <h4>{{ __('translation.Community Management') }}</h4>
+                            <p>{{ __('translation.Experts in community management and currently working with several Crypto projects.') }}
+                            </p>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="one-serv text-center">
                             <div class='py-2'><i class="fas fa-bullhorn"></i></div>
-                            <h4>{{__("translation.Marketing")}}</h4>
-                            <p>{{__("translation.Global marketing services for Crypto Projects in the Arabian area.")}}</p>
+                            <h4>{{ __('translation.Marketing') }}</h4>
+                            <p>{{ __('translation.Global marketing services for Crypto Projects in the Arabian area.') }}
+                            </p>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="one-serv text-center">
                             <div class='py-2'><i class="fas fa-envelope"></i></div>
-                            <h4>{{__("translation.Crypto News")}}</h4>
-                            <p>{{__("translation.Up-to-date news for everything related to Cryptocurrencies.")}}</p>
+                            <h4>{{ __('translation.Crypto News') }}</h4>
+                            <p>{{ __('translation.Up-to-date news for everything related to Cryptocurrencies.') }}</p>
                         </div>
                     </div>
                     <div class="swiper-slide">
                         <div class="one-serv text-center">
                             <div class='py-2'><i class="fas fa-flag"></i></div>
-                            <h4>{{__("translation.Crypto Knowledge")}}</h4>
-                            <p>{{__("translation.Simplified articles explaining the rules of cryptocurrency for beginners.")}}</p>
+                            <h4>{{ __('translation.Crypto Knowledge') }}</h4>
+                            <p>{{ __('translation.Simplified articles explaining the rules of cryptocurrency for beginners.') }}
+                            </p>
                         </div>
                     </div>
                 </div>
@@ -177,185 +305,217 @@
     </div>
 
     <!-- Partners Carousel -->
-    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel" style="background: linear-gradient(125deg, #00FF57 0%, #010033 40%, #460043 70%, #F0FFC5 100%), linear-gradient(55deg, #0014C9 0%, #410060 100%), linear-gradient(300deg, #FFC700 0%, #001AFF 100%), radial-gradient(135% 215% at 115% 40%, #393939 0%, #393939 40%, #849561 calc(40% + 1px), #849561 60%, #EED690 calc(60% + 1px), #EED690 80%, #ECEFD8 calc(80% + 1px), #ECEFD8 100%), linear-gradient(125deg, #282D4F 0%, #282D4F 40%, #23103A calc(40% + 1px), #23103A 70%, #A0204C calc(70% + 1px), #A0204C 88%, #FF6C00 calc(88% + 1px), #FF6C00 100%); background-blend-mode: overlay, screen, overlay, overlay, normal; padding: 20px 20px 50px 20px; position: relative;">
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"
+        style="background: linear-gradient(125deg, #00FF57 0%, #010033 40%, #460043 70%, #F0FFC5 100%), linear-gradient(55deg, #0014C9 0%, #410060 100%), linear-gradient(300deg, #FFC700 0%, #001AFF 100%), radial-gradient(135% 215% at 115% 40%, #393939 0%, #393939 40%, #849561 calc(40% + 1px), #849561 60%, #EED690 calc(60% + 1px), #EED690 80%, #ECEFD8 calc(80% + 1px), #ECEFD8 100%), linear-gradient(125deg, #282D4F 0%, #282D4F 40%, #23103A calc(40% + 1px), #23103A 70%, #A0204C calc(70% + 1px), #A0204C 88%, #FF6C00 calc(88% + 1px), #FF6C00 100%); background-blend-mode: overlay, screen, overlay, overlay, normal; padding: 20px 20px 50px 20px; position: relative;">
         <div class="custom-shape-divider-top-1629555121">
-            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" class="shape-fill"></path>
+            <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120"
+                preserveAspectRatio="none">
+                <path
+                    d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z"
+                    class="shape-fill"></path>
             </svg>
         </div>
 
-        <h2 class="inside-slider" style="padding-top:30px;font-weight:bold"><i class="far fa-handshake"></i> &nbsp; {{__("translation.Collabs")}} </h2>
-        
+        <h2 class="inside-slider" style="padding-top:30px;font-weight:bold"><i class="far fa-handshake"></i> &nbsp;
+            {{ __('translation.Collabs') }} </h2>
+
         <ol class="carousel-indicators">
             @foreach ($partners as $index => $partner)
-                <li data-target="#carouselExampleIndicators" data-slide-to="{{ $index }}" class="{{ $index == 0 ? 'active' : '' }}"></li>
+                <li data-target="#carouselExampleIndicators" data-slide-to="{{ $index }}"
+                    class="{{ $index == 0 ? 'active' : '' }}"></li>
             @endforeach
         </ol>
-        
+
         <div class="carousel-inner" style="border-radius:10px">
             @foreach ($partners as $index => $partner)
                 <div class="carousel-item {{ $index == 0 ? 'active' : '' }}">
                     <a href="{{ $partner->website_url }}" style="text-align:center">
                         <div class="cover-ph" style="border-radius: 5px 50px 5px 50px">
-                            <img style="border-radius:20px" src='{{ asset($partner->image) }}' alt='collabs partner at Alcryptonz'>
+                            <img style="border-radius:20px" src='{{ asset($partner->image) }}'
+                                alt='collabs partner at Alcryptonz'>
                         </div>
                     </a>
                 </div>
             @endforeach
         </div>
-        
+
         <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-            <i class="carousel-control-prev-icon fas fa-chevron-left prev" aria-hidden="true" style="color:white !important;font-size:21px !important"></i>
-            <span class="sr-only">{{__("translation.Previous")}}</span>
+            <i class="carousel-control-prev-icon fas fa-chevron-left prev" aria-hidden="true"
+                style="color:white !important;font-size:21px !important"></i>
+            <span class="sr-only">{{ __('translation.Previous') }}</span>
         </a>
         <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-            <i class="carousel-control-next-icon fas fa-chevron-right next" aria-hidden="true" style="color:white !important;font-size:21px !important"></i>
-            <span class="sr-only">{{__("translation.Next")}}</span>
+            <i class="carousel-control-next-icon fas fa-chevron-right next" aria-hidden="true"
+                style="color:white !important;font-size:21px !important"></i>
+            <span class="sr-only">{{ __('translation.Next') }}</span>
         </a>
     </div>
 
     <!-- Collabs News -->
-    @if (config('app.locale')=='ar')
-    <div class="page-wrapper" style="padding:10px; text-align:center; overflow:hidden !important;">
-        <div class="post-slider mb-4">
-            <h3 class="slider-title"><i class="far fa-newspaper"></i> &nbsp;{{__('translation.Collabs News')}}</h3>
-            
-            <div class="swiper-container mx-auto p-2 shadow-lg overflow-hidden">
-                <div class="swiper-wrapper">
-                    @foreach ($partners as $partner)
-                    @foreach ($partner->posts as $post)
-                        <div class="swiper-slide border border-2 rounded-4">
-                            <div class="post p-3 shadow-sm rounded-3" style="direction:rtl; overflow:hidden;">
-                                <div class="div-img text-center mb-2">
-                                    <a href="post.php?idPost={{ $post->id }}" target="_blank">
-                                        @if ($post->image)
-                                            <img src="{{ asset($post->image) }}" alt="{{ $post->title_ar }}" class="img-fluid rounded-3" style="width: 100%;">
-                                        @else
-                                            <img src="{{ asset('images/placeholder.jpg') }}" alt="No Image Available" class="img-fluid rounded-3" style="width: 100%;">
-                                        @endif
-                                    </a>
+    @if (config('app.locale') == 'ar')
+        <div class="page-wrapper" style="padding:10px; text-align:center; overflow:hidden !important;">
+            <div class="post-slider mb-4">
+                <h3 class="slider-title"><i class="far fa-newspaper"></i> &nbsp;{{ __('translation.Collabs News') }}
+                </h3>
+
+                <div class="swiper-container mx-auto p-2 shadow-lg overflow-hidden">
+                    <div class="swiper-wrapper">
+                        @foreach ($partners as $partner)
+                            @foreach ($partner->posts as $post)
+                                <div class="swiper-slide border border-2 rounded-4">
+                                    <div class="post p-3 shadow-sm rounded-3" style="direction:rtl; overflow:hidden;">
+                                        <div class="div-img text-center mb-2">
+                                            <a href="{{ route('showPost', $post->id) }}" target="_blank">
+                                                @if ($post->image)
+                                                    <img src="{{ asset($post->image) }}" alt="{{ $post->title_ar }}"
+                                                        class="img-fluid rounded-3" style="width: 100%;">
+                                                @else
+                                                    <img src="{{ asset('images/placeholder.jpg') }}"
+                                                        alt="No Image Available" class="img-fluid rounded-3"
+                                                        style="width: 100%;">
+                                                @endif
+                                            </a>
+                                        </div>
+                                        <a href="post.php?idPost={{ $post->id }}" target="_blank"
+                                            class="text-decoration-none">
+                                            <h4 class="text-dark text-truncate">{{ $post->title_ar }}</h4>
+                                        </a>
+                                        <span class="text-muted d-block small">
+                                            <i class="fas fa-user"></i> {{ $partner->name }}
+                                        </span>
+                                        <span class="text-muted d-block small">
+                                            <i class="far fa-calendar-alt"></i>
+                                            {{ $post->created_at->format('Y-m-d') }}
+                                        </span>
+                                        <span class="text-muted d-block small">
+                                            <i class="fas fa-tags"></i> {{ $post->category->name }}
+                                        </span>
+                                        <p>
+                                            @if (strlen($post->content_ar > 150))
+                                                {{ strip_tags(substr(str_replace('&nbsp;', ' ', $post->content_ar), 0, 350) . '....') }}
+                                            @else
+                                                {{ strip_tags(str_replace('&nbsp;', ' ', $post->content_ar)) }}
+                                            @endif
+                                        </p>
+                                        <div class="d-flex justify-content-between align-items-center mt-3">
+                                            <button class="btn btn-outline-primary like-btn"
+                                                data-post-id="{{ $post->id }}">
+                                                <i class="fas fa-thumbs-up"></i> Like (<span
+                                                    class="like-count">{{ $post->likes->count() }}</span>)
+                                            </button>
+                                            <button class="btn btn-outline-danger dislike-btn"
+                                                data-post-id="{{ $post->id }}">
+                                                <i class="fas fa-thumbs-down"></i> Dislike (<span
+                                                    class="dislike-count">{{ $post->dislikes->count() }}</span>)
+                                            </button>
+                                        </div>
+
+                                    </div>
                                 </div>
-                                <a href="post.php?idPost={{ $post->id }}" target="_blank" class="text-decoration-none">
-                                    <h4 class="text-dark text-truncate">{{ $post->title_ar }}</h4>
-                                </a>
-                                <span class="text-muted d-block small"> 
-                                    <i class="fas fa-user"></i> {{ $partner->name }}
-                                </span>
-                                <span class="text-muted d-block small">
-                                    <i class="far fa-calendar-alt"></i> {{ $post->created_at->format('Y-m-d') }}
-                                </span>
-                                <span class="text-muted d-block small">
-                                    <i class="fas fa-tags"></i> {{ $post->category->name }}
-                                </span>
-                                <p>
-                                    @if (strlen($post->content_ar > 150))
-                                        {{strip_tags(substr(str_replace("&nbsp;", " ", $post->content_ar), 0, 350) . "....")}}
-                                    @else
-                                    {{strip_tags(str_replace("&nbsp;", " ", $post->content_ar))}}
-                                    @endif
-                                </p>
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <button class="btn btn-outline-primary like-btn" data-post-id="{{ $post->id }}">
-                                        <i class="fas fa-thumbs-up"></i> Like (<span class="like-count">{{ $post->likes->count() }}</span>)
-                                    </button>
-                                    <button class="btn btn-outline-danger dislike-btn" data-post-id="{{ $post->id }}">
-                                        <i class="fas fa-thumbs-down"></i> Dislike (<span class="dislike-count">{{ $post->dislikes->count() }}</span>)
-                                    </button>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    @endforeach 
-                    @endforeach
+                            @endforeach
+                        @endforeach
+                    </div>
                 </div>
-            </div>
     @endif
 
-    @if (config('app.locale')=='en')
-    <div class="page-wrapper" style="padding:10px; text-align:center; overflow:hidden !important;">
-        <div class="post-slider mb-4">
-            <h3 class="slider-title"><i class="far fa-newspaper"></i> &nbsp;{{__('translation.Collabs News')}}</h3>
-            
-            <div class="swiper-container mx-auto p-2 shadow-lg overflow-hidden">
-                <div class="swiper-wrapper">
-                    @foreach ($partners as $partner)
-                    @foreach ($partner->posts as $post)
-                        <div class="swiper-slide border border-2 rounded-4">
-                            <div class="post p-3 shadow-sm rounded-3" style="direction:rtl; overflow:hidden;">
-                                <div class="div-img text-center mb-2">
-                                    <a href="post.php?idPost={{ $post->id }}" target="_blank">
-                                        @if ($post->image)
-                                            <img src="{{ asset($post->image) }}" alt="{{ $post->title_en }}" class="img-fluid rounded-3" style="width: 100%;">
-                                        @else
-                                            <img src="{{ asset('images/placeholder.jpg') }}" alt="No Image Available" class="img-fluid rounded-3" style="width: 100%;">
-                                        @endif
-                                    </a>
+    @if (config('app.locale') == 'en')
+        <div class="page-wrapper" style="padding:10px; text-align:center; overflow:hidden !important;">
+            <div class="post-slider mb-4">
+                <h3 class="slider-title"><i class="far fa-newspaper"></i> &nbsp;{{ __('translation.Collabs News') }}
+                </h3>
+
+                <div class="swiper-container mx-auto p-2 shadow-lg overflow-hidden">
+                    <div class="swiper-wrapper">
+                        @foreach ($partners as $partner)
+                            @foreach ($partner->posts as $post)
+                                <div class="swiper-slide border border-2 rounded-4">
+                                    <div class="post p-3 shadow-sm rounded-3" style="direction:rtl; overflow:hidden;">
+                                        <div class="div-img text-center mb-2">
+                                            <a href="{{ route('showPost', $post->id) }}" target="_blank">
+                                                @if ($post->image)
+                                                    <img src="{{ asset($post->image) }}" alt="{{ $post->title_en }}"
+                                                        class="img-fluid rounded-3" style="width: 100%;">
+                                                @else
+                                                    <img src="{{ asset('images/placeholder.jpg') }}"
+                                                        alt="No Image Available" class="img-fluid rounded-3"
+                                                        style="width: 100%;">
+                                                @endif
+                                            </a>
+                                        </div>
+                                        <a href="post.php?idPost={{ $post->id }}" target="_blank"
+                                            class="text-decoration-none">
+                                            <h4 class="text-dark text-truncate">{{ $post->title_en }}</h4>
+                                        </a>
+                                        <span class="text-muted d-block small">
+                                            <i class="fas fa-user"></i> {{ $partner->name }}
+                                        </span>
+                                        <span class="text-muted d-block small">
+                                            <i class="far fa-calendar-alt"></i>
+                                            {{ $post->created_at->format('Y-m-d') }}
+                                        </span>
+                                        <span class="text-muted d-block small">
+                                            <i class="fas fa-tags"></i> {{ $post->category->name }}
+                                        </span>
+                                        <p>
+                                            @if (strlen($post->content_en > 150))
+                                                {{ strip_tags(substr(str_replace('&nbsp;', ' ', $post->content_en), 0, 350) . '....') }}
+                                            @else
+                                                {{ strip_tags(str_replace('&nbsp;', ' ', $post->content_en)) }}
+                                            @endif
+                                        </p>
+                                        <div class="likes-dislikes">
+                                            <button class="like-btn btn-style" data-post-id="{{ $post->id }}">
+                                                <i class="fas fa-thumbs-up"></i> <!-- أيقونة Like -->
+                                                <span class="like-count"
+                                                    data-post-id="{{ $post->id }}">{{ $post->likes()->count() }}</span>
+                                            </button>
+    
+                                            <button class="dislike-btn btn-style" data-post-id="{{ $post->id }}">
+                                                <i class="fas fa-thumbs-down"></i> <!-- أيقونة Dislike -->
+                                                <span class="dislike-count"
+                                                    data-post-id="{{ $post->id }}">{{ $post->dislikes()->count() }}</span>
+                                            </button>
+                                        </div>
+                                        <div class="message" data-post-id="{{ $post->id }}"></div>
+                                    </div>
                                 </div>
-                                <a href="post.php?idPost={{ $post->id }}" target="_blank" class="text-decoration-none">
-                                    <h4 class="text-dark text-truncate">{{ $post->title_en }}</h4>
-                                </a>
-                                <span class="text-muted d-block small"> 
-                                    <i class="fas fa-user"></i> {{ $partner->name }}
-                                </span>
-                                <span class="text-muted d-block small">
-                                    <i class="far fa-calendar-alt"></i> {{ $post->created_at->format('Y-m-d') }}
-                                </span>
-                                <span class="text-muted d-block small">
-                                    <i class="fas fa-tags"></i> {{ $post->category->name }}
-                                </span>
-                                <p>
-                                    @if (strlen($post->content_en > 150))
-                                        {{strip_tags(substr(str_replace("&nbsp;", " ", $post->content_en), 0, 350) . "....")}}
-                                    @else
-                                    {{strip_tags(str_replace("&nbsp;", " ", $post->content_en))}}
-                                    @endif
-                                </p>
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <button class="btn btn-outline-primary like-btn" data-post-id="{{ $post->id }}">
-                                        <i class="fas fa-thumbs-up"></i> Like (<span class="like-count">{{ $post->likes->count() }}</span>)
-                                    </button>
-                                    <button class="btn btn-outline-danger dislike-btn" data-post-id="{{ $post->id }}">
-                                        <i class="fas fa-thumbs-down"></i> Dislike (<span class="dislike-count">{{ $post->dislikes->count() }}</span>)
-                                    </button>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    @endforeach
-                    @endforeach
+                            @endforeach
+                        @endforeach
+                    </div>
                 </div>
-            </div>
     @endif
 
 
-   
 
-            <p class='mt-4' style="text-align:center;color:green">
-                <i class="fas fa-hand-point-left"></i>{{__('translation. مرر يمينا او يسارا')}} <i class="fas fa-hand-point-right"></i><br> 
-                {{__('translation.لمشاهدة منشورات اخري')}}
-            </p>
-        </div>
-    
-    
-    
+
+    <p class='mt-4' style="text-align:center;color:green">
+        <i class="fas fa-hand-point-left"></i>{{ __('translation. مرر يمينا او يسارا') }} <i
+            class="fas fa-hand-point-right"></i><br>
+        {{ __('translation.لمشاهدة منشورات اخري') }}
+    </p>
+    </div>
+
+
+
     </div>
 
     <!-- Show More Posts Button -->
     <div style="text-align:center;padding:20px 0" id="ar">
-        <a class="show-butx" href="{{route("AllPartnersPosts")}}">{{__("translation.Show More")}}</a>
+        <a class="show-butx" href="{{ route('AllPartnersPosts') }}">{{ __('translation.Show More') }}</a>
     </div>
 
     <!-- Currency Converter -->
     <div class="converter-container">
-        <h2>{{ __("translation.Currency Converter") }}</h2>
+        <h2>{{ __('translation.Currency Converter') }}</h2>
         <form id="converter-form">
             @csrf
             <div class="form-group">
-                <label for="amount">{{ __("translation.The Value") }} :</label>
-                <input type="text" class="form-control" name="amount" id="amount" placeholder="{{ __('translation.Enter the Value') }}">
+                <label for="amount">{{ __('translation.The Value') }} :</label>
+                <input type="text" class="form-control" name="amount" id="amount"
+                    placeholder="{{ __('translation.Enter the Value') }}">
             </div>
             <div class="form-group">
-                <label for="fromCurrency">{{ __("translation.From :") }}</label>
+                <label for="fromCurrency">{{ __('translation.From :') }}</label>
                 <select name="from" class="form-control" id="fromCurrency">
                     @foreach ($currencyOptions as $symbol => $name)
                         <option value="{{ $symbol }}">{{ $name }}</option>
@@ -363,152 +523,175 @@
                 </select>
             </div>
             <div class="form-group">
-                <label for="toCurrency">{{ __("translation.To :") }}</label>
+                <label for="toCurrency">{{ __('translation.To :') }}</label>
                 <select name="to" class="form-control" id="toCurrency">
                     @foreach ($currencyOptions as $symbol => $name)
                         <option value="{{ $symbol }}">{{ $name }}</option>
                     @endforeach
                 </select>
             </div>
-            <button type="submit" class="btn btn-primary w-100">{{ __("translation.Convert") }}</button>
+            <button type="submit" class="btn btn-primary w-100">{{ __('translation.Convert') }}</button>
         </form>
         <div class="result mt-3" id="result"></div>
     </div>
 
     <!-- Recent Blog Posts -->
-    @if (config('app.locale')=='ar')
-    <div class="page-wrapper" style="padding:10px;text-align:center;overflow:hidden !important">
-        <div class="post-slider" style="margin-bottom:30px;">
-            <h3 class="slider-title"><i class="fas fa-clock"></i> &nbsp;{{__("translation.Recent Blog Posts")}}</h3>
-            <p style="text-align:center;color:gray;padding:10px">{{__("translation.Stay up to date with New posts related to Cryptocurrency.")}}</p>
+    @if (config('app.locale') == 'ar')
+        <div class="page-wrapper" style="padding:10px;text-align:center;overflow:hidden !important">
+            <div class="post-slider" style="margin-bottom:30px;">
+                <h3 class="slider-title"><i class="fas fa-clock"></i> &nbsp;{{ __('translation.Recent Blog Posts') }}
+                </h3>
+                <p style="text-align:center;color:gray;padding:10px">
+                    {{ __('translation.Stay up to date with New posts related to Cryptocurrency.') }}</p>
 
-            <div class="swiper-container mx-auto p-2 shadow-lg overflow-hidden">
-                <div class="swiper-wrapper">
-                    @foreach ($posts as $post)
-                        <div class="swiper-slide border border-2 rounded-4">
-                            <div class="post p-3 rounded-3 shadow-sm" style="direction:rtl; overflow:hidden;">
-                                <div class="div-img text-center mb-2">
-                                    <a href="{{ url('post.php?idPost=' . $post->id) }}" target="_blank">
-                                        @if ($post->image)
-                                            <img src="{{ asset($post->image) }}" alt="{{ $post->title_ar }}" class="img-fluid rounded-3" style="width: 100%;">
-                                        @else
-                                            <img src="{{ asset('images/placeholder.jpg') }}" alt="No Image Available" class="img-fluid rounded-3" style="width: 100%; height: 180px;">
-                                        @endif
+                <div class="swiper-container mx-auto p-2 shadow-lg overflow-hidden">
+                    <div class="swiper-wrapper">
+                        @foreach ($posts as $post)
+                            <div class="swiper-slide border border-2 rounded-4">
+                                <div class="post p-3 rounded-3 shadow-sm" style="direction:rtl; overflow:hidden;">
+                                    <div class="div-img text-center mb-2">
+                                        <a href="{{ route('showPost', $post->id) }}" target="_blank">
+                                            @if ($post->image)
+                                                <img src="{{ asset($post->image) }}" alt="{{ $post->title_ar }}"
+                                                    class="img-fluid rounded-3" style="width: 100%;">
+                                            @else
+                                                <img src="{{ asset('images/placeholder.jpg') }}"
+                                                    alt="No Image Available" class="img-fluid rounded-3"
+                                                    style="width: 100%; height: 180px;">
+                                            @endif
+                                        </a>
+                                    </div>
+                                    <a href="{{ route('showPost', $post->id) }}" target="_blank"
+                                        class="text-decoration-none">
+                                        <h4 class="text-dark text-truncate">{{ $post->title_ar }}</h4>
                                     </a>
-                                </div>
-                                <a href="{{ url('post.php?idPost=' . $post->id) }}" target="_blank" class="text-decoration-none">
-                                    <h4 class="text-dark text-truncate">{{ $post->title_ar }}</h4>
-                                </a>
-                                <span class="text-muted d-block small"> 
-                                    <i class="fas fa-user"></i> {{ $post->user->name }}
-                                </span>
-                                <span class="text-muted d-block small">
-                                    <i class="far fa-calendar-alt"></i> {{ $post->created_at->format('Y-m-d') }}
-                                </span>
-                                <span class="text-muted d-block small">
-                                    <i class="fas fa-tags"></i> {{ $post->category->name }}
-                                </span>
-                                <p>
-                                    @if (strlen($post->content_ar > 150))
-                                        {{strip_tags(substr(str_replace("&nbsp;", " ", $post->content_ar), 0, 350) . "....")}}
-                                    @else
-                                    {{strip_tags(str_replace("&nbsp;", " ", $post->content_ar))}}
-                                    @endif
-                                </p>
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <button class="btn btn-outline-primary like-btn" data-post-id="{{ $post->id }}">
-                                        <i class="fas fa-thumbs-up"></i> Like (<span class="like-count">{{ $post->likes->count() }}</span>)
-                                    </button>
-                                    <button class="btn btn-outline-danger dislike-btn" data-post-id="{{ $post->id }}">
-                                        <i class="fas fa-thumbs-down"></i> Dislike (<span class="dislike-count">{{ $post->dislikes->count() }}</span>)
-                                    </button>
-                                </div>
-                                
-                            </div>
-                        </div>
-                    @endforeach
-                </div>
-            </div>
-    @endif
-    @if (config('app.locale')=='en')
-    <div class="page-wrapper" style="padding:10px;text-align:center;overflow:hidden !important">
-        <div class="post-slider" style="margin-bottom:30px;">
-            <h3 class="slider-title"><i class="fas fa-clock"></i> &nbsp;{{__("translation.Recent Blog Posts")}}</h3>
-            <p style="text-align:center;color:gray;padding:10px">{{__("translation.Stay up to date with New posts related to Cryptocurrency.")}}</p>
+                                    <span class="text-muted d-block small">
+                                        <i class="fas fa-user"></i> {{ $post->user->name }}
+                                    </span>
+                                    <span class="text-muted d-block small">
+                                        <i class="far fa-calendar-alt"></i> {{ $post->created_at->format('Y-m-d') }}
+                                    </span>
+                                    <span class="text-muted d-block small">
+                                        <i class="fas fa-tags"></i> {{ $post->category->name }}
+                                    </span>
+                                    <p>
+                                        @if (strlen($post->content_ar > 150))
+                                            {{ strip_tags(substr(str_replace('&nbsp;', ' ', $post->content_ar), 0, 350) . '....') }}
+                                        @else
+                                            {{ strip_tags(str_replace('&nbsp;', ' ', $post->content_ar)) }}
+                                        @endif
+                                    </p>
+                                    <div class="d-flex justify-content-between align-items-center mt-3">
+                                        <!-- Like Button on the Left -->
+                                        <button class="btn btn-outline-primary like-btn" data-post-id="{{ $post->id }}">
+                                            <i class="fas fa-thumbs-up"></i> Like (<span class="like-count">{{ $post->likes->count() }}</span>)
+                                        </button>
+                                    
+                                        <!-- Dislike Button on the Right -->
+                                        <button class="btn btn-outline-danger dislike-btn" data-post-id="{{ $post->id }}">
+                                            <i class="fas fa-thumbs-down"></i> Dislike (<span class="dislike-count">{{ $post->dislikes->count() }}</span>)
+                                        </button>
+                                    </div>
 
-            <div class="swiper-container mx-auto p-2 shadow-lg overflow-hidden">
-                <div class="swiper-wrapper">
-                    @foreach ($posts as $post)
-                        <div class="swiper-slide border border-2 rounded-4">
-                            <div class="post p-3 rounded-3 shadow-sm" style="direction:rtl; overflow:hidden;">
-                                <div class="div-img text-center mb-2">
-                                    <a href="{{ url('post.php?idPost=' . $post->id) }}" target="_blank">
-                                        @if ($post->image)
-                                            <img src="{{ asset($post->image) }}" alt="{{ $post->title_en }}" class="img-fluid rounded-3" style="width: 100%;">
-                                        @else
-                                            <img src="{{ asset('images/placeholder.jpg') }}" alt="No Image Available" class="img-fluid rounded-3" style="width: 100%; height: 180px;">
-                                        @endif
-                                    </a>
                                 </div>
-                                <a href="{{ url('post.php?idPost=' . $post->id) }}" target="_blank" class="text-decoration-none">
-                                    <h4 class="text-dark text-truncate">{{ $post->title_en }}</h4>
-                                </a>
-                                <span class="text-muted d-block small"> 
-                                    <i class="fas fa-user"></i> {{ $post->user->name }}
-                                </span>
-                                <span class="text-muted d-block small">
-                                    <i class="far fa-calendar-alt"></i> {{ $post->created_at->format('Y-m-d') }}
-                                </span>
-                                <span class="text-muted d-block small">
-                                    <i class="fas fa-tags"></i> {{ $post->category->name }}
-                                </span>
-                                <p>
-                                    @if (strlen($post->content_en > 150))
-                                        {{strip_tags(substr(str_replace("&nbsp;", " ", $post->content_en), 0, 350) . "....")}}
-                                    @else
-                                    {{strip_tags(str_replace("&nbsp;", " ", $post->content_en))}}
-                                    @endif
-                                </p>
-                                <div class="d-flex justify-content-between align-items-center mt-3">
-                                    <button class="btn btn-outline-primary like-btn" data-post-id="{{ $post->id }}">
-                                        <i class="fas fa-thumbs-up"></i> Like (<span class="like-count">{{ $post->likes->count() }}</span>)
-                                    </button>
-                                    <button class="btn btn-outline-danger dislike-btn" data-post-id="{{ $post->id }}">
-                                        <i class="fas fa-thumbs-down"></i> Dislike (<span class="dislike-count">{{ $post->dislikes->count() }}</span>)
-                                    </button>
-                                </div>
-                                
                             </div>
-                        </div>
-                    @endforeach
+                        @endforeach
+                    </div>
                 </div>
-            </div>
     @endif
-            <p style="text-align:center;color:green">
-                <i class="fas fa-hand-point-left"></i> {{__("translation.Swipe Left or Right")}}<i class="fas fa-hand-point-right"></i><br> 
-                {{__("translation.For more posts")}}
-            </p>
-        </div>
+    @if (config('app.locale') == 'en')
+        <div class="page-wrapper" style="padding:10px;text-align:center;overflow:hidden !important">
+            <div class="post-slider" style="margin-bottom:30px;">
+                <h3 class="slider-title"><i class="fas fa-clock"></i> &nbsp;{{ __('translation.Recent Blog Posts') }}
+                </h3>
+                <p style="text-align:center;color:gray;padding:10px">
+                    {{ __('translation.Stay up to date with New posts related to Cryptocurrency.') }}</p>
+
+                <div class="swiper-container mx-auto p-2 shadow-lg overflow-hidden">
+                    <div class="swiper-wrapper">
+                        @foreach ($posts as $post)
+                            <div class="swiper-slide border border-2 rounded-4">
+                                <div class="post p-3 rounded-3 shadow-sm" style="direction:rtl; overflow:hidden;">
+                                    <div class="div-img text-center mb-2">
+                                        <a href="{{ route('showPost', $post->id) }}" target="_blank">
+                                            @if ($post->image)
+                                                <img src="{{ asset($post->image) }}" alt="{{ $post->title_en }}"
+                                                    class="img-fluid rounded-3" style="width: 100%;">
+                                            @else
+                                                <img src="{{ asset('images/placeholder.jpg') }}"
+                                                    alt="No Image Available" class="img-fluid rounded-3"
+                                                    style="width: 100%; height: 180px;">
+                                            @endif
+                                        </a>
+                                    </div>
+                                    <a href="{{ route('showPost', $post->id) }}" target="_blank"
+                                        class="text-decoration-none">
+                                        <h4 class="text-dark text-truncate">{{ $post->title_en }}</h4>
+                                    </a>
+                                    <span class="text-muted d-block small">
+                                        <i class="fas fa-user"></i> {{ $post->user->name }}
+                                    </span>
+                                    <span class="text-muted d-block small">
+                                        <i class="far fa-calendar-alt"></i> {{ $post->created_at->format('Y-m-d') }}
+                                    </span>
+                                    <span class="text-muted d-block small">
+                                        <i class="fas fa-tags"></i> {{ $post->category->name }}
+                                    </span>
+                                    <p>
+                                        @if (strlen($post->content_en > 150))
+                                            {{ strip_tags(substr(str_replace('&nbsp;', ' ', $post->content_en), 0, 350) . '....') }}
+                                        @else
+                                            {{ strip_tags(str_replace('&nbsp;', ' ', $post->content_en)) }}
+                                        @endif
+                                    </p>
+
+                                    <div class="likes-dislikes">
+                                        <button class="like-btn btn-style" data-post-id="{{ $post->id }}">
+                                            <i class="fas fa-thumbs-up"></i> <!-- أيقونة Like -->
+                                            <span class="like-count"
+                                                data-post-id="{{ $post->id }}">{{ $post->likes()->count() }}</span>
+                                        </button>
+
+                                        <button class="dislike-btn btn-style" data-post-id="{{ $post->id }}">
+                                            <i class="fas fa-thumbs-down"></i> <!-- أيقونة Dislike -->
+                                            <span class="dislike-count"
+                                                data-post-id="{{ $post->id }}">{{ $post->dislikes()->count() }}</span>
+                                        </button>
+                                    </div>
+                                    <div class="message" data-post-id="{{ $post->id }}"></div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+    @endif
+    <p style="text-align:center;color:green">
+        <i class="fas fa-hand-point-left"></i> {{ __('translation.Swipe Left or Right') }}<i
+            class="fas fa-hand-point-right"></i><br>
+        {{ __('translation.For more posts') }}
+    </p>
+    </div>
     </div>
 
     <!-- Show More Button -->
     <div style="text-align:center;padding:10px 0 20px">
-        <a class="show-butx" href="show-all-posts.php">{{__("translation.Show More")}}</a>
+        <a class="show-butx" href="{{route("AllPosts")}}">{{ __('translation.Show More') }}</a>
     </div>
 
     <!-- Team Section - Desktop -->
     <div class="team d-none d-lg-block" id="te">
         <div class="container">
-            <h3 style="text-align:center;padding:10px;margin-top:20px;"><i class="fas fa-clock"></i> &nbsp; {{__("translation.Meet The Team")}}</h3>
-            <p style="text-align:center;padding:10px">{{__("translation.Cryptonz Team")}}</p>
-            
+            <h3 style="text-align:center;padding:10px;margin-top:20px;"><i class="fas fa-clock"></i> &nbsp;
+                {{ __('translation.Meet The Team') }}</h3>
+            <p style="text-align:center;padding:10px">{{ __('translation.Cryptonz Team') }}</p>
+
             <div class="inside-team">
-            @foreach ($teams as $member)
-                <div>
-                    <h5>{{$member->name}} || {{$member->department->name}}</h5>
-                    <img src="{{ asset($member->image) }}" alt="Alcryptonz Team Member">
-                </div>
-            @endforeach
+                @foreach ($teams as $member)
+                    <div>
+                        <h5>{{ $member->name }} || {{ $member->department->name }}</h5>
+                        <img src="{{ asset($member->image) }}" alt="Alcryptonz Team Member">
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>
@@ -516,62 +699,63 @@
     <!-- Team Section - Mobile -->
     <div class="container d-block d-lg-none">
         <div class="swiper mySwiper">
-            <h3 style="text-align:center;padding:10px;margin-top:20px;"><i class="fas fa-clock"></i> &nbsp; {{__("translation.Meet The Team")}}</h3>
-            <p style="text-align:center;padding:10px">{{__("translation.Cryptonz Team")}}</p>
+            <h3 style="text-align:center;padding:10px;margin-top:20px;"><i class="fas fa-clock"></i> &nbsp;
+                {{ __('translation.Meet The Team') }}</h3>
+            <p style="text-align:center;padding:10px">{{ __('translation.Cryptonz Team') }}</p>
 
             <div class="swiper-wrapper">
                 @foreach ($teams as $member)
-                <div class="swiper-slide">
-                    <div class="one-serv text-center">
-                        <h4>{{ $member->name }}</h4>
-                        <div class='py-2'>
-                            <img src="{{ asset($member->image ?? 'path/to/placeholder.jpg') }}" 
-                                class="img-fluid" 
-                                alt="Team Member: {{ $member->name }}" 
-                                style="max-width: 90%;">
+                    <div class="swiper-slide">
+                        <div class="one-serv text-center">
+                            <h4>{{ $member->name }}</h4>
+                            <div class='py-2'>
+                                <img src="{{ asset($member->image ?? 'path/to/placeholder.jpg') }}"
+                                    class="img-fluid" alt="Team Member: {{ $member->name }}"
+                                    style="max-width: 90%;">
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
             </div>
         </div>
     </div>
 
     <!-- Second Promotional Banner -->
-    @if(isset($promotions[1]))
-    <div class="ad-banner bg-light py-2 mt-4 mb-4 d-flex justify-content-center align-items-center col-md-10 col-11 mx-auto shadow-sm" 
-        style="border: 1px dashed gray; border-radius: 15px; overflow: hidden;">
-        <div class="row w-100 align-items-center">
-            <div class="col-md-5 d-flex justify-content-md-start justify-content-center">
-                <img src="{{ asset($promotions[1]->image) }}" 
-                    alt="{{ $promotions[1]->name }}" 
-                    class="rounded-lg" 
-                    style="max-width: 60%; height: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-            </div>
-            <div class="col-md-7 d-flex flex-column justify-content-center align-items-center mt-3 mt-md-0">
-                <h3 class="font-weight-bold text-primary">{{ $promotions[1]->name }}</h3>
-                <p class="mt-3 text-center text-muted" style="font-size: 1.1rem; line-height: 1.6;">
-                    {{ $promotions[1]->description }}
-                </p>
-                <a href="{{ $promotions[1]->website_url }}" 
-                class="btn btn-primary mt-2 px-4 py-2" 
-                style="font-size: 1rem; border-radius: 25px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
-                {{__('translation.Visit Here')}}
-                </a>
+    @if (isset($promotions[1]))
+        <div class="ad-banner bg-light py-2 mt-4 mb-4 d-flex justify-content-center align-items-center col-md-10 col-11 mx-auto shadow-sm"
+            style="border: 1px dashed gray; border-radius: 15px; overflow: hidden;">
+            <div class="row w-100 align-items-center">
+                <div class="col-md-5 d-flex justify-content-md-start justify-content-center">
+                    <img src="{{ asset($promotions[1]->image) }}" alt="{{ $promotions[1]->name }}"
+                        class="rounded-lg"
+                        style="max-width: 60%; height: auto; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                </div>
+                <div class="col-md-7 d-flex flex-column justify-content-center align-items-center mt-3 mt-md-0">
+                    <h3 class="font-weight-bold text-primary">{{ $promotions[1]->name }}</h3>
+                    <p class="mt-3 text-center text-muted" style="font-size: 1.1rem; line-height: 1.6;">
+                        {{ $promotions[1]->description }}
+                    </p>
+                    <a href="{{ $promotions[1]->website_url }}" class="btn btn-primary mt-2 px-4 py-2"
+                        style="font-size: 1rem; border-radius: 25px; box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);">
+                        {{ __('translation.Visit Here') }}
+                    </a>
+                </div>
             </div>
         </div>
-    </div>
     @endif
 
     <!-- Footer -->
-    @include("Web.include.underfooter")
-    @include("Web.include.footer")
+    @include('Web.include.underfooter')
+    @include('Web.include.footer')
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-YN940EKWRS"></script>
     <script>
         window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
         gtag('js', new Date());
         gtag('config', 'G-YN940EKWRS');
     </script>
@@ -594,8 +778,8 @@
     <!-- Currency Converter Script -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script>
-        $(document).ready(function () {
-            $('#converter-form').on('submit', function (e) {
+        $(document).ready(function() {
+            $('#converter-form').on('submit', function(e) {
                 e.preventDefault();
 
                 var formData = {
@@ -609,32 +793,41 @@
                     url: "{{ route('convert') }}",
                     type: "POST",
                     data: formData,
-                    beforeSend: function () {
-                        $('#result').html('<p class="text-info">{{ __("translation.Loading...") }}</p>');
+                    beforeSend: function() {
+                        $('#result').html(
+                            '<p class="text-info">{{ __('translation.Loading...') }}</p>');
                     },
-                    success: function (response) {
-                        if (response.result && response.result.data && response.result.data.quote) {
+                    success: function(response) {
+                        if (response.result && response.result.data && response.result.data
+                            .quote) {
                             var fromCurrency = response.result.data.symbol;
                             var toCurrency = $("#toCurrency").val();
-                            var convertedAmount = response.result.data.quote[toCurrency]?.price || "N/A";
+                            var convertedAmount = response.result.data.quote[toCurrency]
+                                ?.price || "N/A";
 
                             if (convertedAmount !== "N/A") {
-                                $('#result').html('<p class="text-success" dir="ltr" > ' + 
-                                    response.result.data.amount + ' ' + fromCurrency + ' = ' + convertedAmount.toFixed(2) + ' ' + toCurrency + 
-                                '</p>');
+                                $('#result').html('<p class="text-success" dir="ltr" > ' +
+                                    response.result.data.amount + ' ' + fromCurrency +
+                                    ' = ' + convertedAmount.toFixed(2) + ' ' + toCurrency +
+                                    '</p>');
                             } else {
-                                $('#result').html('<p class="text-danger">{{ __("translation.Error") }}</p>');
+                                $('#result').html(
+                                    '<p class="text-danger">{{ __('translation.Error') }}</p>'
+                                );
                             }
                         } else {
-                            $('#result').html('<p class="text-danger">{{ __("translation.Error") }}</p>');
+                            $('#result').html(
+                                '<p class="text-danger">{{ __('translation.Error') }}</p>'
+                            );
                         }
                     },
-                    error: function (xhr) {
+                    error: function(xhr) {
                         var errors = xhr.responseJSON.errors;
-                        var errorMessage = '<p class="text-danger">{{ __("translation.Error") }}</p>';
+                        var errorMessage =
+                            '<p class="text-danger">{{ __('translation.Error') }}</p>';
                         if (errors) {
                             errorMessage += '<ul class="text-danger">';
-                            $.each(errors, function (key, value) {
+                            $.each(errors, function(key, value) {
                                 errorMessage += '<li>' + value[0] + '</li>';
                             });
                             errorMessage += '</ul>';
@@ -657,8 +850,12 @@
             slidesPerView: 1,
             spaceBetween: 20,
             breakpoints: {
-                768: { slidesPerView: 3 },
-                480: { slidesPerView: 1 }
+                768: {
+                    slidesPerView: 3
+                },
+                480: {
+                    slidesPerView: 1
+                }
             },
             navigation: {
                 nextEl: '.swiper-button-next',
@@ -670,88 +867,67 @@
             }
         });
     </script>
-<meta name="csrf-token" content="{{ csrf_token() }}">
-<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-<script>    
-document.addEventListener('DOMContentLoaded', function () {
-    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-    
-    document.querySelectorAll('.like-btn').forEach(button => {
-        button.addEventListener('click', function (e) {
-            e.preventDefault();
-            const postId = this.getAttribute('data-post-id');
-            
-            axios.post(`/posts/${postId}/like`, {}, { 
-                headers: { 'X-CSRF-TOKEN': csrfToken } 
-            })
-            .then(response => {
-                // Update the like count for this specific button
-                this.querySelector('.like-count').textContent = response.data.likes;
-                
-                // Find and update the related dislike button
-                const dislikeBtn = this.closest('.d-flex').querySelector('.dislike-btn');
-                if (dislikeBtn) {
-                    dislikeBtn.querySelector('.dislike-count').textContent = response.data.dislikes;
-                }
-                
-                // Optional: Show a toast or message
-                if (response.data.message) {
-                    showMessage(response.data.message);
-                }
-            })
-            .catch(error => console.error('Error liking post:', error));
-        });
-    });
-    
-    document.querySelectorAll('.dislike-btn').forEach(button => {
-        button.addEventListener('click', function (e) {
-            e.preventDefault();
-            const postId = this.getAttribute('data-post-id');
-            
-            axios.post(`/posts/${postId}/dislike`, {}, { 
-                headers: { 'X-CSRF-TOKEN': csrfToken } 
-            })
-            .then(response => {
-                // Update the dislike count for this specific button
-                this.querySelector('.dislike-count').textContent = response.data.dislikes;
-                
-                // Find and update the related like button
-                const likeBtn = this.closest('.d-flex').querySelector('.like-btn');
-                if (likeBtn) {
-                    likeBtn.querySelector('.like-count').textContent = response.data.likes;
-                }
-                
-                // Optional: Show a toast or message
-                if (response.data.message) {
-                    showMessage(response.data.message);
-                }
-            })
-            .catch(error => console.error('Error disliking post:', error));
-        });
-    });
-    
-    // Optional function to show messages
-    function showMessage(message) {
-        // This can be implemented with a toast library or a simple DOM manipulation
-        console.log(message);
-        
-        // Example simple implementation:
-        const messageElement = document.createElement('div');
-        messageElement.className = 'alert alert-success';
-        messageElement.textContent = message;
-        messageElement.style.position = 'fixed';
-        messageElement.style.top = '20px';
-        messageElement.style.right = '20px';
-        messageElement.style.zIndex = '9999';
-        
-        document.body.appendChild(messageElement);
-        
-        setTimeout(() => {
-            messageElement.remove();
-        }, 3000);
-    }
-});
-</script>
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle Like Button Click
+            document.querySelectorAll('.like-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const postId = this.getAttribute('data-post-id');
+                    fetch(`/posts/${postId}/like`, {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json'
+                            }
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            // Update Like Count
+                            document.querySelector(`.like-count[data-post-id="${postId}"]`)
+                                .textContent = data.likes;
+                            // Update Dislike Count
+                            document.querySelector(`.dislike-count[data-post-id="${postId}"]`)
+                                .textContent = data.dislikes;
+                            // Update Message
+                            document.querySelector(`.message[data-post-id="${postId}"]`)
+                                .textContent = data.message;
+                        })
+                        .catch(error => console.error('Error:', error));
+                });
+            });
 
-    
+            // Handle Dislike Button Click
+            document.querySelectorAll('.dislike-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const postId = this.getAttribute('data-post-id');
+                    fetch(`/posts/${postId}/dislike`, {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json'
+                            }
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            // Update Like Count
+                            document.querySelector(`.like-count[data-post-id="${postId}"]`)
+                                .textContent = data.likes;
+                            // Update Dislike Count
+                            document.querySelector(`.dislike-count[data-post-id="${postId}"]`)
+                                .textContent = data.dislikes;
+                            // Update Message
+                            document.querySelector(`.message[data-post-id="${postId}"]`)
+                                .textContent = data.message;
+                        })
+                        .catch(error => console.error('Error:', error));
+                });
+            });
+        });
+    </script>
+
+
 </body>

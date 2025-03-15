@@ -17,7 +17,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/post/{id}', [HomeController::class, "post"])->name('showPost');
+Route::post('/posts/{post}/like', [PostController::class, 'like'])->name('posts.like');
+Route::post('/posts/{post}/dislike', [PostController::class, 'dislike'])->name('posts.dislike');    
 Route::get('/qa', [HomeController::class, 'QA'])->name('qa.index');
 Route::post('/qa/search', [HomeController::class, 'search'])->name('qa.search');
 Route::get('/search', [PostController::class, 'search'])->name('search');
@@ -44,11 +47,9 @@ Route::get("/{lang}", function ($lang) {
     return redirect()->back();
 });
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
 // web.php
 
 // });
-Route::get('/post/{id}', [HomeController::class, "post"])->name('showPost');
 
 Route::middleware('auth')->group(function () {
     Route::get('dashboard', function () {
