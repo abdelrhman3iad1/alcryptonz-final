@@ -17,7 +17,7 @@ class AdminMiddleware
             return redirect()->back();
         }else{
             // edit the route to dashboard login page
-            return redirect()->route('login')->with('error', 'You are not authorized to access this page.');
+            return redirect()->route('get.dashboard.login')->with('error', 'You are not authorized to access this page.');
         }
 
     }

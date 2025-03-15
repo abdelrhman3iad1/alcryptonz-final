@@ -23,16 +23,16 @@ Route::get('/search', [PostController::class, 'search'])->name('search');
 Route::get( '/AllPosts', [HomeController::class, 'AllPosts'])->name('AllPosts');
 Route::get( '/crypto-news', [HomeController::class, 'cryptoNews'])->name('crypto-news');
 Route::get( '/categoriesRelated', [HomeController::class, 'categoriesRelated'])->name('categories.related');
-Route::get("register" , [UserAuthController::class , "create"]);
+Route::get("register" , [UserAuthController::class , "create"])->name("register_page");
 Route::post("register" , [UserAuthController::class , "register"])->name("register");
 Route::get("/about-us" , function(){
     return view('Web.aboutus');
 })->name("aboutUs");
 Route::get("/privacy" , [HomeController::class ,'privacy'])->name("privacy");
-
-Route::get("login" , [UserAuthController::class , "getLogin"])->name("get.login");
-Route::post("login" , [UserAuthController::class , "login"])->name("login");
-
+// Route::middleware('guest')->group(function(){
+        Route::get("login" , [UserAuthController::class , "getLogin"])->name("get.login");
+        Route::post("login" , [UserAuthController::class , "login"])->name("login");
+// });
 Route::get("/{lang}",function($lang){
     if($lang == "ar"){
         session()->put("lang","ar");

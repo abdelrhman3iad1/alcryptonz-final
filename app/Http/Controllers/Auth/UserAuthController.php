@@ -21,28 +21,38 @@ class UserAuthController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required|string|max:255',
-            'email' => 'required|string|email|max:255|unique:users,email',
+            'email' => 'required|email|max:255|unique:users,email',
             'password' => 'required|string|min:8|confirmed',
+        ],[
+            'name.required' => __('translation.name_req'),
+            'name.string' => __('translation.name_string'),
+            'name.max' => __('translation.name_max'),
+            
+            'email.required' => __('translation.email_req'),
+            'email.email' => __('translation.email_em'),
+            'email.max' =>__('translation.email_max'),
+            'email.unique' => __('translation.email_unique'),
+        
+            'password.required' =>__('translation.pass_req'),
+            'password.string' => __('translation.pass_string'),
+            'password.min' => __('translation.pass_min'),
+            'password.confirmed' => __('translation.pass_confirmed'),
         ]);
 
         $validated['password'] = Hash::make($validated['password']);
-        $user = User::create($validated);
+        User::create($validated);
 
-        Auth::login($user);
 
-        if ($user->role == 1) {
-            return redirect()->route('categories.index')->with('success', __('translation.You registered successfully!'));
-        } else {
-            return redirect()->route('home')->with('success', __('translation.You registered successful!'));
-        }
+        return redirect()->route('get.login')->with('success', __('translation.You registered successfully!'));
     }
 
-    public function getLogin()
+    public function getDashboardLogin()
     {
-        return view("auth.login");
+        return view("auth.login-dashboard");
     }
+    
 
-    public function login(Request $request)
+    public function DashboardLogin(Request $request)
     {
         $validated = $request->validate([
             'email' => 'required|email|max:255',
@@ -66,6 +76,34 @@ class UserAuthController extends Controller
             } else {
                 return redirect()->route('home')->with('success', __('translation.Login successful!'));
             }
+        } else {
+            return redirect()->back()->with('fails', __('translation.Invalid credentials!'));
+        }
+    }
+    public function getLogin()
+    {
+        return view("auth.login");
+    }
+    public function login(Request $request)
+    {
+        $validated = $request->validate([
+            'email' => 'required|email|max:255',
+            'password' => 'required|string|min:8',
+        ],[
+            'email.required' => __('translation.email_req'),
+            'email.email' => __('translation.email_em'),
+            'email.max' =>__('translation.email_max'),
+        
+            'password.required' =>__('translation.pass_req'),
+            'password.string' => __('translation.pass_string'),
+            'password.min' => __('translation.pass_min'),
+        ]);
+
+
+        if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
+            $user = Auth::user();
+            return redirect()->route('home')->with('success', __('translation.Login successful!'));
+            
         } else {
             return redirect()->back()->with('fails', __('translation.Invalid credentials!'));
         }

@@ -27,13 +27,13 @@
             <!-- Email Field -->
             <div class="input-box">
                 <i class="fa-solid fa-user"></i>
-                <input type="text" name="email" placeholder="Email" >
+                <input type="text" name="email" placeholder="{{__('translation.Email')}}" >
             </div>
 
 
             <!-- Password Field -->
             <div class="input-box">
-                <input type="password" name="password" placeholder="Password" >
+                <input type="password" name="password" placeholder="{{__('translation.Password')}}" >
                 <i class="fa-solid fa-lock"></i>
             </div>
 
@@ -42,8 +42,8 @@
             <button type="submit">{{__('translation.Login_user')}}</button>
 
             <!-- Register Link -->
-            <div class="already already-mt-2">
-                <p>Don't have an account? <a href="{{ route('register') }}">Register</a></p>
+            <div class="mt-3">
+                <p>{{__("translation.Don't have an account?")}}<a href="{{ route('register_page') }}">{{__('translation.Register')}}</a></p>
             </div> 
         </form>
     </div>

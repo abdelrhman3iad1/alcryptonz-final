@@ -1,6 +1,12 @@
 <?php
 return
 [
+    'name_req' => 'The name field is required.',
+    'name_string' => 'The name must be a text value.',
+    'name_max' => 'The name must not exceed 255 characters.',
+    'email_unique' => 'This email is already registered.',
+    'pass_confirmed' => 'The password confirmation does not match.',
+    "You registered successfully!"=>"You registered successfully!",
     "language"=>"en",
     "dir"=>"ltr",
     "HOME"=>"HOME",
@@ -9,6 +15,14 @@ return
     "Privacy Policy" => "Privacy Policy",
     "TEAM" => "TEAM",
     "FAQ"=>"FAQ",
+    "Register page"=>"Register page",
+    "Register"=>"Register",
+    "Don't have an account?"=>"Don't have an account?",
+    "Already have an account?"=>"Already have an account?",
+    "Sign up"=>"Sign up",
+    "Password"=>"Password",
+    "Confirm Password"=>"Confirm Password",
+    "Enter your name"=>"Enter your name",
     "ALCRYPTO_NEWS"=>"ALCRYPTO NEWS",
     "CONTACT_US"=>"CONTACT US",
     "Community_Management"=>"Community Management",
