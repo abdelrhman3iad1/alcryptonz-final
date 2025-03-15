@@ -1,7 +1,15 @@
 <div class="sidebar-menu">
     <ul class="menu">
         <li class="sidebar-title">القائمة</li>
-        
+        <li
+            class="sidebar-item  ">
+            <a href="{{route("admin.form")}}" class='sidebar-link'>
+                <i class="iconly-boldProfile"></i>
+                <span>المسؤولون</span>
+            </a>
+            
+
+        </li>
         <li
         class="sidebar-item  has-sub">
         <a href="#" class='sidebar-link'>
@@ -175,7 +183,7 @@
 
         </li>
 
-        <li
+        {{-- <li
             class="sidebar-item  ">
             <a href="{{route('change-password')}}" class='sidebar-link'>
                 <i class="bi bi-person-badge-fill"></i>
@@ -183,7 +191,7 @@
             </a>
             
 
-        </li>
+        </li> --}}
         <li class="sidebar-item  "> 
             
             <form action="{{route('logout')}}" method="post">

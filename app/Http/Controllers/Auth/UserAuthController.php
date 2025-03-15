@@ -54,6 +54,8 @@ class UserAuthController extends Controller
 
     public function DashboardLogin(Request $request)
     {
+        try{
+
         $validated = $request->validate([
             'email' => 'required|email|max:255',
             'password' => 'required|string|min:8',
@@ -66,6 +68,7 @@ class UserAuthController extends Controller
             'password.string' => __('translation.pass_string'),
             'password.min' => __('translation.pass_min'),
         ]);
+    }
 
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {

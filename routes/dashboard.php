@@ -10,6 +10,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Middleware\AdminMiddleware;
 use App\Http\Controllers\CryptoConverterController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,7 +29,7 @@ use Illuminate\Support\Facades\Route;
 //->middleware('guest')
 Route::prefix("/dashboard")->group(function () {
     Route::get("login-dashboard", [UserAuthController::class, "getDashboardLogin"])->name("get.dashboard.login");
-    Route::get("login-dashboard", [UserAuthController::class, "DashboardLogin"])->name("login-dashboard");
+    // Route::get("login-dashboard", [UserAuthController::class, "DashboardLogin"])->name("login-dashboard");
 });
 //->middleware('admin')
 Route::prefix("/dashboard")->group(function () {
@@ -41,6 +42,9 @@ Route::prefix("/dashboard")->group(function () {
     Route::resource("posts", PostController::class);
     Route::post('/posts/{post}/like', [PostController::class, 'like'])->name('posts.like');
     Route::post('/posts/{post}/dislike', [PostController::class, 'dislike'])->name('posts.dislike');
+    Route::get('admin',[AdminController::class,'create'])->name('admin.form');
+        Route::post('admin',[AdminController::class,'search'])->name('admin.search');
+        Route::post('/admin/change-role', [AdminController::class, 'changeRole'])->name('admin.changeRole');
 });
 
 
