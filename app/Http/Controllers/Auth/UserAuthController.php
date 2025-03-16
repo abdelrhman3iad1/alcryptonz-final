@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\ValidationException;
 
 class UserAuthController extends Controller
 {
@@ -54,7 +55,7 @@ class UserAuthController extends Controller
 
     public function DashboardLogin(Request $request)
     {
-        try{
+        // try{
 
         $validated = $request->validate([
             'email' => 'required|email|max:255',
@@ -68,8 +69,10 @@ class UserAuthController extends Controller
             'password.string' => __('translation.pass_string'),
             'password.min' => __('translation.pass_min'),
         ]);
-    }
-
+    // }
+        // catch(ValidationException $e){
+        //     return redirect()->back()->with('errors',$e->getMessage());
+        // }
 
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
@@ -102,11 +105,15 @@ class UserAuthController extends Controller
             'password.min' => __('translation.pass_min'),
         ]);
 
-
+        
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $user = Auth::user();
-            return redirect()->route('home')->with('success', __('translation.Login successful!'));
-            
+
+            if ($user->role == 1 && $request->has('dashboard-token')) {
+                return redirect()->route('categories.index')->with('success', __('translation.Login successful!'));
+            } else {
+                return redirect()->route('home')->with('success', __('translation.Login successful!'));
+            }
         } else {
             return redirect()->back()->with('fails', __('translation.Invalid credentials!'));
         }
@@ -116,6 +123,9 @@ class UserAuthController extends Controller
     public function logout(Request $request)
     {
         Auth::logout();
+        if($request->has('dashboard-token')){
+            return redirect()->route('get.dashboard.login')->with('success', __('translation.Logged out successfully!'));
+        }
         return redirect()->route('home')->with('success', __('translation.Logged out successfully!'));
     }
 

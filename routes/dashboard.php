@@ -31,8 +31,8 @@ Route::prefix("/dashboard")->group(function () {
     Route::get("login-dashboard", [UserAuthController::class, "getDashboardLogin"])->name("get.dashboard.login");
     // Route::get("login-dashboard", [UserAuthController::class, "DashboardLogin"])->name("login-dashboard");
 });
-//->middleware('admin')
-Route::prefix("/dashboard")->group(function () {
+
+Route::prefix("/dashboard")->middleware('admin')->group(function () {
     Route::resource("promotions", PromotionController::class);
     Route::resource("questions", QaController::class);
     Route::resource("partners", PartnerController::class);

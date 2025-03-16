@@ -1,10 +1,10 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="{{__('translation.language')}}" dir="{{__('translation.dir')}}">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Dashboard</title>
+    <title>{{__('translation.Login - Dashboard')}}</title>
     
     
     
@@ -25,8 +25,10 @@
             <div class="auth-logo">
                 <a href="{{route('home')}}"><img src="{{asset('images/Alcryptonz_White_transparent.png')}}" alt="logo" style="width:700px;height:100px;"></a>
             </div>
-            <h1 class="auth-title">Log in.</h1>
-            <p class="auth-subtitle mb-5">Log in with your data that you entered during registration.</p>
+            @include('messages.errors')
+            @include('messages.success')
+            <h1 class="auth-title">{{__('translation.Log in.')}}</h1>
+            <p class="auth-subtitle mb-5">{{__('translation.Log in with your data that you entered during registration.')}}</p>
 
             <form method="POST" action="{{ route('login') }}">
                 @csrf
@@ -35,6 +37,8 @@
                     <div class="form-control-icon">
                         <i class="bi bi-person"></i>
                     </div>
+                    <input type="hidden" name="dashboard-token" value="123456789">
+
                 </div>
                 <div class="form-group position-relative has-icon-left mb-4">
                     <input type="password" name="password" class="form-control form-control-xl" placeholder="Password">
@@ -42,7 +46,7 @@
                         <i class="bi bi-shield-lock"></i>
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">Log in</button>
+                <button type="submit" class="btn btn-primary btn-block btn-lg shadow-lg mt-5">{{__('translation.Log in.')}}</button>
             </form>
             
         </div>

@@ -195,11 +195,13 @@
         <li class="sidebar-item  "> 
             
             <form action="{{route('logout')}}" method="post">
+
                 @csrf
                 {{-- <button type="submit">تسجيل الخروج</button> --}}
                 
                 <div class="d-flex mt-2 justify-content-center">
                     
+                    <input type="hidden" name="dashboard-token" value="123456789">
                     
                         <button type="submit" class="btn btn-outline-danger">تسجيل الخروج</button>
                 </div>
