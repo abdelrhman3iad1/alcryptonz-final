@@ -27,7 +27,7 @@ use Illuminate\Support\Facades\Route;
 // middleware(AdminMiddleware::class)->
 //middleware("admin")->
 //->middleware('guest')
-Route::prefix("/dashboard")->group(function () {
+Route::middleware('guest')->prefix("/dashboard")->group(function () {
     Route::get("login-dashboard", [UserAuthController::class, "getDashboardLogin"])->name("get.dashboard.login");
     // Route::get("login-dashboard", [UserAuthController::class, "DashboardLogin"])->name("login-dashboard");
 

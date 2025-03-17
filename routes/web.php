@@ -33,10 +33,10 @@ Route::get("/about-us" , function(){
     return view('Web.aboutus');
 })->name("aboutUs");
 Route::get("/privacy" , [HomeController::class ,'privacy'])->name("privacy");
-// Route::middleware('guest')->group(function(){
+Route::middleware('guest')->group(function(){
         Route::get("login" , [UserAuthController::class , "getLogin"])->name("get.login");
         Route::post("login" , [UserAuthController::class , "login"])->name("login");
-// });
+});
 
 Route::get('/AllPartnersPosts', [HomeController::class, 'AllPartnersPosts'])->name('AllPartnersPosts');
 Route::get('/categoriesRelated/{id}', [HomeController::class, 'categoriesRelated'])->name('categories.related');
