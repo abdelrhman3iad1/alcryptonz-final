@@ -117,7 +117,7 @@ class HomeController extends Controller
             'searched' => 'required|string|max:190',
         ]);
 
-        
+
 
         $searchQuery = $validated['searched'];
         $searchResults = Qa::where('question_ar', 'like', '%' . $searchQuery . '%')
@@ -136,18 +136,31 @@ class HomeController extends Controller
         $categories = Category::all();
         $partners = Partner::all();
         $posts =  Post::all();
-        return view('Web.show-all-posts', compact( 'categories', 'partners', 'posts'));
+        return view('Web.show-all-posts', compact('categories', 'partners', 'posts'));
     }
 
-    public function categoriesRelated(){
+    public function categoriesRelated($id)
+    {
 
-    }
-
-    public function cryptoNews(){
+        $posts = Post::all();
+        $categoryPosts = Post::where('category_id', "=", $id)->get();
         $categories = Category::all();
         $partners = Partner::all();
-        $posts =  Post::where('category_id',3)->get();
-        return view('Web.alcrypto-news', compact( 'categories', 'partners', 'posts'));
-    
+        return view("Web.categories-related", compact('categoryPosts', "posts", "categories", "partners"));
+    }
+    public function cryptoNews()
+    {
+        $categories = Category::all();
+        $partners = Partner::all();
+        $posts =  Post::where('category_id', 3)->get();
+        return view('Web.alcrypto-news', compact('categories', 'partners', 'posts'));
+    }
+    public function AllPartnersPosts()
+    {
+        $posts = Post::all();
+        $partnerPosts = Post::whereNotNull('partner_id')->get();
+        $categories = Category::all();
+        $partners = Partner::all();
+        return view("Web.show-all-partners-posts", compact('partnerPosts', "posts", "categories", "partners"));
     }
 }

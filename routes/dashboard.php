@@ -30,6 +30,7 @@ use Illuminate\Support\Facades\Route;
 Route::prefix("/dashboard")->group(function () {
     Route::get("login-dashboard", [UserAuthController::class, "getDashboardLogin"])->name("get.dashboard.login");
     // Route::get("login-dashboard", [UserAuthController::class, "DashboardLogin"])->name("login-dashboard");
+
 });
 
 Route::prefix("/dashboard")->middleware('admin')->group(function () {

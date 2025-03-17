@@ -1,24 +1,12 @@
-<?php
-/*
-include 'include/connection.php';
-date_default_timezone_set('Africa/Cairo');
-session_start();
-include 'include/header.php'; */
-
-?>
-@include("Web.include.header")
-
+@include('Web.include.header')
 
 <title>ALCRYPTONZ
 </title>
 <!-- Custom Styling -->
-{{-- <link rel="stylesheet" href="css/style.css"> --}}
 <link rel="stylesheet" href="{{ asset('Web/css/style.css') }}">
-
 
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2473974671507788"
     crossorigin="anonymous"></script>
-
 </head>
 
 <body id="top-page">
@@ -28,55 +16,45 @@ include 'include/header.php'; */
             class="fas fa-chevron-circle-up" style="border:1px solid white;"></i></a>
     <!--End Arrow to top Page -->
     <!-- start navbar -->
-    <?php /*include 'include/anotherNavBar.php';*/ ?>
     @include('Web.include.anotherNavBar')
-
     <!-- end navbar -->
     <!-- start content -->
     <div class="content">
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    <h2 class="header-title">Show All Posts </h2>
+                    <h2 class="header-title">Show All Collabs Posts </h2>
                     <div class="parent-news">
-                        <?php /*
-            
-                                        $que="select * from post where knowMe !=1  order by postId desc";
-@$execezw=mysqli_query($con,$que);
-$v=0;
-while($row=mysqli_fetch_assoc($execezw)){ 
-    $v++;
-*/
-?>
-@foreach ($posts as $post )
 
-                        <!--POST-->
-                        <a style="direction:rtl;overflow:hidden"href="{{ route('showPost', $post->id) }}"
-                            target='_blank'>
+                            @if(isset($partnerPosts))
+                        <!--post-->
+                        @foreach ($partnerPosts as $post)
+                            <a style="direction:rtl;overflow:hidden"
+                            href="{{ route('showPost', $post->id) }}" target="_blank">
                             <div class="small-post">
-                                <div class="img-div"> <img src="{{asset($post->image)}}"
-                                        alt="image here"></div>
-                                <h3 style="color:black;word-wrap: break-word;">{{$post->title_ar}} </h3>
-                                <span> <? /*php echo $row['postAuthor']; */?>{{$post->user->name}} &nbsp;<i class="fas fa-user"></i></span><br>
-                                <span><?php /*echo $row['PostDate'];*/ ?>{{$post->created_at}} &nbsp; <i class="far fa-calendar-alt"></i></span>&nbsp;&nbsp;
-                                <span> <?php /*echo $row['postCategory'];*/ ?> {{$post->category->name}} &nbsp; <i class="fas fa-tags"></i> </span>
-                                <p style="color:black;"> @php
-                                if (strlen($post->content_en) > 150) {
-                                    echo strip_tags(substr(str_replace('&nbsp;', ' ', $post->content_en), 0, 350) . '....');
-                                } else {
-                                    echo strip_tags(str_replace('&nbsp;', ' ', $post->content_en));
-                                }
-                                @endphp </p>
-                            </div>
-                        </a>
-                       
-                     
-@endforeach
-                
-
+                                    <div class="img-div"> <img src="{{ asset($post->image) }}" alt="image here"></div>
+                                    <h3 style="color:black;word-wrap: break-word;">{{ $post->title_ar }}</h3>
+                                    <span> {{ $post->user->name }} &nbsp;<i class="fas fa-user"></i></span><br>
+                                    <span>{{ $post->created_at->format('Y-m-d') }}&nbsp; <i
+                                            class="far fa-calendar-alt"></i></span>&nbsp;&nbsp;
+                                    <span> {{ $post->partner->name }} &nbsp; <i class="fas fa-tags"></i> </span>
+                                    <p style="color:black;">
+                                        @if (strlen($post->content_ar) > 150)
+                                            {{ strip_tags(substr(str_replace('&nbsp;', ' ', $post->content_ar), 0, 350) . '....') }}
+                                        @else
+                                            {{ strip_tags(str_replace('&nbsp;', ' ', $post->content_ar)) }}
+                                        @endif
+                                    </p>
+                                </div>
+                            </a>
+                        @endforeach
+                        @else
+                        <b><center>لا يوجد منشورات   </center></b>
+                        @endif
+                            
                     </div>
                 </div>
-
+               
                 <div class="col-md-4">
                     <!-- start social  -->
                     <?php /* include_once 'include/social.php'; */  ?>
@@ -112,9 +90,5 @@ while($row=mysqli_fetch_assoc($execezw)){
     </div>
     <!-- end content -->
     <!-- start footer -->
-    <?php /*include_once 'include/underfooter.php'; ?>
-    <!-- end footer -->
-    <?php include_once 'include/footer.php'; */?>
-
-@include("Web.include.underfooter")
-@include("Web.include.footer")
+    @include('Web.include.underfooter')
+    @include('Web.include.footer')
