@@ -41,8 +41,8 @@ Route::prefix("/dashboard")->middleware('admin')->group(function () {
     Route::resource("teams", TeamController::class);
     Route::resource("categories", CategoryController::class);
     Route::resource("posts", PostController::class);
-    Route::post('/posts/{post}/like', [PostController::class, 'like'])->name('posts.like');
-    Route::post('/posts/{post}/dislike', [PostController::class, 'dislike'])->name('posts.dislike');
+    // Route::post('/posts/{post}/like', [PostController::class, 'like'])->name('posts.like');
+    // Route::post('/posts/{post}/dislike', [PostController::class, 'dislike'])->name('posts.dislike');
     Route::get('admin',[AdminController::class,'create'])->name('admin.form');
         Route::post('admin',[AdminController::class,'search'])->name('admin.search');
         Route::post('/admin/change-role', [AdminController::class, 'changeRole'])->name('admin.changeRole');

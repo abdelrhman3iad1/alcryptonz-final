@@ -13,121 +13,7 @@
 <style>
     
     /* Base button styling */
-    .btn-style {
-        padding: 10px 20px;
-        border: none;
-        border-radius: 5px;
-        font-size: 16px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        /* Space between icon and text */
-        transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-
-    /* Like button styling */
-    .like-btn {
-        background-color: #4CAF50;
-        /* Green */
-        color: white;
-    }
-
-    .like-btn:hover {
-        background-color: #45a049;
-        /* Darker green */
-        transform: scale(1.05);
-        /* Slightly enlarge on hover */
-    }
-
-    /* Dislike button styling */
-    .dislike-btn {
-        background-color: #f44336;
-        /* Red */
-        color: white;
-    }
-
-    .dislike-btn:hover {
-        background-color: #d32f2f;
-        /* Darker red */
-        transform: scale(1.05);
-        /* Slightly enlarge on hover */
-    }
-
-    /* Icon styling */
-    .icon {
-        font-size: 18px;
-    }
-
-    /* Message styling */
-    .message {
-        margin-top: 10px;
-        font-size: 14px;
-        color: #555;
-    }
-
-    /* Container for Like and Dislike buttons */
-    .likes-dislikes {
-        display: flex;
-        gap: 10px;
-        /* المسافة بين الـ buttons */
-        margin-top: 10px;
-    }
-
-    /* Base button styling */
-    .btn-style {
-        padding: 8px 16px;
-        border: none;
-        border-radius: 5px;
-        font-size: 14px;
-        cursor: pointer;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        /* المسافة بين الأيقونة والنص */
-        transition: background-color 0.3s ease, transform 0.2s ease;
-    }
-
-    /* Like button styling */
-    .like-btn {
-        background-color: #4CAF50;
-        /* لون أخضر */
-        color: white;
-    }
-
-    .like-btn:hover {
-        background-color: #45a049;
-        /* لون أخضر غامق */
-        transform: scale(1.05);
-        /* تكبير بسيط عند الـ hover */
-    }
-
-    /* Dislike button styling */
-    .dislike-btn {
-        background-color: #f44336;
-        /* لون أحمر */
-        color: white;
-    }
-
-    .dislike-btn:hover {
-        background-color: #d32f2f;
-        /* لون أحمر غامق */
-        transform: scale(1.05);
-        /* تكبير بسيط عند الـ hover */
-    }
-
-    /* أيقونات Font Awesome */
-    .fas {
-        font-size: 16px;
-    }
-
-    /* الرسالة */
-    .message {
-        margin-top: 10px;
-        font-size: 14px;
-        color: #555;
-    }
-
+   
     .converter-container {
         max-width: 500px;
         margin: 50px auto;
@@ -397,17 +283,16 @@
                                                 {{ strip_tags(str_replace('&nbsp;', ' ', $post->content_ar)) }}
                                             @endif
                                         </p>
-                                        <div class="d-flex justify-content-between align-items-center mt-3">
-                                            <button class="btn btn-outline-primary like-btn"
-                                                data-post-id="{{ $post->id }}">
-                                                <i class="fas fa-thumbs-up"></i> Like (<span
-                                                    class="like-count">{{ $post->likes->count() }}</span>)
-                                            </button>
-                                            <button class="btn btn-outline-danger dislike-btn"
-                                                data-post-id="{{ $post->id }}">
-                                                <i class="fas fa-thumbs-down"></i> Dislike (<span
-                                                    class="dislike-count">{{ $post->dislikes->count() }}</span>)
-                                            </button>
+                                        <div class="likes-dislikes">
+                                            <!-- Like Count with Text Label -->
+                                            <span class="like-count" data-post-id="{{ $post->id }}">
+                                                Likes: {{ $post->likes()->count() }}
+                                            </span>
+                                        
+                                            <!-- Dislike Count with Text Label -->
+                                            <span class="dislike-count" data-post-id="{{ $post->id }}">
+                                                Dislikes: {{ $post->dislikes()->count() }}
+                                            </span>
                                         </div>
 
                                     </div>
@@ -464,19 +349,16 @@
                                             @endif
                                         </p>
                                         <div class="likes-dislikes">
-                                            <button class="like-btn btn-style" data-post-id="{{ $post->id }}">
-                                                <i class="fas fa-thumbs-up"></i> <!-- أيقونة Like -->
-                                                <span class="like-count"
-                                                    data-post-id="{{ $post->id }}">{{ $post->likes()->count() }}</span>
-                                            </button>
-    
-                                            <button class="dislike-btn btn-style" data-post-id="{{ $post->id }}">
-                                                <i class="fas fa-thumbs-down"></i> <!-- أيقونة Dislike -->
-                                                <span class="dislike-count"
-                                                    data-post-id="{{ $post->id }}">{{ $post->dislikes()->count() }}</span>
-                                            </button>
+                                            <!-- Like Count with Text Label -->
+                                            <span class="like-count" data-post-id="{{ $post->id }}">
+                                                Likes: {{ $post->likes()->count() }}
+                                            </span>
+                                        
+                                            <!-- Dislike Count with Text Label -->
+                                            <span class="dislike-count" data-post-id="{{ $post->id }}">
+                                                Dislikes: {{ $post->dislikes()->count() }}
+                                            </span>
                                         </div>
-                                        <div class="message" data-post-id="{{ $post->id }}"></div>
                                     </div>
                                 </div>
                             @endforeach
@@ -581,16 +463,16 @@
                                             {{ strip_tags(str_replace('&nbsp;', ' ', $post->content_ar)) }}
                                         @endif
                                     </p>
-                                    <div class="d-flex justify-content-between align-items-center mt-3">
-                                        <!-- Like Button on the Left -->
-                                        <button class="btn btn-outline-primary like-btn" data-post-id="{{ $post->id }}">
-                                            <i class="fas fa-thumbs-up"></i> Like (<span class="like-count">{{ $post->likes->count() }}</span>)
-                                        </button>
+                                    <div class="likes-dislikes">
+                                        <!-- Like Count with Text Label -->
+                                        <span class="like-count" data-post-id="{{ $post->id }}">
+                                            Likes: {{ $post->likes()->count() }}
+                                        </span>
                                     
-                                        <!-- Dislike Button on the Right -->
-                                        <button class="btn btn-outline-danger dislike-btn" data-post-id="{{ $post->id }}">
-                                            <i class="fas fa-thumbs-down"></i> Dislike (<span class="dislike-count">{{ $post->dislikes->count() }}</span>)
-                                        </button>
+                                        <!-- Dislike Count with Text Label -->
+                                        <span class="dislike-count" data-post-id="{{ $post->id }}">
+                                            Dislikes: {{ $post->dislikes()->count() }}
+                                        </span>
                                     </div>
 
                                 </div>
@@ -646,19 +528,16 @@
                                     </p>
 
                                     <div class="likes-dislikes">
-                                        <button class="like-btn btn-style" data-post-id="{{ $post->id }}">
-                                            <i class="fas fa-thumbs-up"></i> <!-- أيقونة Like -->
-                                            <span class="like-count"
-                                                data-post-id="{{ $post->id }}">{{ $post->likes()->count() }}</span>
-                                        </button>
-
-                                        <button class="dislike-btn btn-style" data-post-id="{{ $post->id }}">
-                                            <i class="fas fa-thumbs-down"></i> <!-- أيقونة Dislike -->
-                                            <span class="dislike-count"
-                                                data-post-id="{{ $post->id }}">{{ $post->dislikes()->count() }}</span>
-                                        </button>
+                                        <!-- Like Count with Text Label -->
+                                        <span class="like-count" data-post-id="{{ $post->id }}">
+                                            Likes: {{ $post->likes()->count() }}
+                                        </span>
+                                    
+                                        <!-- Dislike Count with Text Label -->
+                                        <span class="dislike-count" data-post-id="{{ $post->id }}">
+                                            Dislikes: {{ $post->dislikes()->count() }}
+                                        </span>
                                     </div>
-                                    <div class="message" data-post-id="{{ $post->id }}"></div>
                                 </div>
                             </div>
                         @endforeach
@@ -869,6 +748,26 @@
     </script>
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to update counts
+            function updateCounts(postId, likes, dislikes) {
+                document.querySelector(`.like-count[data-post-id="${postId}"]`).textContent = likes;
+                document.querySelector(`.dislike-count[data-post-id="${postId}"]`).textContent = dislikes;
+            }
+    
+            // Example: Simulate an update (replace this with your actual AJAX call)
+            setInterval(() => {
+                const postId = 1; // Replace with the actual post ID
+                fetch(`/posts/${postId}/stats`) // Replace with your API endpoint
+                    .then(response => response.json())
+                    .then(data => {
+                        updateCounts(postId, data.likes, data.dislikes);
+                    })
+                    .catch(error => console.error('Error:', error));
+            }, 5000); // Update every 5 seconds (for demonstration)
+        });
+    </script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Handle Like Button Click

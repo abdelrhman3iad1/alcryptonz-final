@@ -1,6 +1,123 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <style>
+         .btn-style {
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        font-size: 16px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        /* Space between icon and text */
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    /* Like button styling */
+    .like-btn {
+        background-color: #4CAF50;
+        /* Green */
+        color: white;
+    }
+
+    .like-btn:hover {
+        background-color: #45a049;
+        /* Darker green */
+        transform: scale(1.05);
+        /* Slightly enlarge on hover */
+    }
+
+    /* Dislike button styling */
+    .dislike-btn {
+        background-color: #f44336;
+        /* Red */
+        color: white;
+    }
+
+    .dislike-btn:hover {
+        background-color: #d32f2f;
+        /* Darker red */
+        transform: scale(1.05);
+        /* Slightly enlarge on hover */
+    }
+
+    /* Icon styling */
+    .icon {
+        font-size: 18px;
+    }
+
+    /* Message styling */
+    .message {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #555;
+    }
+
+    /* Container for Like and Dislike buttons */
+    .likes-dislikes {
+        display: flex;
+        gap: 10px;
+        /* المسافة بين الـ buttons */
+        margin-top: 10px;
+    }
+
+    /* Base button styling */
+    .btn-style {
+        padding: 8px 16px;
+        border: none;
+        border-radius: 5px;
+        font-size: 14px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        /* المسافة بين الأيقونة والنص */
+        transition: background-color 0.3s ease, transform 0.2s ease;
+    }
+
+    /* Like button styling */
+    .like-btn {
+        background-color: #4CAF50;
+        /* لون أخضر */
+        color: white;
+    }
+
+    .like-btn:hover {
+        background-color: #45a049;
+        /* لون أخضر غامق */
+        transform: scale(1.05);
+        /* تكبير بسيط عند الـ hover */
+    }
+
+    /* Dislike button styling */
+    .dislike-btn {
+        background-color: #f44336;
+        /* لون أحمر */
+        color: white;
+    }
+
+    .dislike-btn:hover {
+        background-color: #d32f2f;
+        /* لون أحمر غامق */
+        transform: scale(1.05);
+        /* تكبير بسيط عند الـ hover */
+    }
+
+    /* أيقونات Font Awesome */
+    .fas {
+        font-size: 16px;
+    }
+
+    /* الرسالة */
+    .message {
+        margin-top: 10px;
+        font-size: 14px;
+        color: #555;
+    }
+
+    </style>
     <meta name="email" content="contactus@alcryptonz.com">
     <link rel="canonical" href="https://www.alcryptonz.com/">
     <link rel="shortcut icon" type="image/jpeg" href='{{ asset("images/new-big-logo.jpeg") }}' />
@@ -57,6 +174,21 @@
                             <div class="post-content">
                                 {!! $post->content_ar !!}
                             </div>
+                            
+                            <div class="likes-dislikes">
+                                <button class="like-btn btn-style" data-post-id="{{ $post->id }}">
+                                    <i class="fas fa-thumbs-up"></i> <!-- أيقونة Like -->
+                                    <span class="like-count"
+                                        data-post-id="{{ $post->id }}">{{ $post->likes()->count() }}</span>
+                                </button>
+
+                                <button class="dislike-btn btn-style" data-post-id="{{ $post->id }}">
+                                    <i class="fas fa-thumbs-down"></i> <!-- أيقونة Dislike -->
+                                    <span class="dislike-count"
+                                        data-post-id="{{ $post->id }}">{{ $post->dislikes()->count() }}</span>
+                                </button>
+                            </div>
+                            <div class="message" data-post-id="{{ $post->id }}"></div>
                         </div>
                     </div>
 
@@ -125,5 +257,64 @@
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
     <script src='js/main.js'></script>
     <script src='js/forshare.js'></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Handle Like Button Click
+            document.querySelectorAll('.like-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const postId = this.getAttribute('data-post-id');
+                    fetch(`/posts/${postId}/like`, {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json'
+                            }
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            // Update Like Count
+                            document.querySelector(`.like-count[data-post-id="${postId}"]`)
+                                .textContent = data.likes;
+                            // Update Dislike Count
+                            document.querySelector(`.dislike-count[data-post-id="${postId}"]`)
+                                .textContent = data.dislikes;
+                            // Update Message
+                            document.querySelector(`.message[data-post-id="${postId}"]`)
+                                .textContent = data.message;
+                        })
+                        .catch(error => console.error('Error:', error));
+                });
+            });
+
+            // Handle Dislike Button Click
+            document.querySelectorAll('.dislike-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const postId = this.getAttribute('data-post-id');
+                    fetch(`/posts/${postId}/dislike`, {
+                            method: 'POST',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json'
+                            }
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            // Update Like Count
+                            document.querySelector(`.like-count[data-post-id="${postId}"]`)
+                                .textContent = data.likes;
+                            // Update Dislike Count
+                            document.querySelector(`.dislike-count[data-post-id="${postId}"]`)
+                                .textContent = data.dislikes;
+                            // Update Message
+                            document.querySelector(`.message[data-post-id="${postId}"]`)
+                                .textContent = data.message;
+                        })
+                        .catch(error => console.error('Error:', error));
+                });
+            });
+        });
+    </script>
 </body>
 </html>
