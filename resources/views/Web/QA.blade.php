@@ -42,16 +42,18 @@
                         <!-- End form search -->
 
                         <!-- Start result search -->
-                        @if (session('searchResults'))
+                        @if (isset($searchResults))
+                        
+                        @forelse($searchResults as $searchResult)
+
                             <h3 class='header-title'>نتائج البحث</h3>
-                            @forelse(session('searchResults') as $qa)
                                 <!-- Question -->
                                 <div class="quasion" style="overflow:hidden !important">
                                     <div class="ask" style="overflow:scroll !important;direction: rtl !important">
-                                        {!! str_replace('&nbsp;', ' ', $qa->question_ar) !!} <i class="fas fa-question-circle"></i>
+                                        {!! str_replace('&nbsp;', ' ', $searchResult->question_ar) !!} <i class="fas fa-question-circle"></i>
                                     </div>
                                     <div class="answer" style="overflow:scroll !important;direction: rtl !important">
-                                        {!! str_replace('&nbsp;', ' ', $qa->answer_ar) !!}
+                                        {!! str_replace('&nbsp;', ' ', $searchResult->answer_ar) !!}
                                     </div>
                                 </div>
                             @empty
@@ -60,6 +62,7 @@
                                 </b>
                             @endforelse
                         @endif
+
                         <!-- End search result -->
 
                         <h3 class="header-title">جميع الاسئلة</h3>

@@ -23,8 +23,13 @@ Route::post('/posts/{post}/like', [PostController::class, 'like'])->name('posts.
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/post/{id}', [HomeController::class, "post"])->name('showPost');
 Route::get('/qa', [HomeController::class, 'QA'])->name('qa.index');
-Route::post('/qa/search', [HomeController::class, 'search'])->name('qa.search');
-Route::get('/search', [PostController::class, 'search'])->name('search');
+
+Route::post('/qa', [HomeController::class, 'qa_search'])->name('qa.search');
+Route::post('/post', [HomeController::class, 'post_search'])->name('post.search');
+
+// Route::post('/qa/search', [HomeController::class, 'search'])->name('qa.search');
+// Route::get('/search', [PostController::class, 'search'])->name('search');
+
 Route::get( '/AllPosts', [HomeController::class, 'AllPosts'])->name('AllPosts');
 Route::get( '/crypto-news', [HomeController::class, 'cryptoNews'])->name('crypto-news');
 // Route::get( '/categoriesRelated', [HomeController::class, 'categoriesRelated'])->name('categories.related');

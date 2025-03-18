@@ -94,30 +94,42 @@ class HomeController extends Controller
     /**
      * Search for Q&A entries
      */
-    public function search(Request $request)
+    public function qa_search(Request $request)
     {
 
         $validated = $request->validate([
             'searched' => 'required|string|max:190',
         ]);
-
-
-
         $searchQuery = $validated['searched'];
+        
         $searchResults = Qa::where('question_ar', 'like', '%' . $searchQuery . '%')
-            ->orderBy('id', 'desc')
-            ->get();
-        $qas = Qa::orderBy('id', 'desc')->get();
-        // unset($searchQuery,$validated);
-        // extract($this->allSideVaribles());
-        // return redirect()->route('qa.index')
-        // ->with(get_defined_vars());
+        ->orWhere('question_en', 'like', '%' . $searchQuery . '%')
+        ->orderBy('id', 'desc')
+        ->get();
+        
+        
+        $qas = Qa::orderBy('created_at', 'desc')->get();
+        unset($searchQuery,$validated);
+        extract($this->allSideVaribles());
+        return view('web.qa',get_defined_vars());
 
-        $categories = Category::all();
-        $partners = Partner::all();
-        return redirect()->route('qa.index')
-            ->with('searchResults', $searchResults)
-            ->with(compact('qas', 'categories', 'partners'));
+    }
+    public function post_search(Request $request)
+    {
+        $validated = $request->validate([
+            'searched' => 'required|string|max:190',
+        ]);
+        $searchQuery = $validated['searched'];
+        
+        $posts = Post::where('title_ar', 'like', '%' . $searchQuery . '%')
+        ->orWhere('title_en', 'like', '%' . $searchQuery . '%')
+        ->orderBy('id', 'desc')
+        ->get();
+        
+        unset($searchQuery,$validated);
+        extract($this->allSideVaribles());
+        return view('web.search-result',get_defined_vars());
+
     }
     public function AllPosts()
     {
