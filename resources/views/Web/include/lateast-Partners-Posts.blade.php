@@ -1,14 +1,14 @@
 <div class="last-posts">
     <h4>أحدث مقالات الشركاء</h4>
     <ul>
-        @php
+        {{-- @php
             $filteredPosts = $posts->where('partner_id', 1)->take(5);
-        @endphp
+        @endphp --}}
 
-        @if ($filteredPosts->isEmpty())
+        @if ($partnerPosts->isEmpty())
             <b><center>لا يوجد منشورات</center></b>
         @else
-            @foreach ($filteredPosts as $post)
+            @foreach ($partnerPosts as $post)
                 <li style="overflow:hidden">
                     <a>
                         <span>

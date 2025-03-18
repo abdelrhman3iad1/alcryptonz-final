@@ -1,15 +1,15 @@
 <div class="last-posts">
     <h4>أحدث المقالات التعليمية</h4>
     <ul>
-        @php
+        {{-- @php
             // تصفية المقالات الخاصة بالشريك الذي معرفه 1 وأخذ أحدث 5 مقالات
             $filteredPosts = $posts->where('category_id', 2)->take(5);
-        @endphp
+        @endphp --}}
 
-        @if ($filteredPosts->isEmpty())
+        @if ($learningPosts->isEmpty())
             <b><center>لا يوجد منشورات</center></b>
         @else
-            @foreach ($filteredPosts as $post)
+            @foreach ($learningPosts as $post)
                 <li style="overflow:hidden">
                     <a>
                         <span>

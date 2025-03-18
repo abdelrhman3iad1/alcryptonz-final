@@ -73,31 +73,22 @@ class HomeController extends Controller
             ->where('id', '!=', $post->id)
             ->limit(5)
             ->get();
-
-        $categories = Category::all();
-        $partners = Partner::all();
-        $posts =  Post::all();
-        return view('Web.Post', compact('post', 'relatedPosts', 'categories', 'partners', 'posts'));
+        extract($this->allSideVaribles());
+        return view('Web.Post', get_defined_vars());
     }
     public function privacy()
     {
-
-        $categories = Category::all();
-        $partners = Partner::all();
-        $posts =  Post::all();
-        return view('Web.privcy', compact('categories', 'partners', 'posts'));
+        extract($this->allSideVaribles());
+        return view('Web.privcy', get_defined_vars());
     }
 
 
 
     public function QA()
     {
-        $qas = Qa::orderBy('id', 'desc')->get();
-        $categories = Category::all();
-        $partners = Partner::all();
-        $posts =  Post::all();
-
-        return view('web.qa', compact('qas', 'categories', 'partners', 'posts'));
+        $qas = Qa::orderBy('created_at', 'desc')->get();
+        extract($this->allSideVaribles());
+        return view('web.qa', get_defined_vars());
     }
 
     /**
@@ -105,13 +96,6 @@ class HomeController extends Controller
      */
     public function search(Request $request)
     {
-        // $validator = Validator::make($request->all(), [
-        //     'searched' => 'required|string|max:190',
-        // ]);
-
-        // if ($validator->fails()) {
-        //     return back()->with('error', 'الذي بحثت عنة كبير جدا');
-        // }
 
         $validated = $request->validate([
             'searched' => 'required|string|max:190',
@@ -124,43 +108,70 @@ class HomeController extends Controller
             ->orderBy('id', 'desc')
             ->get();
         $qas = Qa::orderBy('id', 'desc')->get();
+        // unset($searchQuery,$validated);
+        // extract($this->allSideVaribles());
+        // return redirect()->route('qa.index')
+        // ->with(get_defined_vars());
+
         $categories = Category::all();
         $partners = Partner::all();
-
         return redirect()->route('qa.index')
             ->with('searchResults', $searchResults)
             ->with(compact('qas', 'categories', 'partners'));
     }
     public function AllPosts()
     {
-        $categories = Category::all();
-        $partners = Partner::all();
         $posts =  Post::all();
-        return view('Web.show-all-posts', compact('categories', 'partners', 'posts'));
+        extract($this->allSideVaribles());
+        return view('Web.show-all-posts', get_defined_vars());
     }
 
     public function categoriesRelated($id)
     {
-
-        $posts = Post::all();
         $categoryPosts = Post::where('category_id', "=", $id)->get();
-        $categories = Category::all();
-        $partners = Partner::all();
-        return view("Web.categories-related", compact('categoryPosts', "posts", "categories", "partners"));
+        extract($this->allSideVaribles());
+        return view("Web.categories-related", get_defined_vars());
     }
     public function cryptoNews()
     {
-        $categories = Category::all();
-        $partners = Partner::all();
         $posts =  Post::where('category_id', 3)->get();
-        return view('Web.alcrypto-news', compact('categories', 'partners', 'posts'));
+        extract($this->allSideVaribles());
+        return view('Web.alcrypto-news', get_defined_vars());
     }
     public function AllPartnersPosts()
     {
-        $posts = Post::all();
         $partnerPosts = Post::whereNotNull('partner_id')->get();
-        $categories = Category::all();
-        $partners = Partner::all();
-        return view("Web.show-all-partners-posts", compact('partnerPosts', "posts", "categories", "partners"));
+        extract($this->allSideVaribles());
+        return view("Web.show-all-partners-posts", get_defined_vars());
+    }
+    private function latestPartnerPosts(){
+        $partnerPosts = Post::whereNotNull('partner_id')->orderBy('created_at','desc')->take(5)->get();
+        return $partnerPosts;
+    }
+    private function latestLearningPosts(){
+        $learningPosts = Post::where('category_id',"=",2)->orderBy('created_at','desc')->take(5)->get();
+        return $learningPosts;
+    }
+    private function latestCryptoNewsPosts(){
+        $cryptoNewsPosts = Post::where('category_id',"=",3)->orderBy('created_at','desc')->take(5)->get();
+        return $cryptoNewsPosts;
+    }
+    private function getCategories(){
+        $categories =  Category::all();
+        return $categories;
+    }
+
+    private function allSideVaribles(){
+        $cryptoNewsPosts = $this->latestCryptoNewsPosts();
+        $learningPosts = $this->latestLearningPosts();
+        $partnerPosts = $this->latestPartnerPosts();
+        $categories = $this->getCategories();
+        $data = [
+            "cryptoNewsPosts"=>$cryptoNewsPosts,
+            "learningPosts"=>$learningPosts,
+            "partnerPosts"=>$partnerPosts,
+            "categories"=>$categories,
+        ];
+        return $data; 
     }
 }
