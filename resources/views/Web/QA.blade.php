@@ -44,10 +44,11 @@
                         <!-- Start result search -->
                         @if (isset($searchResults))
                         
-                        @forelse($searchResults as $searchResult)
 
                             <h3 class='header-title'>نتائج البحث</h3>
                                 <!-- Question -->
+                        @forelse($searchResults as $searchResult)
+
                                 <div class="quasion" style="overflow:hidden !important">
                                     <div class="ask" style="overflow:scroll !important;direction: rtl !important">
                                         {!! str_replace('&nbsp;', ' ', $searchResult->question_ar) !!} <i class="fas fa-question-circle"></i>
