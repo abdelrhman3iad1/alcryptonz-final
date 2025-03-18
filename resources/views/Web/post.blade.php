@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- Add this in your layout's <head> section -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
     <style>
          .btn-style {
         padding: 10px 20px;
@@ -259,62 +261,91 @@
     <script src='js/forshare.js'></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            // Handle Like Button Click
-            document.querySelectorAll('.like-btn').forEach(button => {
-                button.addEventListener('click', function() {
-                    const postId = this.getAttribute('data-post-id');
-                    fetch(`/posts/${postId}/like`, {
-                            method: 'POST',
-                            headers: {
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                                'Content-Type': 'application/json',
-                                'Accept': 'application/json'
-                            }
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            // Update Like Count
-                            document.querySelector(`.like-count[data-post-id="${postId}"]`)
-                                .textContent = data.likes;
-                            // Update Dislike Count
-                            document.querySelector(`.dislike-count[data-post-id="${postId}"]`)
-                                .textContent = data.dislikes;
-                            // Update Message
-                            document.querySelector(`.message[data-post-id="${postId}"]`)
-                                .textContent = data.message;
-                        })
-                        .catch(error => console.error('Error:', error));
-                });
-            });
-
-            // Handle Dislike Button Click
-            document.querySelectorAll('.dislike-btn').forEach(button => {
-                button.addEventListener('click', function() {
-                    const postId = this.getAttribute('data-post-id');
-                    fetch(`/posts/${postId}/dislike`, {
-                            method: 'POST',
-                            headers: {
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                                'Content-Type': 'application/json',
-                                'Accept': 'application/json'
-                            }
-                        })
-                        .then(response => response.json())
-                        .then(data => {
-                            // Update Like Count
-                            document.querySelector(`.like-count[data-post-id="${postId}"]`)
-                                .textContent = data.likes;
-                            // Update Dislike Count
-                            document.querySelector(`.dislike-count[data-post-id="${postId}"]`)
-                                .textContent = data.dislikes;
-                            // Update Message
-                            document.querySelector(`.message[data-post-id="${postId}"]`)
-                                .textContent = data.message;
-                        })
-                        .catch(error => console.error('Error:', error));
-                });
+    // Get the CSRF token from the meta tag
+    const csrfToken = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    
+    // Handle Like Button Click
+    document.querySelectorAll('.like-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const postId = this.getAttribute('data-post-id');
+            
+            // Create a form data object to send the CSRF token properly
+            const formData = new FormData();
+            formData.append('_token', csrfToken);
+            
+            fetch(`/posts/${postId}/like`, {
+                method: 'POST',
+                body: formData,
+                credentials: 'same-origin'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'unauthenticated') {
+                    // Handle unauthenticated user
+                    const messageElement = document.querySelector(`.message[data-post-id="${postId}"]`);
+                    messageElement.textContent = data.message;
+                    messageElement.style.color = 'red';
+                    
+                    // Optionally redirect to login
+                    
+                } else {
+                    // Update counts
+                    document.querySelector(`.like-count[data-post-id="${postId}"]`).textContent = data.likes;
+                    document.querySelector(`.dislike-count[data-post-id="${postId}"]`).textContent = data.dislikes;
+                    
+                    // Update message
+                    const messageElement = document.querySelector(`.message[data-post-id="${postId}"]`);
+                    messageElement.textContent = data.message;
+                    messageElement.style.color = 'green';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
             });
         });
+    });
+
+    // Handle Dislike Button Click
+    document.querySelectorAll('.dislike-btn').forEach(button => {
+        button.addEventListener('click', function() {
+            const postId = this.getAttribute('data-post-id');
+            
+            // Create a form data object to send the CSRF token properly
+            const formData = new FormData();
+            formData.append('_token', csrfToken);
+            
+            fetch(`/posts/${postId}/dislike`, {
+                method: 'POST',
+                body: formData,
+                credentials: 'same-origin'
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'unauthenticated') {
+                    // Handle unauthenticated user
+                    const messageElement = document.querySelector(`.message[data-post-id="${postId}"]`);
+                    messageElement.textContent = data.message;
+                    messageElement.style.color = 'red';
+                    
+                    // Optionally redirect to login
+                    
+                } else {
+                    // Update counts
+                    document.querySelector(`.like-count[data-post-id="${postId}"]`).textContent = data.likes;
+                    document.querySelector(`.dislike-count[data-post-id="${postId}"]`).textContent = data.dislikes;
+                    
+                    // Update message
+                    const messageElement = document.querySelector(`.message[data-post-id="${postId}"]`);
+                    messageElement.textContent = data.message;
+                    messageElement.style.color = 'green';
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        });
+    });
+});
     </script>
 </body>
 </html>
