@@ -11,6 +11,8 @@ return
     "Log in with your data that you entered during registration."=>"Log in with your data that you entered during registration.",
     "language"=>"en",
     "dir"=>"ltr",
+    "No Posts" => "No Posts",
+    "Recent Learning Articles"=>"Recent Learning Articles",
     "notDir"=>"rtl",
     "No Exisiting Categories"=>"No Exisiting Categories",
     "HOME"=>"HOME",

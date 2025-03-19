@@ -84,6 +84,8 @@ return
     "All Questions"=>"جميع الاسئلة",
     "No Questions"=>"لا يوجد اسئلة",
     "notDir"=>"ltr",
+    "No Posts" => "لا يوجد منشورات",
+    "Recent Learning Articles"=>"أحدث المقالات التعليمية",
 
 
     
