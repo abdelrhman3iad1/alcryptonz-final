@@ -109,6 +109,7 @@ return
     "Confirm Password"=>"Confirm Password",
     "Enter your name"=>"Enter your name",
     "ALCRYPTO_NEWS"=>"ALCRYPTO NEWS",
+    "Show All Collabs Posts"=>"Show All Collabs Posts",
     "CONTACT_US"=>"CONTACT US",
     "Community_Management"=>"Community Management",
     "Keywords"=>"Keywords",

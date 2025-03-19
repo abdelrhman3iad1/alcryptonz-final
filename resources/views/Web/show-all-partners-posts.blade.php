@@ -23,34 +23,58 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    <h2 class="header-title">Show All Collabs Posts </h2>
+                    <h2 class="header-title">{{__('translation.Show All Collabs Posts')}}</h2>
                     <div class="parent-news">
 
-                            @if(isset($partnerPosts))
-                        <!--post-->
-                        @foreach ($partnerPosts as $post)
-                            <a style="direction:rtl;overflow:hidden"
-                            href="{{ route('showPost', $post->id) }}" target="_blank">
+                        
+@if ($partnerPosts->isEmpty())
+<b><center>{{__('translation.No Exisiting Posts')}}</center></b>
+@else
+@foreach ($partnerPosts as $post )
+                        @if (config('app.locale')=="ar")
+                        
+                        <!--POST-->
+                        <a style="direction:rtl;overflow:hidden" href="{{ route('showPost', $post->id) }}"
+                            target='_blank'>
                             <div class="small-post">
-                                    <div class="img-div"> <img src="{{ asset($post->image) }}" alt="image here"></div>
-                                    <h3 style="color:black;word-wrap: break-word;">{{ $post->title_ar }}</h3>
-                                    <span> {{ $post->user->name }} &nbsp;<i class="fas fa-user"></i></span><br>
-                                    <span>{{ $post->created_at->format('Y-m-d') }}&nbsp; <i
-                                            class="far fa-calendar-alt"></i></span>&nbsp;&nbsp;
-                                    <span> {{ $post->partner->name }} &nbsp; <i class="fas fa-tags"></i> </span>
-                                    <p style="color:black;">
-                                        @if (strlen($post->content_ar) > 150)
-                                            {{ strip_tags(substr(str_replace('&nbsp;', ' ', $post->content_ar), 0, 350) . '....') }}
-                                        @else
-                                            {{ strip_tags(str_replace('&nbsp;', ' ', $post->content_ar)) }}
-                                        @endif
-                                    </p>
-                                </div>
-                            </a>
-                        @endforeach
+                                <div class="img-div"> <img src="{{asset($post->image)}}"
+                                        alt="{{ $post->title_ar }}"></div>
+                                <h3 style="color:black;word-wrap: break-word;">{{$post->title_ar}} </h3>
+                                <span> <? /*php echo $row['postAuthor']; */?>{{$post->user->name}} &nbsp;<i class="fas fa-user"></i></span><br>
+                                <span><?php /*echo $row['PostDate'];*/ ?>{{$post->created_at}} &nbsp; <i class="far fa-calendar-alt"></i></span>&nbsp;&nbsp;
+                                <span> <?php /*echo $row['postCategory'];*/ ?> {{$post->partner->name}} &nbsp; <i class="fas fa-tags"></i> </span>
+                                <p style="color:black;"> @php
+                                if (strlen($post->content_ar) > 150) {
+                                    echo strip_tags(substr(str_replace('&nbsp;', ' ', $post->content_ar), 0, 350) . '....');
+                                } else {
+                                    echo strip_tags(str_replace('&nbsp;', ' ', $post->content_ar));
+                                }
+                                @endphp </p>
+                            </div>
+                        </a>
                         @else
-                        <b><center>لا يوجد منشورات   </center></b>
+                        <a style="direction:ltr;overflow:hidden" href="{{ route('showPost', $post->id) }}"
+                            target='_blank'>
+                            <div class="small-post">
+                                <div class="img-div"> <img src="{{asset($post->image)}}"
+                                        alt="{{ $post->title_en }}"></div>
+                                <h3 style="color:black;word-wrap: break-word;">{{$post->title_en}} </h3>
+                                <span> <? /*php echo $row['postAuthor']; */?>{{$post->user->name}} &nbsp;<i class="fas fa-user"></i></span><br>
+                                <span><?php /*echo $row['PostDate'];*/ ?>{{$post->created_at}} &nbsp; <i class="far fa-calendar-alt"></i></span>&nbsp;&nbsp;
+                                <span> <?php /*echo $row['postCategory'];*/ ?> {{$post->partner->name}} &nbsp; <i class="fas fa-tags"></i> </span>
+                                <p style="color:black;"> @php
+                                if (strlen($post->content_en) > 150) {
+                                    echo strip_tags(substr(str_replace('&nbsp;', ' ', $post->content_en), 0, 350) . '....');
+                                } else {
+                                    echo strip_tags(str_replace('&nbsp;', ' ', $post->content_en));
+                                }
+                                @endphp </p>
+                            </div>
+                        </a>
                         @endif
+                     
+@endforeach
+        @endif
                             
                     </div>
                 </div>
