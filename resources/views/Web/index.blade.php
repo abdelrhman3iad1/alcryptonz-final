@@ -264,7 +264,7 @@
                                         </div>
                                         <a href="post.php?idPost={{ $post->id }}" target="_blank"
                                             class="text-decoration-none">
-                                            <h4 class="text-dark text-truncate">{{ $post->title_ar }}</h4>
+                                            <h4 style="color:black;word-wrap: break-word;">{{ $post->title_ar }}</h4>
                                         </a>
                                         <span class="text-muted d-block small">
                                             <i class="fas fa-user"></i> {{ $partner->name }}
@@ -276,13 +276,17 @@
                                         <span class="text-muted d-block small">
                                             <i class="fas fa-tags"></i> {{ $post->category->name }}
                                         </span>
-                                        <p>
-                                            @if (strlen($post->content_ar > 150))
-                                                {{ strip_tags(substr(str_replace('&nbsp;', ' ', $post->content_ar), 0, 350) . '....') }}
-                                            @else
-                                                {{ strip_tags(str_replace('&nbsp;', ' ', $post->content_ar)) }}
-                                            @endif
+                                        <p style="color:black;"> @php
+                                        
+                                            if (strlen($post->content_ar > 150)){
+                                                echo strip_tags(substr(str_replace('&nbsp;', ' ', $post->content_ar), 0, 350) . '....') ;
+                                            }else{
+                                                echo strip_tags(str_replace('&nbsp;', ' ', $post->content_ar)) ;
+                                            }
+                                        @endphp
+
                                         </p>
+
                                         <div class="likes-dislikes">
                                             <!-- Like Count with Text Label -->
                                             <span class="like-count" data-post-id="{{ $post->id }}">
@@ -329,7 +333,7 @@
                                         </div>
                                         <a href="post.php?idPost={{ $post->id }}" target="_blank"
                                             class="text-decoration-none">
-                                            <h4 class="text-dark text-truncate">{{ $post->title_en }}</h4>
+                                            <h4 style="color:black;word-wrap: break-word;">{{ $post->title_en }}</h4>
                                         </a>
                                         <span class="text-muted d-block small">
                                             <i class="fas fa-user"></i> {{ $partner->name }}
@@ -341,12 +345,15 @@
                                         <span class="text-muted d-block small">
                                             <i class="fas fa-tags"></i> {{ $post->category->name }}
                                         </span>
-                                        <p>
-                                            @if (strlen($post->content_en > 150))
-                                                {{ strip_tags(substr(str_replace('&nbsp;', ' ', $post->content_en), 0, 350) . '....') }}
-                                            @else
-                                                {{ strip_tags(str_replace('&nbsp;', ' ', $post->content_en)) }}
-                                            @endif
+                                        <p style="color:black;"> @php
+                                        
+                                            if (strlen($post->content_en > 150)){
+                                                echo strip_tags(substr(str_replace('&nbsp;', ' ', $post->content_en), 0, 350) . '....') ;
+                                            }else{
+                                                echo strip_tags(str_replace('&nbsp;', ' ', $post->content_en)) ;
+                                            }
+                                        @endphp
+
                                         </p>
                                         <div class="likes-dislikes">
                                             <!-- Like Count with Text Label -->
@@ -445,7 +452,7 @@
                                     </div>
                                     <a href="{{ route('showPost', $post->id) }}" target="_blank"
                                         class="text-decoration-none">
-                                        <h4 class="text-dark text-truncate">{{ $post->title_ar }}</h4>
+                                        <h4 style="color:black;word-wrap: break-word;">{{ $post->title_ar }}</h4>
                                     </a>
                                     <span class="text-muted d-block small">
                                         <i class="fas fa-user"></i> {{ $post->user->name }}
@@ -456,12 +463,15 @@
                                     <span class="text-muted d-block small">
                                         <i class="fas fa-tags"></i> {{ $post->category->name }}
                                     </span>
-                                    <p>
-                                        @if (strlen($post->content_ar > 150))
-                                            {{ strip_tags(substr(str_replace('&nbsp;', ' ', $post->content_ar), 0, 350) . '....') }}
-                                        @else
-                                            {{ strip_tags(str_replace('&nbsp;', ' ', $post->content_ar)) }}
-                                        @endif
+                                    <p style="color:black;"> @php
+                                        
+                                        if (strlen($post->content_ar > 150)){
+                                            echo strip_tags(substr(str_replace('&nbsp;', ' ', $post->content_ar), 0, 350) . '....') ;
+                                        }else{
+                                            echo strip_tags(str_replace('&nbsp;', ' ', $post->content_ar)) ;
+                                        }
+                                    @endphp
+
                                     </p>
                                     <div class="likes-dislikes">
                                         <!-- Like Count with Text Label -->
@@ -508,7 +518,7 @@
                                     </div>
                                     <a href="{{ route('showPost', $post->id) }}" target="_blank"
                                         class="text-decoration-none">
-                                        <h4 class="text-dark text-truncate">{{ $post->title_en }}</h4>
+                                        <h4 style="color:black;word-wrap: break-word;">{{ $post->title_en }}</h4>
                                     </a>
                                     <span class="text-muted d-block small">
                                         <i class="fas fa-user"></i> {{ $post->user->name }}
@@ -519,12 +529,15 @@
                                     <span class="text-muted d-block small">
                                         <i class="fas fa-tags"></i> {{ $post->category->name }}
                                     </span>
-                                    <p>
-                                        @if (strlen($post->content_en > 150))
-                                            {{ strip_tags(substr(str_replace('&nbsp;', ' ', $post->content_en), 0, 350) . '....') }}
-                                        @else
-                                            {{ strip_tags(str_replace('&nbsp;', ' ', $post->content_en)) }}
-                                        @endif
+                                    <p style="color:black;"> @php
+                                        
+                                        if (strlen($post->content_en > 150)){
+                                            echo strip_tags(substr(str_replace('&nbsp;', ' ', $post->content_en), 0, 350) . '....') ;
+                                        }else{
+                                            echo strip_tags(str_replace('&nbsp;', ' ', $post->content_en)) ;
+                                        }
+                                    @endphp
+
                                     </p>
 
                                     <div class="likes-dislikes">
