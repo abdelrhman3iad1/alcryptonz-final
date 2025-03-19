@@ -23,6 +23,8 @@ return
     "Don't have an account?"=>"لا تمتلك حسابا ؟",
     "Already have an account?"=>"تمتلك حسابا ؟",
     "CONTACT_US" => "اتصل بنا",
+    "Keywords"=>"كلمات دلالية",
+    "No Exisiting Categories"=>"لا يوجد تصنيفات",
     "Contact Info"=>"معلومات التواصل",
     "Community_Management" => "إدارة المجتمع",
     "Experts in community management and currently working with several Crypto projects" => "خبراء في إدارة المجتمع ويعملون حاليًا مع عدة مشاريع في مجال العملات الرقمية",
