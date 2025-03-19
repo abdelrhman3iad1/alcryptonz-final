@@ -33,6 +33,8 @@ return
     "Global marketing services for Crypto Projects in the Arabian area."=>"Global marketing services for Crypto Projects in the Arabian area.",
     "Crypto News"=>"Crypto News",
     "Log in."=>"Log in.",
+    "Show All Posts"=>"Show All Posts",
+    "No Exisiting Posts"=>"No Exisiting Articles",
     "Up-to-date news for everything related to Cryptocurrencies."=>"Up-to-date news for everything related to Cryptocurrencies.",
     "Crypto Knowledge"=>"Crypto Knowledge",
     "Simplified articles explaining the rules of cryptocurrency for beginners."=>"Simplified articles explaining the rules of cryptocurrency for beginners.",

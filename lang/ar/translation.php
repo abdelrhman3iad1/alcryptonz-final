@@ -12,6 +12,8 @@ return
     "You registered successfully!"=>"تم التسجيل بنجاح!",
     "Login - Dashboard"=>"تسجيل الدخول لوحة التحكم",
     "Log in."=>"تسجيل الدخول",
+    "Show All Posts"=>"مشاهدة كل المقالات",
+    "No Exisiting Posts"=>"لا يوجد مقالات",
     "Log in with your data that you entered during registration."=>"قم بتسجيل الدخول مع بياناتك التي قمت بإدخالها أثناء التسجيل.",
     "ABOUT_US" => "من نحن",
     "ARTICLES" => "المقالات",
