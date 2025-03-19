@@ -28,15 +28,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    <h2 class="header-title">Q&A</h2>
+                    <h2 class="header-title">{{__('translation.Q&A')}}</h2>
                     <div class="post">
                         <!-- Start form search -->
-                        <div class="form-qa">
+                        <div class="form-qa"  >
                             <form action="{{ route('qa.search') }}" method="POST"
-                                style='text-align:center !important;'>
+                                style='text-align:center !important; '>
                                 @csrf
-                                <button name="goSearch"><i class="fas fa-search"></i></button>
-                                <input type="text" placeholder="بحث عن سؤال" name="searched" required>
+                                <button style="direction: {{__('translation.notDir')}}" name="goSearch"><i class="fas fa-search"></i></button>
+                                <input type="text"  placeholder="{{__('translation.Search for a Question')}}" name="searched" required>
                             </form>
                         </div>
                         <!-- End form search -->
@@ -45,41 +45,64 @@
                         @if (isset($searchResults))
                         
 
-                            <h3 class='header-title'>نتائج البحث</h3>
+                            <h3 class='header-title'>{{__('translation.Search Results')}}</h3>
                                 <!-- Question -->
                         @forelse($searchResults as $searchResult)
+                            @if (config('app.locale')=="ar")
 
                                 <div class="quasion" style="overflow:hidden !important">
-                                    <div class="ask" style="overflow:scroll !important;direction: rtl !important">
+                                    <div class="ask" style="overflow:scroll !important;direction: {{__('translation.dir')}} !important">
                                         {!! str_replace('&nbsp;', ' ', $searchResult->question_ar) !!} <i class="fas fa-question-circle"></i>
                                     </div>
-                                    <div class="answer" style="overflow:scroll !important;direction: rtl !important">
+                                    <div class="answer" style="overflow:scroll !important;direction:{{__('translation.dir')}} !important">
                                         {!! str_replace('&nbsp;', ' ', $searchResult->answer_ar) !!}
                                     </div>
                                 </div>
+                            @else
+                            <div class="quasion" style="overflow:hidden !important">
+                                <div class="ask" style="overflow:scroll !important;direction: {{__('translation.dir')}} !important">
+                                    {!! str_replace('&nbsp;', ' ', $searchResult->question_en) !!} <i class="fas fa-question-circle"></i>
+                                </div>
+                                <div class="answer" style="overflow:scroll !important;direction:{{__('translation.dir')}} !important">
+                                    {!! str_replace('&nbsp;', ' ', $searchResult->answer_en) !!}
+                                </div>
+                            </div>
+                            @endif
                             @empty
                                 <b style='padding:10px;'>
-                                    <center>لا يوجد أي سؤال متعلق بالذي تبحث عنة</center>
+                                    <center>{{__('translation.No Questions as You Searched')}}</center>
                                 </b>
                             @endforelse
                         @endif
 
                         <!-- End search result -->
 
-                        <h3 class="header-title">جميع الاسئلة</h3>
+                        <h3 class="header-title">{{__('translation.All Questions')}}</h3>
                         @forelse($qas as $qa)
+                        @if (config('app.locale')=="ar")
+
                             <!-- Question -->
                             <div class="quasion" style="overflow:hidden !important">
-                                <div class="ask" style="overflow:scroll !important;direction: rtl !important">
+                                <div class="ask" style="overflow:scroll !important;direction:{{__('translation.dir')}} !important">
                                     {!! str_replace('&nbsp;', ' ', $qa->question_ar) !!} <i class="fas fa-question-circle"></i>
                                 </div>
-                                <div class="answer" style="overflow:scroll !important;direction: rtl !important">
+                                <div class="answer" style="overflow:scroll !important;direction:{{__('translation.dir')}} !important">
                                     {!! str_replace('&nbsp;', ' ', $qa->answer_ar) !!}
                                 </div>
-                            </div>
+                            </div>                                
+                            @else
+                            <div class="quasion" style="overflow:hidden !important">
+                                <div class="ask" style="overflow:scroll !important;direction:{{__('translation.dir')}} !important">
+                                    {!! str_replace('&nbsp;', ' ', $qa->question_en) !!} <i class="fas fa-question-circle"></i>
+                                </div>
+                                <div class="answer" style="overflow:scroll !important;direction:{{__('translation.dir')}} !important">
+                                    {!! str_replace('&nbsp;', ' ', $qa->answer_en) !!}
+                                </div>
+                            </div>   
+                            @endif
                         @empty
                             <b>
-                                <center>لا يوجد اسئلة</center>
+                                <center>{{__('translation.No Questions')}}</center>
                             </b>
                         @endforelse
                     </div>

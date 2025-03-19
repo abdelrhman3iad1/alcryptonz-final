@@ -77,6 +77,15 @@ return
     'CCPA Privacy Rights (Do Not Sell My Personal Information)' => 'حقوق خصوصية CCPA (لا تبيع معلوماتي الشخصية)',
     "Privacy Policy for AlCryptonz"=>"سياسات الخصوصية للكريبتونز",
     "Show All Collabs Posts"=>"كل مقالات الشركاء",
+    "Q&A"=>"سؤال و إاجابة",
+    "Search for a Question"=>"بحث عن سؤال",
+    "Search Results"=>"نتائج البحث",
+    "No Questions as You Searched"=>"لا يوجد أي سؤال متعلق بالذي تبحث عنة",
+    "All Questions"=>"جميع الاسئلة",
+    "No Questions"=>"لا يوجد اسئلة",
+    "notDir"=>"ltr",
+
+
     
     'Under the CCPA, among other rights, California consumers have the right to:' => 'بموجب CCPA، من بين حقوق أخرى، يتمتع مستهلكو كاليفورنيا بالحق في:',
     
