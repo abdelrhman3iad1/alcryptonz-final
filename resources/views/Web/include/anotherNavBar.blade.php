@@ -60,6 +60,30 @@
             <li class="nav-item">
                 <a href="{{route('aboutUs')}}" class="nav-link spec2">{{__('translation.ABOUT_US')}}</a>
             </li>
+            @if (config('app.locale')=='ar')
+                <li class="nav-item">
+                    <a href="{{url('/en')}}" class="nav-link spec2">ENGLISH</a>
+                </li>
+                @elseif(config('app.locale')=='en')
+                <li class="nav-item">
+                    <a href="{{url('/ar')}}" class="nav-link spec2">ARABIC</a>
+                </li>
+                @endif
+
+                @guest
+                <li class="nav-item">
+                    <a href="{{route('get.login')}}" class="nav-link spec2">{{__('translation.Login')}}</a>
+                </li>
+                @endguest
+                @auth
+                <li class="nav-item">
+                    <form action="{{route('logout')}}" method="post">
+                        @csrf
+                        <button type="submit" class="nav-link spec1" style="border-radius:10px;">{{__('translation.Logout')}}</button>
+                    </form>
+                    {{-- <a href="" class="nav-link spec2">{{__('translation.Logout')}}</a> --}}
+                </li>
+                @endauth
             {{-- <li class="nav-item">
                 <a href="#ar" class="nav-link spec2">ARTICLES</a>
             </li> --}}
