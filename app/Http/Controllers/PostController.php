@@ -164,7 +164,7 @@ class PostController extends Controller
         if (!auth()->check()) {
             return response()->json([
                 'status' => 'unauthenticated',
-                'message' => 'Please login to like posts.'
+                'message' => __('translation.Please login to like posts.')
             ], 401);
         }
         $user = auth()->user();
@@ -199,7 +199,7 @@ class PostController extends Controller
         if (!auth()->check()) {
             return response()->json([
                 'status' => 'unauthenticated',
-                'message' => 'Please login to dislike posts.'
+                'message' =>  __("translation.Please login to dislike posts.")
             ], 401);
         }
         $user = auth()->user();

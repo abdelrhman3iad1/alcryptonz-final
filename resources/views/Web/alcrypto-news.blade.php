@@ -28,7 +28,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                <h2> اخبار الكريبتو</h2>
+                <h2>{{__('translation.Crypto News')}}</h2>
                 <div class="parent-news">
               
                 <?php
@@ -45,30 +45,54 @@
                             echo "<b><center>لا يوجد منشورات  موجودة  في اخبار الكريبتو</center></b>";
                                 }else{
                         while($row=mysqli_fetch_assoc($execuationsa)){  */?>
-                        @forelse ($posts as $post)
-                            
-                        
-                               <!--POST-->
-                               <a style="direction:rtl;overflow:hidden" href="{{ route('showPost', $post->id) }}"target='_blank'> <div class="small-post">
-                      <div class="img-div"><img src="{{asset($post->image)}}" alt="image here"></div>
-                        <h3 style="color:black;word-wrap: break-word;"><?php /* echo $row["postTitle"]; */?> {{$post->title_en}} </h3>
-                        <span> <?php /* echo $row["postAuthor"]; */?> {{$post->user->name}} &nbsp;<i class="fas fa-user"></i></span><br>
-                        <span> <?php /*echo $row["PostDate"];*/ ?>{{$post->created_at}}&nbsp; <i class="far fa-calendar-alt"></i></span>&nbsp;&nbsp;
-                        <span>  <?php /*echo $row["postCategory"];*/ ?>{{$post->category->name}} &nbsp; <i class="fas fa-tags"></i> </span>
-                        <p style="color:black;">
-                            @php
-                            if (strlen($post->content_en) > 150) {
-                                echo strip_tags(substr(str_replace('&nbsp;', ' ', $post->content_en), 0, 350) . '....');
-                            } else {
-                                echo strip_tags(str_replace('&nbsp;', ' ', $post->content_en));
-                            }
-                            @endphp
-                        </p>
-               
-                   </div></a>
-                   @empty
-                            <b><center>لا يوجد منشورات  موجودة  في اخبار الكريبتو</center></b>
-                        @endforelse
+                        @if ($posts->isEmpty())
+                        <b><center>{{__('translation.No Exisiting Posts')}}</center></b>
+                        @else
+                        @foreach ($posts as $post )
+                                                @if (config('app.locale')=="ar")
+                                                
+                                                <!--POST-->
+                                                <a style="direction:rtl;overflow:hidden" href="{{ route('showPost', $post->id) }}"
+                                                    target='_blank'>
+                                                    <div class="small-post">
+                                                        <div class="img-div"> <img src="{{asset($post->image)}}"
+                                                                alt="{{ $post->title_ar }}"></div>
+                                                        <h3 style="color:black;word-wrap: break-word;">{{$post->title_ar}} </h3>
+                                                        <span> <? /*php echo $row['postAuthor']; */?>{{$post->user->name}} &nbsp;<i class="fas fa-user"></i></span><br>
+                                                        <span><?php /*echo $row['PostDate'];*/ ?>{{$post->created_at}} &nbsp; <i class="far fa-calendar-alt"></i></span>&nbsp;&nbsp;
+                                                        <span> <?php /*echo $row['postCategory'];*/ ?> {{$post->category->name}} &nbsp; <i class="fas fa-tags"></i> </span>
+                                                        <p style="color:black;"> @php
+                                                        if (strlen($post->content_ar) > 150) {
+                                                            echo strip_tags(substr(str_replace('&nbsp;', ' ', $post->content_ar), 0, 350) . '....');
+                                                        } else {
+                                                            echo strip_tags(str_replace('&nbsp;', ' ', $post->content_ar));
+                                                        }
+                                                        @endphp </p>
+                                                    </div>
+                                                </a>
+                                                @else
+                                                <a style="direction:ltr;overflow:hidden" href="{{ route('showPost', $post->id) }}"
+                                                    target='_blank'>
+                                                    <div class="small-post">
+                                                        <div class="img-div"> <img src="{{asset($post->image)}}"
+                                                                alt="{{ $post->title_en }}"></div>
+                                                        <h3 style="color:black;word-wrap: break-word;">{{$post->title_en}} </h3>
+                                                        <span> <? /*php echo $row['postAuthor']; */?>{{$post->user->name}} &nbsp;<i class="fas fa-user"></i></span><br>
+                                                        <span><?php /*echo $row['PostDate'];*/ ?>{{$post->created_at}} &nbsp; <i class="far fa-calendar-alt"></i></span>&nbsp;&nbsp;
+                                                        <span> <?php /*echo $row['postCategory'];*/ ?> {{$post->category->name}} &nbsp; <i class="fas fa-tags"></i> </span>
+                                                        <p style="color:black;"> @php
+                                                        if (strlen($post->content_en) > 150) {
+                                                            echo strip_tags(substr(str_replace('&nbsp;', ' ', $post->content_en), 0, 350) . '....');
+                                                        } else {
+                                                            echo strip_tags(str_replace('&nbsp;', ' ', $post->content_en));
+                                                        }
+                                                        @endphp </p>
+                                                    </div>
+                                                </a>
+                                                @endif
+                                             
+                        @endforeach
+                                @endif
                 </div>
                         </div>
                 <div class="col-md-4">

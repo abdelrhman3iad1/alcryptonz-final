@@ -1,3 +1,38 @@
+<style>
+    /* RTL support styles */
+[dir="rtl"] .navbar-nav.ml-auto {
+    margin-left: 0 !important;
+    margin-right: auto !important;
+}
+
+[dir="rtl"] .navbar-nav.mr-auto {
+    margin-right: 0 !important;
+    margin-left: auto !important;
+}
+
+[dir="rtl"] .navbar-brand {
+    margin-right: 0;
+    margin-left: 1rem;
+}
+
+[dir="rtl"] .navbar-toggler {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+
+
+/* Fix padding for RTL */
+[dir="rtl"] .px-2 {
+    padding-right: 0.5rem !important;
+    padding-left: 0.5rem !important;
+}
+
+[dir="rtl"] .px-3 {
+    padding-right: 1rem !important;
+    padding-left: 1rem !important;
+}
+</style>
 <nav class="navbar nav-me bg-dark navbar-light navbar-expand-sm two-nav">
     <div class="container-fluid">
         <a href="{{route('home')}}" class="navbar-brand" style="font-weight:bold;font-size:19px;color:white">
@@ -25,6 +60,30 @@
             <li class="nav-item">
                 <a href="{{route('aboutUs')}}" class="nav-link spec2">{{__('translation.ABOUT_US')}}</a>
             </li>
+            @if (config('app.locale')=='ar')
+                <li class="nav-item">
+                    <a href="{{url('/en')}}" class="nav-link spec2">ENGLISH</a>
+                </li>
+                @elseif(config('app.locale')=='en')
+                <li class="nav-item">
+                    <a href="{{url('/ar')}}" class="nav-link spec2">ARABIC</a>
+                </li>
+                @endif
+
+                @guest
+                <li class="nav-item">
+                    <a href="{{route('get.login')}}" class="nav-link spec2">{{__('translation.Login')}}</a>
+                </li>
+                @endguest
+                @auth
+                <li class="nav-item">
+                    <form action="{{route('logout')}}" method="post">
+                        @csrf
+                        <button type="submit" class="nav-link spec1" style="border-radius:10px;">{{__('translation.Logout')}}</button>
+                    </form>
+                    {{-- <a href="" class="nav-link spec2">{{__('translation.Logout')}}</a> --}}
+                </li>
+                @endauth
             {{-- <li class="nav-item">
                 <a href="#ar" class="nav-link spec2">ARTICLES</a>
             </li> --}}

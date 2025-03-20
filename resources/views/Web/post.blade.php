@@ -3,6 +3,22 @@
 <head>
     <!-- Add this in your layout's <head> section -->
 <meta name="csrf-token" content="{{ csrf_token() }}">
+<meta charset="UTF-8">
+<meta name="description" class="posr-dis" content=" ALCRYPTONZ" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="ie=edge">
+<meta name="keywords" content="العملات الرقمية ، مدونة الكريبتونز ، مقالات عن العملات الرقمية، العملات ، الرقمية ، alcryptonz ، ">
+<meta name="copyright" content="جميع الحقوق محفوظة لفريق الكريبتونز">
+<meta name="email" content="contactus@alcryptonz.com">
+<link rel="canonical" href="https://www.alcryptonz.com/" >
+   <!-- ICON  -->
+   <link rel="shortcut icon" type="image/jpeg" href='images/new-big-logo.jpeg' />
+<!-- Font Awesome -->
+<link rel="stylesheet" href='css/all.css' />
+<!-- Google Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Almarai&display=swap" rel="stylesheet">
     <style>
          .btn-style {
         padding: 10px 20px;
@@ -136,7 +152,7 @@
 
 <body id="top-page">
     @include("Web.include.anotherNavBar")
-
+@if (config('app.locale')=="ar")
     <a href="#top-page"
         style="position:fixed;right:15px;bottom:15px;font-size:32px; color:black;z-index:68544;background-color:white;padding:0 5px;border-radius:5px;"><i
             class="fas fa-chevron-circle-up" style="border:1px solid white;"></i></a>
@@ -144,18 +160,18 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-8">
-                    <div class="post" style="direction:rtl">
+                    <div class="post" style="direction:{{__('translation.dir')}}"><!--rtl-->
                         <div class="post-image">
                             <img class="postimg" src="{{ asset($post->image) }}" alt="{{ $post->title_ar }}">
                         </div>
                         <div class="post-title posttir" style='overflow:hidden !important'>
                             <h2 style='width:100%;  word-wrap: break-word;'> {{ $post->title_ar }}</h2>
                         </div>
-                        <div class="share-post" style='direction:ltr !important'>
+                        <div class="share-post" style='direction:ltr !important'><!--ltr-->
                             <ul>
-                                <li><a href="#" class="facebook-btn" target="_blank"><i class="fab fa-facebook-square"></i></a></li>
-                                <li><a href="#" class="whats-btn" target="_blank"><i class="fab fa-whatsapp-square"></i></a></li>
-                                <li> <a href="#" class="twiter-btn" target="_blank"><i class="fab fa-twitter-square"></i></a></li>
+                                <li><a href="#"class="facebook-btn"target="_blank"><i class="fab fa-facebook-square"></i></a></li>
+<li><a href="#"class="whats-btn"target="_blank"><i class="fab fa-whatsapp-square"></i></a></li>   
+<li> <a href="#"class="twiter-btn"target="_blank"><i class="fab fa-twitter-square"></i></a></li>
                                 <li><a class="email"
                                         href="mailto:?subject={{ $post->title_ar }}&amp;body={{ strip_tags(substr($post->content_ar, 0, 150) . '....') }}"
                                         onclick="window.open(this.href, 'windowName', 'width=500, height=400, left=24, top=24, scrollbars, resizable'); return false;"
@@ -174,10 +190,12 @@
                                 @endif
                             </p>
                             <div class="post-content">
-                                {!! $post->content_ar !!}
+                                @php
+                                echo str_replace("&nbsp;"," ",$post->content_ar);
+                                @endphp
                             </div>
                             
-                            <div class="likes-dislikes">
+                            <div  class="likes-dislikes">
                                 <button class="like-btn btn-style" data-post-id="{{ $post->id }}">
                                     <i class="fas fa-thumbs-up"></i> <!-- أيقونة Like -->
                                     <span class="like-count"
@@ -190,27 +208,99 @@
                                         data-post-id="{{ $post->id }}">{{ $post->dislikes()->count() }}</span>
                                 </button>
                             </div>
-                            <div class="message" data-post-id="{{ $post->id }}"></div>
+                            <div class="message"  data-post-id="{{ $post->id }}"></div>
                         </div>
                     </div>
+@else
+<a href="#top-page"
+        style="position:fixed;right:15px;bottom:15px;font-size:32px; color:black;z-index:68544;background-color:white;padding:0 5px;border-radius:5px;"><i
+            class="fas fa-chevron-circle-up" style="border:1px solid white;"></i></a>
+    <div class="content">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="post" style="direction:{{ __('translation.dir') }}">
+                        <div class="post-image">
+                            <img class="postimg" src="{{ asset($post->image) }}" alt="{{ $post->title_en }}">
+                        </div>
+                        <div class="post-title posttir" style='overflow:hidden !important'>
+                            <h2 style='width:100%;  word-wrap: break-word;'> {{ $post->title_en }}</h2>
+                        </div>
+                        <div class="share-post" style='direction:ltr !important'>
+                            <ul>
+                                <li><a href="#" class="facebook-btn" target="_blank"><i class="fab fa-facebook-square"></i></a></li>
+                                <li><a href="#" class="whats-btn" target="_blank"><i class="fab fa-whatsapp-square"></i></a></li>
+                                <li> <a href="#" class="twiter-btn" target="_blank"><i class="fab fa-twitter-square"></i></a></li>
+                                <li><a class="email"
+                                        href="mailto:?subject={{ $post->title_en }}&amp;body={{ strip_tags(substr($post->content_en, 0, 150) . '....') }}"
+                                        onclick="window.open(this.href, 'windowName', 'width=500, height=400, left=24, top=24, scrollbars, resizable'); return false;"
+                                        rel="nofollow"><i class="fas fa-envelope-square"></i></a></li>
+                            </ul>
+                        </div>
+                        <div class="post-details" style="overflow:hidden !important;">
+                            <p class="post-info">
+                                <span> {{ $post->user->name }}&nbsp;<i class="fas fa-user"></i></span><br>
+                                <span>{{ $post->created_at->format('Y-m-d') }}&nbsp; <i class="far fa-calendar-alt"></i></span>
 
+                                @if ($post->category->name == 'مقالات شركاء')
+                                    <span> {{ $post->partner->name }} &nbsp; <i class="fas fa-tags"></i> </span>
+                                @else
+                                    <span> {{ $post->category->name }} &nbsp; <i class="fas fa-tags"></i> </span>
+                                @endif
+                            </p>
+                            <div class="post-content">
+                                @php
+                                echo str_replace("&nbsp;"," ",$post->content_en);
+                                @endphp
+                                {{-- {!! $post->content_en !!} --}}
+                            </div>
+                            
+                            <div  class="likes-dislikes">
+                                <button class="like-btn btn-style" data-post-id="{{ $post->id }}">
+                                    <i class="fas fa-thumbs-up"></i> <!-- أيقونة Like -->
+                                    <span class="like-count"
+                                        data-post-id="{{ $post->id }}">{{ $post->likes()->count() }}</span>
+                                </button>
+
+                                <button class="dislike-btn btn-style" data-post-id="{{ $post->id }}">
+                                    <i class="fas fa-thumbs-down"></i> <!-- أيقونة Dislike -->
+                                    <span class="dislike-count"
+                                        data-post-id="{{ $post->id }}">{{ $post->dislikes()->count() }}</span>
+                                </button>
+                            </div>
+                            <div class="message"  data-post-id="{{ $post->id }}"></div>
+                        </div>
+                    </div>
+@endif
                     <div class="related-posts">
-                        <h4>مقالات قد تعجبك</h4>
+                        <h4>{{__('translation.Articles You May Like')}}</h4>
                         <ul>
                             @if($relatedPosts->count() > 0)
                                 @foreach($relatedPosts as $relatedPost)
+                                    @if (config('app.locale')=="ar")
+                                
                                     <li>
-                                        <a style="direction:rtl;text-align:right" href="{{ route('showPost', ['id' => $relatedPost->id, 'category' => $relatedPost->category->id]) }}" target="_blank">
+                                        <a style="direction:{{__('translation.dir')}};text-align:right" href="{{ route('showPost', ['id' => $relatedPost->id, 'category' => $relatedPost->category->id]) }}" target="_blank">
                                             <span>
                                                 <img src="{{ asset($relatedPost->image) }}" alt="{{ $relatedPost->title_ar }}" style="width:75px; height: 60px;">
                                             </span>
                                             <span style="max-height:80px;overflow:hidden">{{ $relatedPost->title_ar }}</span>
                                         </a>
                                     </li>
-                                @endforeach
+                                    @else
+                                    <li>
+                                        <a style="direction:{{__('translation.dir')}};text-align:right" href="{{ route('showPost', ['id' => $relatedPost->id, 'category' => $relatedPost->category->id]) }}" target="_blank">
+                                            <span>
+                                                <img src="{{ asset($relatedPost->image) }}" alt="{{ $relatedPost->title_en }}" style="width:75px; height: 60px;">
+                                            </span>
+                                            <span style="max-height:80px;overflow:hidden">{{ $relatedPost->title_en }}</span>
+                                        </a>
+                                    </li>
+                                    @endif
+                                    @endforeach
                             @else
-                                <b><center>لا يوجد منشورات متعلقة بهذا المنشور</center></b>
-                            @endif
+                                <b><center>{{__('translation.No Articles Related To This Article')}}</center></b>
+                                @endif
                         </ul>
                     </div>
                 </div>
