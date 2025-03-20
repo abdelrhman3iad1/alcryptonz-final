@@ -86,7 +86,8 @@ return
     "notDir"=>"ltr",
     "No Posts" => "لا يوجد منشورات",
     "Recent Learning Articles"=>"أحدث المقالات التعليمية",
-
+    "Articles You May Like"=>"مقالات قد تعجبك",
+    "No Articles Related To This Article"=>"لا يوجد منشورات متعلقة بهذا المنشور",
 
     
     'Under the CCPA, among other rights, California consumers have the right to:' => 'بموجب CCPA، من بين حقوق أخرى، يتمتع مستهلكو كاليفورنيا بالحق في:',
@@ -100,6 +101,8 @@ return
     'If you make a request, we have one month to respond to you. If you would like to exercise any of these rights, please contact us.' => 'إذا قدمت طلبًا، فلدينا شهر واحد للرد عليك. إذا كنت ترغب في ممارسة أي من هذه الحقوق، يرجى الاتصال بنا.',
     
     'GDPR Data Protection Rights' => 'حقوق حماية البيانات وفقًا للائحة العامة لحماية البيانات (GDPR)',
+    "Please login to dislike posts."=>"يجب تسجيل الدخول لتنفيذ العملية",
+    "Please login to like posts."=>"يجب تسجيل الدخول لتنفيذ العملية",
     
     'We would like to make sure you are fully aware of all of your data protection rights. Every user is entitled to the following:' => 'نود التأكد من أنك على دراية كاملة بجميع حقوق حماية البيانات الخاصة بك. يحق لكل مستخدم ما يلي:',
     
