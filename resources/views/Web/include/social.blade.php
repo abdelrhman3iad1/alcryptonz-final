@@ -1,5 +1,5 @@
 <div class="social">
-       <h4> تواصل معنا  </h4>
+       <h4>  {{__("translation.contact us")}}  </h4>
        <ul>
                 <li><a href="https://twitter.com/Alcryptonz?s=09" target="_blank"><i class="fab fa-twitter-square"></i></a></li>
                 <li><a href="https://t.me/alCryptonz" target="_blank"><i class="fab fa-telegram"></i></a></li>

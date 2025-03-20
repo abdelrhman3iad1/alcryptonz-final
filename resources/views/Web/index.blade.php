@@ -67,7 +67,7 @@
                 <h1>ALCRYPTONZ</h1>
                 <h3>Hard Choices, Great Destiny</h3>
                 <h5>فريق عربي يهدف إلى الربط بين عالم العملات الرقمية والحياة اليومية</h5>
-                <a href="aboutus.php">{{ __('translation.Who We Are') }}</a>
+                <a href="{{route("aboutUs")}}">{{ __('translation.Who We Are') }}</a>
             </div>
         </div>
         <svg class='editorial-border' preserveAspectRatio='none' viewBox='0 24 150 28'
