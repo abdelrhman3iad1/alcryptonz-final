@@ -87,7 +87,7 @@
                 if (data.users && data.users.length > 0) {
                     // Display results
                     data.users.forEach(user => {
-                        const isAdmin = user.role === 1;
+                        const isAdmin = user.role == 1;
                         searchResults.innerHTML += `
                             <tr data-user-id="${user.id}">
                                 <td>${user.name || ''}</td>

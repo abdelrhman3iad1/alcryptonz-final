@@ -60,6 +60,8 @@
             <li class="nav-item">
                 <a href="{{route('aboutUs')}}" class="nav-link spec2">{{__('translation.ABOUT_US')}}</a>
             </li>
+
+            @if (request()->path() != "post")
             @if (config('app.locale')=='ar')
                 <li class="nav-item">
                     <a href="{{url('/en')}}" class="nav-link spec2">ENGLISH</a>
@@ -69,6 +71,7 @@
                     <a href="{{url('/ar')}}" class="nav-link spec2">ARABIC</a>
                 </li>
                 @endif
+            @endif
 
                 @guest
                 <li class="nav-item">

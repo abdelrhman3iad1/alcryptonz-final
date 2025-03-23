@@ -19,7 +19,7 @@ return
         "No Articles Related To This Article" => "No Articles Related To This Article",
         "Please login to dislike posts." => "Please login to dislike posts",
         "Please login to like posts." => "Please login to like posts",
-        "HOME" => "HOME",
+        // "HOME" => "HOME",
         "Privacy Policy for AlCryptonz" => "Privacy Policy for AlCryptonz",
         "ABOUT_US" => "ABOUT US",
         "ARTICLES" => "ARTICLES",
@@ -109,12 +109,21 @@ return
         'Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity.' => 'Another part of our priority is adding protection for children while using the internet. We encourage parents and guardians to observe, participate in, and/or monitor and guide their online activity.',
 
         'Alcryptonz does not knowingly collect any Personal Identifiable Information from children under the age of 13. If you think that your child provided this kind of information on our website, we strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such information from our records.' => 'Alcryptonz does not knowingly collect any Personal Identifiable Information from children under the age of 13. If you think that your child provided this kind of information on our website, we strongly encourage you to contact us immediately and we will do our best efforts to promptly remove such information from our records.',
+        "HOME" => "HOME",
+        // "ABOUT_US" => "ABOUT US",
+        // "ARTICLES" => "ARTICLES",
+        // "Privacy Policy" => "Privacy Policy",
+        // "TEAM" => "TEAM",
+        // "FAQ" => "FAQ",
+        // "Register page" => "Register page",
+        // "Register" => "Register",
         "Don't have an account?" => "Don't have an account?",
         "Already have an account?" => "Already have an account?",
         "Sign up" => "Sign up",
         "Password" => "Password",
         "No Questions" => "No Questions",
         "Search Results" => "Search Results",
+        "Posts For Category"=>"Posts For Category",
         "No Questions as You Searched" => "No Questions as You Searched",
         "All Questions" => "All Questions",
         "Confirm Password" => "Confirm Password",
@@ -132,7 +141,7 @@ return
         "Crypto News" => "Crypto News",
         "Log in." => "Log in.",
         "Show All Posts" => "Show All Posts",
-        "No Exisiting Posts" => "No Exisiting Articles",
+        "No Exisiting Posts" => "No Posts Available",
         "Up-to-date news for everything related to Cryptocurrencies." => "Up-to-date news for everything related to Cryptocurrencies.",
         "Crypto Knowledge" => "Crypto Knowledge",
         "Simplified articles explaining the rules of cryptocurrency for beginners." => "Simplified articles explaining the rules of cryptocurrency for beginners.",
@@ -195,7 +204,7 @@ return
         "partner posts" => "Latest Partner Posts",
         "alcrypto posts" => "Latest Alcrypto Posts",
         "contact us" => "Contact us",
-        "Contributers" => "Contributers"
-
+        "Contributers" => "Contributers",
+        "no posts" => "No Posts Available"
 
     ];

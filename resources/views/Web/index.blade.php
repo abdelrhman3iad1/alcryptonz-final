@@ -189,7 +189,7 @@
             </div>
         </div>
     </div>
-
+    @if (isset($partners[0]))
     <!-- Partners Carousel -->
     <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel"
         style="background: linear-gradient(125deg, #00FF57 0%, #010033 40%, #460043 70%, #F0FFC5 100%), linear-gradient(55deg, #0014C9 0%, #410060 100%), linear-gradient(300deg, #FFC700 0%, #001AFF 100%), radial-gradient(135% 215% at 115% 40%, #393939 0%, #393939 40%, #849561 calc(40% + 1px), #849561 60%, #EED690 calc(60% + 1px), #EED690 80%, #ECEFD8 calc(80% + 1px), #ECEFD8 100%), linear-gradient(125deg, #282D4F 0%, #282D4F 40%, #23103A calc(40% + 1px), #23103A 70%, #A0204C calc(70% + 1px), #A0204C 88%, #FF6C00 calc(88% + 1px), #FF6C00 100%); background-blend-mode: overlay, screen, overlay, overlay, normal; padding: 20px 20px 50px 20px; position: relative;">
@@ -236,8 +236,10 @@
             <span class="sr-only">{{ __('translation.Next') }}</span>
         </a>
     </div>
-
+    @endif
     <!-- Collabs News -->
+
+    @if (isset($partners[0]))
     @if (config('app.locale') == 'ar')
         <div class="page-wrapper" style="padding:10px; text-align:center; overflow:hidden !important;">
             <div class="post-slider mb-4">
@@ -290,12 +292,11 @@
                                         <div class="likes-dislikes">
                                             <!-- Like Count with Text Label -->
                                             <span class="like-count" data-post-id="{{ $post->id }}">
-                                                Likes: {{ $post->likes()->count() }}
+                                                <i class="fa fa-thumbs-up fa-lg" >&nbsp{{ $post->likes()->count() }}</i> 
                                             </span>
-                                        
-                                            <!-- Dislike Count with Text Label -->
+                                        <br>                                        <!-- Dislike Count with Text Label -->
                                             <span class="dislike-count" data-post-id="{{ $post->id }}">
-                                                Dislikes: {{ $post->dislikes()->count() }}
+                                                <i class="fa fa-thumbs-down fa-lg" >&nbsp{{ $post->dislikes()->count() }} </i> 
                                             </span>
                                         </div>
 
@@ -306,7 +307,6 @@
                     </div>
                 </div>
     @endif
-
     @if (config('app.locale') == 'en')
         <div class="page-wrapper" style="padding:10px; text-align:center; overflow:hidden !important;">
             <div class="post-slider mb-4">
@@ -358,12 +358,11 @@
                                         <div class="likes-dislikes">
                                             <!-- Like Count with Text Label -->
                                             <span class="like-count" data-post-id="{{ $post->id }}">
-                                                Likes: {{ $post->likes()->count() }}
+                                                <i class="fa fa-thumbs-up fa-lg" >&nbsp{{ $post->likes()->count() }}</i> 
                                             </span>
-                                        
-                                            <!-- Dislike Count with Text Label -->
+                                        <br>                                        <!-- Dislike Count with Text Label -->
                                             <span class="dislike-count" data-post-id="{{ $post->id }}">
-                                                Dislikes: {{ $post->dislikes()->count() }}
+                                                <i class="fa fa-thumbs-down fa-lg" >&nbsp{{ $post->dislikes()->count() }} </i> 
                                             </span>
                                         </div>
                                     </div>
@@ -372,11 +371,13 @@
                         @endforeach
                     </div>
                 </div>
+    
+
+
+
+
+    
     @endif
-
-
-
-
     <p class='mt-4' style="text-align:center;color:green">
         <i class="fas fa-hand-point-left"></i>{{ __('translation. مرر يمينا او يسارا') }} <i
             class="fas fa-hand-point-right"></i><br>
@@ -392,7 +393,7 @@
     <div style="text-align:center;padding:20px 0" id="ar">
         <a class="show-butx" href="{{ route('AllPartnersPosts') }}">{{ __('translation.Show More') }}</a>
     </div>
-
+    @endif
     <!-- Currency Converter -->
     <div class="converter-container">
         <h2>{{ __('translation.Currency Converter') }}</h2>
@@ -425,6 +426,7 @@
     </div>
 
     <!-- Recent Blog Posts -->
+    @if (isset($posts[0]))
     @if (config('app.locale') == 'ar')
         <div class="page-wrapper" style="padding:10px;text-align:center;overflow:hidden !important">
             <div class="post-slider" style="margin-bottom:30px;">
@@ -476,12 +478,11 @@
                                     <div class="likes-dislikes">
                                         <!-- Like Count with Text Label -->
                                         <span class="like-count" data-post-id="{{ $post->id }}">
-                                            Likes: {{ $post->likes()->count() }}
+                                            <i class="fa fa-thumbs-up fa-lg" >&nbsp{{ $post->likes()->count() }}</i> 
                                         </span>
-                                    
-                                        <!-- Dislike Count with Text Label -->
+                                    <br>                                        <!-- Dislike Count with Text Label -->
                                         <span class="dislike-count" data-post-id="{{ $post->id }}">
-                                            Dislikes: {{ $post->dislikes()->count() }}
+                                            <i class="fa fa-thumbs-down fa-lg" >&nbsp{{ $post->dislikes()->count() }} </i> 
                                         </span>
                                     </div>
 
@@ -543,12 +544,11 @@
                                     <div class="likes-dislikes">
                                         <!-- Like Count with Text Label -->
                                         <span class="like-count" data-post-id="{{ $post->id }}">
-                                            Likes: {{ $post->likes()->count() }}
+                                            <i class="fa fa-thumbs-up fa-lg" >&nbsp{{ $post->likes()->count() }}</i> 
                                         </span>
-                                    
-                                        <!-- Dislike Count with Text Label -->
+                                    <br>                                        <!-- Dislike Count with Text Label -->
                                         <span class="dislike-count" data-post-id="{{ $post->id }}">
-                                            Dislikes: {{ $post->dislikes()->count() }}
+                                            <i class="fa fa-thumbs-down fa-lg" >&nbsp{{ $post->dislikes()->count() }} </i> 
                                         </span>
                                     </div>
                                 </div>
@@ -556,6 +556,7 @@
                         @endforeach
                     </div>
                 </div>
+   
     @endif
     <p style="text-align:center;color:green">
         <i class="fas fa-hand-point-left"></i> {{ __('translation.Swipe Left or Right') }}<i
@@ -569,6 +570,8 @@
     <div style="text-align:center;padding:10px 0 20px">
         <a class="show-butx" href="{{route("AllPosts")}}">{{ __('translation.Show More') }}</a>
     </div>
+    @endif
+@if (isset($teams[0]))
 
     <!-- Team Section - Desktop -->
     <div class="team d-none d-lg-block" id="te">
@@ -611,6 +614,7 @@
             </div>
         </div>
     </div>
+    @endif
 
     <!-- Second Promotional Banner -->
     @if (isset($promotions[1]))

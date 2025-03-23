@@ -6,13 +6,14 @@
         @endphp --}}
 
         @if ($partnerPosts->isEmpty())
-        <center>{{ __('translation.No Exisiting Posts') }}</center>
+        <b><center>{{ __('translation.No Exisiting Posts') }}</center></b>
         @else
             @foreach ($partnerPosts as $post)
             @if (config('app.locale') == 'ar')
 
                 <li style="overflow:hidden">
-                    <a>
+                    <a href="{{ route('showPost', $post->id) }}"
+                        target='_blank'>
                         <span>
                             <img src="{{ asset($post->image) }}" alt="{{ $post->title_ar }}" style="width:75px; height: 60px;">
                         </span>
@@ -29,7 +30,8 @@
                 </li>
                 @else
                 <li style="overflow:hidden">
-                    <a>
+                    <a href="{{ route('showPost', $post->id) }}"
+                        target='_blank'>
                         <span>
                             <img src="{{ asset($post->image) }}" alt="{{ $post->title_en }}" style="width:75px; height: 60px;">
                         </span>

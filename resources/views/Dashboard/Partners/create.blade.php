@@ -41,8 +41,8 @@
                     </div>
                     <div class="form-group">
                         <label for="image">صورة للشريك</label>
-                        <input type="file" accept="image" id="image" name="image" class="form-control" placeholder="">
-                        
+                        {{-- <input type="file" accept="image" id="image" name="image" class="form-control" placeholder=""> --}}
+                        <input type="file" accept="image/*" id="image" name="image" class="form-control" placeholder="">
                     </div>
 
                     

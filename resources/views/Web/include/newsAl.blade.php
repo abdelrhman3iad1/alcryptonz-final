@@ -7,7 +7,8 @@
         @endphp --}}
 
         @if ($cryptoNewsPosts->isEmpty())
-            <b><center>{{ __('translation.no posts') }}</center></b>
+        <b><center>{{ __('translation.No Exisiting Posts') }}</center></b>
+
         @else
             @if (config('app.locale') == 'ar')
                 @foreach ($cryptoNewsPosts as $post)

@@ -14,57 +14,133 @@
 <script src="{{ asset('Dashboard/assets/compiled/js/app.js') }}"></script>
 
 {{-- <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/super-build/ckeditor.js"></script> --}}
-<script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
+
 <!-- Need: Apexcharts -->
 <script src="{{asset('Dashboard/assets/extensions/apexcharts/apexcharts.min.js')}}"></script>
 <script src="{{asset('Dashboard/assets/static/js/pages/dashboard.js')}}"></script>
+<script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
+
 <script>
-    // تهيئة CKEditor للنص باللغة الإنجليزية
+    // CKEditor configuration for English content with WebP support
     ClassicEditor
         .create(document.querySelector('#content_en'), {
+            // Toolbar configuration with items available in Classic editor
             toolbar: {
-                items: [
-                'heading', '|',
-                'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|',
-                'blockQuote', 'undo', 'redo', '|',
-                'textDirection' // إضافة Text Direction
-            ]
-            },
-            textDirection: {
-            options: [
-                { label: 'RTL', value: 'rtl' }, // اتجاه النص من اليمين لليسار
-                { label: 'LTR', value: 'ltr' }, // اتجاه النص من اليسار لليمين
-                { label: 'Auto', value: 'auto' } // اتجاه النص تلقائي
-            ]
-        }
-        })
-        .then(editor => {
-            console.log('Editor for English content was initialized', editor);
-        })
-        .catch(error => {
-            console.error(error);
-        });
+          items: [
+            'heading', '|',
+            'bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript', '|',
+            'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', '|',
+            'alignment', '|',
+            'bulletedList', 'numberedList', 'todoList', '|',
+            'outdent', 'indent', '|',
+            'blockQuote', 'insertTable', 'link', 'imageUpload', 'mediaEmbed', '|',
+            'undo', 'redo', '|',
+            'code', 'codeBlock', 'horizontalLine', 'removeFormat', 'sourceEditing'
+          ]
+        },
+        fontSize: {
+          options: [
+            8, 10, 12, 'default', 14, 16, 18, 20, 24, 28, 36
+          ],
+          supportAllValues: true
+        },
+        fontFamily: {
+          options: [
+            'default',
+            'Arial, Helvetica, sans-serif',
+            'Courier New, Courier, monospace',
+            'Georgia, serif',
+            'Lucida Sans Unicode, Lucida Grande, sans-serif',
+            'Tahoma, Geneva, sans-serif',
+            'Times New Roman, Times, serif',
+            'Trebuchet MS, Helvetica, sans-serif',
+            'Verdana, Geneva, sans-serif'
+          ]
+        },
+        alignment: {
+          options: [ 'left', 'center', 'right', 'justify' ]
+        },
+        image: {
+          toolbar: [
+            'imageTextAlternative', 'imageStyle:full', 'imageStyle:side'
+          ]
+        },
+        table: {
+          contentToolbar: [
+            'tableColumn', 'tableRow', 'mergeTableCells'
+          ]
+        },
+        language: 'en',
+        placeholder: 'Type your awesome content here...',
+      })
+      .then(editor => {
+        console.log('Editor was initialized', editor);
+      })
+      .catch(error => {
+        console.error(error.stack);
+      });
 
-    // تهيئة CKEditor للنص باللغة العربية
+
+    // CKEditor configuration for Arabic content with WebP support
     ClassicEditor
         .create(document.querySelector('#content_ar'), {
+            // Same toolbar configuration as English editor
             toolbar: {
-                items: [
-                'heading', '|',
-                'bold', 'italic', 'link', 'bulletedList', 'numberedList', '|',
-                'blockQuote', 'undo', 'redo', '|',
-                'textDirection' // إضافة Text Direction
-            ]
-            },
-            
-        })
-        .then(editor => {
-            console.log('Editor for Arabic content was initialized', editor);
-        })
-        .catch(error => {
-            console.error(error);
-        });
- 
+          items: [
+            'heading', '|',
+            'bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript', '|',
+            'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', '|',
+            'alignment', '|',
+            'bulletedList', 'numberedList', 'todoList', '|',
+            'outdent', 'indent', '|',
+            'blockQuote', 'insertTable', 'link', 'imageUpload', 'mediaEmbed', '|',
+            'undo', 'redo', '|',
+            'code', 'codeBlock', 'horizontalLine', 'removeFormat', 'sourceEditing'
+          ]
+        },
+        fontSize: {
+          options: [
+            8, 10, 12, 'default', 14, 16, 18, 20, 24, 28, 36
+          ],
+          supportAllValues: true
+        },
+        fontFamily: {
+          options: [
+            'default',
+            'Arial, Helvetica, sans-serif',
+            'Courier New, Courier, monospace',
+            'Georgia, serif',
+            'Lucida Sans Unicode, Lucida Grande, sans-serif',
+            'Tahoma, Geneva, sans-serif',
+            'Times New Roman, Times, serif',
+            'Trebuchet MS, Helvetica, sans-serif',
+            'Verdana, Geneva, sans-serif'
+          ]
+        },
+        alignment: {
+          options: [ 'left', 'center', 'right', 'justify' ]
+        },
+        image: {
+          toolbar: [
+            'imageTextAlternative', 'imageStyle:full', 'imageStyle:side'
+          ]
+        },
+        table: {
+          contentToolbar: [
+            'tableColumn', 'tableRow', 'mergeTableCells'
+          ]
+        },
+        language: 'en',
+        placeholder: 'Type your awesome content here...',
+      })
+      .then(editor => {
+        console.log('Editor was initialized', editor);
+      })
+      .catch(error => {
+        console.error(error.stack);
+      });
+  </script>
+
 </script>
 @yield('scripts')
 </body>

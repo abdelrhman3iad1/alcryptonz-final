@@ -67,7 +67,16 @@
                                                         } else {
                                                             echo strip_tags(str_replace('&nbsp;', ' ', $post->content_ar));
                                                         }
-                                                        @endphp </p>
+                                                        @endphp </p><div class="likes-dislikes">
+                                            <!-- Like Count with Text Label -->
+                                            <span class="like-count" data-post-id="{{ $post->id }}">
+                                                <i class="fa fa-thumbs-up fa-lg" >&nbsp{{ $post->likes()->count() }}</i> 
+                                            </span>
+                                        <br>                                        <!-- Dislike Count with Text Label -->
+                                            <span class="dislike-count" data-post-id="{{ $post->id }}">
+                                                <i class="fa fa-thumbs-down fa-lg" >&nbsp{{ $post->dislikes()->count() }} </i> 
+                                            </span>
+                                        </div>
                                                     </div>
                                                 </a>
                                                 @else
@@ -86,7 +95,16 @@
                                                         } else {
                                                             echo strip_tags(str_replace('&nbsp;', ' ', $post->content_en));
                                                         }
-                                                        @endphp </p>
+                                                        @endphp </p><div class="likes-dislikes">
+                                            <!-- Like Count with Text Label -->
+                                            <span class="like-count" data-post-id="{{ $post->id }}">
+                                                <i class="fa fa-thumbs-up fa-lg" >&nbsp{{ $post->likes()->count() }}</i> 
+                                            </span>
+                                        <br>                                        <!-- Dislike Count with Text Label -->
+                                            <span class="dislike-count" data-post-id="{{ $post->id }}">
+                                                <i class="fa fa-thumbs-down fa-lg" >&nbsp{{ $post->dislikes()->count() }} </i> 
+                                            </span>
+                                        </div>
                                                     </div>
                                                 </a>
                                                 @endif

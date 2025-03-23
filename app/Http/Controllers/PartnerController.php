@@ -38,17 +38,20 @@ class PartnerController extends Controller
        
         $validated = $request->validate([
             "name" => "required|string|unique:partners,name",
-            "description" => "nullable|string|bail",
-            "website_url" => "nullable|bail",
-            "image" => "nullable|image|mimes:png,jpg,jpeg,webp|max:5120|bail"
+            "description" => "required|string",
+            "website_url" => "required",
+            "image" => "required|image|mimes:png,jpg,jpeg,webp|max:5120"
         ],
         
     [
                         'name.required' => 'يجب إدخال الاسم.',
                         'name.string' => 'يجب أن يكون الأسم نصًا.',
                         'name.unique' => 'هذا الاسم مستخدم من قبل.',
+                        'description.required' => 'يجب إدخال وصف.',
+                        'website_url.required' => 'يجب إدخال لينك.',
                         'description.string' => 'يجب أن يكون الوصف نصًا.',
                         'website_url.url' => 'الرابط المدخل غير صحيح.',
+                        'image.required' => 'يجب إدخال صورة.',
                         'image.image' => 'يجب أن يكون الملف المرفوع صورة.',
                         'image.mimes' => 'الصورة يجب أن تكون من نوع png, jpg, jpeg, أو webp.',
                         'image.max' => 'حجم الصورة يجب أن لا يتجاوز 5 ميجابايت.',

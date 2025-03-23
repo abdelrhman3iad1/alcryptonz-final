@@ -38,9 +38,9 @@ class PromotionController extends Controller
        
         $validated = $request->validate([
             "name" => "required|string|unique:promotions,name",
-            "description" => "nullable|string|bail",
-            "website_url" => "nullable|bail",
-            "image" => "nullable|image|mimes:png,jpg,jpeg,webp|max:5120|bail"
+            "description" => "required|string",
+            "website_url" => "required",
+            "image" => "required|image|mimes:png,jpg,jpeg,webp|max:5120|"
         ],
         
     [
@@ -48,6 +48,9 @@ class PromotionController extends Controller
                         'name.string' => 'يجب أن يكون الأسم نصًا.',
                         'name.unique' => 'هذا الاسم مستخدم من قبل.',
                         'description.string' => 'يجب أن يكون الوصف نصًا.',
+                        'description.required' => 'يجب إدخال وصف.',
+                        'website_url.required' => 'يجب إدخال لينك.',
+                        'image.required' => 'يجب إدخال صورة.',
                         'website_url.url' => 'الرابط المدخل غير صحيح.',
                         'image.image' => 'يجب أن يكون الملف المرفوع صورة.',
                         'image.mimes' => 'الصورة يجب أن تكون من نوع png, jpg, jpeg, أو webp.',

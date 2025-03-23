@@ -7,7 +7,8 @@
         @endphp --}}
 
         @if ($learningPosts->isEmpty())
-            <b><center>{{__('translation.No Posts')}}</center></b>
+        <b><center>{{ __('translation.No Exisiting Posts') }}</center></b>
+
         @else
             @foreach ($learningPosts as $post)
             @if (config('app.locale')=="ar")

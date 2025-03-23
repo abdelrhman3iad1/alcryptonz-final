@@ -40,7 +40,7 @@ class TeamController extends Controller
         $validated = $request->validate([
             "name" => "required|string|unique:teams,name",
             "department_id" => "required|exists:departments,id",
-            "image" => "nullable|image|mimes:png,jpg,jpeg,webp|max:5120|bail"
+            "image" => "required|image|mimes:png,jpg,jpeg,webp|max:5120"
         ],
         
     [
@@ -49,6 +49,7 @@ class TeamController extends Controller
                         'name.unique' => 'هذا الاسم مستخدم من قبل.',
                         'department_id.required' => 'يجب تحديد قسم العضو',
                         'department_id.exists' => 'القسم المحدد غير موجود في قاعدة البيانات.',
+                        'image.required' => 'يجب إدخال صورة.',
                         'image.image' => 'يجب أن يكون الملف المرفوع صورة.',
                         'image.mimes' => 'الصورة يجب أن تكون من نوع png, jpg, jpeg, أو webp.',
                         'image.max' => 'حجم الصورة يجب أن لا يتجاوز 5 ميجابايت.',

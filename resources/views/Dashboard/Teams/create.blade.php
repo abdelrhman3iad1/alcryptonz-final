@@ -41,8 +41,8 @@
                 <div class="col-md-6">
                     <div class="form-group">
                         <label for="image">الصورة</label>
-                        <input type="file" accept="image" id="image" name="image" class="form-control" placeholder="">
-                        
+                        {{-- <input type="file" accept="image" id="image" name="image" class="form-control" placeholder=""> --}}
+                        <input type="file" accept="image/*" id="image" name="image" class="form-control" placeholder="">
                     </div>
 
                     

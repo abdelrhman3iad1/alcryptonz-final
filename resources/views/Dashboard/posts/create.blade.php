@@ -84,7 +84,7 @@
                     </div>
                 </div>
     
-                <div class="d-flex mt-2 justify-content-center">
+                <div class="d-flex mt-2 my-3 justify-content-center">
                     <button class="btn btn-outline-primary">إضافة</button>
                 </div>
             </form>

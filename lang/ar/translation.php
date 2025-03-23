@@ -1,6 +1,8 @@
 <?php
 return
     [
+        "Likes:"=>"الإعجابات",
+        "Disikes:"=>"",
         'name_req' => 'حقل الاسم مطلوب.',
         'name_string' => 'يجب أن يكون الاسم قيمة نصية.',
         'name_max' => 'يجب ألا يتجاوز الاسم 255 حرفًا.',
@@ -82,6 +84,7 @@ return
         "Q&A" => "سؤال و إاجابة",
         "Search for a Question" => "بحث عن سؤال",
         "Search Results" => "نتائج البحث",
+        "Posts For Category"=>"مقالات التنصيف",
         "No Questions as You Searched" => "لا يوجد أي سؤال متعلق بالذي تبحث عنة",
         "All Questions" => "جميع الاسئلة",
         "No Questions" => "لا يوجد اسئلة",
@@ -195,5 +198,7 @@ return
         "partner posts" => "أحدث مقالات الشركاء",
         "alcrypto posts" => "أحدث اخبار الكريبتو",
         "contact us" => "تواصل معنا",
-        "Contributers" => "المساهمون"
+        "Contributers" => "المساهمون",
+        "no posts" => "لا يوجد منشورات",
+
     ];
