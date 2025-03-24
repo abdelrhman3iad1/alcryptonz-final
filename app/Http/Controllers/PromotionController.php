@@ -40,7 +40,7 @@ class PromotionController extends Controller
             "name" => "required|string|unique:promotions,name",
             "description" => "required|string",
             "website_url" => "required",
-            "image" => "required|image|mimes:png,jpg,jpeg,webp|max:5120|"
+            "image" => "required|image|mimes:png,jpg,jpeg,webp|max:5120|bail"
         ],
         
     [
