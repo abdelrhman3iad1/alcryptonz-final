@@ -264,7 +264,7 @@
                                                 @endif
                                             </a>
                                         </div>
-                                        <a href="post.php?idPost={{ $post->id }}" target="_blank"
+                                        <a href="{{ route('showPost', $post->id) }}" target="_blank"
                                             class="text-decoration-none">
                                             <h4 style="color:black;word-wrap: break-word;">{{ $post->title_ar }}</h4>
                                         </a>
@@ -331,7 +331,7 @@
                                                 @endif
                                             </a>
                                         </div>
-                                        <a href="post.php?idPost={{ $post->id }}" target="_blank"
+                                        <a href="{{ route('showPost', $post->id) }}" target="_blank"
                                             class="text-decoration-none">
                                             <h4 style="color:black;word-wrap: break-word;">{{ $post->title_en }}</h4>
                                         </a>
