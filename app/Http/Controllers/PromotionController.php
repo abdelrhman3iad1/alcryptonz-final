@@ -39,7 +39,7 @@ class PromotionController extends Controller
         $validated = $request->validate([
             "name" => "required|string|unique:promotions,name",
             "description" => "required|string",
-            "website_url" => "required",
+            "website_url" => "required|url",
             "image" => "required|image|mimes:png,jpg,jpeg,webp|max:5120|bail"
         ],
         
@@ -58,9 +58,9 @@ class PromotionController extends Controller
             ]
         
         );
-        if (!str_starts_with($validated['website_url'], 'http://') && !str_starts_with($validated['website_url'], 'https://')) {
-            $validated['website_url'] = 'https://' . $validated['website_url'];
-        }
+        // if (!str_starts_with($validated['website_url'], 'http://') && !str_starts_with($validated['website_url'], 'https://')) {
+        //     $validated['website_url'] = 'https://' . $validated['website_url'];
+        // }
         // if($validated['image']) $validated['image'] = Storage::putFile("Promotions",$validated['image']);
         if ($request->hasFile('image')) {
             $validated['image'] = "storage/" . $this->uploadImage($validated['image'], 'Promotions/image');
@@ -95,9 +95,9 @@ class PromotionController extends Controller
     {
         $validated = $request->validate([
             "name" => [ "string","required", Rule::unique('promotions', 'name')->ignore($id), ],
-            "description" => "nullable|string|bail",
-            "website_url" => "nullable|bail", 
-            "image" => "nullable|image|mimes:png,jpg,jpeg,webp|max:5120|bail" 
+            "description" => "sometimes|string|bail",
+            "website_url" => "sometimes|bail|url", 
+            "image" => "sometimes|image|mimes:png,jpg,jpeg,webp|max:5120|bail" 
 ],
 [
             'name.required' => 'يجب إدخال الاسم.',
@@ -113,9 +113,9 @@ class PromotionController extends Controller
             
         
         );
-        if (!str_starts_with($validated['website_url'], 'http://') && !str_starts_with($validated['website_url'], 'https://')) {
-            $validated['website_url'] = 'https://' . $validated['website_url'];
-        }
+        // if (!str_starts_with($validated['website_url'], 'http://') && !str_starts_with($validated['website_url'], 'https://')) {
+        //     $validated['website_url'] = 'https://' . $validated['website_url'];
+        // }
         $Promotion = Promotion::findOrFail($id);
 
            if ($request->hasFile('image')) {
