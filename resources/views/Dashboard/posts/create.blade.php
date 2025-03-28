@@ -28,7 +28,7 @@
                             </div>
                             <div class="form-group mt-3">
                                 <label for="content_ar">المحتوى بالعربية</label>
-                                <textarea class="form-control" dir="auto" name="content_ar" id="content_ar" style="width: 100%; height: 150px;" placeholder=""></textarea>
+                                <textarea class="form-control"  name="content_ar" id="content_ar" style="width: 100%; height: 150px;" placeholder=""></textarea>
                             </div>
                         </div>
     
@@ -90,5 +90,73 @@
             </form>
         </div>
     </section>
-    
+    <script src="{{ asset('ckeditor/ckeditor.js') }}"></script> 
+    <script src="{{ asset('ckfinder/ckfinder.js') }}"></script> 
+
+    {{-- <script>
+        CKEDITOR.replace(document.querySelector( '#content_ar' ), {
+            language: 'ar',
+            direction: 'rtl'
+        });
+        </script> --}}
+        <script>
+            CKEDITOR.on('dialogDefinition', function(ev) {
+             // Take the dialog name and its definition from the event data
+            var dialogName = ev.data.name;
+            var dialogDefinition = ev.data.definition;
+
+            // Check if the dialog is the image dialog
+            if (dialogName == 'image') {
+                // Remove the requirement for the image title
+                var infoTab = dialogDefinition.getContents('info');
+                
+                // Optional: Remove the title field entirely
+                var titleField = infoTab.get('txtAlt');
+                if (titleField) {
+                    titleField.hidden = true; // Hide the title field
+                    titleField.validate = function() { 
+                        return true; // Always validate without requiring a value
+                    };
+                }
+            }
+        });
+            // Create CKEditor instance
+            var editor = CKEDITOR.replace('content_ar', {
+                language: 'ar',
+                direction: 'rtl',
+                
+                // CKFinder integration
+                // filebrowserUploadUrl: '{{-- route("admin.upload") --}}',
+                // filebrowserImageUploadUrl: '{{-- route("admin.upload") --}}',
+                
+                // Configure allowed content (optional but recommended)
+                allowedContent: true,
+                filebrowserBrowseMethod: 'modal',
+                // Toolbar configuration with file upload options
+                
+                
+                // Image upload specific configurations
+                image_previewText: ' ',
+                image_removeLinkByEmptyURL: true,
+                
+                // Advanced content filter (optional)
+                extraAllowedContent: 'img[width,height,alt,style]',
+                
+                // Customize file browser
+                filebrowserBrowseUrl: '{{ asset("ckfinder/ckfinder.html") }}',
+                filebrowserImageBrowseUrl: '{{ asset("ckfinder/ckfinder.html") }}?type=Images',
+                // filebrowserFlashBrowseUrl: '{{ asset("ckfinder/ckfinder.html") }}?type=Flash'
+            });
+        
+            // Attach CKFinder to the editor
+            CKFinder.setupCKEditor(editor);
+        </script>
+        {{-- CKEDITOR.replace(document.querySelector( '#content_en' ), {
+            //     language: 'ar',
+            //     direction: 'rtl'
+            // });--}}
+            
+        
+        
+
 @endsection

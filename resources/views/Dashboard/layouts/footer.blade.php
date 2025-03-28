@@ -18,7 +18,7 @@
 <!-- Need: Apexcharts -->
 <script src="{{asset('Dashboard/assets/extensions/apexcharts/apexcharts.min.js')}}"></script>
 <script src="{{asset('Dashboard/assets/static/js/pages/dashboard.js')}}"></script>
-<script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
+{{-- <script src="https://cdn.ckeditor.com/ckeditor5/41.1.0/classic/ckeditor.js"></script>
 
 <script>
     // CKEditor configuration for English content with WebP support
@@ -139,7 +139,11 @@
       .catch(error => {
         console.error(error.stack);
       });
-  </script>
+  </script> --}}
+
+
+ 
+   
 
 </script>
 @yield('scripts')
