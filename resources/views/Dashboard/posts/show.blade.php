@@ -45,7 +45,11 @@
                             
                             <h3 class="section-title mb-3" style=" font-weight: 600; border-bottom: 2px solid hsla(0, 0%, 87%, 0.2); padding-bottom: 10px;">المحتوى بالعربية</h3>
                             <div class="content-container" style="max-height: 500px; overflow-y: auto; line-height: 1.6;">
-                                {{ strip_tags($post->content_ar) }}
+                                <textarea col="30" rows="10" class="form-control"name="postContent" id="content_ar" readonly >
+                                    {{($post->content_ar)}}
+                                  </textarea>
+
+                                    {{-- {!! strip_tags($post->content_ar) !!} --}}
                             </div>
                         </div>
                     </div>
@@ -58,7 +62,10 @@
                             
                             <h3 class="section-title mb-3" style=" font-weight: 600; border-bottom: 2px solid hsla(0, 0%, 87%, 0.2); padding-bottom: 10px;">Content in English</h3>
                             <div class="content-container" style="max-height: 500px; overflow-y: auto; line-height: 1.6;">
-                                {{ strip_tags($post->content_en) }}
+                                {{-- {!! strip_tags($post->content_ar) !!} --}}
+                                <textarea col="30" rows="10" class="form-control"name="postContent" id="content_en" readonly>
+                                    {{($post->content_en)}}
+                                  </textarea>
                             </div>
                         </div>
                     </div>

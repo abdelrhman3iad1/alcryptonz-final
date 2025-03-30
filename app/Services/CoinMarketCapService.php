@@ -54,12 +54,12 @@ class CoinMarketCapService
     }
     public function getCryptocurrencies()
 {
-    $response = $this->client->get('cryptocurrency/quotes/latest', [
+    $response = $this->client->get('cryptocurrency/quotes/latest', [ 
         'query' => [
-            // 'limit' => 100, // Adjust the limit as needed
-             'symbol' => 'BTC,ETH,USDT,XRP,BNB,SOL,DOGE,USDC,ADA,STETH'
+            'symbol' => 'CTSI,BTC,ETH,USDT,BNB,SOL,STETH,XRP,USDC,DOGE,ADA,AVAX,SHIB,DOT,TRX,LTC,MATIC,WBTC,BCH,LINK,UNI,LEO,ATOM,XLM,OKB,ETC,FIL,ICP,HBAR,VET,APT'
         ],
     ]);
+    
     return json_decode($response->getBody(), true);
 }
 public function getFiatCurrencies()
@@ -67,7 +67,16 @@ public function getFiatCurrencies()
     $response = $this->client->get('fiat/map');
     $allFiatCurrencies = json_decode($response->getBody(), true);
 
-    $desiredFiatCurrencies = ['USD', 'ALL', 'DZD', 'ARS', 'AMD', 'AUD', 'AZN', 'BHD', 'BDT', 'BYN'];
+    $desiredFiatCurrencies = [ 
+        'USD', 'EUR', 'JPY', 'GBP', 'AUD', 'CAD', 'CHF', 'CNY', 'HKD', 'NZD',
+        'SEK', 'KRW', 'SGD', 'NOK', 'MXN', 'INR', 'RUB', 'ZAR', 'TRY', 'BRL',
+        'TWD', 'DKK', 'PLN', 'THB', 'IDR', 'HUF', 'CZK', 'CLP', 'PHP',
+        'AED', 'COP', 'SAR', 'MYR', 'RON', 'ARS', 'BGN', 'ISK', 'HRK', 'LTL',
+        'KWD', 'BHD', 'OMR', 'JOD', 'QAR', 'CRC', 'VND', 'NGN', 'PKR', 'EGP',
+    
+        'DZD', 'MAD', 'LYD', 'TND', 'SDG', 'YER', 'SOS', 'MRO', 'SYP', 'LBP', 'IQD', 'SSP'
+    ];
+    
 
    
     $filteredFiatCurrencies = array_filter($allFiatCurrencies['data'], function ($fiat) use ($desiredFiatCurrencies) {

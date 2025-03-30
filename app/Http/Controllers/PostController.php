@@ -23,7 +23,20 @@ class PostController extends Controller
         $posts = Post::with('user')->get();
         return view("Dashboard.posts.index", compact("posts"));
     }
+    public function upload(Request $request)
+    {
+       if ($request->hasFile('upload')) {
+            $originName = $request->file('upload')->getClientOriginalName();
+            $fileName = pathinfo($originName, PATHINFO_FILENAME);
+            $extension = $request->file('upload')->getClientOriginalExtension();
+            $fileName = $fileName . '_' . time() . '.' . $extension;
 
+            $request->file('upload')->move(public_path('media'), $fileName);
+
+            $url = asset('media/' . $fileName);
+            return response()->json(['fileName' => $fileName, 'uploaded'=> 1, 'url' => $url]);
+        }
+    }
     /**
      * Show the form for creating a new resource.
      */
@@ -104,20 +117,20 @@ class PostController extends Controller
     {
         $validated = $request->validate(
             [
-                'title_ar' => ['required', 'string', 'bail'],
-                'title_en' => ['required', 'string', 'bail'],
-                'content_ar' => ['required', 'string', 'bail'],
-                'content_en' => ['required', 'string', 'bail'],
+                'title_ar' => ['sometimes', 'string'],
+                'title_en' => ['sometimes', 'string'],
+                'content_ar' => ['sometimes', 'string'],
+                'content_en' => ['sometimes', 'string'],
                 'image' => ['nullable', 'max:5000',  'bail'],
                 'category_id' => ['required', 'exists:categories,id'],
                 'partner_id' => ['nullable', 'exists:partners,id','bail'],
             ],
 
             [
-                'title_ar.required' => 'يجب إدخال العنوان بالعربية.',
-                'title_en.required' => 'يجب إدخال العنوان بالانجليزية.',
-                'content_ar.required' => 'يجب إدخال المحتوى بالعربية.',
-                'content_en.required' => 'يجب إدخال المحتوى بالانجليزية.',
+                // 'title_ar.required' => 'يجب إدخال العنوان بالعربية.',
+                // 'title_en.required' => 'يجب إدخال العنوان بالانجليزية.',
+                // 'content_ar.required' => 'يجب إدخال المحتوى بالعربية.',
+                // 'content_en.required' => 'يجب إدخال المحتوى بالانجليزية.',
                 'image.max' => 'يجب ألا يتجاوز حجم الصورة 5 ميجابايت.',
                 'category_id.required' => 'حقل التصنيف مطلوب.',
                 'category_id.exists' => 'التصنيف المحدد غير موجود.',

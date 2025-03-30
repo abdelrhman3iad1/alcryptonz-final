@@ -35,6 +35,7 @@ Route::middleware('guest')->prefix("/dashboard")->group(function () {
 
 Route::prefix("/dashboard")->middleware('admin')->group(function () {
     Route::resource("promotions", PromotionController::class);
+    Route::post('ckeditor/upload', [PostController::class, 'upload'])->name('ckeditor.upload');
     Route::resource("questions", QaController::class);
     Route::resource("partners", PartnerController::class);
     Route::resource("departments", DepartmentController::class);

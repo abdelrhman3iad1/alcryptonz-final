@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('title_ar');
             $table->string('title_en');
-            $table->text('content_ar');
-            $table->text('content_en');
+            $table->longText('content_ar');
+            $table->longText('content_en');
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('partner_id')->nullable();
             $table->unsignedBigInteger('category_id');

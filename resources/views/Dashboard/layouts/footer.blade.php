@@ -24,54 +24,11 @@
     // CKEditor configuration for English content with WebP support
     ClassicEditor
         .create(document.querySelector('#content_en'), {
-            // Toolbar configuration with items available in Classic editor
-            toolbar: {
-          items: [
-            'heading', '|',
-            'bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript', '|',
-            'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', '|',
-            'alignment', '|',
-            'bulletedList', 'numberedList', 'todoList', '|',
-            'outdent', 'indent', '|',
-            'blockQuote', 'insertTable', 'link', 'imageUpload', 'mediaEmbed', '|',
-            'undo', 'redo', '|',
-            'code', 'codeBlock', 'horizontalLine', 'removeFormat', 'sourceEditing'
-          ]
-        },
-        fontSize: {
-          options: [
-            8, 10, 12, 'default', 14, 16, 18, 20, 24, 28, 36
-          ],
-          supportAllValues: true
-        },
-        fontFamily: {
-          options: [
-            'default',
-            'Arial, Helvetica, sans-serif',
-            'Courier New, Courier, monospace',
-            'Georgia, serif',
-            'Lucida Sans Unicode, Lucida Grande, sans-serif',
-            'Tahoma, Geneva, sans-serif',
-            'Times New Roman, Times, serif',
-            'Trebuchet MS, Helvetica, sans-serif',
-            'Verdana, Geneva, sans-serif'
-          ]
-        },
-        alignment: {
-          options: [ 'left', 'center', 'right', 'justify' ]
-        },
-        image: {
-          toolbar: [
-            'imageTextAlternative', 'imageStyle:full', 'imageStyle:side'
-          ]
-        },
-        table: {
-          contentToolbar: [
-            'tableColumn', 'tableRow', 'mergeTableCells'
-          ]
-        },
+          ckfinder: {
+                        uploadUrl: "{{ route('ckeditor.upload', ['_token' => csrf_token()]) }}",
+                    },
         language: 'en',
-        placeholder: 'Type your awesome content here...',
+        placeholder: 'Type your content here...',
       })
       .then(editor => {
         console.log('Editor was initialized', editor);
@@ -79,59 +36,15 @@
       .catch(error => {
         console.error(error.stack);
       });
+     
 
-
-    // CKEditor configuration for Arabic content with WebP support
     ClassicEditor
         .create(document.querySelector('#content_ar'), {
-            // Same toolbar configuration as English editor
-            toolbar: {
-          items: [
-            'heading', '|',
-            'bold', 'italic', 'underline', 'strikethrough', 'subscript', 'superscript', '|',
-            'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', '|',
-            'alignment', '|',
-            'bulletedList', 'numberedList', 'todoList', '|',
-            'outdent', 'indent', '|',
-            'blockQuote', 'insertTable', 'link', 'imageUpload', 'mediaEmbed', '|',
-            'undo', 'redo', '|',
-            'code', 'codeBlock', 'horizontalLine', 'removeFormat', 'sourceEditing'
-          ]
-        },
-        fontSize: {
-          options: [
-            8, 10, 12, 'default', 14, 16, 18, 20, 24, 28, 36
-          ],
-          supportAllValues: true
-        },
-        fontFamily: {
-          options: [
-            'default',
-            'Arial, Helvetica, sans-serif',
-            'Courier New, Courier, monospace',
-            'Georgia, serif',
-            'Lucida Sans Unicode, Lucida Grande, sans-serif',
-            'Tahoma, Geneva, sans-serif',
-            'Times New Roman, Times, serif',
-            'Trebuchet MS, Helvetica, sans-serif',
-            'Verdana, Geneva, sans-serif'
-          ]
-        },
-        alignment: {
-          options: [ 'left', 'center', 'right', 'justify' ]
-        },
-        image: {
-          toolbar: [
-            'imageTextAlternative', 'imageStyle:full', 'imageStyle:side'
-          ]
-        },
-        table: {
-          contentToolbar: [
-            'tableColumn', 'tableRow', 'mergeTableCells'
-          ]
-        },
-        language: 'en',
-        placeholder: 'Type your awesome content here...',
+          ckfinder: {
+                        uploadUrl: "{{ route('ckeditor.upload', ['_token' => csrf_token()]) }}",
+                    },
+        language: 'ar',
+        placeholder: 'إكتب محتواك هنا',
       })
       .then(editor => {
         console.log('Editor was initialized', editor);
