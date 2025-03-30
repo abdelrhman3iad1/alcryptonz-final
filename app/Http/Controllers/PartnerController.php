@@ -39,7 +39,7 @@ class PartnerController extends Controller
         $validated = $request->validate([
             "name" => "required|string|unique:partners,name",
             "description" => "required|string",
-            "website_url" => "required",
+            "website_url" => "required|url",
             "image" => "required|image|mimes:png,jpg,jpeg,webp|max:5120"
         ],
         
@@ -58,9 +58,9 @@ class PartnerController extends Controller
             ]
         
         );
-        if (!str_starts_with($validated['website_url'], 'http://') && !str_starts_with($validated['website_url'], 'https://')) {
-            $validated['website_url'] = 'https://' . $validated['website_url'];
-        }
+        // if (!str_starts_with($validated['website_url'], 'http://') && !str_starts_with($validated['website_url'], 'https://')) {
+        //     $validated['website_url'] = 'https://' . $validated['website_url'];
+        // }
         if ($request->hasFile('image')) {
             $validated['image'] = "storage/" . $this->uploadImage($validated['image'], 'Partners/image');
         }
@@ -95,7 +95,7 @@ class PartnerController extends Controller
         $validated = $request->validate([
             "name" => [ "string","required", Rule::unique('partners', 'name')->ignore($id), ],
             "description" => "nullable|string|bail",
-            "website_url" => "nullable|bail", 
+            "website_url" => "nullable|bail|url", 
             "image" => "nullable|image|mimes:png,jpg,jpeg,webp|max:5120|bail" 
 ],
 [
@@ -112,9 +112,9 @@ class PartnerController extends Controller
             
         
         );
-        if (!str_starts_with($validated['website_url'], 'http://') && !str_starts_with($validated['website_url'], 'https://')) {
-            $validated['website_url'] = 'https://' . $validated['website_url'];
-        }
+        // if (!str_starts_with($validated['website_url'], 'http://') && !str_starts_with($validated['website_url'], 'https://')) {
+        //     $validated['website_url'] = 'https://' . $validated['website_url'];
+        // }
         $partner = Partner::findOrFail($id);
 
         if ($request->hasFile('image')) {
